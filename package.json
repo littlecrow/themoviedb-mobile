@@ -11,9 +11,11 @@
     "ramda": "^0.23.0",
     "react": "~15.4.2",
     "react-native": "github:exponent/react-native#sdk-15.0.0",
+    "react-native-animatable": "^1.2.1",
     "react-native-config": "^0.2.1",
     "react-native-device-info": "^0.10.0",
     "react-native-drawer": "^2.3.0",
+    "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.2",
     "reactotron-apisauce": "^1.11.1",
@@ -24,8 +26,7 @@
     "redux-persist": "^4.1.0",
     "redux-saga": "^0.14.3",
     "reduxsauce": "0.4.1",
-    "seamless-immutable": "^7.0.1",
-    "@expo/vector-icons": "~4.0.0"
+    "seamless-immutable": "^7.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
