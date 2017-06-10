@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { compose, createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { createLogicMiddleware } from 'redux-logic';
 
 const deps = { // injected dependencies for logic
