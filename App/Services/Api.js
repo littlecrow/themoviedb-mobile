@@ -1,5 +1,5 @@
 // a library to wrap and simplify api calls
-import apisauce from 'apisauce'
+import axios from 'axios';
 
 // our "constructor"
 const create = (baseURL = 'https://api.github.com/') => {
@@ -7,9 +7,9 @@ const create = (baseURL = 'https://api.github.com/') => {
   // STEP 1
   // ------
   //
-  // Create and configure an apisauce-based api object.
+  // Create and configure an axios-based api object.
   //
-  const api = apisauce.create({
+  const api = axios.create({
     // base URL is read from the "constructor"
     baseURL,
     // here are some default headers
@@ -18,7 +18,7 @@ const create = (baseURL = 'https://api.github.com/') => {
     },
     // 10 second timeout...
     timeout: 10000
-  })
+  });
 
   // ------
   // STEP 2
@@ -55,10 +55,10 @@ const create = (baseURL = 'https://api.github.com/') => {
     getRoot,
     getRate,
     getUser
-  }
-}
+  };
+};
 
 // let's return back our create method as the default.
 export default {
   create
-}
+};

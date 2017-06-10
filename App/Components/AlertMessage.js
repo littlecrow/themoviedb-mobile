@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react'
-import { View, Text } from 'react-native'
-import styles from './Styles/AlertMessageStyles'
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import styles from './Styles/AlertMessageStyles';
+import PropTypes from 'prop-types';
 
-export default class AlertMessage extends React.Component {
+export default class AlertMessage extends Component {
   static defaultProps = { show: true }
 
   static propTypes = {
@@ -13,9 +14,9 @@ export default class AlertMessage extends React.Component {
   }
 
   render () {
-    let messageComponent = null
+    let messageComponent = null;
     if (this.props.show) {
-      const { title } = this.props
+      const { title } = this.props;
       return (
         <View
           style={[styles.container, this.props.style]}
@@ -24,9 +25,9 @@ export default class AlertMessage extends React.Component {
             <Text allowFontScaling={false} style={styles.message}>{title && title.toUpperCase()}</Text>
           </View>
         </View>
-      )
+      );
     }
 
-    return messageComponent
+    return messageComponent;
   }
 }

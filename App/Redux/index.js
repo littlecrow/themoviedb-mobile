@@ -1,14 +1,13 @@
-import { combineReducers } from 'redux'
-import configureStore from './CreateStore'
-import rootSaga from '../Sagas/'
+import { combineReducers } from 'redux';
+import configureStore from './ConfigureStore';
+import RootLogic from './RootLogic';
+import Users from './Users';
 
 export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    github: require('./GithubRedux').reducer,
-    login: require('./LoginRedux').reducer,
-    search: require('./SearchRedux').reducer
-  })
+    [Users.KEY]: Users.Reducer
+  });
 
-  return configureStore(rootReducer, rootSaga)
-}
+  return configureStore(rootReducer, RootLogic);
+};

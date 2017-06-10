@@ -4,7 +4,9 @@
   "private": true,
   "main": "main.js",
   "dependencies": {
-    "apisauce": "^0.10.0",
+    "axios": "^0.16.2",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
     "expo": "~15.0.0",
     "format-json": "^1.0.3",
     "querystringify": "0.0.4",
@@ -18,14 +20,9 @@
     "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^5.0.2",
-    "reactotron-apisauce": "^1.11.1",
-    "reactotron-react-native": "^1.11.1",
-    "reactotron-redux": "^1.11.1",
-    "reactotron-redux-saga": "^1.11.1",
     "redux": "^3.6.0",
-    "redux-persist": "^4.1.0",
-    "redux-saga": "^0.14.3",
-    "reduxsauce": "0.4.1",
+    "redux-logic": "^0.12.1",
+    "rxjs": "^5.4.0",
     "seamless-immutable": "^7.0.1"
   },
   "devDependencies": {

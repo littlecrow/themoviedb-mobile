@@ -1,19 +1,20 @@
-import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import styles from './Styles/SearchBarStyles'
-import { Colors, Metrics } from '../Themes/'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React, { Component } from 'react';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import styles from './Styles/SearchBarStyles';
+import { Colors, Metrics } from '../Themes/';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import PropTypes from 'prop-types';
 
-export default class SearchBar extends React.Component {
+export default class SearchBar extends Component {
   static propTypes = {
-    onSearch: React.PropTypes.func.isRequired,
-    onCancel: React.PropTypes.func.isRequired,
-    searchTerm: React.PropTypes.string
+    onSearch: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    searchTerm: PropTypes.string
   }
 
   render () {
-    const { onSearch, onCancel, searchTerm } = this.props
-    const onSubmitEditing = () => onSearch(searchTerm)
+    const { onSearch, onCancel, searchTerm } = this.props;
+    const onSubmitEditing = () => onSearch(searchTerm);
     return (
       <View style={styles.container}>
         <Icon name='search' size={Metrics.icons.tiny} style={styles.searchIcon} />
