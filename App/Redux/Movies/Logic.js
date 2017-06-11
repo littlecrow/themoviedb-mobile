@@ -30,3 +30,7 @@ export const moviesFetchLogic = createLogic({
     .then(() => done());
   }
 });
+
+export default [
+  moviesFetchLogic
+];
