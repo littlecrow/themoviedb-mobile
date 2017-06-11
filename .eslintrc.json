@@ -19,10 +19,11 @@
             "warn",
             "always"
         ],
-        "no-console": "warn",
+        "no-console": "off",
         "react/prop-types": "warn"
     },
     "globals": {
-      "require": true
+      "require": true,
+      "__DEV__": true
     }
 }

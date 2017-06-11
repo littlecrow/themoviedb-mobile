@@ -19,6 +19,6 @@ const PrimaryNav = StackNavigator({
   navigationOptions: {
     headerStyle: styles.header
   }
-})
+});
 
 export default PrimaryNav;
