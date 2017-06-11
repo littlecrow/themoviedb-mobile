@@ -1,25 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text, Button} from 'react-native';
+import { FlatList, ListView, View, Text} from 'react-native';
+import Movie from '../../Components/Movies/Movie';
 
 class MoviesScreen extends Component {
   constructor(props) {
     super(props);
+
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      movieDataSource: ds.cloneWithRows(this.props.movies)
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      movies: this.props.movies
+    });
+  }
+
+  renderItem({item}) {
+    return (
+      <Movie
+        title={item.title}
+      />
+    );
   }
 
   render() {
+    const list = (
+      <ListView
+        dataSource={this.state.movieDataSource}
+        renderRow={(rowData) => <Text>{rowData.title}</Text>}
+      />
+    );
     return (
       <View>
-        <Text>Movies page</Text>
+        { list }
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.movies.list)
   return {
-    movies: []
+    movies: state.movies.list
   };
 };
 

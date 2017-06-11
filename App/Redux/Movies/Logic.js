@@ -20,8 +20,9 @@ export const moviesFetchLogic = createLogic({
       }
     })
     .then((response) => {
-      //dispatch(ActionCreator.moviesFetchFulfilled(movies));
-      console.log(response);
+      const movies = response.data.results;
+      dispatch(ActionCreator.moviesFetchFulfilled(movies));
+      console.log(movies)
     })
     .catch (err => {
       console.log(err);
@@ -30,3 +31,7 @@ export const moviesFetchLogic = createLogic({
     .then(() => done());
   }
 });
+
+export default [
+  moviesFetchLogic
+];
