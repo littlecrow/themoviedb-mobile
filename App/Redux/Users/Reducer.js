@@ -1,5 +1,5 @@
 import {
-  key,
+  KEY,
   USERS_FETCH,
   USERS_FETCH_CANCEL,
   USERS_FETCH_FULFILLED,
@@ -7,8 +7,8 @@ import {
 } from './Action';
 
 export const selectors = {
-  users: state => state[key].list,
-  fetchStatus: state => state[key].fetchStatus
+  users: state => state[KEY].list,
+  fetchStatus: state => state[KEY].fetchStatus
 };
 
 const initialState = {
@@ -38,7 +38,7 @@ export default (state = initialState, action) => {
   case USERS_FETCH_CANCEL:
     return {
       ...state,
-      fetchStatus: 'user cancelled'
+      fetchStatus: `user fetch cancelled at ${(new Date()).toLocaleString()}`
     };
   default:
     return state;
