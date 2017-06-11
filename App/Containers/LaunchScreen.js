@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { ScrollView, Text, Image, View, Button } from 'react-native';
 import { Images } from '../Themes';
 import { connect } from 'react-redux';
-import { usersFetch } from '../Redux/Users/ActionCreator';
-import MoviesActionCreator from '../Redux/Movies/ActionCreator';
+import { usersFetch, usersFetchCancel } from '../Redux/Users/ActionCreator';
+import { selectors } from '../Redux/Users/Reducer';
+import PropTypes from 'prop-types';
 
 // Styles
 import styles from './Styles/LaunchScreenStyles';
@@ -21,11 +22,13 @@ class LaunchScreen extends Component {
           <View style={styles.section} >
             <Image source={Images.ready} />
             <Text style={styles.sectionText}>
-              Test Redux
+              { this.props.fetchStatus }
             </Text>
             <Button title='Dispatch' onPress={() => {
-              alert('Hello');
               this.props.fetchUsers();
+            }}/>
+            <Button title='Cancel fetch' onPress={() => {
+              this.props.cancelFetch();
             }}/>
           </View>
           <View>
@@ -41,15 +44,22 @@ class LaunchScreen extends Component {
   }
 }
 
+LaunchScreen.propTypes = {
+  fetchUsers: PropTypes.func,
+  cancelFetch: PropTypes.func,
+  fetchStatus: PropTypes.string
+};
+
 const mapStateToProps = (state) => {
   return {
-    users: state.users
+    users: selectors.users(state),
+    fetchStatus: selectors.fetchStatus(state)
   };
 };
 
 const mapDispatchToProps = (dispath) => ({
   fetchUsers: () => dispath(usersFetch()),
-  fetchMovies: () => dispath(MoviesActionCreator.moviesFetch())
+  cancelFetch: () => dispath(usersFetchCancel())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LaunchScreen);
