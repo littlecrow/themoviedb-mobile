@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { usersFetch, usersFetchCancel } from '../Redux/Users/ActionCreator';
 import { selectors } from '../Redux/Users/Reducer';
 import PropTypes from 'prop-types';
+import { API_KEY } from 'react-native-dotenv';
 
 // Styles
 import styles from './Styles/LaunchScreenStyles';
@@ -24,6 +25,9 @@ class LaunchScreen extends Component {
             <Text style={styles.sectionText}>
               { this.props.fetchStatus }
             </Text>
+
+            <Text>{API_KEY}</Text>
+
             <Button title='Dispatch' onPress={() => {
               this.props.fetchUsers();
             }}/>
