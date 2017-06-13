@@ -43,7 +43,7 @@ class MoviesScreen extends Component {
           {
             movies.map((movie) => (
               <ListItem
-                avatar={{uri: `${IMAGE_URL}/` + movie.poster_path}}
+                avatar={{uri: `${IMAGE_URL}` + movie.poster_path}}
                 avatarStyle={{
                   width: 70,
                   height: 100
