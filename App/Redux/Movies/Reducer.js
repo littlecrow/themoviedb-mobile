@@ -1,32 +1,27 @@
 import Action from './Action';
 
 const initialState = {
-  list: [],
-  fetchStatus: ''
+  list: []
 };
 
 export default (state = initialState, action) => {
   switch(action.type) {
   case Action.MOVIES_FETCH:
     return {
-      ...state,
-      fetchStatus: 'Fetched'
+      ...state
     };
   case Action.MOVIES_FETCH_FULFILLED:
     return {
       ...state,
-      list: action.payload,
-      fetchStatus: 'Fetch Fulfilled'
+      list: action.payload
     };
   case Action.MOVIES_FETCH_REJECTED:
     return {
-      ...state,
-      fetchStatus: 'Fetch rejected'
+      ...state
     };
   case Action.MOVIES_FETCH_CANCEL:
     return {
-      ...state,
-      fetchStatus: 'Fetch Canceled'
+      ...state
     };
   default:
     return state;

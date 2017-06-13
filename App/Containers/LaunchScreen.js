@@ -31,8 +31,7 @@ class LaunchScreen extends Component {
           <View>
             <Button title='Go to Movies List'
               onPress={() => {
-                navigate('Movies');
-                this.props.fetchMovies();
+                navigate('MoviesScreen');
               }}/>
           </View>
         </ScrollView>

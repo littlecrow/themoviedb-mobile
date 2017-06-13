@@ -5,5 +5,5 @@ import Movies from './Movies';
 /* ------------- Assemble The Reducers ------------- */
 export default combineReducers({
   [Users.KEY]: Users.Reducer,
-  [Movies.KEY]: Movies.Reducer
+  [Movies.MOVIES_KEY]: Movies.Reducer
 });

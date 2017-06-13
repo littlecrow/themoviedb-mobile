@@ -2,7 +2,6 @@ import { createLogic } from 'redux-logic';
 import Action from './Action';
 import ActionCreator from './ActionCreator';
 
-// https://jsonplaceholder.typicode.com/posts
 const API = 'https://api.themoviedb.org/3/movie/popular';
 const API_KEY = '62262a23488ef8c1405c686f66e765ef';
 const LANGUAGE = 'en-US';
