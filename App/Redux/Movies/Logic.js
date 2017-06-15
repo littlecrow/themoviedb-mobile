@@ -10,24 +10,23 @@ export const moviesFetchLogic = createLogic({
   type: Action.MOVIES_FETCH,
   cancelType: Action.MOVIES_FETCH_CANCEL,
   latest: true,
-  process({ http }, dispatch, done) {
+  process({ getState, http }, dispatch, done) {
     http.get(API, {
       params: {
         api_key: API_KEY,
         language: LANGUAGE,
-        page: 1
+        page: getState().movies.page
       }
     })
     .then((response) => {
       const movies = response.data.results;
       dispatch(ActionCreator.moviesFetchFulfilled(movies));
-      console.log(movies)
     })
     .catch (err => {
       console.log(err);
       dispatch(ActionCreator.moviesFetchRejected(err));
     })
-    .then(() => done());
+    .finally(() => done());
   }
 });
 

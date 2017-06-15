@@ -5,4 +5,4 @@ export default StyleSheet.create({
   header: {
     backgroundColor: Colors.backgroundColor
   }
-})
+});

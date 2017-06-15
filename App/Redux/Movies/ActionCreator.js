@@ -19,9 +19,15 @@ export const moviesFetchRejected = (err) => ({
   error: true
 });
 
+export const setPage = (page) => ({
+  type: Action.SET_PAGE_NUM,
+  page
+});
+
 export default {
   moviesFetch,
   moviesFetchCancel,
   moviesFetchFulfilled,
-  moviesFetchRejected
+  moviesFetchRejected,
+  setPage
 };

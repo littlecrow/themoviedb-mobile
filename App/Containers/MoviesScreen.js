@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ScrollView} from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ScrollView, Dimensions } from 'react-native';
+import { List, ListItem, Button } from 'react-native-elements';
 import MovieActionCreator from '../Redux/Movies/ActionCreator';
+import { reduceText } from '../Transforms/ReduceText';
 
-const MAX_LENGTH = 25;
+let pageNum = 1;
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
 class MoviesScreen extends Component {
   constructor(props) {
     super(props);
 
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  handleScroll(e) {
+    /*
+    - e.nativeEvent.contentOffset.y for vertical scrollView
+    - e.nativeEvent.contentOffset.x for horizontal scrollView
+    */
+    let windowHeight = Dimensions.get('window').height,
+      height = e.nativeEvent.contentSize.height,
+      offset = e.nativeEvent.contentOffset.y;
+
+    if(windowHeight + offset >= height) {
+      this.props.setPage(++pageNum);
+      this.props.fetchMovies();
+    }
   }
 
   componentDidMount() {
     this.props.fetchMovies();
-  }
-
-  reduceText (text) {
-    let words = text.split(' ');
-    let parts = [];
-    for(let i=0; i<words.length; i++) {
-      if(i < MAX_LENGTH) {
-        if(i == MAX_LENGTH - 1)
-          parts.push(words[i] + ' ...');
-        else
-          parts.push(words[i]);
-      }
-    }
-
-    return parts.join(" ");
   }
 
   render() {
@@ -38,7 +40,7 @@ class MoviesScreen extends Component {
     const movies = this.props.movies;
 
     return (
-      <ScrollView>
+      <ScrollView onScroll={this.handleScroll}>
         <List>
           {
             movies.map((movie) => (
@@ -50,7 +52,7 @@ class MoviesScreen extends Component {
                 }}
                 key={movie.id}
                 title={movie.title}
-                subtitle={this.reduceText(movie.overview)}
+                subtitle={reduceText(movie.overview)}
                 onPress={() => navigate('MovieDetailScreen', {
                   movie: movie
                 })}
@@ -64,14 +66,14 @@ class MoviesScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.movies.list)
   return {
     movies: state.movies.list
   };
 };
 
 const mapDispatchToProps = (dispath) => ({
-  fetchMovies: () => dispath(MovieActionCreator.moviesFetch())
+  fetchMovies: () => dispath(MovieActionCreator.moviesFetch()),
+  setPage: (page) => dispath(MovieActionCreator.setPage(page))
 });
 
 MoviesScreen.propTypes = {

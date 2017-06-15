@@ -1,7 +1,8 @@
 import Action from './Action';
 
 const initialState = {
-  list: []
+  list: [],
+  page: 1
 };
 
 export default (state = initialState, action) => {
@@ -10,11 +11,15 @@ export default (state = initialState, action) => {
     return {
       ...state
     };
-  case Action.MOVIES_FETCH_FULFILLED:
+  case Action.MOVIES_FETCH_FULFILLED: {
     return {
       ...state,
-      list: action.payload
+      list: [
+        ...state.list,
+        ...action.payload
+      ]
     };
+  }
   case Action.MOVIES_FETCH_REJECTED:
     return {
       ...state
@@ -22,6 +27,11 @@ export default (state = initialState, action) => {
   case Action.MOVIES_FETCH_CANCEL:
     return {
       ...state
+    };
+  case Action.SET_PAGE_NUM:
+    return {
+      ...state,
+      page: action.page
     };
   default:
     return state;
