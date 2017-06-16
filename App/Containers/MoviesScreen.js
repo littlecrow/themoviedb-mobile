@@ -17,15 +17,15 @@ class MoviesScreen extends Component {
       filterByTrend: MoviesConstant.POPULAR_MOVIES
     };
 
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleValueChange = this.handleValueChange.bind(this);
+    this._handleScroll = this._handleScroll.bind(this);
+    this._handleValueChange = this._handleValueChange.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchMovies();
   }
 
-  handleScroll(e) {
+  _handleScroll(e) {
     /*
     - e.nativeEvent.contentOffset.y for vertical scrollView
     - e.nativeEvent.contentOffset.x for horizontal scrollView
@@ -40,7 +40,7 @@ class MoviesScreen extends Component {
     }
   }
 
-  handleValueChange(value) {
+  _handleValueChange(value) {
     this.setState({
       filterByTrend: value
     }, () => {
@@ -61,13 +61,13 @@ class MoviesScreen extends Component {
         <View>
           <Picker
             selectedValue={filterByTrend}
-            onValueChange={(value) => { this.handleValueChange(value); }}
+            onValueChange={(value) => { this._handleValueChange(value); }}
           >
             <Picker.Item label={'Popular'} value={MoviesConstant.POPULAR_MOVIES}/>
             <Picker.Item label={'Top Rated'} value={MoviesConstant.TOP_RATED_MOVIES}/>
           </Picker>
         </View>
-        <ScrollView onScroll={this.handleScroll} scrollEventThrottle={5}>
+        <ScrollView onScroll={this._handleScroll} scrollEventThrottle={5}>
           <List>
             {
               movies.map((movie) => (
@@ -94,7 +94,7 @@ class MoviesScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-   console.log('Page: ', state.movies.page);
+  console.log('Page: ', state.movies.page);
   console.log('Filter by: ', state.movies.filter);
   return {
     movies: state.movies.list,
