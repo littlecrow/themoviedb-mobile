@@ -21,10 +21,11 @@ const PrimaryNav = StackNavigator({
   }
 }, {
   // Default config for all screens
-  headerMode: 'screen',
+  //headerMode: 'screen',
   initialRouteName: 'MoviesScreen',
   navigationOptions: {
-    //headerStyle: styles.header
+    headerStyle: styles.header,
+    headerTitleStyle: styles.title
   }
 });
 

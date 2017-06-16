@@ -24,14 +24,6 @@ class MovieDetailScreen extends Component {
                 <View>
                   <Text style={[styles.text, styles.title]}>{movie.title}</Text>
                   <Text style={styles.text}>Rating: {movie.vote_average}</Text>
-                  <Rating
-                    type='custom'
-                    readonly
-                    ratingCount={10}
-                    imageSize={20}
-                    ratingBackgroundColor='transparent'
-                    style={{ paddingVertical: 10 }}
-                  />
                 </View>
               </Col>
             </Row>

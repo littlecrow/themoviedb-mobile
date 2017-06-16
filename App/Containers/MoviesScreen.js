@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, ScrollView, Dimensions, Picker } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View, Picker } from 'react-native';
 import { MoviesActionCreators, MoviesActions, MoviesConstant } from '../Redux/Movies';
-import { reduceText } from '../Transforms/ReduceText';
-
-let pageNum = 1;
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+import MovieList from '../Components/Movie/List';
 
 class MoviesScreen extends Component {
   constructor(props) {
@@ -17,27 +13,17 @@ class MoviesScreen extends Component {
       filterByTrend: MoviesConstant.POPULAR_MOVIES
     };
 
-    this._handleScroll = this._handleScroll.bind(this);
     this._handleValueChange = this._handleValueChange.bind(this);
+
+    this.onInitComponen();
+  }
+
+  onInitComponen() {
+    //
   }
 
   componentDidMount() {
     this.props.fetchMovies();
-  }
-
-  _handleScroll(e) {
-    /*
-    - e.nativeEvent.contentOffset.y for vertical scrollView
-    - e.nativeEvent.contentOffset.x for horizontal scrollView
-    */
-    let windowHeight = Dimensions.get('window').height,
-      height = e.nativeEvent.contentSize.height,
-      offset = e.nativeEvent.contentOffset.y;
-    if(windowHeight + offset >= height) {
-
-      this.props.setPage(++pageNum);
-      this.props.fetchMovies();
-    }
   }
 
   _handleValueChange(value) {
@@ -52,50 +38,29 @@ class MoviesScreen extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
-    const movies = this.props.movies;
+    const { movies } = this.props;
     const { filterByTrend } = this.state;
+    const { navigate } = this.props.navigation;
 
     return (
       <View>
-        <View>
-          <Picker
-            selectedValue={filterByTrend}
-            onValueChange={(value) => { this._handleValueChange(value); }}
-          >
-            <Picker.Item label={'Popular'} value={MoviesConstant.POPULAR_MOVIES}/>
-            <Picker.Item label={'Top Rated'} value={MoviesConstant.TOP_RATED_MOVIES}/>
-          </Picker>
-        </View>
-        <ScrollView onScroll={this._handleScroll} scrollEventThrottle={5}>
-          <List>
-            {
-              movies.map((movie) => (
-                <ListItem
-                  avatar={{uri: `${IMAGE_URL}` + movie.poster_path}}
-                  avatarStyle={{
-                    width: 70,
-                    height: 100
-                  }}
-                  key={movie.id}
-                  title={movie.title}
-                  subtitle={reduceText(movie.overview)}
-                  onPress={() => navigate('MovieDetailScreen', {
-                    movie: movie
-                  })}
-                />
-              ))
-            }
-          </List>
-        </ScrollView>
+        <Picker
+          selectedValue={filterByTrend}
+          onValueChange={(value) => { this._handleValueChange(value); }}
+        >
+          <Picker.Item label={'Popular'} value={MoviesConstant.POPULAR_MOVIES}/>
+          <Picker.Item label={'Top Rated'} value={MoviesConstant.TOP_RATED_MOVIES}/>
+        </Picker>
+        <MovieList
+          movies={ movies }
+          navigate={ navigate }
+        />
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('Page: ', state.movies.page);
-  console.log('Filter by: ', state.movies.filter);
   return {
     movies: state.movies.list,
     page: state.movies.page,

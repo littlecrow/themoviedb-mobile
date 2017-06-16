@@ -12,12 +12,10 @@ export const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
   case ActionTypes.MOVIES_FETCH_REQUESTED:
-    console.log('fetch');
     return {
       ...state
     };
   case ActionTypes.MOVIES_FETCH_FULFILLED:
-    console.log('fetch fulfilled');
     return {
       ...state,
       list: [
