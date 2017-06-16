@@ -1,13 +1,7 @@
-import Action from './Action';
-import ActionCreator from './ActionCreator';
-import Reducer from './Reducer';
-import Logic from './Logic';
-import { MOVIES_KEY } from './Action';
-
-export default {
-  Action,
-  ActionCreator,
-  Reducer,
-  Logic,
-  MOVIES_KEY
-}
+export { default as MoviesActionTypes } from './ActionTypes';
+export { default as MoviesActionCreators } from './ActionCreators';
+export { default as MoviesReducer } from './Reducer';
+export { default as MoviesActions } from './Actions';
+export { default as MoviesConstant } from './Constant';
+export { KEY as MOVIES_KEY } from './Reducer';
+export { INITIAL_STATE as MOVIES_INITIAL_STATE} from './Reducer';

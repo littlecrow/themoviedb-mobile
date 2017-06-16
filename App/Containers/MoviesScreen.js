@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, ScrollView, Dimensions, Picker } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
-import MovieActionCreator from '../Redux/Movies/ActionCreator';
+import { MoviesActionCreators, MoviesActions, MoviesConstant } from '../Redux/Movies';
 import { reduceText } from '../Transforms/ReduceText';
 
 let pageNum = 1;
@@ -13,12 +13,8 @@ class MoviesScreen extends Component {
   constructor(props) {
     super(props);
 
-    /*
-    - P: Popular
-    - TR: Top Rated
-    */
     this.state = {
-      filterByTrend: 'P'
+      filterByTrend: MoviesConstant.POPULAR_MOVIES
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -67,8 +63,8 @@ class MoviesScreen extends Component {
             selectedValue={filterByTrend}
             onValueChange={(value) => { this.handleValueChange(value); }}
           >
-            <Picker.Item label={'Popular'} value={'P'}/>
-            <Picker.Item label={'Top Rated'} value={'TR'}/>
+            <Picker.Item label={'Popular'} value={MoviesConstant.POPULAR_MOVIES}/>
+            <Picker.Item label={'Top Rated'} value={MoviesConstant.TOP_RATED_MOVIES}/>
           </Picker>
         </View>
         <ScrollView onScroll={this.handleScroll} scrollEventThrottle={5}>
@@ -98,15 +94,20 @@ class MoviesScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
+   console.log('Page: ', state.movies.page);
+  console.log('Filter by: ', state.movies.filter);
   return {
-    movies: state.movies.list
+    movies: state.movies.list,
+    page: state.movies.page,
+    filter: state.movies.filter
   };
 };
 
 const mapDispatchToProps = (dispath) => ({
-  fetchMovies: () => dispath(MovieActionCreator.moviesFetch()),
-  setPage: (page) => dispath(MovieActionCreator.setPage(page)),
-  setFilter: (filter) => dispath(MovieActionCreator.setFilter(filter))
+  fetchMovies: () => dispath(MoviesActions.fetchMovies()),
+  fetchFilterMovies: () => dispath(MoviesActionCreators.moviesFetchFilter()),
+  setPage: (page) => dispath(MoviesActionCreators.setPage(page)),
+  setFilter: (filter) => dispath(MoviesActionCreators.setFilter(filter))
 });
 
 MoviesScreen.propTypes = {

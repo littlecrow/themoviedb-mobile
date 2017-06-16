@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import Users from './Users';
-import Movies from './Movies';
+import { MoviesReducer, MOVIES_KEY } from './Movies';
 
 /* ------------- Assemble The Reducers ------------- */
 export default combineReducers({
   [Users.KEY]: Users.Reducer,
-  [Movies.MOVIES_KEY]: Movies.Reducer
+  [MOVIES_KEY]: MoviesReducer
 });

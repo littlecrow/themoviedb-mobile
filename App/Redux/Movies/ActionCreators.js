@@ -1,37 +1,32 @@
-import Action from './Action';
+import ActionTypes from './ActionTypes';
 
-export const moviesFetch = () => ({
-  type: Action.MOVIES_FETCH
-});
-
-export const moviesFetchCancel = () => ({
-  type: Action.MOVIES_FETCH_CANCEL
+export const moviesFetchRequested = () => ({
+  type: ActionTypes.MOVIES_FETCH_REQUESTED
 });
 
 export const moviesFetchFulfilled = (movies) => ({
-  type: Action.MOVIES_FETCH_FULFILLED,
+  type: ActionTypes.MOVIES_FETCH_FULFILLED,
   payload: movies
 });
 
 export const moviesFetchRejected = (err) => ({
-  type: Action.MOVIES_FETCH_REJECTED,
+  type: ActionTypes.MOVIES_FETCH_REJECTED,
   payload: err,
   error: true
 });
 
 export const setPage = (page) => ({
-  type: Action.SET_PAGE_NUM,
+  type: ActionTypes.SET_PAGE_NUM,
   page
 });
 
 export const setFilter = (filter) => ({
-  type: Action.SET_FILTER,
+  type: ActionTypes.SET_FILTER,
   filter
 });
 
 export default {
-  moviesFetch,
-  moviesFetchCancel,
+  moviesFetchRequested,
   moviesFetchFulfilled,
   moviesFetchRejected,
   setPage,

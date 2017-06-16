@@ -1,22 +1,23 @@
-import Action from './Action';
+import ActionTypes from './ActionTypes';
+import Constant from './Constant';
 
-/*
-- P: Popular
-- TR: Top Rated
-*/
-const initialState = {
+export const KEY = 'movies';
+
+export const INITIAL_STATE = {
   list: [],
   page: 1,
-  filter: 'P'
+  filter: Constant.POPULAR_MOVIES
 };
 
-export default (state = initialState, action) => {
+export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-  case Action.MOVIES_FETCH:
+  case ActionTypes.MOVIES_FETCH_REQUESTED:
+    console.log('fetch');
     return {
       ...state
     };
-  case Action.MOVIES_FETCH_FULFILLED: {
+  case ActionTypes.MOVIES_FETCH_FULFILLED:
+    console.log('fetch fulfilled');
     return {
       ...state,
       list: [
@@ -24,25 +25,27 @@ export default (state = initialState, action) => {
         ...action.payload
       ]
     };
-  }
-  case Action.MOVIES_FETCH_REJECTED:
+  case ActionTypes.MOVIES_FETCH_REJECTED:
     return {
       ...state
     };
-  case Action.MOVIES_FETCH_CANCEL:
-    return {
-      ...state
-    };
-  case Action.SET_PAGE_NUM:
+  case ActionTypes.SET_PAGE_NUM:
     return {
       ...state,
       page: action.page
     };
-  case Action.SET_FILTER:
-    return {
-      ...state,
-      filter: action.filter
-    };
+  case ActionTypes.SET_FILTER: {
+    if(state.filter !== action.filter) {
+      return {
+        ...state,
+        list: [],
+        page: 1,
+        filter: action.filter
+      };
+    }
+
+    return state;
+  }
   default:
     return state;
   }
