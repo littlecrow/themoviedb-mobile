@@ -1,8 +1,13 @@
 import Action from './Action';
 
+/*
+- P: Popular
+- TR: Top Rated
+*/
 const initialState = {
   list: [],
-  page: 1
+  page: 1,
+  filter: 'P'
 };
 
 export default (state = initialState, action) => {
@@ -32,6 +37,11 @@ export default (state = initialState, action) => {
     return {
       ...state,
       page: action.page
+    };
+  case Action.SET_FILTER:
+    return {
+      ...state,
+      filter: action.filter
     };
   default:
     return state;

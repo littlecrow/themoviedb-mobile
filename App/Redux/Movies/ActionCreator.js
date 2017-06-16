@@ -24,10 +24,16 @@ export const setPage = (page) => ({
   page
 });
 
+export const setFilter = (filter) => ({
+  type: Action.SET_FILTER,
+  filter
+});
+
 export default {
   moviesFetch,
   moviesFetchCancel,
   moviesFetchFulfilled,
   moviesFetchRejected,
-  setPage
+  setPage,
+  setFilter
 };
