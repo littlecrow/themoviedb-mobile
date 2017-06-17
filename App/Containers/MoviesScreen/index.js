@@ -1,15 +1,18 @@
-import { StackNavigator, TabNavigator } from 'react-navigation';
-import PopularMoviesScreen from './PopularMoviesScreen';
-import TopRatedMoviesScreen from './TopRatedMoviesScreen';
+import { TabNavigator } from 'react-navigation';
+import PopularMoviesFragment from './PopularMoviesFragment';
+import TopRatedMoviesFragment from './TopRatedMoviesFragment';
 
 const MoviesScreen = TabNavigator({
   Popular: {
-    screen: PopularMoviesScreen
+    screen: PopularMoviesFragment
   },
   TopRated: {
-    screen: TopRatedMoviesScreen
+    screen: TopRatedMoviesFragment
   }
 }, {
+  onNavigationStateChange: () => {
+    console.log('state changed');
+  },
   tabBarOptions: {
     activeTintColor: '#e91e63',
   },
