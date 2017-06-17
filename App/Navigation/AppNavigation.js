@@ -1,18 +1,33 @@
 import { StackNavigator } from 'react-navigation';
 import LaunchScreen from '../Containers/LaunchScreen';
-
+import MoviesScreen from '../Containers/MoviesScreen';
+import PopularMoviesScreen from '../Containers/PopularMoviesScreen';
+import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
   LaunchScreen: { screen: LaunchScreen },
+  MoviesScreen: {
+    screen: PopularMoviesScreen,
+    navigationOptions: {
+      title: 'Movies List'
+    }
+  },
+  MovieDetailScreen: {
+    screen: MovieDetailScreen,
+    navigationOptions: {
+      title: 'Movie Detail'
+    }
+  }
 }, {
   // Default config for all screens
-  headerMode: 'none',
-  initialRouteName: 'LaunchScreen',
+  //headerMode: 'screen',
+  initialRouteName: 'MoviesScreen',
   navigationOptions: {
-    headerStyle: styles.header
+    headerStyle: styles.header,
+    headerTitleStyle: styles.title
   }
-})
+});
 
 export default PrimaryNav;

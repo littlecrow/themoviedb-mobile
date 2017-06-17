@@ -12,14 +12,11 @@ import styles from './Styles/LaunchScreenStyles';
 
 class LaunchScreen extends Component {
   render () {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
-          </View>
-
           <View style={styles.section} >
             <Image source={Images.ready} />
             <Text style={styles.sectionText}>
@@ -35,7 +32,12 @@ class LaunchScreen extends Component {
               this.props.cancelFetch();
             }}/>
           </View>
-
+          <View>
+            <Button title='Go to Movies List'
+              onPress={() => {
+                navigate('MoviesScreen');
+              }}/>
+          </View>
         </ScrollView>
       </View>
     );

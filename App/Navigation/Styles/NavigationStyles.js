@@ -3,6 +3,10 @@ import { Colors } from '../../Themes/';
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: Colors.backgroundColor
+    backgroundColor: Colors.primary,
+    paddingTop: 10
+  },
+  title: {
+    color: Colors.secondary
   }
-})
+});
