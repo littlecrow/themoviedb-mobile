@@ -17,15 +17,10 @@ class MovieList extends Component {
   }
 
   _handleScroll(e) {
-    /*
-    - e.nativeEvent.contentOffset.y for vertical scrollView
-    - e.nativeEvent.contentOffset.x for horizontal scrollView
-    */
     let windowHeight = Dimensions.get('window').height,
       height = e.nativeEvent.contentSize.height,
       offset = e.nativeEvent.contentOffset.y;
     if(windowHeight + offset >= height) {
-
       this.props.setPage(++pageNum);
       this.props.fetchMovies();
     }
