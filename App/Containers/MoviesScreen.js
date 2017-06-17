@@ -15,11 +15,11 @@ class MoviesScreen extends Component {
 
     this._handleValueChange = this._handleValueChange.bind(this);
 
-    this.onInitComponen();
+    this.onInitComponent();
   }
 
-  onInitComponen() {
-    //
+  onInitComponent() {
+    console.log('Movie screen');
   }
 
   componentDidMount() {
@@ -38,7 +38,6 @@ class MoviesScreen extends Component {
   }
 
   render() {
-    const { movies } = this.props;
     const { filterByTrend } = this.state;
     const { navigate } = this.props.navigation;
 
@@ -52,7 +51,6 @@ class MoviesScreen extends Component {
           <Picker.Item label={'Top Rated'} value={MoviesConstant.TOP_RATED_MOVIES}/>
         </Picker>
         <MovieList
-          movies={ movies }
           navigate={ navigate }
         />
       </View>
@@ -60,18 +58,9 @@ class MoviesScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    movies: state.movies.list,
-    page: state.movies.page,
-    filter: state.movies.filter
-  };
-};
-
 const mapDispatchToProps = (dispath) => ({
   fetchMovies: () => dispath(MoviesActions.fetchMovies()),
   fetchFilterMovies: () => dispath(MoviesActionCreators.moviesFetchFilter()),
-  setPage: (page) => dispath(MoviesActionCreators.setPage(page)),
   setFilter: (filter) => dispath(MoviesActionCreators.setFilter(filter))
 });
 
@@ -79,4 +68,4 @@ MoviesScreen.propTypes = {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviesScreen);
+export default connect(undefined, mapDispatchToProps)(MoviesScreen);

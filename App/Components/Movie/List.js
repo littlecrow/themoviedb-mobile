@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { ScrollView, Dimensions } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { reduceText } from '../../Transforms/ReduceText';
+import { MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
 
 let pageNum = 1;
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
@@ -30,8 +32,7 @@ class MovieList extends Component {
   }
 
   render() {
-    const { movies } = this.props;
-    const { navigate } = this.props;
+    const { movies, navigate } = this.props;
 
     return (
       <ScrollView onScroll={this._handleScroll} scrollEventThrottle={5}>
@@ -63,4 +64,15 @@ MovieList.propTypes = {
 
 };
 
-export default MovieList;
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies.list,
+  };
+};
+
+const mapDispatchToProps = (dispath) => ({
+  fetchMovies: () => dispath(MoviesActions.fetchMovies()),
+  setPage: (page) => dispath(MoviesActionCreators.setPage(page))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
