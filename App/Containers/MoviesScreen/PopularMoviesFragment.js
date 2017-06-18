@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View , Text} from 'react-native';
 import { connect } from 'react-redux';
 import { MoviesActionCreators, MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/MovieList';
+import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
 
 class PopularMoviesFragment extends Component {
   constructor(props) {
     super(props);
+
+    this.handlePressOnTab = this.handlePressOnTab.bind(this);
   }
 
   componentDidMount() {
@@ -15,10 +18,14 @@ class PopularMoviesFragment extends Component {
     fetchMovies();
   }
 
+  handlePressOnTab() {
+    console.log('You press me!');
+  }
+
   render() {
     return (
       <View>
-        <MovieList/>
+        <Text>Mobile</Text>
       </View>
     );
   }
