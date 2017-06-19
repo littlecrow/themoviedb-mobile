@@ -1,18 +1,22 @@
 import { TabNavigator } from 'react-navigation';
 import PopularMoviesFragment from './PopularMoviesFragment';
 import TopRatedMoviesFragment from './TopRatedMoviesFragment';
+import { MoviesConstant } from '../../Redux/Movies';
 
 const MoviesScreen = TabNavigator({
   Popular: {
-    screen: PopularMoviesFragment
+    screen: PopularMoviesFragment,
+    navigationOptions: {
+      title: 'Popular'
+    }
   },
   TopRated: {
-    screen: TopRatedMoviesFragment
+    screen: TopRatedMoviesFragment,
+    navigationOptions: {
+      title: 'Top Rated'
+    }
   }
 }, {
-  onNavigationStateChange: () => {
-    console.log('state changed');
-  },
   tabBarOptions: {
     activeTintColor: '#e91e63',
   },

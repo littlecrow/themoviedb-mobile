@@ -16,6 +16,7 @@ class TopRatedMoviesFragment extends Component {
   }
 
   render() {
+    console.log('Top state: ', this.props.navigation.params);
     return (
       <View>
         <MovieList/>

@@ -14,36 +14,6 @@ class MoviesFragment extends Component {
     };
 
     // this._handleValueChange = this._handleValueChange.bind(this);
-
-    this.onInitComponent = this.onInitComponent.bind(this);
-    this.getFilter = this.getFilter.bind(this);
-
-    // this.getFilter();
-    // this.onInitComponent();
-  }
-
-  getFilter() {
-    return MoviesConstant.POPULAR_MOVIES;
-  }
-
-  usePopular () {
-    this.getFilter = () => MoviesConstant.POPULAR_MOVIES;
-  }
-
-  useTopRated () {
-    this.getFilter = () => MoviesConstant.TOP_RATED_MOVIES;
-  }
-
-  onInitComponent() {
-    const { fetchMovies, setFilter } = this.props;
-
-    setFilter(this.getFilter());
-    fetchMovies();
-  }
-
-  componentDidMount() {
-
-    this.onInitComponent();
   }
 
 
@@ -71,10 +41,6 @@ class MoviesFragment extends Component {
 
     return (
       <View>
-        <Text>Filter name.....: {this.getFilter()}</Text>
-        <MovieList
-
-        />
       </View>
     );
   }
