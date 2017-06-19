@@ -4,6 +4,7 @@ import {
   View,
   Button
 } from 'react-native';
+import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import styles from './Styles/BackdropDetailStyles';
@@ -18,7 +19,7 @@ class BackdropMovieDetail extends Component {
       if (index == (movie.genres.length - 1))
         return genre.name;
       return `${genre.name}, `;
-    }) : '';
+    }) : null;
 
     return (
       <View style={styles.container}>
@@ -32,8 +33,17 @@ class BackdropMovieDetail extends Component {
               <View style={styles.actionButton}><Button color={colors.danger} onPress={() => {}} title="+ Wish list"/></View>
               <View style={styles.actionButton}><Button color={colors.primary} onPress={() => {}} title="Buy"/></View>
               <Text style={styles.rating}>
-                {movie.vote_average}/10
+                Rating: {movie.vote_average}/10
               </Text>
+              <View>
+                <Rating
+                  disabled={true}
+                  maxStars={5}
+                  rating={parseFloat(movie.vote_average) / 2}
+                  starColor={colors.sunFlower}
+                  starSize={25}
+                />
+              </View>
             </View>
           </View>
           <View style={styles.line}/>

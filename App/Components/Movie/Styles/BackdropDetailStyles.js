@@ -65,9 +65,9 @@ const MovieDetailScreenStyles = StyleSheet.create({
     marginBottom: metrics.doubleBaseMargin
   },
   rating: {
-    fontSize: fonts.size.h2,
+    fontSize: fonts.size.h5,
     ...textColors,
-    marginBottom: metrics.doubleBaseMargin
+    marginBottom: metrics.baseMargin
   },
   movieTitle: {
     ...fonts.style.h5,
