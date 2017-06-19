@@ -62,7 +62,6 @@ const MovieDetailScreenStyles = StyleSheet.create({
   },
   actionButton: {
     width: '80%',
-    marginBottom: metrics.doubleBaseMargin
   },
   rating: {
     fontSize: fonts.size.h5,

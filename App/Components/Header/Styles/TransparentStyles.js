@@ -10,14 +10,14 @@ const TransparentHeaderStyles = StyleSheet.create({
     top: Constants.statusBarHeight,
     left: 0, right: 0,
     flexDirection: 'row',
-    backgroundColor: 'rgba(0,0,0,0.125)'
+    backgroundColor: 'rgba(0,0,0,0.35)'
   },
   back: {
     ...fonts.style.h5,
     color: colors.secondary,
     marginRight: metrics.baseMargin,
-    padding: metrics.baseMargin,
-    borderRadius: 500
+    marginLeft: metrics.baseMargin/2,
+    padding: metrics.baseMargin
   },
   title: {
     ...fonts.style.h5,

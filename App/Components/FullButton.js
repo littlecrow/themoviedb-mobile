@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import styles from './Styles/FullButtonStyles';
-import ExamplesRegistry from '../Services/ExamplesRegistry';
 import PropTypes from 'prop-types';
 
 // Note that this file (App/Components/FullButton) needs to be
@@ -10,12 +9,6 @@ import PropTypes from 'prop-types';
 
 // Ignore in coverage report
 /* istanbul ignore next */
-ExamplesRegistry.addComponentExample('Full Button', () =>
-  <FullButton
-    text='Hey there'
-    onPress={() => window.alert('Full Button Pressed!')}
-  />
-);
 
 export default class FullButton extends Component {
   static propTypes = {

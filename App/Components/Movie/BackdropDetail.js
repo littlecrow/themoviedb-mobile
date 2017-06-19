@@ -4,6 +4,7 @@ import {
   View,
   Button
 } from 'react-native';
+import RoundedButton from '../RoundedButton';
 import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
@@ -30,8 +31,12 @@ class BackdropMovieDetail extends Component {
           <View style={styles.previewWrapper}>
             <FitImage resizeMode="contain" source={{uri: THEMOVIEDB_IMAGE_SRC + movie.poster_path}} style={styles.posterImage}/>
             <View style={styles.actionWrapper}>
-              <View style={styles.actionButton}><Button color={colors.danger} onPress={() => {}} title="+ Wish list"/></View>
-              <View style={styles.actionButton}><Button color={colors.primary} onPress={() => {}} title="Buy"/></View>
+              <View style={styles.actionButton}>
+                <RoundedButton color={colors.info} onPress={() => {}} text="+ Wish list"/>
+              </View>
+              <View style={styles.actionButton}>
+                <RoundedButton color={colors.info} onPress={() => {}} text="Buy"/>
+              </View>
               <Text style={styles.rating}>
                 Rating: {movie.vote_average}/10
               </Text>

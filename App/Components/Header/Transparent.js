@@ -37,7 +37,7 @@ class TransparentHeader extends Component {
         <TouchableNativeFeedback
           onPress={this.goBack}
           useForeground={true}
-          background={TouchableNativeFeedback.Ripple(colors.darkenCloud, true)}>
+          background={TouchableNativeFeedback.Ripple(colors.secondary, true)}>
           <View>
             <Text style={styles.back}>
               <Ionicons name="md-arrow-back" size={fonts.size.h4} color="white"></Ionicons>
@@ -53,7 +53,7 @@ class TransparentHeader extends Component {
 }
 
 TransparentHeader.propTypes = {
-
+  title: PropTypes.string
 };
 
 export default TransparentHeader;
