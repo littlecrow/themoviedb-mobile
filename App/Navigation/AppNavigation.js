@@ -3,12 +3,13 @@ import LaunchScreen from '../Containers/LaunchScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
+import MoviesFragment from '../Containers/MoviesScreen/MoviesFragment';
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
   LaunchScreen: { screen: LaunchScreen },
   MoviesScreen: {
-    screen: MoviesScreen,
+    screen: MoviesFragment,
     navigationOptions: {
       title: 'Movies List'
     }

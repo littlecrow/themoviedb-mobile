@@ -4,6 +4,9 @@ import { View, Picker, Text } from 'react-native';
 import { MoviesConstant, MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/MovieList';
 import { connect } from 'react-redux';
+import TabNavigator from 'react-native-tab-navigator';
+import PopularMoviesFragment from './PopularMoviesFragment';
+import TopRatedMoviesFragment from './TopRatedMoviesFragment';
 
 class MoviesFragment extends Component {
   constructor(props) {
@@ -12,6 +15,8 @@ class MoviesFragment extends Component {
     this.state = {
       filterByTrend: MoviesConstant.POPULAR_MOVIES
     };
+
+    this.handlePress = this.handlePress.bind(this);
 
     // this._handleValueChange = this._handleValueChange.bind(this);
   }
@@ -28,6 +33,10 @@ class MoviesFragment extends Component {
   //   });
   // }
 
+  handlePress() {
+    console.log('You press me');
+  }
+
   render() {
     // const { filterByTrend } = this.state;
     //const { navigate } = this.props.navigation;
@@ -41,6 +50,23 @@ class MoviesFragment extends Component {
 
     return (
       <View>
+        <TabNavigator>
+          <TabNavigator.Item
+            title='Popular'
+            onPress={this.handlePress}
+          >
+            <PopularMoviesFragment/>
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            title='Top rated'
+            onPress={this.handlePress}
+          >
+            <TopRatedMoviesFragment/>
+          </TabNavigator.Item>
+        </TabNavigator>
+        <View>
+          <Text>Text</Text>
+        </View>
       </View>
     );
   }
