@@ -3,15 +3,15 @@ import { Fonts, Colors, Metrics } from '../../Themes/';
 
 export default StyleSheet.create({
   button: {
-    height: 45,
+    height: 40,
     borderRadius: 5,
     marginHorizontal: Metrics.section,
     marginVertical: Metrics.baseMargin,
-    backgroundColor: Colors.fire,
+    backgroundColor: Colors.primary,
     justifyContent: 'center'
   },
   buttonText: {
-    color: Colors.snow,
+    color: Colors.secondary,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.medium,
