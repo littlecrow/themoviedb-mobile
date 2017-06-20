@@ -1,3 +1,4 @@
+import { TouchableHighlight, Text } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import PopularMoviesFragment from './PopularMoviesFragment';
 import TopRatedMoviesFragment from './TopRatedMoviesFragment';
@@ -7,7 +8,7 @@ const MoviesScreen = TabNavigator({
   Popular: {
     screen: PopularMoviesFragment,
     navigationOptions: {
-      title: 'Popular'
+      title: 'Popular',
     }
   },
   TopRated: {

@@ -3,6 +3,8 @@ import LaunchScreen from '../Containers/LaunchScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
+import PopularMoviesFragment from '../Containers/MoviesScreen/PopularMoviesFragment';
+import TopRatedMoviesFragment from '../Containers/MoviesScreen/TopRatedMoviesFragment';
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
@@ -18,6 +20,12 @@ const PrimaryNav = StackNavigator({
     navigationOptions: {
       title: 'Movie Detail'
     }
+  },
+  PopularScreen: {
+    screen: PopularMoviesFragment
+  },
+  TopRatedMoviesFragment: {
+    screen: TopRatedMoviesFragment
   }
 }, {
   // Default config for all screens
