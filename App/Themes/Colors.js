@@ -22,8 +22,8 @@ const colors = {
 };
 
 const defaultColor = {
-  primary: colors.alizarin,
-  primaryDark: colors.pomegranate,
+  primary: colors.nephritis,
+  primaryDark: colors.nephritis,
   secondary: colors.cloudes,
   secondaryDark: colors.silver,
   success: colors.emerald,
