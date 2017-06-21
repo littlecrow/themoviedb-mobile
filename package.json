@@ -1,39 +1,26 @@
 {
-  "name": "TheMovieDbMobile",
-  "version": "0.0.1",
+  "name": "themoviedb-mobile",
+  "version": "0.1.0",
   "private": true,
-  "main": "main.js",
-  "dependencies": {
-    "axios": "^0.16.2",
-    "eslint": "^3.19.0",
-    "eslint-plugin-react": "^7.0.1",
-    "expo": "~15.0.0",
-    "exponent": "^14.0.0",
-    "format-json": "^1.0.3",
-    "immutable": "^3.8.1",
-    "querystringify": "0.0.4",
-    "ramda": "^0.23.0",
-    "react": "~15.4.2",
-    "react-native": "github:exponent/react-native#sdk-15.0.0",
-    "react-native-animatable": "^1.2.1",
-    "react-native-device-info": "^0.10.0",
-    "react-native-drawer": "^2.3.0",
-    "react-native-elements": "^0.12.2",
-    "react-native-fit-image": "^1.4.8",
-    "react-native-star-rating": "^1.0.7",
-    "react-native-vector-icons": "^4.2.0",
-    "react-navigation": "^1.0.0-beta.7",
-    "react-redux": "^5.0.2",
-    "redux": "^3.6.0",
-    "redux-logger": "^3.0.6",
-    "redux-logic": "^0.12.1",
-    "redux-thunk": "^2.2.0",
-    "rxjs": "^5.4.0"
-  },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "ignite-ir-boilerplate": "^2.0.0-rc.6",
-    "react-native-dotenv": "0.0.4",
-    "standard": "^10.0.2"
+    "react-native-scripts": "0.0.31",
+    "jest-expo": "~1.0.1",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^17.0.0",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.44.0"
   }
 }
