@@ -25,7 +25,7 @@ const PrimaryNav = StackNavigator({
   initialRouteName: 'MoviesScreen',
   navigationOptions: {
     headerStyle: styles.header,
-    headerTitleStyle: styles.title
+    //headerTitleStyle: styles.title,
   }
 });
 

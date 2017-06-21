@@ -1,6 +1,7 @@
 const type = {
-  bold: 'Avenir-Black',
-  emphasis: 'HelveticaNeue-Italic'
+  base: '',
+  bold: '',
+  emphasis: ''
 };
 
 const size = {
