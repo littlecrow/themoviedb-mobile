@@ -3,13 +3,6 @@ import { TouchableOpacity, Text } from 'react-native';
 import styles from './Styles/RoundedButtonStyles';
 import PropTypes from 'prop-types';
 
-// Note that this file (App/Components/RoundedButton) needs to be
-// imported in your app somewhere, otherwise your component won't be
-// compiled and added to the examples dev screen.
-
-// Ignore in coverage report
-/* istanbul ignore next */
-
 export default class RoundedButton extends Component {
   static propTypes = {
     onPress: PropTypes.func,

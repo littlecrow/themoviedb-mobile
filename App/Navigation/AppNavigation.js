@@ -1,12 +1,10 @@
 import { StackNavigator } from 'react-navigation';
-import LaunchScreen from '../Containers/LaunchScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  LaunchScreen: { screen: LaunchScreen },
   MoviesScreen: {
     screen: MoviesScreen,
     navigationOptions: {

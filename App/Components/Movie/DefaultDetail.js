@@ -5,7 +5,6 @@ import {
   Image
 } from 'react-native';
 import FitImage from 'react-native-fit-image';
-import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import styles from './Styles/BackdropDetailStyles';
 
 class DefaultMovieDetail extends Component {

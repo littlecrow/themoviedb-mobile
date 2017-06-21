@@ -7,10 +7,10 @@ import {
 import RoundedButton from '../RoundedButton';
 import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
-import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import styles from './Styles/BackdropDetailStyles';
 import colors  from '../../Themes/Colors';
 import PropTypes from 'prop-types';
+import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 
 class BackdropMovieDetail extends Component {
 
