@@ -10,8 +10,7 @@ import FitImage from 'react-native-fit-image';
 import styles from './Styles/BackdropDetailStyles';
 import colors  from '../../Themes/Colors';
 import PropTypes from 'prop-types';
-
-const THEMOVIEDB_IMAGE_SRC = 'https://image.tmdb.org/t/p/w500';
+import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 
 class BackdropMovieDetail extends Component {
 
