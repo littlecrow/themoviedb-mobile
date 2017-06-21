@@ -8,10 +8,6 @@ import styles from './Styles/RootContainerStyles';
 class RootContainer extends Component {
 
   render () {
-    {/*<View style={styles.applicationView}>
-      <StatusBar barStyle='light-content' />
-      <Navigation />
-    </View>*/}
     return (
       <View style={styles.applicationView}>
         <AppNavigation />
