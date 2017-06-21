@@ -1,0 +1,29 @@
+{
+  "name": "TheMovieDbMobile",
+  "version": "0.0.1",
+  "private": true,
+  "main": "App.js",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "expo": "~15.0.0",
+    "react": "~15.4.2",
+    "react-native": "github:exponent/react-native#sdk-15.0.0",
+    "react-native-device-info": "^0.10.0",
+    "react-native-dotenv": "0.0.4",
+    "react-native-elements": "^0.12.2",
+    "react-native-tabs": "^1.0.9",
+    "react-native-fit-image": "^1.4.8",
+    "react-native-star-rating": "^1.0.7",
+    "react-native-vector-icons": "^4.2.0",
+    "react-navigation": "^1.0.0-beta.7",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1"
+  }
+}
