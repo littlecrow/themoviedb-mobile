@@ -11,6 +11,7 @@
     "react-native-device-info": "^0.10.0",
     "react-native-dotenv": "0.0.4",
     "react-native-elements": "^0.12.2",
+    "react-native-tabs": "^1.0.9",
     "react-native-fit-image": "^1.4.8",
     "react-native-star-rating": "^1.0.7",
     "react-native-vector-icons": "^4.2.0",

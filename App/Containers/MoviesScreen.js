@@ -1,71 +1,85 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Picker } from 'react-native';
-import { MoviesActionCreators, MoviesActions, MoviesConstant } from '../Redux/Movies';
-import MovieList from '../Components/Movie/List';
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { MoviesConstant, MoviesActionCreators, MoviesActions } from '../Redux/Movies';
+import MovieList from '../Components/Movie/MovieList';
+import Styles from './Styles/MoviesScreenStyles';
 
-class MoviesScreen extends Component {
+const ROUTES = [
+  { key: '1', title: 'Popular', filterName: MoviesConstant.POPULAR_MOVIES },
+  { key: '2', title: 'Top Rated', filterName: MoviesConstant.TOP_RATED_MOVIES },
+];
+
+const INITIAL_INDEX = 0;
+
+class MoviesFragment extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      filterByTrend: MoviesConstant.POPULAR_MOVIES
+      index: INITIAL_INDEX,
+      routes: ROUTES
     };
 
-    this._handleValueChange = this._handleValueChange.bind(this);
-
-    this.onInitComponent();
+    this._handleTabChanged = this._handleTabChanged.bind(this);
+    this._dispatchActions = this._dispatchActions.bind(this);
   }
 
-  onInitComponent() {
-    console.log('Movie screen');
-  }
+  _renderScene = SceneMap({
+    [ROUTES[0].key]: () => <MovieList/>,
+    [ROUTES[1].key]: () => <MovieList/>,
+  });
 
   componentDidMount() {
+    this._dispatchActions(INITIAL_INDEX);
+  }
+
+  _dispatchActions(index) {
+    this.props.setFilter(ROUTES[index].filterName);
     this.props.fetchMovies();
   }
 
-  _handleValueChange(value) {
+  _handleTabChanged(index) {
     this.setState({
-      filterByTrend: value
-    }, () => {
-      const { fetchMovies, setFilter } = this.props,
-        { filterByTrend } = this.state;
-      setFilter(filterByTrend);
-      fetchMovies();
+      index
     });
+
+    this._dispatchActions(index);
+  }
+
+  _renderHeader(props) {
+    return (
+      <TabBar
+        {...props}
+        tabStyle={Styles.tabContent}
+        indicatorStyle={Styles.indicator}
+        labelStyle={Styles.tabLabel}
+        style={Styles.tabBar}
+      />
+    );
   }
 
   render() {
-    const { filterByTrend } = this.state;
-    const { navigate } = this.props.navigation;
-
     return (
-      <View>
-        <Picker
-          selectedValue={filterByTrend}
-          onValueChange={(value) => { this._handleValueChange(value); }}
-        >
-          <Picker.Item label={'Popular'} value={MoviesConstant.POPULAR_MOVIES}/>
-          <Picker.Item label={'Top Rated'} value={MoviesConstant.TOP_RATED_MOVIES}/>
-        </Picker>
-        <MovieList
-          navigate={ navigate }
-        />
-      </View>
+      <TabViewAnimated
+        style={Styles.container}
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderHeader={this._renderHeader}
+        onRequestChangeTab={this._handleTabChanged}
+      />
     );
   }
 }
 
-const mapDispatchToProps = (dispath) => ({
-  fetchMovies: () => dispath(MoviesActions.fetchMovies()),
-  fetchFilterMovies: () => dispath(MoviesActionCreators.moviesFetchFilter()),
-  setFilter: (filter) => dispath(MoviesActionCreators.setFilter(filter))
-});
-
-MoviesScreen.propTypes = {
+MoviesFragment.propTypes = {
 
 };
 
-export default connect(undefined, mapDispatchToProps)(MoviesScreen);
+const mapDispatchToProps = (dispatch) => ({
+  fetchMovies: () => dispatch(MoviesActions.fetchMovies()),
+  setFilter: (filter) => dispatch(MoviesActionCreators.setFilter(filter))
+});
+
+export default connect(undefined, mapDispatchToProps)(MoviesFragment);

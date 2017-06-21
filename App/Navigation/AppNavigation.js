@@ -1,7 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import LaunchScreen from '../Containers/LaunchScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
-import PopularMoviesScreen from '../Containers/PopularMoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 
@@ -9,7 +8,7 @@ import styles from './Styles/NavigationStyles';
 const PrimaryNav = StackNavigator({
   LaunchScreen: { screen: LaunchScreen },
   MoviesScreen: {
-    screen: PopularMoviesScreen,
+    screen: MoviesScreen,
     navigationOptions: {
       title: 'Movies List'
     }
