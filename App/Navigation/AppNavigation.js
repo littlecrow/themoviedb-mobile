@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import MoviesScreen from '../Containers/MoviesScreen';
-//import MovieDetailScreen from '../Containers/MovieDetailScreen';
+import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 
 // Manifest of possible screens
@@ -11,12 +11,12 @@ const PrimaryNav = StackNavigator({
       title: 'Movies List'
     }
   },
-  // MovieDetailScreen: {
-  //   screen: MovieDetailScreen,
-  //   navigationOptions: {
-  //     title: 'Movie Detail'
-  //   }
-  // }
+  MovieDetailScreen: {
+    screen: MovieDetailScreen,
+    navigationOptions: {
+      title: 'Movie Detail'
+    }
+  }
 }, {
   // Default config for all screens
   //headerMode: 'screen',
