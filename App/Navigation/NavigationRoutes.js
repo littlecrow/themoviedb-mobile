@@ -19,7 +19,6 @@ export const NavigationRoutes = {
 
 export const NavigationOptions = {
   // Default config for all screens
-  //headerMode: 'screen',
   initialRouteName: 'MoviesScreen',
   navigationOptions: {
     headerStyle: styles.header,
