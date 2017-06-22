@@ -70,7 +70,7 @@ const MovieDetailScreenStyles = StyleSheet.create({
   },
   movieTitle: {
     ...fonts.style.h5,
-    ...textColors
+    ...textColors,
   },
   movieGenres: {
     ...textColors
@@ -83,7 +83,13 @@ const MovieDetailScreenStyles = StyleSheet.create({
     ...textColors,
     marginTop: metrics.baseMargin
   },
-  movieReleaseDate: {
+  movieSubInfo: {
+    flexDirection: 'row',
+  },
+  whiteText: {
+    ...textColors
+  },
+  whiteBoldText: {
     ...textColors,
   }
 });

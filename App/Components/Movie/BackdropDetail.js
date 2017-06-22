@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
 import PropTypes from 'prop-types';
@@ -15,13 +15,14 @@ class BackdropMovieDetail extends Component {
   _renderMovieInfo (movie, renderedKey) {
     if (movie[renderedKey]) {
       const { length } = movie[renderedKey];
-      return movie[renderedKey].map((item, index) => {
+      const str = movie[renderedKey].map((item, index) => {
         if (index == (length - 1))
           return `${item.name}.`;
         return `${item.name}, `;
       });
+      return <Text style={styles.whiteText}>{str}</Text>;
     }
-    return null;
+    return <ActivityIndicator/>;
   }
   render() {
     const { movie } = this.props;
@@ -73,16 +74,17 @@ class BackdropMovieDetail extends Component {
             <Text style={styles.movieTitle}>
               {movie.title}
             </Text>
-            <Text style={styles.movieReleaseDate}>
-              Release date:{' '}{movie.release_date}
-            </Text>
-            <Text style={styles.movieReleaseDate}>
-              Countries:{' '}{production_countries}
-            </Text>
-            <View>
-              <Text style={styles.movieGenres}>
-                Genres:{' '}{genres}
-              </Text>
+            <View style={styles.movieSubInfo}>
+              <Text style={styles.whiteBoldText}>Release date:{' '}</Text>
+              <Text style={styles.whiteText}>{movie.release_date}</Text>
+            </View>
+            <View style={styles.movieSubInfo}>
+              <Text style={styles.whiteBoldText}>Countries:{' '}</Text>
+              {production_countries}
+            </View>
+            <View style={styles.movieSubInfo}>
+              <Text style={styles.whiteBoldText}>Genres:{' '}</Text>
+              {genres}
             </View>
             <Text style={styles.movieOverviewTitle}>
               Plot
@@ -93,9 +95,9 @@ class BackdropMovieDetail extends Component {
             <Text style={styles.movieOverviewTitle}>
               Productions:
             </Text>
-            <Text style={styles.movieOverview}>
+            <View style={styles.movieOverview}>
               {production_companies}
-            </Text>
+            </View>
           </View>
         </View>
       </View>

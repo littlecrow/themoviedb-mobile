@@ -80,8 +80,14 @@ const MovieDetailScreenStyles = StyleSheet.create({
     ...textColors,
     marginTop: metrics.baseMargin
   },
-  movieReleaseDate: {
+  movieSubInfo: {
+  },
+  whiteText: {
+    ...textColors
+  },
+  whiteBoldText: {
     ...textColors,
+    fontWeight: 'bold'
   }
 });
 
