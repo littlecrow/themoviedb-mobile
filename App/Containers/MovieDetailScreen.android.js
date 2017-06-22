@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native';
 import TransparentHeader from '../Components/Header/Transparent';
 import DefaultMovieDetail from '../Components/Movie/DefaultDetail';
 import BackdropMovieDetail from '../Components/Movie/BackdropDetail';
@@ -19,22 +19,15 @@ class MovieDetailScreen extends Component {
     };
   };
 
-  constructor (props) {
-    super(props);
-  }
-
   render () {
     const { movie } = this.props.navigation.state.params;
     let view;
 
     if (movie) {
-      const isContainBackdrop = movie.backdrop_path;
-      view = isContainBackdrop ? <BackdropMovieDetail movie={movie} /> : <DefaultMovieDetail movie={movie} />;
+      view = movie.backdrop_path ? <BackdropMovieDetail movie={movie} /> : <DefaultMovieDetail movie={movie} />;
     }
     else {
-      view = (
-        <DefaultMovieDetail movie={movie}/>
-      );
+      view = <DefaultMovieDetail movie={movie}/>;
     }
     return (
       <ScrollView>
