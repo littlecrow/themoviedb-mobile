@@ -53,7 +53,8 @@ class TransparentHeader extends Component {
 }
 
 TransparentHeader.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  navigation: PropTypes.object
 };
 
 export default TransparentHeader;

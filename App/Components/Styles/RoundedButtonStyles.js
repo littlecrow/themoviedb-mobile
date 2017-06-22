@@ -7,14 +7,20 @@ export default StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: Metrics.section,
     marginVertical: Metrics.baseMargin,
-    backgroundColor: Colors.primary,
-    justifyContent: 'center'
+    backgroundColor: Colors.primary
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonText: {
     color: Colors.secondary,
-    textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.medium,
-    marginVertical: Metrics.baseMargin
+  },
+  icon: {
+    marginRight: Metrics.baseMargin / 2
   }
 });

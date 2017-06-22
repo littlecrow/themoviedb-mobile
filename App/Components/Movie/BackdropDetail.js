@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Button
-} from 'react-native';
-import RoundedButton from '../RoundedButton';
+import { Text, View, ActivityIndicator } from 'react-native';
 import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
+import PropTypes from 'prop-types';
+import { MaterialIcons } from '@expo/vector-icons';
+import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
+import RoundedButton from '../RoundedButton';
 import styles from './Styles/BackdropDetailStyles';
 import colors  from '../../Themes/Colors';
-import PropTypes from 'prop-types';
-import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
+import fonts  from '../../Themes/Fonts';
 
 class BackdropMovieDetail extends Component {
 
+  _renderMovieInfo (movie, renderedKey) {
+    if (movie[renderedKey]) {
+      const { length } = movie[renderedKey];
+      const str = movie[renderedKey].map((item, index) => {
+        if (index == (length - 1))
+          return `${item.name}.`;
+        return `${item.name}, `;
+      });
+      return <Text style={styles.whiteText}>{str}</Text>;
+    }
+    return <ActivityIndicator/>;
+  }
   render() {
-    const movie = this.props.movie;
-    const genres =  movie.genres ? movie.genres.map((genre, index) => {
-      if (index == (movie.genres.length - 1))
-        return genre.name;
-      return `${genre.name}, `;
-    }) : null;
+    const { movie } = this.props;
+
+    const genres = this._renderMovieInfo(movie, 'genres');
+    const production_companies = this._renderMovieInfo(movie, 'production_companies');
+    const production_countries = this._renderMovieInfo(movie, 'production_countries');
 
     return (
       <View style={styles.container}>
@@ -32,13 +41,22 @@ class BackdropMovieDetail extends Component {
             <FitImage resizeMode="contain" source={{uri: THEMOVIEDB_IMAGE_SRC + movie.poster_path}} style={styles.posterImage}/>
             <View style={styles.actionWrapper}>
               <View style={styles.actionButton}>
-                <RoundedButton color={colors.info} onPress={() => {}} text="+ Wish list"/>
+                <RoundedButton
+                  onPress={() => alert('This feature is not ready yet.')}
+                  icon={<MaterialIcons name="add-to-queue" size={16} color="white" /> }
+                  text={'Wish list'}/>
               </View>
               <View style={styles.actionButton}>
-                <RoundedButton color={colors.info} onPress={() => {}} text="Buy"/>
+                <RoundedButton
+                  onPress={() => alert('This feature is not ready yet.')}
+                  icon={<MaterialIcons name="shopping-cart" size={16} color="white" /> }
+                  text="Buy"/>
               </View>
               <Text style={styles.rating}>
-                Rating: {movie.vote_average}/10
+                Rating: {movie.vote_average}/10{' '}
+                <Text style={{fontSize: fonts.size.small}}>
+                  ({movie.vote_count})
+                </Text>
               </Text>
               <View>
                 <Rating
@@ -56,15 +74,17 @@ class BackdropMovieDetail extends Component {
             <Text style={styles.movieTitle}>
               {movie.title}
             </Text>
-            <Text style={styles.movieReleaseDate}>
-              Release date: {' '}
-              {movie.release_date}
-            </Text>
-            <View>
-              <Text style={styles.movieGenres}>
-                Genres:
-                {genres}{'.'}
-              </Text>
+            <View style={styles.movieSubInfo}>
+              <Text style={styles.whiteText}>Release date:{' '}</Text>
+              <Text style={styles.whiteText}>{movie.release_date}</Text>
+            </View>
+            <View style={styles.movieSubInfo}>
+              <Text style={styles.whiteText}>Countries:{' '}</Text>
+              {production_countries}
+            </View>
+            <View style={styles.movieSubInfo}>
+              <Text style={styles.whiteText}>Genres:{' '}</Text>
+              {genres}
             </View>
             <Text style={styles.movieOverviewTitle}>
               Plot
@@ -72,6 +92,12 @@ class BackdropMovieDetail extends Component {
             <Text style={styles.movieOverview}>
               {movie.overview}
             </Text>
+            <Text style={styles.movieOverviewTitle}>
+              Productions:
+            </Text>
+            <View>
+              {production_companies}
+            </View>
           </View>
         </View>
       </View>
