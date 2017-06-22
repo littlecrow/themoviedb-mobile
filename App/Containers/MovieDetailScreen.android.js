@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 import TransparentHeader from '../Components/Header/Transparent';
 import DefaultMovieDetail from '../Components/Movie/DefaultDetail';
 import BackdropMovieDetail from '../Components/Movie/BackdropDetail';
+import { MovieActions, MOVIE_KEY } from '../Redux/Movie';
 
 class MovieDetailScreen extends Component {
 
@@ -19,26 +21,40 @@ class MovieDetailScreen extends Component {
     };
   };
 
-  render () {
-    const { movie } = this.props.navigation.state.params;
-    let view;
+  constructor(props) {
+    super(props);
 
-    if (movie) {
-      view = movie.backdrop_path ? <BackdropMovieDetail movie={movie} /> : <DefaultMovieDetail movie={movie} />;
+    const movie = this.props.navigation.state.params.movie;
+    this.props.fetchDetail(movie.id);
+  }
+
+  render () {
+    let { movie } = this.props.navigation.state.params;
+
+    if (this.props.movie) {
+      movie = this.props.movie;
     }
-    else {
-      view = <DefaultMovieDetail movie={movie}/>;
-    }
+
     return (
       <ScrollView>
-        {view}
+        {movie.backdrop_path ? <BackdropMovieDetail movie={movie} /> : <DefaultMovieDetail movie={movie} />}
       </ScrollView>
     );
   }
 }
 
 MovieDetailScreen.propTypes = {
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  movie: PropTypes.object,
+  fetchDetail: PropTypes.func
 };
 
-export default MovieDetailScreen;
+const mapStateToProps = (state) => ({
+  movie: state[MOVIE_KEY].current
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchDetail: (movieId) => dispatch(MovieActions.fetchMovies(movieId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailScreen);
