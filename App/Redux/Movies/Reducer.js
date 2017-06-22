@@ -11,11 +11,11 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-  case ActionTypes.MOVIES_FETCH_REQUESTED:
+  case ActionTypes.FETCH_MOVIES_REQUESTED:
     return {
       ...state
     };
-  case ActionTypes.MOVIES_FETCH_FULFILLED:
+  case ActionTypes.FETCH_MOVIES_FULFILLED:
     return {
       ...state,
       list: [
@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
         ...action.payload
       ]
     };
-  case ActionTypes.MOVIES_FETCH_REJECTED:
+  case ActionTypes.FETCH_MOVIES_REJECTED:
     return {
       ...state
     };
