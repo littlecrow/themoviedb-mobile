@@ -1,11 +1,12 @@
 import axios from 'axios';
+import {
+  API_KEY,
+  LANGUAGE,
+  API_POPULAR,
+  API_TOP_RATED
+} from 'react-native-dotenv';
 import ActionCreators from './ActionCreators';
 import Constant from './Constant';
-
-const API_POPULAR = 'https://api.themoviedb.org/3/movie/popular';
-const API_TOP_RATED = 'https://api.themoviedb.org/3/movie/top_rated';
-const API_KEY = '62262a23488ef8c1405c686f66e765ef';
-const LANGUAGE = 'en-US';
 
 const handleAPI = () => async (dispatch, getState) => {
   dispatch(ActionCreators.moviesFetchRequested());
@@ -22,6 +23,7 @@ const handleAPI = () => async (dispatch, getState) => {
 
     return dispatch(ActionCreators.moviesFetchFulfilled(movies));
   } catch (err) {
+    console.log('Error: ', err);
     return dispatch(ActionCreators.moviesFetchRejected(err));
   }
 };
