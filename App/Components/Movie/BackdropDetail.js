@@ -75,15 +75,15 @@ class BackdropMovieDetail extends Component {
               {movie.title}
             </Text>
             <View style={styles.movieSubInfo}>
-              <Text style={styles.whiteBoldText}>Release date:{' '}</Text>
+              <Text style={styles.whiteText}>Release date:{' '}</Text>
               <Text style={styles.whiteText}>{movie.release_date}</Text>
             </View>
             <View style={styles.movieSubInfo}>
-              <Text style={styles.whiteBoldText}>Countries:{' '}</Text>
+              <Text style={styles.whiteText}>Countries:{' '}</Text>
               {production_countries}
             </View>
             <View style={styles.movieSubInfo}>
-              <Text style={styles.whiteBoldText}>Genres:{' '}</Text>
+              <Text style={styles.whiteText}>Genres:{' '}</Text>
               {genres}
             </View>
             <Text style={styles.movieOverviewTitle}>
@@ -95,7 +95,7 @@ class BackdropMovieDetail extends Component {
             <Text style={styles.movieOverviewTitle}>
               Productions:
             </Text>
-            <View style={styles.movieOverview}>
+            <View>
               {production_companies}
             </View>
           </View>

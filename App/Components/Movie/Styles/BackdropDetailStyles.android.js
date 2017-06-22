@@ -88,9 +88,6 @@ const MovieDetailScreenStyles = StyleSheet.create({
   },
   whiteText: {
     ...textColors
-  },
-  whiteBoldText: {
-    ...textColors,
   }
 });
 

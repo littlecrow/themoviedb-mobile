@@ -16,7 +16,6 @@ export default (state = INITIAL_STATE, action) => {
   case ActionTypes.FETCH_MOVIE_FULFILLED:
     return {
       ...state,
-      prev: state.current,
       current: action.payload
     };
   case ActionTypes.FETCH_MOVIE_REJECTED:
