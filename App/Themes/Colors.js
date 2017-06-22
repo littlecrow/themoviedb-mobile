@@ -22,7 +22,7 @@ const colors = {
 };
 
 const defaultColor = {
-  primary: colors.nephritis,
+  primary: colors.emerald,
   primaryDark: colors.nephritis,
   secondary: colors.cloudes,
   secondaryDark: colors.silver,
