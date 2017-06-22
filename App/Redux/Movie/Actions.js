@@ -6,7 +6,7 @@ const API_KEY = '62262a23488ef8c1405c686f66e765ef';
 const LANGUAGE = 'en-US';
 
 const handleAPI = (movieId) => async (dispatch) => {
-  dispatch(ActionCreators.movieFetchRejected());
+  dispatch(ActionCreators.movieFetchRequested());
   try {
     const movies = await axios.get(API + movieId, {
       params: {
