@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { MoviesConstant, MoviesActionCreators, MoviesActions } from '../Redux/Movies';
-import MovieList from '../Components/Movie/MovieList';
+import MovieList from '../Components/Movie/List';
 import Styles from './Styles/MoviesScreenStyles';
 
 const ROUTES = [

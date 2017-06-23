@@ -5,10 +5,13 @@ import {
   Dimensions,
   FlatList,
   View,
-  Text
+  Text,
+  Image
 } from 'react-native';
+import { Grid } from 'react-native-elements';
+import MovieListStyles from './Styles/ListStyles';
 import { MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
-import MovieItem from './MovieItem';
+import MovieItem from './ListItem';
 
 let pageNum = 1;
 
@@ -51,12 +54,18 @@ class MovieList extends Component {
   _showData() {
     const { movies } = this.props;
     return (
-      <FlatList
-        data={movies}
-        renderItem={this._renderItem}
-        keyExtractor={item => item.id}
-        ListEmptyComponent={this._renderEmptyComponent()}
-      />
+      <Image
+        source={{uri: 'https://previews.123rf.com/images/fabiopagani/fabiopagani1505/fabiopagani150500006/39604845-Movie-clapper-on-two-35-mm-cinema-reels-with-film-vertical-frame-on-white-background-Stock-Photo.jpg'}}
+      >
+        <View style={MovieListStyles.container}>
+          <FlatList
+            data={movies}
+            renderItem={this._renderItem}
+            keyExtractor={item => item.id}
+            ListEmptyComponent={this._renderEmptyComponent()}
+          />
+        </View>
+      </Image>
     );
   }
 
