@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ScrollView, Dimensions } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
-import { reduceText } from '../../Transforms/ReduceText';
+import {
+  Dimensions,
+  FlatList,
+  View,
+  Text
+} from 'react-native';
 import { MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
-import { NavigationActionCreators } from '../../Redux/Navigation';
-import MovieListStyles from './Styles/MovieListStyles';
+import MovieItem from './MovieItem';
 
 let pageNum = 1;
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
 class MovieList extends Component {
   constructor(props) {
@@ -34,28 +35,36 @@ class MovieList extends Component {
     // }
   }
 
-  render() {
-    const { movies, navigateToDetail } = this.props;
+  _renderEmptyComponent() {
+    return <Text>Loading...</Text>
+  }
 
+  // _handleScrollToEndBottom() {
+  //   this.props.setPage(++pageNum);
+  //   this.props.fetchMovies();
+  // }
+
+  _renderItem = ({item}) => (
+    <MovieItem movie={item}/>
+  )
+
+  _showData() {
+    const { movies } = this.props;
     return (
-      <ScrollView onScroll={this._handleScroll} scrollEventThrottle={5}>
-        <List
-          containerStyle={MovieListStyles.container}
-        >
-          {
-            movies.map((movie, index) => (
-              <ListItem
-                avatar={{uri: `${IMAGE_URL}` + movie.poster_path}}
-                avatarStyle={MovieListStyles.avatar}
-                key={index}
-                title={movie.title}
-                subtitle={reduceText(movie.overview)}
-                onPress={() => navigateToDetail(movie)}
-              />
-            ))
-          }
-        </List>
-      </ScrollView>
+      <FlatList
+        data={movies}
+        renderItem={this._renderItem}
+        keyExtractor={item => item.id}
+        ListEmptyComponent={this._renderEmptyComponent()}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <View>
+        {this._showData()}
+      </View>
     );
   }
 }
@@ -73,8 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispath) => ({
   fetchMovies: () => dispath(MoviesActions.fetchMovies()),
-  setPage: (page) => dispath(MoviesActionCreators.setPage(page)),
-  navigateToDetail: (movie) => dispath(NavigationActionCreators.navigateToDetailScreen(movie))
+  setPage: (page) => dispath(MoviesActionCreators.setPage(page))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

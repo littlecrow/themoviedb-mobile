@@ -1,22 +1,25 @@
 import React from 'react';
 import { ListItem } from 'react-native-elements';
+import { connect } from 'react-redux';
 import MovieListStyles from './Styles/MovieListStyles';
+import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
+import { NavigationActionCreators } from '../../Redux/Navigation';
+import { reduceText } from '../../Transforms/ReduceText';
 
-const MovieItem = () => {
-  const { avatar, id, title, overview, movie, navigate } = this.props;
-
+const MovieItem = ({ movie, navigateToDetail }) => {
   return (
     <ListItem
-      avatar={{ avatar }}
-      avatarStyle={ MovieListStyles.avatar }
-      key={ id }
-      title={ title }
-      subtitle={ overview }
-      onPress={() => navigate('MovieDetailScreen', {
-        movie: movie
-      })}
+      avatar={{uri: `${THEMOVIEDB_IMAGE_SRC}` + movie.poster_path}}
+      avatarStyle={MovieListStyles.avatar}
+      title={movie.title}
+      subtitle={reduceText(movie.overview)}
+      onPress={() => navigateToDetail(movie)}
     />
   );
 };
 
-export default MovieItem;
+const mapDispatchToProps = (dispatch) => ({
+  navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
+});
+
+export default connect(undefined, mapDispatchToProps)(MovieItem);
