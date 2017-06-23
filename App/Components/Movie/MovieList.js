@@ -25,10 +25,17 @@ class MovieList extends Component {
       this.props.setPage(++pageNum);
       this.props.fetchMovies();
     }
+    // let paddingToBottom = 10;
+    // paddingToBottom += e.nativeEvent.layoutMeasurement.height;
+    // if(e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
+    //   this.props.setPage(++pageNum);
+    //   this.props.fetchMovies();
+    // }
   }
 
   render() {
-    const { movies, navigate } = this.props;
+    const { movies } = this.props;
+    // const { navigate } = this.props.navigation;
 
     return (
       <ScrollView onScroll={this._handleScroll} scrollEventThrottle={5}>
@@ -36,16 +43,16 @@ class MovieList extends Component {
           containerStyle={MovieListStyles.container}
         >
           {
-            movies.map((movie) => (
+            movies.map((movie, index) => (
               <ListItem
                 avatar={{uri: `${IMAGE_URL}` + movie.poster_path}}
                 avatarStyle={MovieListStyles.avatar}
-                key={movie.id}
+                key={index}
                 title={movie.title}
                 subtitle={reduceText(movie.overview)}
-                onPress={() => navigate('MovieDetailScreen', {
-                  movie: movie
-                })}
+                // onPress={() => navigate('MovieDetailScreen', {
+                //   movie: movie
+                // })}
               />
             ))
           }
@@ -60,6 +67,7 @@ MovieList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log('Page: ', state.movies.page);
   return {
     movies: state.movies.list,
   };
