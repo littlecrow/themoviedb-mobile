@@ -1,29 +1,37 @@
 import axios from 'axios';
 import ActionCreators from './ActionCreators';
+import { API_KEY, LANGUAGE, API_MOVIE} from 'react-native-dotenv';
 
-const API = 'https://api.themoviedb.org/3/movie/';
-const API_KEY = '62262a23488ef8c1405c686f66e765ef';
-const LANGUAGE = 'en-US';
-
-const handleAPI = (movieId) => async (dispatch) => {
+export const fetchDetail = (movieId) => async (dispatch) => {
   dispatch(ActionCreators.fetchMovieDetailRequested());
   try {
-    const movies = await axios.get(API + movieId, {
+    const detail = await axios.get(API_MOVIE + movieId, {
       params: {
         api_key: API_KEY,
         language: LANGUAGE
       }
     }).then(response => response.data);
-    return dispatch(ActionCreators.fetchMovieDetailFulfilled(movies));
+    return dispatch(ActionCreators.fetchMovieDetailFulfilled(detail));
   } catch (err) {
     return dispatch(ActionCreators.fetchMovieDetailRejected(err));
   }
 };
 
-export const fetchMovies = (movieId) => {
-  return handleAPI(movieId);
+export const fetchCredits = (movieId) => async (dispatch) => {
+  dispatch(ActionCreators.fetchMovieCreditsRequested());
+  try {
+    const credits = await axios.get(API_MOVIE + movieId + '/credits', {
+      params: {
+        api_key: API_KEY
+      }
+    }).then(response => response.data);
+    return dispatch(ActionCreators.fetchMovieCreditsFulfilled(credits));
+  } catch (err) {
+    return dispatch(ActionCreators.fetchMovieCreditsRejected(err));
+  }
 };
 
 export default {
-  fetchMovies
+  fetchDetail,
+  fetchCredits
 };

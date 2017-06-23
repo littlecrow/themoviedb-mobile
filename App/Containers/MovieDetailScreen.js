@@ -24,12 +24,12 @@ class MovieDetailScreen extends Component {
     };
   };
 
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
     const movie = this.props.navigation.state.params.movie;
     this.props.fetchDetail(movie.id);
+    this.props.fetchCredits(movie.id);
   }
+
 
   render () {
     let { movie } = this.props.navigation.state.params;
@@ -49,7 +49,8 @@ class MovieDetailScreen extends Component {
 MovieDetailScreen.propTypes = {
   navigation: PropTypes.object,
   detail: PropTypes.object,
-  fetchDetail: PropTypes.func
+  fetchDetail: PropTypes.func,
+  fetchCredits: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -57,7 +58,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDetail: (movieId) => dispatch(MovieActions.fetchMovies(movieId))
+  fetchDetail: (movieId) => dispatch(MovieActions.fetchDetail(movieId)),
+  fetchCredits: (movieId) => dispatch(MovieActions.fetchCredits(movieId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailScreen);
