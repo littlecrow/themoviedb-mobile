@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, ActivityIndicator } from 'react-native';
 import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
