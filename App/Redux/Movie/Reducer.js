@@ -3,22 +3,27 @@ import { NavigationActionTypes } from '../Navigation';
 export const KEY = 'movie';
 
 export const INITIAL_STATE = {
-  current: null,
+  current: {
+    detail: null
+  },
   prev: null
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-  case ActionTypes.FETCH_MOVIE_REQUESTED:
+  case ActionTypes.FETCH_MOVIE_DETAIL_REQUESTED:
     return {
       ...state
     };
-  case ActionTypes.FETCH_MOVIE_FULFILLED:
+  case ActionTypes.FETCH_MOVIE_DETAIL_FULFILLED:
     return {
       ...state,
-      current: action.payload
+      current: {
+        ...state.current,
+        detail: action.payload
+      }
     };
-  case ActionTypes.FETCH_MOVIE_REJECTED:
+  case ActionTypes.FETCH_MOVIE_DETAIL_REJECTED:
     return {
       ...state
     };
