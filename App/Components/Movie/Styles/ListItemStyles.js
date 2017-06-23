@@ -5,16 +5,21 @@ export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginBottom: Metrics.baseMargin
+    marginTop: Metrics.baseMargin,
+    marginRight: Metrics.doubleBaseMargin,
+    marginLeft: Metrics.doubleBaseMargin,
   },
   imgArea: {
-    // backgroundColor: 'rgba(236,240,241,0.35)',
     marginRight: Metrics.baseMargin,
-    width: 80,
+    width: 68,
     height: 100
   },
+  img: {
+    width: '100%',
+    height: '100%'
+  },
   infoArea: {
-    backgroundColor: 'rgba(236,240,241,0.35)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     padding: Metrics.basePadding,
     height: 100,
     flex: 1,
@@ -22,5 +27,9 @@ export default StyleSheet.create({
   },
   text: {
     color: 'white',
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 });

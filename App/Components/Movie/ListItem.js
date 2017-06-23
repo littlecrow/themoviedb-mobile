@@ -3,38 +3,30 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  Image,
   TouchableHighlight
 } from 'react-native';
+import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import MoviesItemStyles from './Styles/ListItemStyles';
+import styles from './Styles/ListItemStyles';
 import { NavigationActionCreators } from '../../Redux/Navigation';
 
 const MovieItem = ({ movie, navigateToDetail }) => {
   return (
     <TouchableHighlight onPress={() => navigateToDetail(movie)}>
-      <View style={MoviesItemStyles.itemContainer}>
-        <View style={MoviesItemStyles.imgArea}>
-          <Image source={{uri: `${THEMOVIEDB_IMAGE_SRC}` + movie.poster_path}}
-            style={{width: '100%', height: '100%'}}/>
+      <View style={styles.itemContainer}>
+        <View style={styles.imgArea}>
+          <FitImage
+            source={{uri: `${THEMOVIEDB_IMAGE_SRC}` + movie.poster_path}}
+            resizeMode='contain'
+            style={styles.img}/>
         </View>
-        <View style={MoviesItemStyles.infoArea}>
-          <Text style={MoviesItemStyles.text}>{movie.title}</Text>
-          <Text style={MoviesItemStyles.text}>Rating: {movie.vote_average}/10</Text>
+        <View style={styles.infoArea}>
+          <Text style={[styles.text, styles.title]}>{movie.title}</Text>
+          <Text style={styles.text}>{movie.release_date}</Text>
+          <Text style={styles.text}>Rating: {movie.vote_average}/10</Text>
         </View>
       </View>
     </TouchableHighlight>
-    // <ListItem
-    //   avatar={{uri: `${THEMOVIEDB_IMAGE_SRC}` + movie.poster_path}}
-    //   avatarStyle={MovieListStyles.avatar}
-    //   title={movie.title}
-    //   subtitle={reduceText(movie.overview)}
-    //   onPress={() => navigateToDetail(movie)}
-    // />
-
-    // <View>
-    //   <Text>{movie.title}</Text>
-    // </View>
   );
 };
 

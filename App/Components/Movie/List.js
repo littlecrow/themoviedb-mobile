@@ -9,7 +9,7 @@ import {
   Image
 } from 'react-native';
 import { Grid } from 'react-native-elements';
-import MovieListStyles from './Styles/ListStyles';
+import styles from './Styles/ListStyles';
 import { MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
 import MovieItem from './ListItem';
 
@@ -55,9 +55,9 @@ class MovieList extends Component {
     const { movies } = this.props;
     return (
       <Image
-        source={{uri: 'https://previews.123rf.com/images/fabiopagani/fabiopagani1505/fabiopagani150500006/39604845-Movie-clapper-on-two-35-mm-cinema-reels-with-film-vertical-frame-on-white-background-Stock-Photo.jpg'}}
+        source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
       >
-        <View style={MovieListStyles.container}>
+        <View style={styles.container}>
           <FlatList
             data={movies}
             renderItem={this._renderItem}
