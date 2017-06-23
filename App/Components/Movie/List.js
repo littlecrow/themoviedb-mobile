@@ -83,7 +83,6 @@ MovieList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log('Page: ', state.movies.page);
   return {
     movies: state.movies.list,
   };
