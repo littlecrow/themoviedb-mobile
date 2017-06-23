@@ -5,6 +5,7 @@ import { ScrollView, Dimensions } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { reduceText } from '../../Transforms/ReduceText';
 import { MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
+import { NavigationActionCreators } from '../../Redux/Navigation';
 import MovieListStyles from './Styles/MovieListStyles';
 
 let pageNum = 1;
@@ -34,8 +35,7 @@ class MovieList extends Component {
   }
 
   render() {
-    const { movies } = this.props;
-    // const { navigate } = this.props.navigation;
+    const { movies, navigateToDetail } = this.props;
 
     return (
       <ScrollView onScroll={this._handleScroll} scrollEventThrottle={5}>
@@ -50,9 +50,7 @@ class MovieList extends Component {
                 key={index}
                 title={movie.title}
                 subtitle={reduceText(movie.overview)}
-                // onPress={() => navigate('MovieDetailScreen', {
-                //   movie: movie
-                // })}
+                onPress={() => navigateToDetail(movie)}
               />
             ))
           }
@@ -75,7 +73,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispath) => ({
   fetchMovies: () => dispath(MoviesActions.fetchMovies()),
-  setPage: (page) => dispath(MoviesActionCreators.setPage(page))
+  setPage: (page) => dispath(MoviesActionCreators.setPage(page)),
+  navigateToDetail: (movie) => dispath(NavigationActionCreators.navigateToDetailScreen(movie))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

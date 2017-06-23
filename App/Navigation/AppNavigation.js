@@ -1,30 +1,21 @@
-import { StackNavigator } from 'react-navigation';
-import MoviesScreen from '../Containers/MoviesScreen';
-import MovieDetailScreen from '../Containers/MovieDetailScreen';
-import styles from './Styles/NavigationStyles';
+import React from 'react';
+import { addNavigationHelpers } from 'react-navigation';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { AppNavigator} from '../Redux/Navigation/Reducer';
+import { NAVIGATION_KEY } from '../Redux/Navigation';
 
-// Manifest of possible screens
-const PrimaryNav = StackNavigator({
-  MoviesScreen: {
-    screen: MoviesScreen,
-    navigationOptions: {
-      title: 'Movies List'
-    }
-  },
-  MovieDetailScreen: {
-    screen: MovieDetailScreen,
-    navigationOptions: {
-      title: 'Movie Detail'
-    }
-  }
-}, {
-  // Default config for all screens
-  //headerMode: 'screen',
-  initialRouteName: 'MoviesScreen',
-  navigationOptions: {
-    headerStyle: styles.header,
-    //headerTitleStyle: styles.title,
-  }
+const AppNavigation = ({dispatch, nav}) => (
+  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: nav }) } />
+);
+
+AppNavigation.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  nav: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  nav: state[NAVIGATION_KEY]
 });
 
-export default PrimaryNav;
+export default connect(mapStateToProps)(AppNavigation);
