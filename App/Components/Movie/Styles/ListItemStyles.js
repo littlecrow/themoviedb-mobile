@@ -31,5 +31,8 @@ export default StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold'
+  },
+  lastItem: {
+    marginBottom: Metrics.baseMargin
   }
 });

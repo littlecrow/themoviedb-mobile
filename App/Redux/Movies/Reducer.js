@@ -4,6 +4,7 @@ import Constant from './Constant';
 export const KEY = 'movies';
 
 export const INITIAL_STATE = {
+  loading: false,
   list: [],
   page: 1,
   filter: Constant.POPULAR_MOVIES
@@ -13,7 +14,8 @@ export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
   case ActionTypes.FETCH_MOVIES_REQUESTED:
     return {
-      ...state
+      ...state,
+      loading: !state.loading
     };
   case ActionTypes.FETCH_MOVIES_FULFILLED:
     return {
@@ -21,7 +23,8 @@ export default (state = INITIAL_STATE, action) => {
       list: [
         ...state.list,
         ...action.payload
-      ]
+      ],
+      loading: !state.loading
     };
   case ActionTypes.FETCH_MOVIES_REJECTED:
     return {

@@ -8,7 +8,6 @@ import {
   Text,
   Image
 } from 'react-native';
-import { Grid } from 'react-native-elements';
 import styles from './Styles/ListStyles';
 import { MoviesActionCreators, MoviesActions } from '../../Redux/Movies';
 import MovieItem from './ListItem';
@@ -38,9 +37,15 @@ class MovieList extends Component {
     // }
   }
 
-  _renderEmptyComponent() {
-    return <Text>Loading...</Text>
-  }
+  // _renderEmptyComponent() {
+  //   return (
+  //     <Image
+  //       source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+  //     >
+  //     </Image>
+  //   );
+  //   // ListEmptyComponent={this._renderEmptyComponent()
+  // }
 
   // _handleScrollToEndBottom() {
   //   this.props.setPage(++pageNum);
@@ -51,22 +56,42 @@ class MovieList extends Component {
     <MovieItem movie={item}/>
   )
 
+  _renderLoading = () => (
+    <Image
+      source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+      style={styles.imgBackground}
+    >
+      <View style={styles.container}>
+        <Image
+          source={require('../../Images/movie/ring.gif')}
+          style={{width: 100, height: 100}}
+        />
+      </View>
+    </Image>
+  )
+
+  _renderFulfilled = (movies) => (
+    <Image
+      source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+      style={styles.imgBackground}
+    >
+      <View style={styles.container}>
+        <FlatList
+          data={movies}
+          renderItem={this._renderItem}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
+    </Image>
+  )
+
   _showData() {
     const { movies } = this.props;
-    return (
-      <Image
-        source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
-      >
-        <View style={styles.container}>
-          <FlatList
-            data={movies}
-            renderItem={this._renderItem}
-            keyExtractor={item => item.id}
-            ListEmptyComponent={this._renderEmptyComponent()}
-          />
-        </View>
-      </Image>
-    );
+    if(this.props.loading === true) {
+      return this._renderLoading();
+    } else {
+      return this._renderFulfilled(movies);
+    }
   }
 
   render() {
@@ -83,9 +108,9 @@ MovieList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log('Page: ', state.movies.page);
   return {
     movies: state.movies.list,
+    loading: state.movies.loading
   };
 };
 
