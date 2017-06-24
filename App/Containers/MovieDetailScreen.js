@@ -28,6 +28,7 @@ class MovieDetailScreen extends Component {
     const movie = this.props.navigation.state.params.movie;
     this.props.fetchDetail(movie.id);
     this.props.fetchCredits(movie.id);
+    this.props.fetchReviews(movie.id);
   }
 
 
@@ -59,7 +60,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchDetail: (movieId) => dispatch(MovieActions.fetchDetail(movieId)),
-  fetchCredits: (movieId) => dispatch(MovieActions.fetchCredits(movieId))
+  fetchCredits: (movieId) => dispatch(MovieActions.fetchCredits(movieId)),
+  fetchReviews: (movieId) => dispatch(MovieActions.fetchReviews(movieId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailScreen);

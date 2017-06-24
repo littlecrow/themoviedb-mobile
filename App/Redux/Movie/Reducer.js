@@ -5,7 +5,8 @@ export const KEY = 'movie';
 export const INITIAL_STATE = {
   current: {
     detail: null,
-    credits: null
+    credits: null,
+    reviews: null
   },
   prev: null
 };
@@ -41,6 +42,22 @@ export default (state = INITIAL_STATE, action) => {
       }
     };
   case ActionTypes.FETCH_MOVIE_CREDITS_REJECTED:
+    return {
+      ...state
+    };
+  case ActionTypes.FETCH_MOVIE_REVIEWS_REQUESTED:
+    return {
+      ...state
+    };
+  case ActionTypes.FETCH_MOVIE_REVIEWS_FULFILLED:
+    return {
+      ...state,
+      current: {
+        ...state.current,
+        reviews: action.payload
+      }
+    };
+  case ActionTypes.FETCH_MOVIE_REVIEWS_REJECTED:
     return {
       ...state
     };

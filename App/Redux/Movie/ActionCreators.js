@@ -25,7 +25,23 @@ export const fetchMovieCreditsFulfilled = (credits) => ({
 });
 
 export const fetchMovieCreditsRejected = (err) => ({
-  type: ActionTypes.FETCH_MOVIE_CREDIST_REJECTED,
+  type: ActionTypes.FETCH_MOVIE_CREDITS_REJECTED,
+  payload: err,
+  error: true
+});
+
+
+export const fetchMovieReviewsRequested = () => ({
+  type: ActionTypes.FETCH_MOVIE_REVIEWS_REQUESTED
+});
+
+export const fetchMovieReviewsFulfilled = (credits) => ({
+  type: ActionTypes.FETCH_MOVIE_REVIEWS_FULFILLED,
+  payload: credits
+});
+
+export const fetchMovieReviewsRejected = (err) => ({
+  type: ActionTypes.FETCH_MOVIE_REVIEWS_REJECTED,
   payload: err,
   error: true
 });
@@ -38,4 +54,7 @@ export default {
   fetchMovieCreditsRequested,
   fetchMovieCreditsFulfilled,
   fetchMovieCreditsRejected,
+  fetchMovieReviewsRequested,
+  fetchMovieReviewsFulfilled,
+  fetchMovieReviewsRejected,
 };

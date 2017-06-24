@@ -31,7 +31,22 @@ export const fetchCredits = (movieId) => async (dispatch) => {
   }
 };
 
+export const fetchReviews = (movieId) => async (dispatch) => {
+  dispatch(ActionCreators.fetchMovieReviewsRequested());
+  try {
+    const reviews = await axios.get(API_MOVIE + movieId + '/reviews', {
+      params: {
+        api_key: API_KEY
+      }
+    }).then(response => response.data);
+    return dispatch(ActionCreators.fetchMovieReviewsFulfilled(reviews));
+  } catch (err) {
+    return dispatch(ActionCreators.fetchMovieReviewsRejected(err));
+  }
+};
+
 export default {
   fetchDetail,
-  fetchCredits
+  fetchCredits,
+  fetchReviews
 };
