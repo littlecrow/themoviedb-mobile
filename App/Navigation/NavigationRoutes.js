@@ -6,13 +6,13 @@ export const NavigationRoutes = {
   MoviesScreen: {
     screen: MoviesScreen,
     navigationOptions: {
-      title: 'Movies List'
+      title: 'Discover'
     }
   },
   MovieDetailScreen: {
     screen: MovieDetailScreen,
     navigationOptions: {
-      title: 'Movie Detail'
+      title: 'Detail'
     }
   }
 };

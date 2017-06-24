@@ -20,7 +20,7 @@ class MovieDetailScreen extends Component {
       };
     }
     return {
-      title: movie.title
+      headerTitle: movie.title,
     };
   };
 
@@ -51,7 +51,8 @@ MovieDetailScreen.propTypes = {
   navigation: PropTypes.object,
   detail: PropTypes.object,
   fetchDetail: PropTypes.func,
-  fetchCredits: PropTypes.func
+  fetchCredits: PropTypes.func,
+  fetchReviews: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
