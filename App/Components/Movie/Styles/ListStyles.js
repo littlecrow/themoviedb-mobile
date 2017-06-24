@@ -1,17 +1,14 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
-const WINDOW = Dimensions.get('window');
-const SCREEN_WIDTH = WINDOW.width,
-  SCREEN_HEIGHT = WINDOW.height;
+import { StyleSheet } from 'react-native';
+import Metrics from '../../../Themes/Metrics';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0,0,0,0.65)',
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT
+    backgroundColor: 'white',
+    width: Metrics.screenWidth,
+    height: Metrics.screenHeight
   },
   imgBackground: {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT
+    width: Metrics.screenWidth,
+    height: Metrics.screenHeight
   }
 });

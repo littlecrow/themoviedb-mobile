@@ -55,10 +55,10 @@ class MovieList extends Component {
   _renderItem = ({item}) => (
     <MovieItem movie={item}/>
   )
-
+// https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg
   _renderLoading = () => (
     <Image
-      source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+      source={require('../../Images/movie/movie_background.jpg')}
       style={styles.imgBackground}
     >
       <View style={styles.container}>
@@ -72,7 +72,7 @@ class MovieList extends Component {
 
   _renderFulfilled = (movies) => (
     <Image
-      source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+      source={require('../../Images/movie/movie_background.jpg')}
       style={styles.imgBackground}
     >
       <View style={styles.container}>

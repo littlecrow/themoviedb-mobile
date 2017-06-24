@@ -2,7 +2,7 @@ import { TabNavigator } from 'react-navigation';
 import { View } from 'react-native';
 import PopularScreen from './PopularScreen';
 import TopRatedScreen from './TopRatedScreen';
-import styles from './Styles/FilterContainerStyles';
+import styles from './Styles/MoviesScreenStyles';
 
 const TabView = TabNavigator({
   PopularScreen: {

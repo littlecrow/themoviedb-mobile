@@ -6,10 +6,9 @@ export default StyleSheet.create({
     flex: 1
   },
   tabBar: {
-    backgroundColor: Colors.primary
+    backgroundColor: Colors.inverse
   },
   indicator: {
-    backgroundColor: Colors.inverse,
-    height: 4
+    backgroundColor: Colors.primary
   }
 });

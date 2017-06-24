@@ -19,7 +19,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   infoArea: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.85)',
     padding: Metrics.basePadding,
     height: 100,
     flex: 1,
