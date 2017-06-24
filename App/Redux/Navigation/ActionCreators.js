@@ -9,6 +9,10 @@ export const navigateToDetailScreen = (movie) => ({
   payload: movie
 });
 
+export const navigateTab = () => ({
+  type: ActionTypes.NAVIGATE_TAB
+});
+
 export const navigateBack = () => ({
   type: ActionTypes.NAVIGATE_BACK
 });
@@ -16,5 +20,6 @@ export const navigateBack = () => ({
 export default {
   navigateToMoviesScreen,
   navigateToDetailScreen,
+  navigateTab,
   navigateBack
 };

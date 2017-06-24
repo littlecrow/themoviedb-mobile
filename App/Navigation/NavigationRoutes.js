@@ -1,4 +1,4 @@
-import MoviesScreen from '../Containers/MoviesScreen';
+import MoviesScreen from '../Containers/FilterContainer';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 

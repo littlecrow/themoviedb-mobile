@@ -32,22 +32,15 @@ export default (state = INITIAL_STATE, action) => {
       state
     );
     break;
-  // case ActionTypes.NAVIGATE_TO_POPULAR_SCREEN:
-  //   nextState = getStateForAction(
-  //     NavigationActions.navigate({
-  //       routeName: 'PopularScreen',
-  //     }),
-  //     state
-  //   );
-  //   break;
-  // case ActionTypes.NAVIGATE_TO_TOP_RATED_SCREEN:
-  //   nextState = getStateForAction(
-  //     NavigationActions.navigate({
-  //       routeName: 'TopRatedScreen',
-  //     }),
-  //     state
-  //   );
-  //   break;
+  case ActionTypes.NAVIGATE_TAB:
+    console.log('You are here');
+    nextState = getStateForAction(
+      NavigationActions.navigate({
+        routeName: 'MoviesScreen'
+      }),
+      state
+    );
+    break;
   case ActionTypes.NAVIGATE_BACK:
     nextState = getStateForAction(
       NavigationActions.back(),

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { MoviesActionCreators, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List';
+import { NavigationActionTypes } from '../../Redux/Navigation';
 
 class PopularScreen extends Component {
   static navigationOptions = {
