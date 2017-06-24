@@ -1,8 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import metrics  from '../../../Themes/Metrics';
 import colors  from '../../../Themes/Colors';
 import fonts  from '../../../Themes/Fonts';
 import { Constants } from 'expo';
+
+const isAndroid = (Platform.OS === 'android');
 
 const textColors = {
   color: colors.secondary,
@@ -14,7 +16,7 @@ const MovieDetailScreenStyles = StyleSheet.create({
     alignItems: 'center',
     width: metrics.screenWidth,
     height: metrics.screenHeight,
-    marginTop: Constants.statusBarHeight
+    marginTop: isAndroid ? Constants.statusBarHeight : 0
   },
   line: {
     borderBottomColor: colors.cloudes,
@@ -39,7 +41,7 @@ const MovieDetailScreenStyles = StyleSheet.create({
   previewWrapper: {
     flexDirection: 'row',
     margin: metrics.baseMargin,
-    marginTop: 60,
+    marginTop: isAndroid ? 60 : metrics.baseMargin,
     height: 200
   },
   horizontalWrapper: {

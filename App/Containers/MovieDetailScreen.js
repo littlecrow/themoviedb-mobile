@@ -2,42 +2,46 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { Platform } from 'react-native';
 import TransparentHeader from '../Components/Header/Transparent';
 import DefaultMovieDetail from '../Components/Movie/DefaultDetail';
 import BackdropMovieDetail from '../Components/Movie/BackdropDetail';
 import { MovieActions, MOVIE_KEY } from '../Redux/Movie';
 
+const isAndroid = Platform.OS === 'android';
+
 class MovieDetailScreen extends Component {
 
   static navigationOptions = ({navigation}) => {
     const movie = navigation.state.params.movie;
-    if (movie.backdrop_path) {
+    if (isAndroid && movie.backdrop_path) {
       return {
         header: <TransparentHeader title={movie.title} navigation={navigation}/>
       };
     }
     return {
-      title: movie.title
+      headerTitle: movie.title,
     };
   };
 
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
     const movie = this.props.navigation.state.params.movie;
     this.props.fetchDetail(movie.id);
+    this.props.fetchCredits(movie.id);
+    this.props.fetchReviews(movie.id);
   }
+
 
   render () {
     let { movie } = this.props.navigation.state.params;
-
-    if (this.props.movie) {
-      movie = this.props.movie;
+    let detail = null;
+    if (this.props.detail) {
+      detail = this.props.detail;
     }
 
     return (
       <ScrollView>
-        {movie.backdrop_path ? <BackdropMovieDetail movie={movie} /> : <DefaultMovieDetail movie={movie} />}
+        {movie.backdrop_path ? <BackdropMovieDetail movie={movie} detail={detail} /> : <DefaultMovieDetail movie={movie} />}
       </ScrollView>
     );
   }
@@ -45,16 +49,20 @@ class MovieDetailScreen extends Component {
 
 MovieDetailScreen.propTypes = {
   navigation: PropTypes.object,
-  movie: PropTypes.object,
-  fetchDetail: PropTypes.func
+  detail: PropTypes.object,
+  fetchDetail: PropTypes.func,
+  fetchCredits: PropTypes.func,
+  fetchReviews: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  movie: state[MOVIE_KEY].current
+  detail: state[MOVIE_KEY].current.detail
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDetail: (movieId) => dispatch(MovieActions.fetchMovies(movieId))
+  fetchDetail: (movieId) => dispatch(MovieActions.fetchDetail(movieId)),
+  fetchCredits: (movieId) => dispatch(MovieActions.fetchCredits(movieId)),
+  fetchReviews: (movieId) => dispatch(MovieActions.fetchReviews(movieId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailScreen);
