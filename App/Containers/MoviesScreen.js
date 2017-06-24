@@ -5,6 +5,7 @@ import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { MoviesConstant, MoviesActionCreators, MoviesActions } from '../Redux/Movies';
 import MovieList from '../Components/Movie/List';
 import Styles from './Styles/MoviesScreenStyles';
+import Filter from './FilterContainer/index';
 
 const ROUTES = [
   { key: '1', title: 'Popular', filterName: MoviesConstant.POPULAR_MOVIES },
@@ -62,13 +63,14 @@ class MoviesFragment extends Component {
 
   render() {
     return (
-      <TabViewAnimated
-        style={Styles.container}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onRequestChangeTab={this._handleTabChanged}
-      />
+      // <TabViewAnimated
+      //   style={Styles.container}
+      //   navigationState={this.state}
+      //   renderScene={this._renderScene}
+      //   renderHeader={this._renderHeader}
+      //   onRequestChangeTab={this._handleTabChanged}
+      // />
+      <Filter/>
     );
   }
 }
