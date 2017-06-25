@@ -3,12 +3,15 @@ import { Text, View, ActivityIndicator } from 'react-native';
 import Rating from 'react-native-star-rating';
 import FitImage from 'react-native-fit-image';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import RoundedButton from '../RoundedButton';
-import styles from './Styles/BackdropDetailStyles';
-import colors  from '../../Themes/Colors';
-import fonts  from '../../Themes/Fonts';
+import RoundedButton from '../../RoundedButton';
+import styles from './Styles/BackdropStyles';
+import { MOVIE_KEY } from '../../../Redux/Movie';
+import colors  from '../../../Themes/Colors';
+import fonts  from '../../../Themes/Fonts';
+import CastersList from '../../People/CastersList';
 
 const _renderMovieInfo = (movie, renderedKey) => {
   if (movie[renderedKey]) {
@@ -31,7 +34,6 @@ const BackdropDetail = props => {
 
   const genres = _renderMovieInfo(detail, 'genres');
   const production_countries = _renderMovieInfo(detail, 'production_countries');
-
   return (
     <View style={styles.container}>
       <View style={styles.backdropImageWrapper}>
@@ -75,24 +77,30 @@ const BackdropDetail = props => {
           <Text style={styles.movieTitle}>
             {detail.title}
           </Text>
-          <View style={styles.movieSubInfo}>
+          <View style={styles.subInfo}>
             <Text style={styles.whiteText}>Release date:{' '}</Text>
             <Text style={styles.whiteText}>{detail.release_date}</Text>
           </View>
-          <View style={styles.movieSubInfo}>
+          <View style={styles.subInfo}>
             <Text style={styles.whiteText}>Countries:{' '}</Text>
             {production_countries}
           </View>
-          <View style={styles.movieSubInfo}>
+          <View style={styles.subInfo}>
             <Text style={styles.whiteText}>Genres:{' '}</Text>
             {genres}
           </View>
-          <Text style={styles.movieOverviewTitle}>
+          <Text style={styles.subInfoTitle}>
             Plot
           </Text>
-          <Text style={styles.movieOverview}>
+          <Text style={styles.whiteText}>
             {detail.overview}
           </Text>
+          <Text style={styles.subInfoTitle}>
+            Casters
+          </Text>
+          <View>
+            <CastersList data={props.casters}/>
+          </View>
         </View>
       </View>
     </View>
@@ -102,7 +110,16 @@ const BackdropDetail = props => {
 
 BackdropDetail.propTypes = {
   movie: PropTypes.object,
-  detail: PropTypes.object
+  detail: PropTypes.object,
+  casters: PropTypes.array
 };
 
-export default BackdropDetail;
+const mapStateToProps = state => {
+  const { credits } = state[MOVIE_KEY].current;
+  return ({
+    casters: credits ? credits.cast : []
+  });
+};
+
+
+export default connect(mapStateToProps)(BackdropDetail);
