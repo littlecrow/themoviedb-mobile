@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     paddingLeft: 16
   },
   sideMenuHeaderInfoUser: {
-    // marginLeft: 16,
     marginTop: 20
   },
   roundAvatar: {
@@ -21,6 +20,9 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 60
+  },
+  textHeaderInfoUser: {
+    color: Colors.secondary
   },
   sideMenuListMenu: {
     marginLeft: 16
