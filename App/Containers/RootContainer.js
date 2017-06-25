@@ -5,12 +5,19 @@ import AppNavigation from '../Navigation/AppNavigation';
 // Styles
 import styles from './Styles/RootContainerStyles';
 
+const SideMenu = require('react-native-side-menu');
+import DrawerMenu from '../Components/Drawer/Menu';
+
 class RootContainer extends Component {
 
   render () {
+    const drawer = <DrawerMenu navigator={navigator}/>;
+
     return (
       <View style={styles.applicationView}>
-        <AppNavigation />
+        <SideMenu menu={drawer}>
+          <AppNavigation />
+        </SideMenu>
       </View>
     );
   }
