@@ -2,6 +2,8 @@ import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 
+import HomeScreen from '../Containers/HomeScreen';
+
 export const NavigationRoutes = {
   MoviesScreen: {
     screen: MoviesScreen,
@@ -13,6 +15,12 @@ export const NavigationRoutes = {
     screen: MovieDetailScreen,
     navigationOptions: {
       title: 'Detail'
+    }
+  },
+  HomeScreen: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: null
     }
   }
 };
