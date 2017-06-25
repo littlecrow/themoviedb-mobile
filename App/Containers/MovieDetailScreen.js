@@ -4,8 +4,8 @@ import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Platform } from 'react-native';
 import TransparentHeader from '../Components/Header/Transparent';
-import DefaultMovieDetail from '../Components/Movie/DefaultDetail';
-import BackdropMovieDetail from '../Components/Movie/BackdropDetail';
+import DefaultMovieDetail from '../Components/Movie/Detail/Default';
+import BackdropMovieDetail from '../Components/Movie/Detail/Backdrop';
 import { MovieActions, MOVIE_KEY } from '../Redux/Movie';
 
 const isAndroid = Platform.OS === 'android';
