@@ -27,11 +27,11 @@ const MovieDetailScreenStyles = StyleSheet.create({
   },
   backdropImage: {
     width: metrics.screenWidth,
-    height: '100%',
+    height: metrics.screenHeight,
   },
   blurWrapper: {
-    width: '100%',
-    height: '100%',
+    width: metrics.screenWidth,
+    height: metrics.screenHeight,
     backgroundColor: 'rgba(0,0,0,0.7)'
   },
   backdropImageWrapper: {
