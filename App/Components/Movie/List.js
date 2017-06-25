@@ -109,7 +109,6 @@ MovieList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies.list,
     loading: state.movies.loading
   };
 };

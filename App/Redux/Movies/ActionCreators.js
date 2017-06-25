@@ -4,8 +4,13 @@ export const moviesFetchRequested = () => ({
   type: ActionTypes.FETCH_MOVIES_REQUESTED
 });
 
-export const moviesFetchFulfilled = (movies) => ({
-  type: ActionTypes.FETCH_MOVIES_FULFILLED,
+export const popularMoviesFetchFulfilled = (movies) => ({
+  type: ActionTypes.FETCH_POPULAR_MOVIES_FULFILLED,
+  payload: movies
+});
+
+export const topRatedMoviesFetchFulfilled = (movies) => ({
+  type: ActionTypes.FETCH_TOP_RATED_MOVIES_FULFILLED,
   payload: movies
 });
 
@@ -15,8 +20,13 @@ export const moviesFetchRejected = (err) => ({
   error: true
 });
 
-export const setPage = (page) => ({
-  type: ActionTypes.SET_PAGE_NUM,
+export const setPageToPopular = (page) => ({
+  type: ActionTypes.SET_POPULAR_PAGE,
+  page
+});
+
+export const setPageToTopRated = (page) => ({
+  type: ActionTypes.SET_TOP_RATED_PAGE,
   page
 });
 
@@ -27,8 +37,9 @@ export const setFilter = (filter) => ({
 
 export default {
   moviesFetchRequested,
-  moviesFetchFulfilled,
+  popularMoviesFetchFulfilled,
+  topRatedMoviesFetchFulfilled,
   moviesFetchRejected,
-  setPage,
-  setFilter
+  setPageToPopular,
+  setPageToTopRated
 };

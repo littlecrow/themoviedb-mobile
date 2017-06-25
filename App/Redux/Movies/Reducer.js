@@ -1,13 +1,19 @@
 import ActionTypes from './ActionTypes';
-import Constant from './Constant';
 
 export const KEY = 'movies';
 
 export const INITIAL_STATE = {
   loading: false,
-  list: [],
-  page: 1,
-  filter: Constant.POPULAR_MOVIES
+  filter: {
+    popular: {
+      page: 1,
+      result: []
+    },
+    topRated: {
+      page: 1,
+      result: []
+    }
+  }
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,38 +21,52 @@ export default (state = INITIAL_STATE, action) => {
   case ActionTypes.FETCH_MOVIES_REQUESTED:
     return {
       ...state,
-      loading: !state.loading
+      loading: true
     };
-  case ActionTypes.FETCH_MOVIES_FULFILLED:
+  case ActionTypes.FETCH_POPULAR_MOVIES_FULFILLED:
     return {
       ...state,
-      list: [
-        ...state.list,
-        ...action.payload
-      ],
-      loading: !state.loading
+      filter: {
+        ...state.filter,
+        popular: {
+          result: action.payload
+        }
+      },
+      loading: false
+    };
+  case ActionTypes.FETCH_TOP_RATED_MOVIES_FULFILLED:
+    return {
+      ...state,
+      filter: {
+        ...state.filter,
+        topRated: {
+          result: action.payload
+        }
+      },
+      loading: false
     };
   case ActionTypes.FETCH_MOVIES_REJECTED:
     return {
       ...state
     };
-  case ActionTypes.SET_PAGE_NUM:
+  case ActionTypes.SET_POPULAR_PAGE:
     return {
       ...state,
-      page: action.page
+      filter: {
+        popular: {
+          page: action.page
+        }
+      }
     };
-  case ActionTypes.SET_FILTER: {
-    if(state.filter !== action.filter) {
-      return {
-        ...state,
-        list: [],
-        page: 1,
-        filter: action.filter
-      };
-    }
-
-    return state;
-  }
+  case ActionTypes.SET_TOP_RATED_PAGE:
+    return {
+      ...state,
+      filter: {
+        topRated: {
+          page: action.page
+        }
+      }
+    };
   default:
     return state;
   }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
-import { MoviesActions, MoviesActionCreators, MoviesConstant } from '../../Redux/Movies';
+import { View } from 'react-native';
+import { MoviesActions } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List';
 
 class TopRatedScreen extends Component {
@@ -11,16 +11,17 @@ class TopRatedScreen extends Component {
   }
 
   componentDidMount() {
-    const { setFilter, fetchMovies } = this.props;
+    const { fetchTopRatedMovies } = this.props;
 
-    setFilter(MoviesConstant.TOP_RATED_MOVIES);
-    fetchMovies();
+    fetchTopRatedMovies();
   }
 
   render() {
+    const { movies } = this.props;
+
     return (
       <View>
-        <MovieList/>
+        <MovieList movies={movies}/>
       </View>
     );
   }
@@ -30,9 +31,16 @@ TopRatedScreen.propTypes = {
 
 };
 
+const mapStateToProps = (state) => {
+  const moviesState = state.movies.filter.topRated;
+
+  return  {
+    movies: moviesState.result
+  };
+};
+
 const mapDispatchToProps = (dispatch) => ({
-  fetchMovies: () => dispatch(MoviesActions.fetchMovies()),
-  setFilter: (filter) => dispatch(MoviesActionCreators.setFilter(filter))
+  fetchTopRatedMovies: () => dispatch(MoviesActions.fetchTopRatedMovies())
 });
 
-export default connect(undefined, mapDispatchToProps)(TopRatedScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TopRatedScreen);

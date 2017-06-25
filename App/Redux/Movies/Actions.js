@@ -1,37 +1,51 @@
 import axios from 'axios';
-import {
-  API_KEY,
-  LANGUAGE,
-  API_POPULAR,
-  API_TOP_RATED
-} from 'react-native-dotenv';
+import { API_KEY, LANGUAGE, API_MOVIE } from 'react-native-dotenv';
 import ActionCreators from './ActionCreators';
-import Constant from './Constant';
 
-const handleAPI = () => async (dispatch, getState) => {
-  dispatch(ActionCreators.moviesFetchRequested());
+const callFetchRequested = (dispatch) => dispatch(ActionCreators.moviesFetchRequested());
+const callFetchRejected = (dispatch, err) => {
+  dispatch(ActionCreators.moviesFetchRejected(err));
+};
+
+const fetchPopularMovies = () => async (dispatch, getState) => {
+  callFetchRequested(dispatch);
+
   try {
     const movies = await axios.get(
-      getState().movies.filter === Constant.POPULAR_MOVIES ? API_POPULAR : API_TOP_RATED,
+      API_MOVIE + 'popular',
       {
         params: {
           api_key: API_KEY,
           language: LANGUAGE,
-          page: getState().movies.page
+          page: getState().movies.filter.popular.page
         }
       }).then(response => response.data.results);
-
-    return dispatch(ActionCreators.moviesFetchFulfilled(movies));
+    return dispatch(ActionCreators.popularMoviesFetchFulfilled(movies));
   } catch (err) {
-    console.log('Error: ', err);
-    return dispatch(ActionCreators.moviesFetchRejected(err));
+    callFetchRejected(dispatch, err);
   }
 };
 
-export const fetchMovies = () => {
-  return handleAPI();
+const fetchTopRatedMovies = () => async (dispatch, getState) => {
+  callFetchRequested(dispatch);
+  try {
+    const movies = await axios.get(
+      API_MOVIE + 'top_rated',
+      {
+        params: {
+          api_key: API_KEY,
+          language: LANGUAGE,
+          page: getState().movies.filter.topRated.page
+        }
+      }).then(response => response.data.results);
+
+    return dispatch(ActionCreators.topRatedMoviesFetchFulfilled(movies));
+  } catch (err) {
+    callFetchRejected(dispatch, err);
+  }
 };
 
 export default {
-  fetchMovies
+  fetchPopularMovies,
+  fetchTopRatedMovies
 };
