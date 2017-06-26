@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
-import { MoviesActions } from '../../Redux/Movies';
+import { View } from 'react-native';
+import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List';
 
 class PopularScreen extends Component {
@@ -16,13 +16,12 @@ class PopularScreen extends Component {
     fetchPopularMovies();
   }
 
-
   render() {
     const { movies } = this.props;
 
     return (
       <View>
-        <MovieList movies={movies}/>
+        <MovieList movies={movies} filterName={MoviesConstant.POPULAR_MOVIES}/>
       </View>
     );
   }
@@ -34,7 +33,7 @@ PopularScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.popular;
-
+  console.log('State: ',state.movies);
   return  {
     movies: moviesState.result
   };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { MoviesActions } from '../../Redux/Movies';
+import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List';
 
 class TopRatedScreen extends Component {
@@ -21,7 +21,7 @@ class TopRatedScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies}/>
+        <MovieList movies={movies} filterName={MoviesConstant.TOP_RATED_MOVIES}/>
       </View>
     );
   }
@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.topRated;
 
   return  {
-    movies: moviesState.result
+    movies: moviesState.result[0]
   };
 };
 

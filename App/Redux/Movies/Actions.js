@@ -4,6 +4,7 @@ import ActionCreators from './ActionCreators';
 
 const callFetchRequested = (dispatch) => dispatch(ActionCreators.moviesFetchRequested());
 const callFetchRejected = (dispatch, err) => {
+  console.log('Error: ', err);
   dispatch(ActionCreators.moviesFetchRejected(err));
 };
 

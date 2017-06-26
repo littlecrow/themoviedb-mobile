@@ -29,7 +29,11 @@ export default (state = INITIAL_STATE, action) => {
       filter: {
         ...state.filter,
         popular: {
-          result: action.payload
+          page: state.filter.popular.page + 1,
+          result: [
+            ...state.filter.popular.result,
+            ...action.payload
+          ]
         }
       },
       loading: false
@@ -40,7 +44,11 @@ export default (state = INITIAL_STATE, action) => {
       filter: {
         ...state.filter,
         topRated: {
-          result: action.payload
+          page: state.filter.topRated.page + 1,
+          result: [
+            ...state.filter.topRated.result,
+            ...action.payload
+          ]
         }
       },
       loading: false

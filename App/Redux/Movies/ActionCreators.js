@@ -30,11 +30,6 @@ export const setPageToTopRated = (page) => ({
   page
 });
 
-export const setFilter = (filter) => ({
-  type: ActionTypes.SET_FILTER,
-  filter
-});
-
 export default {
   moviesFetchRequested,
   popularMoviesFetchFulfilled,
