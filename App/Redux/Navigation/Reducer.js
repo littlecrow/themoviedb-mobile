@@ -3,46 +3,73 @@ import ActionTypes from './ActionTypes';
 import NavigationOptions from '../../Navigation/NavigationOptions';
 import NavigationRoutes, { ROUTES } from './NavigationRoutes';
 
-export const KEY = 'navigation';
+export const KEY = 'nav';
 // Manifest of possible screens
 export const AppNavigator = StackNavigator(NavigationRoutes, NavigationOptions);
 
 const { getActionForPathAndParams, getStateForAction } = AppNavigator.router;
 const DiscoverScreenAction = getActionForPathAndParams(ROUTES.DiscoverScreen);
 
-const INITIAL_STATE = getStateForAction(DiscoverScreenAction);
+const INITIAL_STATE = {
+  navigation: getStateForAction(DiscoverScreenAction),
+  drawer: {
+    isOpen: false
+  }
+};
 
 export default (state = INITIAL_STATE, action) => {
-  let nextState;
   switch (action.type) {
   case ActionTypes.NAVIGATE_TO_MOVIES_SCREEN:
-    nextState = getStateForAction(
-      NavigationActions.navigate({ routeName: ROUTES.DiscoverScreen }),
-      state
-    );
-    break;
+    return {
+      ...state,
+      navigation: getStateForAction(
+        NavigationActions.navigate({
+          routeName: ROUTES.DiscoverScreen
+        }),
+        state.navigation
+      )
+    };
   case ActionTypes.NAVIGATE_TO_MOVIE_DETAIL_SCREEN:
-    nextState = getStateForAction(
-      NavigationActions.navigate({
-        routeName: ROUTES.MovieDetailScreen,
-        params: {
-          movie: action.payload
-        }
-      }),
-      state
-    );
-    break;
+    return {
+      ...state,
+      navigation: getStateForAction(
+        NavigationActions.navigate({
+          routeName: ROUTES.MovieDetailScreen,
+          params: {
+            movie: action.payload
+          }
+        }),
+        state.navigation
+      )
+    };
   case ActionTypes.NAVIGATE_BACK:
-    nextState = getStateForAction(
-      NavigationActions.back(),
-      state
-    );
-    break;
+    return {
+      ...state,
+      navigation: getStateForAction(
+        NavigationActions.back(),
+        state.navigation
+      )
+    };
+  case ActionTypes.OPEN_DRAWER:
+    return {
+      ...state,
+      drawer: {
+        ...state.drawer,
+        isOpen: true,
+      }
+    };
+  case ActionTypes.CLOSE_DRAWER:
+    return {
+      ...state,
+      drawer: {
+        ...state.drawer,
+        isOpen: false,
+      }
+    };
   default:
-    nextState = AppNavigator.router.getStateForAction(action, state);
-    break;
+    return {
+      ...state,
+      navigation: AppNavigator.router.getStateForAction(action, state.navigation)
+    };
   }
-
-  // Simply return the original `state` if `nextState` is null or undefined.
-  return nextState || state;
 };

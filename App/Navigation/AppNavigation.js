@@ -15,7 +15,7 @@ AppNavigation.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  nav: state[NAVIGATION_KEY]
+  nav: state[NAVIGATION_KEY].navigation
 });
 
 export default connect(mapStateToProps)(AppNavigation);

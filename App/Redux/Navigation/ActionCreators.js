@@ -13,8 +13,18 @@ export const navigateBack = () => ({
   type: ActionTypes.NAVIGATE_BACK
 });
 
+export const openDrawer = () => ({
+  type: ActionTypes.OPEN_DRAWER
+});
+
+export const closeDrawer = () => ({
+  type: ActionTypes.CLOSE_DRAWER
+});
+
 export default {
   navigateToDiscoverScreen,
   navigateToDetailScreen,
-  navigateBack
+  navigateBack,
+  openDrawer,
+  closeDrawer
 };

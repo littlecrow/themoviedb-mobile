@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { NavigationActionCreators } from '../../Redux/Navigation';
 import styles from './Styles/MenuStyles';
 import { Images } from '../../Themes';
@@ -52,8 +53,13 @@ const Menu = ({navigateToDiscoverScreen, navigation}) => {
   );
 };
 
+Menu.propTypes = {
+  navigateToDiscoverScreen: PropTypes.func,
+  navigation: PropTypes.object
+};
+
 const mapStateToProps = state => ({
-  navigation: state[NAVIGATION_KEY]
+  navigation: state[NAVIGATION_KEY].navigation,
 });
 
 const mapDispatchToProps = (dispatch) => ({
