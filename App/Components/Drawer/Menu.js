@@ -7,10 +7,11 @@ import styles from './Styles/MenuStyles';
 import { Images } from '../../Themes';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
 import MenuItem from './MenuItem';
-import { ROUTES } from '../../Redux/Navigation/NavigationRoutes';
+import { ROUTES } from '../../Navigation/NavigationRoutes';
 
-const Menu = ({navigateToDiscoverScreen, navigation}) => {
-  const { routeName } = navigation.routes[navigation.index];
+const Menu = ({appNavigateToDiscover, navigation}) => {
+  const { routes, index } = navigation.routes[0];
+  const { routeName } = routes[index];
   return (
     <View style={styles.headerPadding}>
       <View style={styles.sideMenuHeader}>
@@ -25,25 +26,25 @@ const Menu = ({navigateToDiscoverScreen, navigation}) => {
       </View>
       <View style={styles.listMenu}>
         <MenuItem
-          onPress={() => navigateToDiscoverScreen()}
+          onPress={() => appNavigateToDiscover()}
           name="Discover"
           icon={Images.discoverIcon}
           active={routeName === ROUTES.DiscoverScreen}
         />
         <MenuItem
-          /*onPress={() => navigateToDiscoverScreen()}*/
+          /*onPress={() => appNavigateToDiscover()}*/
           name="Movies"
           icon={Images.moviesIcon}
           active={false}
         />
         <MenuItem
-          /*onPress={() => navigateToDiscoverScreen()}*/
+          /*onPress={() => appNavigateToDiscover()}*/
           name="Tv Shown"
           icon={Images.tvIcon}
           active={false}
         />
         <MenuItem
-          /*onPress={() => navigateToDiscoverScreen()}*/
+          /*onPress={() => appNavigateToDiscover()}*/
           name="People"
           icon={Images.peopleIcon}
           active={false}
@@ -54,7 +55,7 @@ const Menu = ({navigateToDiscoverScreen, navigation}) => {
 };
 
 Menu.propTypes = {
-  navigateToDiscoverScreen: PropTypes.func,
+  appNavigateToDiscover: PropTypes.func,
   navigation: PropTypes.object
 };
 
@@ -63,7 +64,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  navigateToDiscoverScreen: () => dispatch(NavigationActionCreators.navigateToDiscoverScreen())
+  appNavigateToDiscover: () => dispatch(NavigationActionCreators.appNavigateToDiscover())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);

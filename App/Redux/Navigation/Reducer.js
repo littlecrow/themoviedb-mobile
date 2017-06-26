@@ -1,75 +1,84 @@
-import { NavigationActions, StackNavigator } from 'react-navigation';
+import { NavigationActions, StackNavigator, DrawerNavigator } from 'react-navigation';
 import ActionTypes from './ActionTypes';
-import NavigationOptions from '../../Navigation/NavigationOptions';
-import NavigationRoutes, { ROUTES } from './NavigationRoutes';
+import { AppNavigationOptions, DiscoverNavigationOptions} from '../../Navigation/NavigationOptions';
+import { ROUTES, DiscoverNavigation, AppNavigation } from '../../Navigation/NavigationRoutes';
 
 export const KEY = 'nav';
-// Manifest of possible screens
-export const AppNavigator = StackNavigator(NavigationRoutes, NavigationOptions);
 
-const { getActionForPathAndParams, getStateForAction } = AppNavigator.router;
-const DiscoverScreenAction = getActionForPathAndParams(ROUTES.DiscoverScreen);
+export const AppNavigator = DrawerNavigator(AppNavigation, AppNavigationOptions);
+export const DiscoverNavigator = StackNavigator(DiscoverNavigation, DiscoverNavigationOptions);
+
+const MoviesScreenAction = DiscoverNavigator.router.getActionForPathAndParams(ROUTES.MoviesScreen);
 
 const INITIAL_STATE = {
-  navigation: getStateForAction(DiscoverScreenAction),
+  navigation: null,
+  discover: DiscoverNavigator.router.getStateForAction(MoviesScreenAction),
   drawer: {
-    isOpen: false
+    disableGestures: false
   }
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case ActionTypes.NAVIGATE_TO_MOVIES_SCREEN:
+  case ActionTypes.APP_NAVIGATION_OPEN_DRAWER:
     return {
       ...state,
-      navigation: getStateForAction(
+      navigation: AppNavigator.router.getStateForAction(
         NavigationActions.navigate({
-          routeName: ROUTES.DiscoverScreen
+          routeName: 'DrawerOpen'
         }),
         state.navigation
       )
     };
-  case ActionTypes.NAVIGATE_TO_MOVIE_DETAIL_SCREEN:
+  case ActionTypes.APP_NAVIGATION_CLOSE_DRAWER:
     return {
       ...state,
-      navigation: getStateForAction(
+      navigation: AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'DrawerClose'
+        }),
+        state.navigation
+      )
+    };
+  case ActionTypes.DISCOVER_NAVIGATE_TO_MOVIES_SCREEN:
+    return {
+      ...state,
+      discover: DiscoverNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: ROUTES.DiscoverScreen
+        }),
+        state.discover
+      )
+    };
+  case ActionTypes.DISCOVER_NAVIGATE_TO_DETAIL_SCREEN:
+    return {
+      ...state,
+      discover: DiscoverNavigator.router.getStateForAction(
         NavigationActions.navigate({
           routeName: ROUTES.MovieDetailScreen,
           params: {
             movie: action.payload
           }
         }),
-        state.navigation
-      )
+        state.discover
+      ),
+      drawer: {
+        ...state.drawer,
+        disableGestures: true
+      }
     };
-  case ActionTypes.NAVIGATE_BACK:
+  case ActionTypes.DISCOVER_NAVIGATE_BACK:
     return {
       ...state,
-      navigation: getStateForAction(
+      discover: DiscoverNavigator.router.getStateForAction(
         NavigationActions.back(),
-        state.navigation
+        state.discover
       )
-    };
-  case ActionTypes.OPEN_DRAWER:
-    return {
-      ...state,
-      drawer: {
-        ...state.drawer,
-        isOpen: true,
-      }
-    };
-  case ActionTypes.CLOSE_DRAWER:
-    return {
-      ...state,
-      drawer: {
-        ...state.drawer,
-        isOpen: false,
-      }
-    };
-  default:
-    return {
-      ...state,
-      navigation: AppNavigator.router.getStateForAction(action, state.navigation)
     };
   }
+  return {
+    ...state,
+    navigation: AppNavigator.router.getStateForAction(action, state.navigation),
+    discover: DiscoverNavigator.router.getStateForAction(action, state.discover)
+  };
 };

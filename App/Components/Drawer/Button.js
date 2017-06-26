@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import styles, { buttonColor } from './Styles/ButtonStyles';
 import { NavigationActionCreators } from '../../Redux/Navigation';
 
-const DrawerButton = ({ openDrawer }) => {
+const DrawerButton = ({ appOpenDrawer }) => {
   return (
-    <TouchableOpacity onPress={openDrawer}>
+    <TouchableOpacity onPress={appOpenDrawer}>
       <View style={styles.container}>
         <FontAwesome size={24} name="bars" color={buttonColor}/>
       </View>
@@ -17,12 +17,12 @@ const DrawerButton = ({ openDrawer }) => {
 };
 
 DrawerButton.propTypes = {
-  openDrawer: PropTypes.func,
+  appOpenDrawer: PropTypes.func,
   closeDrawer: PropTypes.func
 };
 
 const mapDispatchToProps = dispatch => ({
-  openDrawer: () => dispatch(NavigationActionCreators.openDrawer()),
+  appOpenDrawer: () => dispatch(NavigationActionCreators.appOpenDrawer()),
   // closeDrawer: () => dispatch(NavigationActionCreators.closeDrawer())
 });
 export default connect(null, mapDispatchToProps)(DrawerButton);
