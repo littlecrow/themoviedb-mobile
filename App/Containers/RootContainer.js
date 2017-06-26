@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, Button, Image } from 'react-native';
+import { View, Dimensions, StatusBar } from 'react-native';
 import AppNavigation from '../Navigation/AppNavigation';
 
 // Styles
@@ -18,6 +18,9 @@ class RootContainer extends Component {
 
     return (
       <View style={styles.applicationView}>
+        <StatusBar
+          backgroundColor="transparent"
+          translucent/>
         <SideMenu
           menu={drawer}
           menuPosition='left'
