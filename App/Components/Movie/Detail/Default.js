@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Image
-} from 'react-native';
+import { Text, View } from 'react-native';
 import FitImage from 'react-native-fit-image';
-import styles from './Styles/BackdropDetailStyles';
+import styles from './Styles/BackdropStyles';
 
 class DefaultMovieDetail extends Component {
   render() {

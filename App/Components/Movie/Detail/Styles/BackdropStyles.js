@@ -1,7 +1,7 @@
 import { StyleSheet, Platform } from 'react-native';
-import metrics  from '../../../Themes/Metrics';
-import colors  from '../../../Themes/Colors';
-import fonts  from '../../../Themes/Fonts';
+import metrics  from '../../../../Themes/Metrics';
+import colors  from '../../../../Themes/Colors';
+import fonts  from '../../../../Themes/Fonts';
 import { Constants } from 'expo';
 
 const isAndroid = (Platform.OS === 'android');
@@ -27,11 +27,11 @@ const MovieDetailScreenStyles = StyleSheet.create({
   },
   backdropImage: {
     width: metrics.screenWidth,
-    height: '100%',
+    height: metrics.screenHeight,
   },
   blurWrapper: {
-    width: '100%',
-    height: '100%',
+    width: metrics.screenWidth,
+    height: metrics.screenHeight,
     backgroundColor: 'rgba(0,0,0,0.7)'
   },
   backdropImageWrapper: {
@@ -74,18 +74,12 @@ const MovieDetailScreenStyles = StyleSheet.create({
     ...fonts.style.h5,
     ...textColors,
   },
-  movieGenres: {
-    ...textColors
-  },
-  movieOverview: {
-    ...textColors
-  },
-  movieOverviewTitle: {
+  subInfoTitle: {
     ...fonts.style.h5,
     ...textColors,
     marginTop: metrics.baseMargin
   },
-  movieSubInfo: {
+  subInfo: {
     flexDirection: 'row',
   },
   whiteText: {
