@@ -3,7 +3,7 @@ import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import styles from './Styles/NavigationStyles';
 
 export const NavigationRoutes = {
-  MoviesScreen: {
+  DiscoverScreen: {
     screen: MoviesScreen,
     navigationOptions: {
       title: 'Discover'
@@ -19,7 +19,7 @@ export const NavigationRoutes = {
 
 export const NavigationOptions = {
   // Default config for all screens
-  initialRouteName: 'MoviesScreen',
+  initialRouteName: 'DiscoverScreen',
   navigationOptions: {
     headerStyle: styles.header,
     headerTitleStyle: styles.title,

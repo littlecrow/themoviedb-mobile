@@ -19,6 +19,7 @@ class RootContainer extends Component {
           backgroundColor="transparent"
           translucent/>
         <SideMenu
+          isOpen={true}
           menu={drawer}
           menuPosition='left'
           openMenuOffset={Metrics.screenWidth * 0.75}

@@ -7,17 +7,17 @@ export const KEY = 'navigation';
 export const AppNavigator = StackNavigator(NavigationRoutes, NavigationOptions);
 
 const { getActionForPathAndParams, getStateForAction } = AppNavigator.router;
-const MoviesScreenAction = getActionForPathAndParams('MoviesScreen');
+const DiscoverScreenAction = getActionForPathAndParams('DiscoverScreen');
 // const MovieDetailScreen = getActionForPathAndParams('MovieDetailScreen');
 
-const INITIAL_STATE = getStateForAction(MoviesScreenAction);
+const INITIAL_STATE = getStateForAction(DiscoverScreenAction);
 
 export default (state = INITIAL_STATE, action) => {
   let nextState;
   switch (action.type) {
   case ActionTypes.NAVIGATE_TO_MOVIES_SCREEN:
     nextState = getStateForAction(
-      NavigationActions.navigate({ routeName: 'MoviesScreen' }),
+      NavigationActions.navigate({ routeName: 'DiscoverScreen' }),
       state
     );
     break;
