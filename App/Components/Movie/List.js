@@ -70,7 +70,10 @@ class MovieList extends Component {
 }
 
 MovieList.propTypes = {
-
+  filterName: PropTypes.string,
+  movies: PropTypes.array,
+  fetchPopularMovies: PropTypes.func,
+  fetchTopRatedMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {

@@ -28,7 +28,7 @@ class TopRatedScreen extends Component {
 }
 
 TopRatedScreen.propTypes = {
-
+  fetchTopRatedMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {

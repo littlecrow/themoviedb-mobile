@@ -28,7 +28,7 @@ class PopularScreen extends Component {
 }
 
 PopularScreen.propTypes = {
-
+  fetchPopularMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
