@@ -10,13 +10,15 @@ const TabView = TabNavigator({
   },
   TopRatedScreen: {
     screen: TopRatedScreen
-  }
+  },
+  DuplicatedPopularScreen: {
+    screen: PopularScreen
+  },
 }, {
   tabBarOptions: {
     style: styles.tabBar,
     indicatorStyle: styles.indicator,
   },
-  tabBarPosition: 'bottom'
 });
 
 import React from 'react';

@@ -21,7 +21,7 @@ class RootContainer extends Component {
         <SideMenu
           menu={drawer}
           menuPosition='left'
-          openMenuOffset={Metrics.screenWidth * 0.85}
+          openMenuOffset={Metrics.screenWidth * 0.75}
           autoClosing={true}
         >
           <AppNavigation />

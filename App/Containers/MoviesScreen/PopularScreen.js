@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List';
 
 class PopularScreen extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Popular'
+    tabBarLabel: 'Popular',
+    tabBarIcon: ({ tintColor, focused }) => (
+      <View>
+        <Ionicons name="md-globe" size={24} color={tintColor} />
+      </View>
+    ),
   }
 
   componentDidMount() {
