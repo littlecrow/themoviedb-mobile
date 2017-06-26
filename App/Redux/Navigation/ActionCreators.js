@@ -1,7 +1,7 @@
 import ActionTypes from './ActionTypes';
 
-export const navigateToMoviesScreen = () => ({
-  type: ActionTypes.NAVIGATE_TO_MOVIES_SCREEN
+export const navigateToDiscoverScreen = () => ({
+  type: ActionTypes.NAVIGATE_TO_DISCOVER_SCREEN
 });
 
 export const navigateToDetailScreen = (movie) => ({
@@ -14,7 +14,7 @@ export const navigateBack = () => ({
 });
 
 export default {
-  navigateToMoviesScreen,
+  navigateToDiscoverScreen,
   navigateToDetailScreen,
   navigateBack
 };

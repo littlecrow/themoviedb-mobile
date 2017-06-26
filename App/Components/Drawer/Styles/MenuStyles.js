@@ -1,5 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
-import { Colors } from '../../../Themes';
+import { Colors, Metrics } from '../../../Themes';
 import { Constants } from 'expo';
 
 const isAndroid = (Platform.OS === 'android');
@@ -30,12 +30,20 @@ const styles = StyleSheet.create({
   textHeaderInfoUser: {
     color: Colors.secondary
   },
-  sideMenuListMenu: {
-    marginLeft: 16
+  listMenu: {
+    marginTop: Metrics.baseMargin
   },
-  groupLabel: {
+  item: {
     flexDirection: 'row',
-    paddingTop: 20
+    paddingLeft: Metrics.doubleBaseMargin,
+    paddingTop: Metrics.baseMargin,
+    paddingBottom: Metrics.baseMargin
+  },
+  activeItem: {
+    backgroundColor: Colors.primary
+  },
+  activeItemLabel: {
+    color: Colors.secondary
   },
   icon: {
     width: 24, height: 24,
