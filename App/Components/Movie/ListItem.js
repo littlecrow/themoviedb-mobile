@@ -37,7 +37,7 @@ MovieItem.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
+  navigateToDetail: (movie) => dispatch(NavigationActionCreators.discoverNavigateToDetailScreen(movie))
 });
 
 export default connect(undefined, mapDispatchToProps)(MovieItem);

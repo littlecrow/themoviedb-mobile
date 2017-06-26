@@ -24,7 +24,10 @@ const MenuItem = ({name, icon, active, onPress}) => {
 };
 
 MenuItem.propTypes = {
-
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.any,
+  active: PropTypes.bool,
+  onPress: PropTypes.func
 };
 
 export default MenuItem;
