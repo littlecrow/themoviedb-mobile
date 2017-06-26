@@ -6,6 +6,7 @@ import styles from './Styles/MenuStyles';
 import { Images } from '../../Themes';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
 import MenuItem from './MenuItem';
+import { ROUTES } from '../../Redux/Navigation/NavigationRoutes';
 
 const Menu = ({navigateToDiscoverScreen, navigation}) => {
   const { routeName } = navigation.routes[navigation.index];
@@ -26,7 +27,7 @@ const Menu = ({navigateToDiscoverScreen, navigation}) => {
           onPress={() => navigateToDiscoverScreen()}
           name="Discover"
           icon={Images.discoverIcon}
-          active={routeName === 'DiscoverScreen'}
+          active={routeName === ROUTES.DiscoverScreen}
         />
         <MenuItem
           /*onPress={() => navigateToDiscoverScreen()}*/

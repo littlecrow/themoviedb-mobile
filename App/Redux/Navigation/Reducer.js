@@ -1,14 +1,14 @@
 import { NavigationActions, StackNavigator } from 'react-navigation';
 import ActionTypes from './ActionTypes';
-import { NavigationRoutes, NavigationOptions } from '../../Navigation/NavigationRoutes';
+import NavigationOptions from '../../Navigation/NavigationOptions';
+import NavigationRoutes, { ROUTES } from './NavigationRoutes';
 
 export const KEY = 'navigation';
 // Manifest of possible screens
 export const AppNavigator = StackNavigator(NavigationRoutes, NavigationOptions);
 
 const { getActionForPathAndParams, getStateForAction } = AppNavigator.router;
-const DiscoverScreenAction = getActionForPathAndParams('DiscoverScreen');
-// const MovieDetailScreen = getActionForPathAndParams('MovieDetailScreen');
+const DiscoverScreenAction = getActionForPathAndParams(ROUTES.DiscoverScreen);
 
 const INITIAL_STATE = getStateForAction(DiscoverScreenAction);
 
@@ -17,14 +17,14 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case ActionTypes.NAVIGATE_TO_MOVIES_SCREEN:
     nextState = getStateForAction(
-      NavigationActions.navigate({ routeName: 'DiscoverScreen' }),
+      NavigationActions.navigate({ routeName: ROUTES.DiscoverScreen }),
       state
     );
     break;
   case ActionTypes.NAVIGATE_TO_MOVIE_DETAIL_SCREEN:
     nextState = getStateForAction(
       NavigationActions.navigate({
-        routeName: 'MovieDetailScreen',
+        routeName: ROUTES.MovieDetailScreen,
         params: {
           movie: action.payload
         }
