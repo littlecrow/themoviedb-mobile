@@ -5,17 +5,19 @@ import { ROUTES, DiscoverNavigation, AppNavigation } from '../../Navigation/Navi
 
 export const KEY = 'nav';
 
+// App navigator
 export const AppNavigator = DrawerNavigator(AppNavigation, AppNavigationOptions);
+
+// Discover navigator
 export const DiscoverNavigator = StackNavigator(DiscoverNavigation, DiscoverNavigationOptions);
 
-const MoviesScreenAction = DiscoverNavigator.router.getActionForPathAndParams(ROUTES.MoviesScreen);
+// And so on,...
+//
+//
 
 const INITIAL_STATE = {
   navigation: null,
-  discover: DiscoverNavigator.router.getStateForAction(MoviesScreenAction),
-  drawer: {
-    disableGestures: false
-  }
+  discover: null
 };
 
 export default (state = INITIAL_STATE, action) => {
