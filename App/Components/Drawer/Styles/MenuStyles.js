@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Colors } from '../../../Themes';
+import { Constants } from 'expo';
+
+const isAndroid = (Platform.OS === 'android');
 
 const styles = StyleSheet.create({
   headerPadding: {
@@ -9,7 +12,10 @@ const styles = StyleSheet.create({
     height: 190,
     flexDirection: 'column',
     paddingTop: 40,
-    paddingLeft: 16
+    paddingLeft: 16,
+    // Config statusbar color
+    borderTopWidth: Constants.statusBarHeight,
+    borderTopColor: isAndroid ? Colors.primaryDark : Colors.secondary, // StatusBar color
   },
   sideMenuHeaderInfoUser: {
     marginTop: 20

@@ -5,12 +5,10 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-
-import styles from './Styles/Menu';
-import { Images } from '../../Themes';
-
 import { connect } from 'react-redux';
 import { NavigationActionCreators } from '../../Redux/Navigation';
+import styles from './Styles/MenuStyles';
+import { Images } from '../../Themes';
 
 const Menu = ({navigateToMoviesScreen}) => {
   return (

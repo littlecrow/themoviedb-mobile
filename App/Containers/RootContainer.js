@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
+import SideMenu from 'react-native-side-menu';
 import AppNavigation from '../Navigation/AppNavigation';
-
+import Metrics from '../Themes/Metrics';
 // Styles
 import styles from './Styles/RootContainerStyles';
-
-const SideMenu = require('react-native-side-menu');
 import DrawerMenu from '../Components/Drawer/Menu';
 
-// dimensions
-const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class RootContainer extends Component {
 
@@ -24,7 +21,7 @@ class RootContainer extends Component {
         <SideMenu
           menu={drawer}
           menuPosition='left'
-          openMenuOffset={SCREEN_WIDTH * 0.85}
+          openMenuOffset={Metrics.screenWidth * 0.85}
           autoClosing={true}
         >
           <AppNavigation />
