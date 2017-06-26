@@ -4,7 +4,7 @@ import { Constants } from 'expo';
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: Colors.inverse,
+    backgroundColor: Colors.primary,
     marginTop: Constants.statusBarHeight
   },
   title: {

@@ -1,40 +1,41 @@
 import ActionTypes from './ActionTypes';
 
-export const moviesFetchRequested = () => ({
-  type: ActionTypes.FETCH_MOVIES_REQUESTED
+export const fetchPopularMoviesRequested = () => ({
+  type: ActionTypes.FETCH_POPULAR_MOVIES_REQUESTED
 });
 
-export const popularMoviesFetchFulfilled = (movies) => ({
+export const fetchTopRatedMoviesRequested = () => ({
+  type: ActionTypes.FETCH_TOP_RATED_MOVIES_REQUESTED
+});
+
+export const fetchPopularMoviesFulfilled = (movies) => ({
   type: ActionTypes.FETCH_POPULAR_MOVIES_FULFILLED,
   payload: movies
 });
 
-export const topRatedMoviesFetchFulfilled = (movies) => ({
+export const fetchTopRatedMoviesFulfilled = (movies) => ({
   type: ActionTypes.FETCH_TOP_RATED_MOVIES_FULFILLED,
   payload: movies
 });
 
-export const moviesFetchRejected = (err) => ({
-  type: ActionTypes.FETCH_MOVIES_REJECTED,
+export const fetchPopularMoviesRejected = (err) => ({
+  type: ActionTypes.FETCH_POPULAR_MOVIES_REJECTED,
   payload: err,
   error: true
 });
 
-export const setPageToPopular = (page) => ({
-  type: ActionTypes.SET_POPULAR_PAGE,
-  page
-});
-
-export const setPageToTopRated = (page) => ({
-  type: ActionTypes.SET_TOP_RATED_PAGE,
-  page
+export const fetchTopRatedMoviesRejected = (err) => ({
+  type: ActionTypes.FETCH_TOP_RATED_MOVIES_REJECTED,
+  payload: err,
+  error: true
 });
 
 export default {
-  moviesFetchRequested,
-  popularMoviesFetchFulfilled,
-  topRatedMoviesFetchFulfilled,
-  moviesFetchRejected,
-  setPageToPopular,
-  setPageToTopRated
+  fetchPopularMoviesRequested,
+  fetchPopularMoviesFulfilled,
+  fetchPopularMoviesRejected,
+
+  fetchTopRatedMoviesRequested,
+  fetchTopRatedMoviesFulfilled,
+  fetchTopRatedMoviesRejected
 };

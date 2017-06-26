@@ -18,7 +18,7 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-  case ActionTypes.FETCH_MOVIES_REQUESTED:
+  case ActionTypes.FETCH_POPULAR_MOVIES_REQUESTED:
     return {
       ...state,
       loading: true
@@ -38,6 +38,16 @@ export default (state = INITIAL_STATE, action) => {
       },
       loading: false
     };
+  case ActionTypes.FETCH_POPULAR_MOVIES_REJECTED:
+    return {
+      ...state
+    };
+  case ActionTypes.FETCH_TOP_RATED_MOVIES_REQUESTED:
+    return {
+      ...state,
+      loading: true
+    };
+
   case ActionTypes.FETCH_TOP_RATED_MOVIES_FULFILLED:
     return {
       ...state,
@@ -53,27 +63,9 @@ export default (state = INITIAL_STATE, action) => {
       },
       loading: false
     };
-  case ActionTypes.FETCH_MOVIES_REJECTED:
+  case ActionTypes.FETCH_TOP_RATED_MOVIES_REJECTED:
     return {
       ...state
-    };
-  case ActionTypes.SET_POPULAR_PAGE:
-    return {
-      ...state,
-      filter: {
-        popular: {
-          page: action.page
-        }
-      }
-    };
-  case ActionTypes.SET_TOP_RATED_PAGE:
-    return {
-      ...state,
-      filter: {
-        topRated: {
-          page: action.page
-        }
-      }
     };
   default:
     return state;

@@ -33,17 +33,25 @@ class MovieList extends Component {
         renderItem={this._renderItem}
         keyExtractor={(item, index) => index}
         onEndReachedThreshold={0.5}
-        onEndReached={() => filterName === MoviesConstant.POPULAR_MOVIES ? fetchPopularMovies() : fetchTopRatedMovies()}
+        onEndReached={() => {
+          switch(filterName) {
+          case MoviesConstant.POPULAR_MOVIES:
+            fetchPopularMovies();
+            break;
+          case MoviesConstant.TOP_RATED_MOVIES:
+            fetchTopRatedMovies();
+            break;
+          }
+        }}
       />
     );
   }
 
   _showData() {
-    const { loading } = this.props;
     return (
       <Image
-        source={{uri: 'https://marketplace.canva.com/MAB5WkgFenQ/1/0/thumbnail_large/canva-white-movie-poster-MAB5WkgFenQ.jpg'}}
-        style={styles.imgBackground}
+        source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+        style={styles.bgImage}
       >
         <View style={styles.container}>
           {this._renderListItem()}
@@ -73,7 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies()),
-  fetTopRatedMovies: () => dispatch(MoviesActions.fetchTopRatedMovies())
+  fetchTopRatedMovies: () => dispatch(MoviesActions.fetchTopRatedMovies())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

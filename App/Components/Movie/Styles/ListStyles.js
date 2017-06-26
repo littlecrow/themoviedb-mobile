@@ -3,11 +3,13 @@ import Metrics from '../../../Themes/Metrics';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(254,254,254,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingTop: Metrics.basePadding,
+    paddingBottom: Metrics.basePadding,
     width: Metrics.screenWidth,
     height: Metrics.screenHeight
   },
-  imgBackground: {
+  bgImage: {
     width: Metrics.screenWidth,
     height: Metrics.screenHeight
   },

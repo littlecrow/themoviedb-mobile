@@ -33,7 +33,7 @@ PopularScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.popular;
-  console.log('State: ',state.movies);
+
   return  {
     movies: moviesState.result
   };

@@ -35,7 +35,7 @@ const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.topRated;
 
   return  {
-    movies: moviesState.result[0]
+    movies: moviesState.result
   };
 };
 

@@ -5,7 +5,8 @@ export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin/2,
+    marginBottom: Metrics.baseMargin/2,
     marginRight: Metrics.doubleBaseMargin,
     marginLeft: Metrics.doubleBaseMargin,
   },
