@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  TouchableHighlight,
-  TouchableOpacity
+  TouchableHighlight
 } from 'react-native';
 import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
