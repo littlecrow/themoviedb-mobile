@@ -4,45 +4,71 @@ import { connect } from 'react-redux';
 import {
   FlatList,
   View,
-  Image
+  Image,
+  Text
 } from 'react-native';
+import { Images } from '../../Themes';
 import styles from './Styles/ListStyles';
 import {
   MoviesActions,
   MoviesConstant
 } from '../../Redux/Movies';
 import MovieItem from './ListItem';
+import ListItemByGrid from './ListItemByGrid';
 
 class MovieList extends Component {
   _renderLoadingView = () => (
     <View style={styles.loadingArea}>
       <Image
-        source={require('../../Images/movie/ring.gif')}
+        source={Images.loadingIcon}
         style={styles.loadingIcon}
       />
     </View>
   )
 
-  _renderItem = ({item}) => <MovieItem movie={item}/>
+  _handleList = (list) => {
+    let array = [];
+    let object = {
+      data: []
+    };
+    list.map((item) => {
+      object.data.push(item);
+      if(object.data.length === 2) {
+        array.push(object);
+        object = {
+          data: []
+        };
+      }
+    });
+    return array;
+  }
+
+  _fetchMoreItems = () => {
+    const { filterName, fetchPopularMovies, fetchTopRatedMovies } = this.props;
+
+    switch (filterName) {
+    case MoviesConstant.POPULAR_MOVIES:
+      fetchPopularMovies();
+      break;
+    case MoviesConstant.TOP_RATED_MOVIES:
+      fetchTopRatedMovies();
+      break;
+    default:
+      break;
+    }
+  }
+
+  _renderItem = ({item}) => <ListItemByGrid movie={item}/>
 
   _renderListItem = () => {
-    const { filterName, movies, fetchPopularMovies, fetchTopRatedMovies } = this.props;
+    const { movies } = this.props;
     return (
       <FlatList
-        data={movies}
+        data={this._handleList(movies)}
         renderItem={this._renderItem}
         keyExtractor={(item, index) => index}
         onEndReachedThreshold={0.5}
-        onEndReached={() => {
-          switch(filterName) {
-          case MoviesConstant.POPULAR_MOVIES:
-            fetchPopularMovies();
-            break;
-          case MoviesConstant.TOP_RATED_MOVIES:
-            fetchTopRatedMovies();
-            break;
-          }
-        }}
+        onEndReached={() => this._fetchMoreItems()}
       />
     );
   }

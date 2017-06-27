@@ -3,7 +3,7 @@ import Metrics from '../../../Themes/Metrics';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'white',
     paddingTop: Metrics.basePadding,
     paddingBottom: Metrics.basePadding,
     width: Metrics.screenWidth,

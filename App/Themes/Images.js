@@ -5,6 +5,7 @@ const images = {
   tvIcon: require('../Images/drawer/tv.png'),
   peopleIcon: require('../Images/drawer/people.png'),
   default_profile: require('../Images/default_profile.png'),
+  loadingIcon: require('../Images/movie/ring.gif'),
 };
 
 export default images;
