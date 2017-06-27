@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Text, View } from 'react-native-animatable';
 
 import styles from './Styles/Opening';
 import CustomButton from '../../Components/CustomButton';
 
 class Opening extends Component {
-
   render() {
     return (
       <View style={styles.container}>
         <View animation={'zoomIn'} delay={600} duration={400}>
           <CustomButton
             text={'Create Account'}
-            // onPress={this.props.onCreateAccountPress}
+            onPress={this.props.onCreateAccountPress}
             buttonStyle={styles.createAccountButton}
             textStyle={styles.createAccountButtonText}
           />
@@ -25,7 +25,7 @@ class Opening extends Component {
         <View animation={'zoomIn'} delay={700} duration={400}>
           <CustomButton
             text={'Sign In'}
-            // onPress={this.props.onSignInPress}
+            onPress={this.props.onSignInPress}
             buttonStyle={styles.signInButton}
             textStyle={styles.signInButtonText}
           />
@@ -34,5 +34,10 @@ class Opening extends Component {
     );
   }
 }
+
+Opening.propTypes = {
+  onCreateAccountPress: PropTypes.func,
+  onSignInPress: PropTypes.func
+};
 
 export default Opening;

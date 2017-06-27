@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: Metrics.screenWidth,
     height: Metrics.screenHeight,
-    paddingTop: 24,
-    backgroundColor: 'white'
+    paddingTop: 40,
+    backgroundColor: '#081C24'
   },
   logoImg: {
     flex: 1,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     marginVertical: 60
   },
   bottom: {
-    backgroundColor: '#1976D2'
+    backgroundColor: 'white'
   }
 });
 
