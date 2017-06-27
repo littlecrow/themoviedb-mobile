@@ -17,7 +17,7 @@ const MovieItem = ({ movie, navigateToDetail }) => {
       <View style={styles.itemContainer}>
         <View style={styles.imgArea}>
           <FitImage
-            source={{uri: `${THEMOVIEDB_IMAGE_SRC}` + movie.poster_path}}
+            source={{uri: THEMOVIEDB_IMAGE_SRC + movie.poster_path}}
             resizeMode='contain'
             style={styles.img}/>
         </View>
