@@ -24,8 +24,8 @@ const fetchPopularMovies = () => async (dispatch, getState) => {
   }
 };
 
-const fetchTopRatedMovies = () => async (dispatch, getState) => {
-  dispatch(ActionCreators.fetchTopRatedMoviesRequested());
+const fetchTopVotedMovies = () => async (dispatch, getState) => {
+  dispatch(ActionCreators.fetchTopVotedMoviesRequested());
   try {
     const movies = await axios.get(
       API_DISCOVER_MOVIE,
@@ -34,18 +34,40 @@ const fetchTopRatedMovies = () => async (dispatch, getState) => {
           api_key: API_KEY,
           language: LANGUAGE,
           sort_by: 'vote_average.desc',
-          page: getState().movies.filter.topRated.page
+          page: getState().movies.filter.topVoted.page
         }
       }).then(response => response.data.results);
 
-    return dispatch(ActionCreators.fetchTopRatedMoviesFulfilled(movies));
+    return dispatch(ActionCreators.fetchTopVotedMoviesFulfilled(movies));
   } catch (err) {
     console.log('Error: ', err);
-    dispatch(ActionCreators.fetchTopRatedMoviesRejected());
+    dispatch(ActionCreators.fetchTopVotedMoviesRejected());
+  }
+};
+
+const fetchTopRevenueMovies = () => async (dispatch, getState) => {
+  dispatch(ActionCreators.fetchTopRevenueMoviesRequested());
+  try {
+    const movies = await axios.get(
+      API_DISCOVER_MOVIE,
+      {
+        params: {
+          api_key: API_KEY,
+          language: LANGUAGE,
+          sort_by: 'revenue.desc',
+          page: getState().movies.filter.topRevenue.page
+        }
+      }).then(response => response.data.results);
+
+    return dispatch(ActionCreators.fetchTopRevenueMoviesFulfilled(movies));
+  } catch (err) {
+    console.log('Error: ', err);
+    dispatch(ActionCreators.fetchTopRevenueMoviesRejected());
   }
 };
 
 export default {
   fetchPopularMovies,
-  fetchTopRatedMovies
+  fetchTopVotedMovies,
+  fetchTopRevenueMovies
 };

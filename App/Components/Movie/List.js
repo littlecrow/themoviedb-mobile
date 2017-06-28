@@ -46,14 +46,17 @@ class MovieList extends Component {
   }
 
   _fetchMoreItems = () => {
-    const { filterName, fetchPopularMovies, fetchTopRatedMovies } = this.props;
+    const { filterName, fetchPopularMovies, fetchTopVotedMovies, fetchTopRevenueMovies } = this.props;
 
     switch (filterName) {
     case MoviesConstant.POPULAR_MOVIES:
       fetchPopularMovies();
       break;
-    case MoviesConstant.TOP_RATED_MOVIES:
-      fetchTopRatedMovies();
+    case MoviesConstant.TOP_VOTED_MOVIES:
+      fetchTopVotedMovies();
+      break;
+    case MoviesConstant.TOP_REVENUE_MOVIES:
+      fetchTopRevenueMovies();
       break;
     default:
       break;
@@ -103,7 +106,8 @@ MovieList.propTypes = {
   filterName: PropTypes.string,
   movies: PropTypes.array,
   fetchPopularMovies: PropTypes.func,
-  fetchTopRatedMovies: PropTypes.func
+  fetchTopVotedMovies: PropTypes.func,
+  fetchTopRevenueMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -114,7 +118,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies()),
-  fetchTopRatedMovies: () => dispatch(MoviesActions.fetchTopRatedMovies())
+  fetchTopVotedMovies: () => dispatch(MoviesActions.fetchTopVotedMovies()),
+  fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

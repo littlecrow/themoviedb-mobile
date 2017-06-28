@@ -5,15 +5,15 @@ import { View } from 'react-native';
 import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List';
 
-class TopRatedScreen extends Component {
+class TopRevenueScreen extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Top Rated'
+    tabBarLabel: 'Top Revenue'
   }
 
   componentDidMount() {
-    const { fetchTopRatedMovies } = this.props;
+    const { fetchTopRevenueMovies } = this.props;
 
-    fetchTopRatedMovies();
+    fetchTopRevenueMovies();
   }
 
   render() {
@@ -21,18 +21,18 @@ class TopRatedScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.TOP_RATED_MOVIES}/>
+        <MovieList movies={movies} filterName={MoviesConstant.TOP_REVENUE_MOVIES}/>
       </View>
     );
   }
 }
 
-TopRatedScreen.propTypes = {
-  fetchTopRatedMovies: PropTypes.func
+TopRevenueScreen.propTypes = {
+  fetchTopRevenueMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-  const moviesState = state.movies.filter.topRated;
+  const moviesState = state.movies.filter.topRevenue;
 
   return  {
     movies: moviesState.result
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTopRatedMovies: () => dispatch(MoviesActions.fetchTopRatedMovies())
+  fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopRatedScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TopRevenueScreen);

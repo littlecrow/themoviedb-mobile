@@ -14,23 +14,20 @@ import styles from './Styles/ListItemByGridStyles';
 import { Images } from '../../Themes';
 
 class ListItemByGrid extends Component {
-  _renderImage(url) {
-    console.log(url === null, 'undefined');
-    if (url !== null) {
+  _renderImage(image) {
+    if (image !== null) {
       return (
         <FitImage
           indicator
           indicatorColor="white"
           indicatorSize="small"
-          source={{uri: THEMOVIEDB_IMAGE_SRC + url}}
+          source={{uri: THEMOVIEDB_IMAGE_SRC + image}}
           resizeMode='cover'
           style={styles.image}
         />
       );
     }
-    return (
-      <Image source={Images.emptyImage} style={styles.image}/>
-    );
+    return <Image source={Images.emptyImage} style={styles.image}/>;
   }
 
   _renderItem() {
@@ -39,7 +36,7 @@ class ListItemByGrid extends Component {
       <TouchableHighlight
         onPress={() => navigateToDetail(item)}
         key={index}
-        style={[styles.itemContainer]}>
+        style={[styles.itemContainer, index === 0 ? styles.firstItem : null, index === movie.data.length - 1 ? styles.lastItem : null]}>
         <View>
           <View>
             <View style={styles.loadingImage}>
