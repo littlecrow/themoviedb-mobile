@@ -10,8 +10,9 @@ import MenuItem from './MenuItem';
 import { ROUTES } from '../../Navigation/NavigationRoutes';
 
 const Menu = ({appNavigateToDiscover, navigation}) => {
-  const { routes, index } = navigation.routes[0];
-  const { routeName } = routes[index];
+  // const { routes, index } = navigation.routes[0];
+  // const { routeName } = routes[index];
+  const routeName = "Hello";
   return (
     <View style={styles.headerPadding}>
       <View style={styles.sideMenuHeader}>

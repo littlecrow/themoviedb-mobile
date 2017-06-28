@@ -1,36 +1,28 @@
-import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
-import DiscoverScreen from '../Containers/DiscoverScreen';
-import DrawerButton from '../Components/Drawer/Button';
+import DrawerScreen from '../Containers/DrawerScreen';
 
 export const ROUTES = {
-  DiscoverScreen: 'DiscoverScreen',
+  DrawerScreen: 'DrawerScreen',
   MoviesScreen: 'MoviesScreen',
   MovieDetailScreen: 'MovieDetailScreen',
 };
 
-const optionWithDrawer = {
-  headerBackTitle: null,
-  headerLeft: <DrawerButton/>
-};
-
-export const AppNavigation = {
-  [ROUTES.DiscoverScreen]: {
-    screen: DiscoverScreen,
+export const DrawerNavigation = {
+  [ROUTES.MoviesScreen]: {
+    screen: MoviesScreen,
     path: '/'
   }
 };
 
-export const DiscoverNavigation = {
-  MoviesScreen: {
-    screen: MoviesScreen,
+export const AppNavigation = {
+  [ROUTES.DrawerScreen]: {
+    screen: DrawerScreen,
     navigationOptions: {
-      title: 'Discover',
-      ...optionWithDrawer
+      title: 'Drawer'
     }
   },
-  MovieDetailScreen: {
+  [ROUTES.MovieDetailScreen]: {
     screen: MovieDetailScreen,
     navigationOptions: {
       title: 'Detail',
