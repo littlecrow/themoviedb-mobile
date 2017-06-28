@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_KEY, API_DISCOVER, LANGUAGE, API_MOVIE } from 'react-native-dotenv';
 import ActionCreators from './ActionCreators';
+import Constant from './Constant';
 
 const API_DISCOVER_MOVIE = API_DISCOVER + 'movie';
 
@@ -13,7 +14,7 @@ const fetchPopularMovies = () => async (dispatch, getState) => {
         params: {
           api_key: API_KEY,
           language: LANGUAGE,
-          sort_by: 'popularity.desc',
+          sort_by: Constant.POPULARITY_DESC,
           page: getState().movies.filter.popular.page
         }
       }).then(response => response.data.results);
@@ -33,7 +34,7 @@ const fetchTopVotedMovies = () => async (dispatch, getState) => {
         params: {
           api_key: API_KEY,
           language: LANGUAGE,
-          sort_by: 'vote_average.desc',
+          sort_by: Constant.VOTE_AVERAGE_DESC,
           page: getState().movies.filter.topVoted.page
         }
       }).then(response => response.data.results);
@@ -54,7 +55,7 @@ const fetchTopRevenueMovies = () => async (dispatch, getState) => {
         params: {
           api_key: API_KEY,
           language: LANGUAGE,
-          sort_by: 'revenue.desc',
+          sort_by: Constant.REVENUE_DESC,
           page: getState().movies.filter.topRevenue.page
         }
       }).then(response => response.data.results);

@@ -21,7 +21,7 @@ class TopVotedScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.TOP_VOTED_MOVIES}/>
+        <MovieList movies={movies} filterName={MoviesConstant.VOTE_AVERAGE_DESC}/>
       </View>
     );
   }

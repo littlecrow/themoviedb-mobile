@@ -1,9 +1,9 @@
-export const POPULAR_MOVIES = 'POPULAR';
-export const TOP_VOTED_MOVIES = 'TOP_VOTED';
-export const TOP_REVENUE_MOVIES = 'TOP_REVENUE';
+export const VOTE_AVERAGE_DESC = 'vote_average.desc';
+export const POPULARITY_DESC = 'popularity.desc';
+export const REVENUE_DESC = 'revenue.desc';
 
 export default {
-  POPULAR_MOVIES,
-  TOP_VOTED_MOVIES,
-  TOP_REVENUE_MOVIES
+  VOTE_AVERAGE_DESC,
+  POPULARITY_DESC,
+  REVENUE_DESC
 };

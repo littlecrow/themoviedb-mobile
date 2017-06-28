@@ -49,13 +49,13 @@ class MovieList extends Component {
     const { filterName, fetchPopularMovies, fetchTopVotedMovies, fetchTopRevenueMovies } = this.props;
 
     switch (filterName) {
-    case MoviesConstant.POPULAR_MOVIES:
+    case MoviesConstant.POPULARITY_DESC:
       fetchPopularMovies();
       break;
-    case MoviesConstant.TOP_VOTED_MOVIES:
+    case MoviesConstant.VOTE_AVERAGE_DESC:
       fetchTopVotedMovies();
       break;
-    case MoviesConstant.TOP_REVENUE_MOVIES:
+    case MoviesConstant.REVENUE_DESC:
       fetchTopRevenueMovies();
       break;
     default:

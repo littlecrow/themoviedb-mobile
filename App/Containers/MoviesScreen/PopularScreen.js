@@ -21,7 +21,7 @@ class PopularScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.POPULAR_MOVIES}/>
+        <MovieList movies={movies} filterName={MoviesConstant.POPULARITY_DESC}/>
       </View>
     );
   }

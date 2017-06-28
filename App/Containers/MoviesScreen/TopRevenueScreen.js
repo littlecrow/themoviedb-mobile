@@ -21,7 +21,7 @@ class TopRevenueScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.TOP_REVENUE_MOVIES}/>
+        <MovieList movies={movies} filterName={MoviesConstant.REVENUE_DESC}/>
       </View>
     );
   }
