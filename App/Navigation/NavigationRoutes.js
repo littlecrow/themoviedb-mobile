@@ -1,6 +1,8 @@
+import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
+import DrawerToggleButton from '../Components/Drawer/Button';
 
 export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
@@ -19,7 +21,8 @@ export const AppNavigation = {
   [ROUTES.DrawerScreen]: {
     screen: DrawerScreen,
     navigationOptions: {
-      title: 'Discover'
+      title: 'Discover',
+      headerLeft: <DrawerToggleButton/>
     }
   },
   [ROUTES.MovieDetailScreen]: {

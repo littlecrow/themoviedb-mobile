@@ -17,7 +17,7 @@ export const AppDrawerNavigator = DrawerNavigator(DrawerNavigation, DrawerNaviga
 
 const INITIAL_STATE = {
   navigation: null,
-  // drawer: null
+  drawer: null
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -53,30 +53,29 @@ export default (state = INITIAL_STATE, action) => {
         state.navigation
       )
     };
-  // case ActionTypes.APP_NAVIGATION_OPEN_DRAWER:
-  //   return {
-  //     ...state,
-  //     drawer: AppDrawerNavigator.router.getStateForAction(
-  //       NavigationActions.navigate({
-  //         routeName: 'DrawerOpen'
-  //       }),
-  //       state.navigation
-  //     )
-  //   };
-  // case ActionTypes.APP_NAVIGATION_CLOSE_DRAWER:
-  //   return {
-  //     ...state,
-  //     drawer: AppDrawerNavigator.router.getStateForAction(
-  //       NavigationActions.navigate({
-  //         routeName: 'DrawerClose'
-  //       }),
-  //       state.navigation
-  //     )
-  //   };
+  case ActionTypes.TOGGLE_DRAWER: {
+    const { index, routes } = state.drawer;
+    let routeName = '';
+    if(routes[index].routeName === 'DrawerOpen') {
+      routeName = 'DrawerClose';
+    }
+    else {
+      routeName = 'DrawerOpen';
+    }
+    return {
+      ...state,
+      drawer: AppDrawerNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: routeName
+        }),
+        state.drawer
+      )
+    };
+  }
   }
   return {
     ...state,
     navigation: AppNavigator.router.getStateForAction(action, state.navigation),
-    // drawer: AppDrawerNavigator.router.getStateForAction(action, state.discover)
+    drawer: AppDrawerNavigator.router.getStateForAction(action, state.drawer)
   };
 };
