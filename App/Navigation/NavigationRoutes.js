@@ -1,20 +1,45 @@
+import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
-import styles from './Styles/NavigationStyles';
+import DiscoverScreen from '../Containers/DiscoverScreen';
+import DrawerButton from '../Components/Drawer/Button';
 
+<<<<<<< HEAD
 import HomeScreen from '../Containers/HomeScreen';
 
 export const NavigationRoutes = {
+=======
+export const ROUTES = {
+  DiscoverScreen: 'DiscoverScreen',
+  MoviesScreen: 'MoviesScreen',
+  MovieDetailScreen: 'MovieDetailScreen',
+};
+
+const optionWithDrawer = {
+  headerBackTitle: null,
+  headerLeft: <DrawerButton/>
+};
+
+export const AppNavigation = {
+  [ROUTES.DiscoverScreen]: {
+    screen: DiscoverScreen,
+    path: '/'
+  }
+};
+
+export const DiscoverNavigation = {
+>>>>>>> origin
   MoviesScreen: {
     screen: MoviesScreen,
     navigationOptions: {
-      title: 'Discover'
+      title: 'Discover',
+      ...optionWithDrawer
     }
   },
   MovieDetailScreen: {
     screen: MovieDetailScreen,
     navigationOptions: {
-      title: 'Detail'
+      title: 'Detail',
     }
   },
   HomeScreen: {
@@ -23,19 +48,4 @@ export const NavigationRoutes = {
       header: null
     }
   }
-};
-
-export const NavigationOptions = {
-  // Default config for all screens
-  initialRouteName: 'MoviesScreen',
-  navigationOptions: {
-    headerStyle: styles.header,
-    headerTitleStyle: styles.title,
-    headerBackTitleStyle: styles.back
-  }
-};
-
-export default {
-  NavigationRoutes,
-  NavigationOptions
 };

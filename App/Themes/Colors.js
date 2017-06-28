@@ -18,7 +18,8 @@ const colors = {
   cloudes: '#ecf0f1',
   silver: '#bdc3c7',
   concrete: '#95a5a6',
-  asbestos: '#7f8c8d'
+  asbestos: '#7f8c8d',
+  inverse: '#081c24',
 };
 
 const defaultColor = {
@@ -33,7 +34,7 @@ const defaultColor = {
   info: colors.peterRiver,
   infoDark: colors.belizeHole,
   danger: colors.alizarin,
-  dangerDark: colors.pomegranate
+  dangerDark: colors.pomegranate,
 };
 
 export default {

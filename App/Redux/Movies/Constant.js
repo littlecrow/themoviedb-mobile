@@ -1,5 +1,5 @@
-export const POPULAR_MOVIES = 'P';
-export const TOP_RATED_MOVIES = 'TR';
+export const POPULAR_MOVIES = 'POPULAR';
+export const TOP_RATED_MOVIES = 'TOP_RATED';
 
 export default {
   POPULAR_MOVIES,

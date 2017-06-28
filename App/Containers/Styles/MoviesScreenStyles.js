@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   tabBar: {
-    backgroundColor: '#081c24',
+    backgroundColor: Colors.inverse,
     elevation: 4,
     shadowColor: 'black',
     shadowOpacity: 0.1,

@@ -5,7 +5,10 @@ import { Constants } from 'expo';
 export default StyleSheet.create({
   header: {
     backgroundColor: Colors.primary,
-    marginTop: Constants.statusBarHeight
+    height: 75,
+    // Config statusbar color
+    borderTopWidth: Constants.statusBarHeight,
+    borderTopColor: Colors.primaryDark, // StatusBar color
   },
   title: {
     color: Colors.secondary
