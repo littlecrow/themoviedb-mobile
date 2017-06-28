@@ -24,9 +24,6 @@ export default StyleSheet.create({
     marginBottom: smallMargin,
     backgroundColor: 'rgba(0,0,0,0.75)'
   },
-  firstItem: {
-    marginRight: smallPadding
-  },
   info: {
     padding: smallPadding
   },

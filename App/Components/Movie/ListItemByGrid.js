@@ -18,7 +18,7 @@ class ListItemByGrid extends Component {
       <TouchableHighlight
         onPress={() => navigateToDetail(item)}
         key={index}
-        style={[styles.itemContainer, index === 0 ? styles.firstItem : styles.lastItem]}>
+        style={[styles.itemContainer]}>
         <View>
           <View>
             <FitImage
