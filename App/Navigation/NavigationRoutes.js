@@ -19,7 +19,7 @@ export const AppNavigation = {
   [ROUTES.DrawerScreen]: {
     screen: DrawerScreen,
     navigationOptions: {
-      title: 'Drawer'
+      title: 'Discover'
     }
   },
   [ROUTES.MovieDetailScreen]: {
