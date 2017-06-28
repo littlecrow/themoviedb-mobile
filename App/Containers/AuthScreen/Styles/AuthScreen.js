@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     width: Metrics.screenWidth * 0.8,
     alignSelf: 'center',
     resizeMode: 'contain',
-    marginVertical: 60
+    marginVertical: 40
   },
   bottom: {
     backgroundColor: 'white'

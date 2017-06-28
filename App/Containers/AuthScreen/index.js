@@ -12,6 +12,7 @@ import styles from './Styles/AuthScreen';
 
 import Opening from './Opening';
 import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 
 if(Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true);
 
@@ -38,6 +39,8 @@ class AuthScreen extends Component {
     //! 2. Configuration animation for the next step
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     //! 3. Set the new visible form
+    console.log(this.state.visibleForm);
+    console.log(visibleForm);
     this.setState({visibleForm});
   }
 
@@ -67,10 +70,18 @@ class AuthScreen extends Component {
           keyboardVerticalOffset={10}
           behavior={'padding'}
         >
+          {(visibleForm === 'SIGNUP') && (
+            <SignUpForm
+              ref={(ref) => this.formRef = ref}
+              onSignUpLinkPress={() => this._setVisibleForm('LOGIN')}
+              isEnabled={true}
+              isLoading={true}
+            />
+          )}
           {(visibleForm === 'LOGIN') && (
             <LoginForm
               ref={(ref) => this.formRef = ref}
-              onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
+              onLoginLinkPress={() => this._setVisibleForm('SIGNUP')}
               isEnabled={true}
               isLoading={true}
             />

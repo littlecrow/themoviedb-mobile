@@ -8,10 +8,11 @@ import { Metrics } from '../../Themes';
 import CustomButton from '../../Components/CustomButton';
 import CustomTextInput from '../../Components/CustomTextInput';
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   state = {
     email: '',
     password: '',
+    confirmPassword: ''
   }
 
   hideForm = async () => {
@@ -25,8 +26,9 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    const isValid = email !== '' && password !== '';
+    const { email, password, confirmPassword } = this.state;
+    const { onLoginLinkPress } = this.props;
+    const isValid = email !== '' && password !== '' && confirmPassword !== '';
 
     return (
       <View style={styles.container}>
@@ -47,15 +49,24 @@ class LoginForm extends Component {
           {/* input email */}
           <CustomTextInput
             ref={(ref) => this.passwordInputRef = ref}
-            name={'email'}
+            name={'password'}
             placeholder={'Password'}
             secureTextEntry={true}
-            returnKeyType={'done'}
+            returnKeyType={'next'}
+            onSubmitEditing={() => this.confirmPasswordInputRef.focus()}
             onChangeText={(value) => this.setState({ password: value })}
+          />
+          <CustomTextInput
+            ref={(ref) => this.confirmPasswordInputRef = ref}
+            name={'confirmPassword'}
+            placeholder={'Confirm Password'}
+            secureTextEntry={true}
+            returnKeyType={'done'}
+            onChangeText={(value) => this.setState({ confirmPassword: value })}
           />
         </View>
 
-        {/* button login */}
+        {/* button signUp */}
         <View style={styles.footer}>
           <View
             ref={(ref) => this.buttonRef = ref}
@@ -64,9 +75,9 @@ class LoginForm extends Component {
             delay={400}
           >
             <CustomButton
-              text={'LOGIN'}
-              buttonStyle={styles.loginButton}
-              textStyle={styles.loginButtonText}
+              text={'Sign Up'}
+              buttonStyle={styles.signUpButton}
+              textStyle={styles.signUpButtonText}
             />
           </View>
           <Text
@@ -75,15 +86,16 @@ class LoginForm extends Component {
             animation={'fadeIn'}
             duration={600}
             delay={400}
-          >Not register yet?</Text>
+            onPress={onLoginLinkPress}
+          >{'Already have account?'}</Text>
         </View>
       </View>
     );
   }
 }
 
-LoginForm.propTypes = {
-
+SignUpForm.propTypes = {
+  onLoginLinkPress: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -97,10 +109,10 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: 'center'
   },
-  loginButton: {
+  signUpButton: {
     backgroundColor: '#01d277'
   },
-  loginButtonText: {
+  signUpButtonText: {
     color: 'white',
     fontWeight: 'bold'
   },
@@ -111,4 +123,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginForm;
+export default SignUpForm;
