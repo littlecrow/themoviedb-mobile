@@ -1,5 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { Colors, Metrics } from '../../../Themes';
+import { Metrics } from '../../../Themes';
+
+const { itemInRow, itemMarginLeftRight, screenWidth, basePadding, baseMargin } = Metrics;
+/*
+Calculate width for each item:
+Based on: itemInRow, itemMarginLeftRight, screenWidth, screenPadding (also basePadding)
+=> marginBetweenItems (left, right) = itemMarginLeftRight * 2 * itemInRow
+=> itemWidth = (screenWidth - screenPadding - marginBetweenItems) / itemInRow
+ */
+const itemWidth = (screenWidth - basePadding - (itemMarginLeftRight * 2 * itemInRow)) / itemInRow;
+const smallMargin = baseMargin / 2;
+const smallPadding = basePadding / 2;
 
 export default StyleSheet.create({
   itemContainerLayout: {
@@ -8,16 +19,16 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
   itemContainer: {
-    width: (Metrics.screenWidth - 30)/2,
-    marginTop: Metrics.baseMargin/2,
-    marginBottom: Metrics.baseMargin/2,
+    width: itemWidth,
+    marginTop: smallMargin,
+    marginBottom: smallMargin,
     backgroundColor: 'rgba(0,0,0,0.75)'
   },
   firstItem: {
-    marginRight: Metrics.basePadding/2
+    marginRight: smallPadding
   },
   info: {
-    padding: Metrics.basePadding/2
+    padding: smallPadding
   },
   text: {
     color: 'white'

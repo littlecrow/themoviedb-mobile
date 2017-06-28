@@ -8,10 +8,9 @@ import {
 } from 'react-native';
 import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import styles from './Styles/ListItemByGridStyles';
 import { NavigationActionCreators } from '../../Redux/Navigation';
+import styles from './Styles/ListItemByGridStyles';
 
-// Rename thanh Grid Item di baby
 class ListItemByGrid extends Component {
   _renderItem = () => {
     const { movie, navigateToDetail } = this.props;

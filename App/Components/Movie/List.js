@@ -15,6 +15,9 @@ import {
 } from '../../Redux/Movies';
 import MovieItem from './ListItem';
 import ListItemByGrid from './ListItemByGrid';
+import { Metrics } from '../../Themes';
+
+const { itemInRow } = Metrics;
 
 class MovieList extends Component {
   _renderLoadingView = () => (
@@ -33,7 +36,7 @@ class MovieList extends Component {
     };
     list.map((item) => {
       object.data.push(item);
-      if(object.data.length === 2) {
+      if(object.data.length === itemInRow) {
         array.push(object);
         object = {
           data: []

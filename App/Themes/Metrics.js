@@ -6,6 +6,8 @@ const { statusBarHeight } = Constants;
 
 // Used via Metrics.baseMargin
 const metrics = {
+  itemInRow: 2,
+  itemMarginLeftRight: 5,
   marginHorizontal: 10,
   marginVertical: 10,
   section: 25,
