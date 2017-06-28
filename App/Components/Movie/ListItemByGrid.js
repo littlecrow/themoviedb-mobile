@@ -21,10 +21,16 @@ class ListItemByGrid extends Component {
         style={[styles.itemContainer]}>
         <View>
           <View>
-            <FitImage
-              source={{uri: THEMOVIEDB_IMAGE_SRC + item.backdrop_path}}
-              resizeMode='contain'
-            />
+            <View style={styles.loadingContainer}>
+              <FitImage
+                indicator
+                indicatorColor="white"
+                indicatorSize="small"
+                source={{uri: THEMOVIEDB_IMAGE_SRC + item.backdrop_path}}
+                resizeMode='cover'
+                style={styles.image}
+              />
+            </View>
           </View>
           <View style={styles.info}>
             <Text style={styles.text}>{item.title}</Text>

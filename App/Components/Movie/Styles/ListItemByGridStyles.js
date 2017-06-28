@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
 import { Metrics } from '../../../Themes';
 
-const { itemInRow, itemMarginLeftRight, screenWidth, basePadding, baseMargin } = Metrics;
+const { itemInRow, screenWidth, basePadding, smallMargin, smallPadding } = Metrics;
 /*
 Calculate width for each item:
 Based on: itemInRow, itemMarginLeftRight, screenWidth, screenPadding (also basePadding)
 => marginBetweenItems (left, right) = itemMarginLeftRight * 2 * itemInRow
 => itemWidth = (screenWidth - screenPadding - marginBetweenItems) / itemInRow
  */
-const itemWidth = (screenWidth - basePadding - (itemMarginLeftRight * 2 * itemInRow)) / itemInRow;
-const smallMargin = baseMargin / 2;
-const smallPadding = basePadding / 2;
+const itemWidth = (screenWidth - basePadding - (smallMargin * 2 * itemInRow)) / itemInRow;
+const imageWidth = itemWidth;
+const imageHeight = imageWidth / 1.8;
 
 export default StyleSheet.create({
   itemContainerLayout: {
@@ -24,10 +24,18 @@ export default StyleSheet.create({
     marginBottom: smallMargin,
     backgroundColor: 'rgba(0,0,0,0.75)'
   },
+  image: {
+    width: imageWidth,
+    height: imageHeight
+  },
   info: {
     padding: smallPadding
   },
   text: {
     color: 'white'
+  },
+  loadingContainer: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    height: imageHeight
   }
 });
