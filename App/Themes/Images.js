@@ -6,6 +6,8 @@ const images = {
   peopleIcon: require('../Images/drawer/people.png'),
   default_profile: require('../Images/default_profile.png'),
   loadingIcon: require('../Images/movie/ring.gif'),
+  defaultBackground: require('../Images/movie/movie_background.jpg'),
+  emptyImage: require('../Images/movie/empty_movie_image.jpg')
 };
 
 export default images;

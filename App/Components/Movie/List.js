@@ -7,7 +7,7 @@ import {
   Image,
   Text
 } from 'react-native';
-import { Images } from '../../Themes';
+import { Images, Metrics } from '../../Themes';
 import styles from './Styles/ListStyles';
 import {
   MoviesActions,
@@ -15,7 +15,6 @@ import {
 } from '../../Redux/Movies';
 import MovieItem from './ListItem';
 import ListItemByGrid from './ListItemByGrid';
-import { Metrics } from '../../Themes';
 
 const { itemInRow } = Metrics;
 
@@ -76,10 +75,12 @@ class MovieList extends Component {
     );
   }
 
+  // uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'
+
   _showData() {
     return (
       <Image
-        source={{uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'}}
+        source={Images.defaultBackground}
         style={styles.bgImage}
       >
         <View style={styles.container}>

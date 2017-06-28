@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../../Themes';
+import { Metrics, Colors } from '../../../Themes';
 
 const { itemInRow, screenWidth, basePadding, smallMargin, smallPadding } = Metrics;
 /*
@@ -28,13 +28,18 @@ export default StyleSheet.create({
     width: imageWidth,
     height: imageHeight
   },
+  emptyImage: {
+    width: imageWidth,
+    height: imageHeight,
+    backgroundColor: Colors.carrot
+  },
   info: {
     padding: smallPadding
   },
   text: {
     color: 'white'
   },
-  loadingContainer: {
+  loadingImage: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     height: imageHeight
   }
