@@ -5,8 +5,7 @@ import {
   FlatList,
   View,
   Image,
-  ActivityIndicator,
-  Text
+  ActivityIndicator
 } from 'react-native';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/ListStyles';
