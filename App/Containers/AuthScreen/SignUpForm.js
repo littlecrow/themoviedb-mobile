@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View } from 'react-native-animatable';
-import styles from './Styles/LoginForm';
+import styles from './Styles/SignUpForm';
 
-// import styles from './Styles/Opening';
 import CustomButton from '../../Components/CustomButton';
 import CustomTextInput from '../../Components/CustomTextInput';
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   state = {
     email: '',
     password: '',
+    confirmPassword: ''
   }
 
   hideForm = async () => {
@@ -24,9 +24,9 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    const { onSignUpLinkPress } = this.props;
-    const isValid = email !== '' && password !== '';
+    const { email, password, confirmPassword } = this.state;
+    const { onLoginLinkPress } = this.props;
+    const isValid = email !== '' && password !== '' && confirmPassword !== '';
 
     return (
       <View style={styles.container}>
@@ -47,11 +47,19 @@ class LoginForm extends Component {
           {/* input email */}
           <CustomTextInput
             ref={(ref) => this.passwordInputRef = ref}
-            name={'email'}
+            name={'password'}
             placeholder={'Password'}
             secureTextEntry={true}
             returnKeyType={'done'}
             onChangeText={(value) => this.setState({ password: value })}
+          />
+          <CustomTextInput
+            ref={(ref) => this.passwordInputRef = ref}
+            name={'confirmPassword'}
+            placeholder={'Confirm Password'}
+            secureTextEntry={true}
+            returnKeyType={'done'}
+            onChangeText={(value) => this.setState({ confirmPassword: value })}
           />
         </View>
 
@@ -64,9 +72,9 @@ class LoginForm extends Component {
             delay={400}
           >
             <CustomButton
-              text={'LOGIN'}
-              buttonStyle={styles.loginButton}
-              textStyle={styles.loginButtonText}
+              text={'SIGN UP'}
+              buttonStyle={styles.signUpButton}
+              textStyle={styles.signUpButtonText}
             />
           </View>
           <Text
@@ -75,16 +83,16 @@ class LoginForm extends Component {
             animation={'fadeIn'}
             duration={600}
             delay={400}
-            onPress={onSignUpLinkPress}
-          >Not register yet?</Text>
+            onPress={onLoginLinkPress}
+          >Already have account?</Text>
         </View>
       </View>
     );
   }
 }
 
-LoginForm.propTypes = {
-  onSignUpLinkPress: PropTypes.func
+SignUpForm.propTypes = {
+  onLoginLinkPress: PropTypes.func
 };
 
-export default LoginForm;
+export default SignUpForm;

@@ -4,12 +4,14 @@ import TestScreen from '../Containers/TestScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
 import DrawerToggleButton from '../Components/Drawer/Button';
+import HomeScreen from '../Containers/HomeScreen';
 
 export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
   MoviesScreen: 'MoviesScreen',
   MovieDetailScreen: 'MovieDetailScreen',
-  TestScreen: 'TestScreen'
+  TestScreen: 'TestScreen',
+  HomeScreen: 'HomeScreen'
 };
 
 export const DrawerNavigation = {
@@ -27,6 +29,12 @@ export const DrawerNavigation = {
 };
 
 export const AppNavigation = {
+  [ROUTES.HomeScreen]: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: null
+    }
+  },
   [ROUTES.DrawerScreen]: {
     screen: DrawerScreen,
     navigationOptions: {
@@ -39,5 +47,5 @@ export const AppNavigation = {
     navigationOptions: {
       title: 'Detail',
     }
-  }
+  },
 };
