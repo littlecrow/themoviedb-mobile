@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Text, View } from 'react-native-animatable';
 import { StyleSheet } from 'react-native';
 import { Metrics } from '../../Themes';
@@ -32,7 +31,7 @@ class LoginForm extends Component {
       <View style={styles.container}>
         <View
           style={styles.form}
-          ref={(ref) => { this.formRef = ref; }}
+          ref={(ref) => { this.formRef = ref }}
         >
           {/* input email */}
           <CustomTextInput
@@ -81,10 +80,6 @@ class LoginForm extends Component {
     );
   }
 }
-
-LoginForm.propTypes = {
-
-};
 
 const styles = StyleSheet.create({
   container: {
