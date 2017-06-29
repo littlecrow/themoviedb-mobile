@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Navbar from 'react-native-navbar';
-import styles from './Styles/ReduxHeaderStyles';
-import DrawerButton from '../Drawer/Button';
+import styles from './Styles/HeaderStyles';
+import DrawerButton from './Button';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
 

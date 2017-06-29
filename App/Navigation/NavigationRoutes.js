@@ -3,7 +3,7 @@ import MoviesScreen from '../Containers/MoviesScreen';
 import TestScreen from '../Containers/TestScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
-import DrawerHeader from '../Components/Header/DrawerHeader';
+import DrawerHeader from '../Components/Drawer/Header';
 
 export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
