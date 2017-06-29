@@ -3,7 +3,6 @@ import ActionTypes from './ActionTypes';
 export const KEY = 'movies';
 
 export const INITIAL_STATE = {
-  loading: false,
   filter: {
     popular: {
       page: 1,
@@ -24,8 +23,7 @@ export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
   case ActionTypes.FETCH_POPULAR_MOVIES_REQUESTED:
     return {
-      ...state,
-      loading: true
+      ...state
     };
   case ActionTypes.FETCH_POPULAR_MOVIES_FULFILLED:
     return {
@@ -39,8 +37,7 @@ export default (state = INITIAL_STATE, action) => {
             ...action.payload
           ]
         }
-      },
-      loading: false
+      }
     };
   case ActionTypes.FETCH_POPULAR_MOVIES_REJECTED:
     return {
@@ -48,8 +45,7 @@ export default (state = INITIAL_STATE, action) => {
     };
   case ActionTypes.FETCH_TOP_VOTED_MOVIES_REQUESTED:
     return {
-      ...state,
-      loading: true
+      ...state
     };
 
   case ActionTypes.FETCH_TOP_VOTED_MOVIES_FULFILLED:
@@ -64,8 +60,7 @@ export default (state = INITIAL_STATE, action) => {
             ...action.payload
           ]
         }
-      },
-      loading: false
+      }
     };
   case ActionTypes.FETCH_TOP_VOTED_MOVIES_REJECTED:
     return {
@@ -73,8 +68,7 @@ export default (state = INITIAL_STATE, action) => {
     };
   case ActionTypes.FETCH_TOP_REVENUE_MOVIES_REQUESTED:
     return {
-      ...state,
-      loading: true
+      ...state
     };
 
   case ActionTypes.FETCH_TOP_REVENUE_MOVIES_FULFILLED:
@@ -89,8 +83,7 @@ export default (state = INITIAL_STATE, action) => {
             ...action.payload
           ]
         }
-      },
-      loading: false
+      }
     };
   case ActionTypes.FETCH_TOP_REVENUE_MOVIES_REJECTED:
     return {
