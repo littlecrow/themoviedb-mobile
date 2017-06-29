@@ -8,11 +8,11 @@ export default StyleSheet.create({
   //   borderTopWidth: Constants.statusBarHeight,
   //   borderTopColor: Colors.primaryDark, // StatusBar color
   // },
-  // componentContainer: {
-  //   height: '100%',
-  //   justifyContent: 'center',
-  //   alignItems: 'center'
-  // },
+  componentContainer: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   // header: {
   //   backgroundColor: Colors.primary,
   // },
