@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
-import MovieList from '../../Components/Movie/List';
+import MovieList from '../../Components/Movie/List/List';
 
 class PopularScreen extends Component {
   static navigationOptions = {
@@ -27,7 +27,7 @@ class PopularScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.POPULAR_MOVIES}/>
+        <MovieList movies={movies} filterName={MoviesConstant.POPULARITY_DESC}/>
       </View>
     );
   }

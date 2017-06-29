@@ -2,19 +2,20 @@ import React from 'react';
 import { TabNavigator } from 'react-navigation';
 import { View } from 'react-native';
 import PopularScreen from './PopularScreen';
-import TopRatedScreen from './TopRatedScreen';
+import TopVotedScreen from './TopVotedScreen';
+import TopRevenueScreen from './TopRevenueScreen';
 import styles from './Styles/MoviesScreenStyles';
 
 const TabView = TabNavigator({
   PopularScreen: {
     screen: PopularScreen
   },
-  TopRatedScreen: {
-    screen: TopRatedScreen
+  TopVotedScreen: {
+    screen: TopVotedScreen
   },
-  DuplicatedPopularScreen: {
-    screen: PopularScreen
-  },
+  TopRevenueScreen: {
+    screen: TopRevenueScreen
+  }
 }, {
   tabBarOptions: {
     style: styles.tabBar,

@@ -13,4 +13,4 @@ export const reduceText = (text) => {
   }
 
   return parts.join(" ");
-}
+};

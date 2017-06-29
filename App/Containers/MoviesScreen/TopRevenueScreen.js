@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
-import MovieList from '../../Components/Movie/List';
+import MovieList from '../../Components/Movie/List/List';
 
-class TopRatedScreen extends Component {
+class TopRevenueScreen extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Top Rated',
+    tabBarLabel: 'Top Revenue',
     tabBarIcon: ({ tintColor, focused }) => (
       <View>
         <MaterialCommunityIcons name="trending-up" size={24} color={tintColor} />
@@ -17,9 +17,9 @@ class TopRatedScreen extends Component {
   }
 
   componentDidMount() {
-    const { fetchTopRatedMovies } = this.props;
+    const { fetchTopRevenueMovies } = this.props;
 
-    fetchTopRatedMovies();
+    fetchTopRevenueMovies();
   }
 
   render() {
@@ -27,18 +27,18 @@ class TopRatedScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.TOP_RATED_MOVIES}/>
+        <MovieList movies={movies} filterName={MoviesConstant.REVENUE_DESC}/>
       </View>
     );
   }
 }
 
-TopRatedScreen.propTypes = {
-  fetchTopRatedMovies: PropTypes.func
+TopRevenueScreen.propTypes = {
+  fetchTopRevenueMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-  const moviesState = state.movies.filter.topRated;
+  const moviesState = state.movies.filter.topRevenue;
 
   return  {
     movies: moviesState.result
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTopRatedMovies: () => dispatch(MoviesActions.fetchTopRatedMovies())
+  fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopRatedScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TopRevenueScreen);

@@ -1,17 +1,19 @@
 import { StyleSheet } from 'react-native';
-import { Colors, Metrics } from '../../../Themes';
+import { Metrics } from '../../../../Themes';
+
+const { baseMargin, doubleBaseMargin , basePadding, smallMargin } = Metrics;
 
 export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: Metrics.baseMargin/2,
-    marginBottom: Metrics.baseMargin/2,
-    marginRight: Metrics.doubleBaseMargin,
-    marginLeft: Metrics.doubleBaseMargin,
+    marginTop: smallMargin,
+    marginBottom: smallMargin,
+    marginRight: doubleBaseMargin,
+    marginLeft: doubleBaseMargin,
   },
   imgArea: {
-    marginRight: Metrics.baseMargin,
+    marginRight: baseMargin,
     width: 68,
     height: 100
   },
@@ -21,7 +23,7 @@ export default StyleSheet.create({
   },
   infoArea: {
     backgroundColor: 'rgba(0,0,0,0.75)',
-    padding: Metrics.basePadding,
+    padding: basePadding,
     height: 100,
     flex: 1,
     justifyContent: 'space-around'
@@ -34,6 +36,6 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   lastItem: {
-    marginBottom: Metrics.baseMargin
+    marginBottom: baseMargin
   }
 });
