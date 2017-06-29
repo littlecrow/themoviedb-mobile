@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { Metrics } from '../../../../Themes';
 
-const { baseMargin, doubleBaseMargin , basePadding, smallMargin } = Metrics;
+const { baseMargin, basePadding, smallMargin } = Metrics;
 
 export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
     marginVertical: smallMargin,
-    marginHorizontal: doubleBaseMargin,
+    marginHorizontal: baseMargin,
   },
   imgArea: {
     marginRight: baseMargin,

@@ -3,6 +3,7 @@ import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
 import DrawerToggleButton from '../Components/Drawer/Button';
+import ListType from '../Components/ListType/Menu';
 
 export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
@@ -22,7 +23,8 @@ export const AppNavigation = {
     screen: DrawerScreen,
     navigationOptions: {
       title: 'Discover',
-      headerLeft: <DrawerToggleButton/>
+      headerLeft: <DrawerToggleButton/>,
+      headerRight: <ListType/>
     }
   },
   [ROUTES.MovieDetailScreen]: {
