@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import {
   FlatList,
   View,
-  Image
+  Image,
+  ActivityIndicator,
+  Text
 } from 'react-native';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/ListStyles';
@@ -19,17 +21,6 @@ import GridItems from '../ListItem/Grid';
 const { itemInRow } = Metrics;
 
 class MovieList extends Component {
-  _renderLoadingView() {
-    return (
-      <View style={styles.loadingArea}>
-        <Image
-          source={Images.loadingIcon}
-          style={styles.loadingIcon}
-        />
-      </View>
-    );
-  }
-
   _fetchMoreItems() {
     const { filterName, fetchPopularMovies, fetchTopVotedMovies, fetchTopRevenueMovies } = this.props;
 
@@ -48,6 +39,14 @@ class MovieList extends Component {
     }
   }
 
+  _renderFooter() {
+    return (
+      <View style={styles.loadingIcon}>
+        <ActivityIndicator/>
+      </View>
+    );
+  }
+
   _renderItem = ({item}) => <GridItems movie={item}/>
 
   _renderListItem() {
@@ -57,6 +56,7 @@ class MovieList extends Component {
         data={handleList(movies, itemInRow)}
         renderItem={this._renderItem}
         keyExtractor={(item, index) => index}
+        ListFooterComponent={this._renderFooter}
         onEndReachedThreshold={0.5}
         onEndReached={() => this._fetchMoreItems()}
       />
@@ -95,16 +95,10 @@ MovieList.propTypes = {
   fetchTopRevenueMovies: PropTypes.func
 };
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.movies.loading
-  };
-};
-
 const mapDispatchToProps = (dispatch) => ({
   fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies()),
   fetchTopVotedMovies: () => dispatch(MoviesActions.fetchTopVotedMovies()),
   fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(undefined, mapDispatchToProps)(MovieList);

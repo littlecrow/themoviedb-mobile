@@ -18,9 +18,6 @@ class GridItems extends Component {
     if (image !== null) {
       return (
         <FitImage
-          indicator
-          indicatorColor="white"
-          indicatorSize="small"
           source={{uri: THEMOVIEDB_IMAGE_SRC + image}}
           resizeMode='cover'
           style={styles.image}

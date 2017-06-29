@@ -7,10 +7,8 @@ export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: smallMargin,
-    marginBottom: smallMargin,
-    marginRight: doubleBaseMargin,
-    marginLeft: doubleBaseMargin,
+    marginVertical: smallMargin,
+    marginHorizontal: doubleBaseMargin,
   },
   imgArea: {
     marginRight: baseMargin,

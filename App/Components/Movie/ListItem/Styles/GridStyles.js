@@ -20,8 +20,7 @@ export default StyleSheet.create({
   },
   itemContainer: {
     width: itemWidth,
-    marginTop: smallMargin,
-    marginBottom: smallMargin,
+    marginVertical: smallMargin,
     backgroundColor: 'rgba(0,0,0,0.9)'
   },
   image: {
