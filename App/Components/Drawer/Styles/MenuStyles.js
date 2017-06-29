@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 40,
     paddingLeft: 16,
+    borderTopWidth: 2,
+    borderTopColor: Colors.primaryDark, // StatusBar color
   },
   sideMenuHeaderInfoUser: {
     marginTop: Metrics.doubleBaseMargin
