@@ -1,5 +1,6 @@
 import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
+import TestScreen from '../Containers/TestScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
 import DrawerToggleButton from '../Components/Drawer/Button';
@@ -8,6 +9,7 @@ export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
   MoviesScreen: 'MoviesScreen',
   MovieDetailScreen: 'MovieDetailScreen',
+  TestScreen: 'TestScreen'
 };
 
 export const DrawerNavigation = {
@@ -18,8 +20,8 @@ export const DrawerNavigation = {
       drawerLabel: 'Notifications',
     },
   },
-  'Test Screen': {
-    screen: MoviesScreen,
+  [ROUTES.TestScreen]: {
+    screen: TestScreen,
     path: '/test',
   }
 };
