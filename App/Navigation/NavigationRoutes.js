@@ -5,11 +5,6 @@ import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
 import DrawerToggleButton from '../Components/Drawer/Button';
 
-<<<<<<< HEAD
-import HomeScreen from '../Containers/HomeScreen';
-
-export const NavigationRoutes = {
-=======
 export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
   MoviesScreen: 'MoviesScreen',
@@ -31,16 +26,9 @@ export const DrawerNavigation = {
   }
 };
 
-<<<<<<< HEAD
-export const DiscoverNavigation = {
->>>>>>> origin
-  MoviesScreen: {
-    screen: MoviesScreen,
-=======
 export const AppNavigation = {
   [ROUTES.DrawerScreen]: {
     screen: DrawerScreen,
->>>>>>> origin
     navigationOptions: {
       title: 'Discover',
       headerLeft: <DrawerToggleButton/>
@@ -50,12 +38,6 @@ export const AppNavigation = {
     screen: MovieDetailScreen,
     navigationOptions: {
       title: 'Detail',
-    }
-  },
-  HomeScreen: {
-    screen: HomeScreen,
-    navigationOptions: {
-      header: null
     }
   }
 };
