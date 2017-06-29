@@ -52,7 +52,7 @@ export default (state = INITIAL_STATE, action) => {
         NavigationActions.back(),
         state.navigation
       )
-    };
+    };NavigationHelp
   case ActionTypes.TOGGLE_DRAWER: {
     const { index, routes } = state.drawer;
     let routeName = '';
@@ -67,6 +67,17 @@ export default (state = INITIAL_STATE, action) => {
       drawer: AppDrawerNavigator.router.getStateForAction(
         NavigationActions.navigate({
           routeName: routeName
+        }),
+        state.drawer
+      )
+    };
+  }
+  case ActionTypes.NAVIGATE_IN_DRAWER: {
+    return {
+      ...state,
+      drawer: AppDrawerNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: action.payload
         }),
         state.drawer
       )

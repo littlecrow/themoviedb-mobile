@@ -2,8 +2,6 @@ import { StyleSheet } from 'react-native';
 import { Colors, Metrics } from '../../../Themes';
 
 const styles = StyleSheet.create({
-  headerPadding: {
-  },
   sideMenuHeader: {
     backgroundColor: Colors.primary,
     height: 190,

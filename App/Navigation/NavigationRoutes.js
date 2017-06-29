@@ -13,7 +13,14 @@ export const ROUTES = {
 export const DrawerNavigation = {
   [ROUTES.MoviesScreen]: {
     screen: MoviesScreen,
-    path: '/'
+    path: '/',
+    navigationOptions: {
+      drawerLabel: 'Notifications',
+    },
+  },
+  'Test Screen': {
+    screen: MoviesScreen,
+    path: '/test',
   }
 };
 

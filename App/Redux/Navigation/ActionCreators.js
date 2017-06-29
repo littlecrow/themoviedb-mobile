@@ -18,9 +18,15 @@ export const toggleDrawer = () => ({
   type: ActionTypes.TOGGLE_DRAWER
 });
 
+export const navigateInDrawer = (routeName) => ({
+  type: ActionTypes.NAVIGATE_IN_DRAWER,
+  payload: routeName
+});
+
 export default {
   navigateToDrawerScreen,
   navigateToDetailScreen,
   navigateBack,
-  toggleDrawer
+  toggleDrawer,
+  navigateInDrawer
 };
