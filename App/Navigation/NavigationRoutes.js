@@ -1,33 +1,34 @@
+import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
-import styles from './Styles/NavigationStyles';
+import DrawerScreen from '../Containers/DrawerScreen';
+import DrawerToggleButton from '../Components/Drawer/Button';
 
-export const NavigationRoutes = {
-  MoviesScreen: {
+export const ROUTES = {
+  DrawerScreen: 'DrawerScreen',
+  MoviesScreen: 'MoviesScreen',
+  MovieDetailScreen: 'MovieDetailScreen',
+};
+
+export const DrawerNavigation = {
+  [ROUTES.MoviesScreen]: {
     screen: MoviesScreen,
+    path: '/'
+  }
+};
+
+export const AppNavigation = {
+  [ROUTES.DrawerScreen]: {
+    screen: DrawerScreen,
     navigationOptions: {
-      title: 'Discover'
+      title: 'Discover',
+      headerLeft: <DrawerToggleButton/>
     }
   },
-  MovieDetailScreen: {
+  [ROUTES.MovieDetailScreen]: {
     screen: MovieDetailScreen,
     navigationOptions: {
-      title: 'Detail'
+      title: 'Detail',
     }
   }
-};
-
-export const NavigationOptions = {
-  // Default config for all screens
-  initialRouteName: 'MoviesScreen',
-  navigationOptions: {
-    headerStyle: styles.header,
-    headerTitleStyle: styles.title,
-    headerBackTitleStyle: styles.back
-  }
-};
-
-export default {
-  NavigationRoutes,
-  NavigationOptions
 };

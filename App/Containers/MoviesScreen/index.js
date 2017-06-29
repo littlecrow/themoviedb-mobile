@@ -1,3 +1,4 @@
+import React from 'react';
 import { TabNavigator } from 'react-navigation';
 import { View } from 'react-native';
 import PopularScreen from './PopularScreen';
@@ -20,19 +21,16 @@ const TabView = TabNavigator({
     style: styles.tabBar,
     indicatorStyle: styles.indicator,
   },
-  tabBarPosition: 'bottom'
 });
 
-import React from 'react';
-
-const Filter = () => {
+const MoviesScreen = () => {
   return (
     <View style={styles.container}>
-      <TabView></TabView>
+      <TabView/>
     </View>
   );
 };
 
-export default Filter;
+export default MoviesScreen;
 
 

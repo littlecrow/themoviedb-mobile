@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../../Themes';
+import { Colors, Metrics } from '../../../Themes';
 
 const styles = StyleSheet.create({
   headerPadding: {
@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
     height: 190,
     flexDirection: 'column',
     paddingTop: 40,
-    paddingLeft: 16
+    paddingLeft: 16,
   },
   sideMenuHeaderInfoUser: {
-    marginTop: 20
+    marginTop: Metrics.doubleBaseMargin
   },
   roundAvatar: {
     // marginTop: 40,
@@ -24,12 +24,20 @@ const styles = StyleSheet.create({
   textHeaderInfoUser: {
     color: Colors.secondary
   },
-  sideMenuListMenu: {
-    marginLeft: 16
+  listMenu: {
+    marginTop: Metrics.baseMargin
   },
-  groupLabel: {
+  item: {
     flexDirection: 'row',
-    paddingTop: 20
+    paddingLeft: Metrics.doubleBaseMargin,
+    paddingTop: Metrics.baseMargin,
+    paddingBottom: Metrics.baseMargin
+  },
+  activeItem: {
+    backgroundColor: Colors.primary
+  },
+  activeItemLabel: {
+    color: Colors.secondary
   },
   icon: {
     width: 24, height: 24,

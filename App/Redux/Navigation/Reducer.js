@@ -1,48 +1,81 @@
-import { NavigationActions, StackNavigator } from 'react-navigation';
+import { NavigationActions, StackNavigator, DrawerNavigator } from 'react-navigation';
 import ActionTypes from './ActionTypes';
-import { NavigationRoutes, NavigationOptions } from '../../Navigation/NavigationRoutes';
+import { AppNavigationOptions, DrawerNavigationOptions } from '../../Navigation/NavigationOptions';
+import { ROUTES, DrawerNavigation, AppNavigation } from '../../Navigation/NavigationRoutes';
 
-export const KEY = 'navigation';
-// Manifest of possible screens
-export const AppNavigator = StackNavigator(NavigationRoutes, NavigationOptions);
+export const KEY = 'nav';
 
-const { getActionForPathAndParams, getStateForAction } = AppNavigator.router;
-const MoviesScreenAction = getActionForPathAndParams('MoviesScreen');
-// const MovieDetailScreen = getActionForPathAndParams('MovieDetailScreen');
+// App navigator
+export const AppNavigator = StackNavigator(AppNavigation, AppNavigationOptions);
 
-const INITIAL_STATE = getStateForAction(MoviesScreenAction);
+// Drawer Navigator: will handle it later
+export const AppDrawerNavigator = DrawerNavigator(DrawerNavigation, DrawerNavigationOptions);
+
+// And so on,...
+//
+//
+
+const INITIAL_STATE = {
+  navigation: null,
+  drawer: null
+};
 
 export default (state = INITIAL_STATE, action) => {
-  let nextState;
   switch (action.type) {
-  case ActionTypes.NAVIGATE_TO_MOVIES_SCREEN:
-    nextState = getStateForAction(
-      NavigationActions.navigate({ routeName: 'MoviesScreen' }),
-      state
-    );
-    break;
-  case ActionTypes.NAVIGATE_TO_MOVIE_DETAIL_SCREEN:
-    nextState = getStateForAction(
-      NavigationActions.navigate({
-        routeName: 'MovieDetailScreen',
-        params: {
-          movie: action.payload
-        }
-      }),
-      state
-    );
-    break;
+  case ActionTypes.NAVIGATE_TO_DRAWER_SCREEN:
+    return {
+      ...state,
+      navigation: AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: ROUTES.DiscoverScreen
+        }),
+        state.navigation
+      )
+    };
+  case ActionTypes.NAVIGATE_TO_DETAIL_SCREEN:
+    return {
+      ...state,
+      navigation: AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: ROUTES.MovieDetailScreen,
+          params: {
+            movie: action.payload
+          }
+        }),
+        state.navigation
+      )
+    };
   case ActionTypes.NAVIGATE_BACK:
-    nextState = getStateForAction(
-      NavigationActions.back(),
-      state
-    );
-    break;
-  default:
-    nextState = AppNavigator.router.getStateForAction(action, state);
-    break;
+    return {
+      ...state,
+      navigation: AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
+        state.navigation
+      )
+    };
+  case ActionTypes.TOGGLE_DRAWER: {
+    const { index, routes } = state.drawer;
+    let routeName = '';
+    if(routes[index].routeName === 'DrawerOpen') {
+      routeName = 'DrawerClose';
+    }
+    else {
+      routeName = 'DrawerOpen';
+    }
+    return {
+      ...state,
+      drawer: AppDrawerNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: routeName
+        }),
+        state.drawer
+      )
+    };
   }
-
-  // Simply return the original `state` if `nextState` is null or undefined.
-  return nextState || state;
+  }
+  return {
+    ...state,
+    navigation: AppNavigator.router.getStateForAction(action, state.navigation),
+    drawer: AppDrawerNavigator.router.getStateForAction(action, state.drawer)
+  };
 };

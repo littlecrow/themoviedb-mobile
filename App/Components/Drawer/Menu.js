@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
-
-import styles from './Styles/Menu';
-import { Images } from '../../Themes';
-
+import React from 'react';
+import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { NavigationActionCreators } from '../../Redux/Navigation';
+import styles from './Styles/MenuStyles';
+import { Images } from '../../Themes';
+import { NAVIGATION_KEY } from '../../Redux/Navigation';
+import MenuItem from './MenuItem';
+import { ROUTES } from '../../Navigation/NavigationRoutes';
 
-const Menu = ({navigateToMoviesScreen}) => {
+const Menu = ({appNavigateToDiscover, navigation}) => {
+  // const { routes, index } = navigation.routes[0];
+  // const { routeName } = routes[index];
+  const routeName = "Hello";
   return (
     <View style={styles.headerPadding}>
       <View style={styles.sideMenuHeader}>
@@ -25,38 +25,47 @@ const Menu = ({navigateToMoviesScreen}) => {
           <Text style={styles.textHeaderInfoUser}>baokhanh7m@gmail.com</Text>
         </View>
       </View>
-      <View style={styles.sideMenuListMenu}>
-        <TouchableOpacity style={styles.groupLabel}>
-          <Image style={styles.icon} source={ Images.discoverIcon } />
-          <Text>Discover</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.groupLabel}
-          onPress={() => navigateToMoviesScreen()}
-          // autoClosing={true}
-          isOpen={false}
-        >
-          <Image style={styles.icon} source={ Images.moviesIcon } />
-          <Text>Movies</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.groupLabel}>
-          <Image style={styles.icon} source={ Images.tvIcon } />
-          <Text>TV Shows</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.groupLabel}>
-          <Image style={styles.icon} source={ Images.peopleIcon } />
-          <Text>People</Text>
-        </TouchableOpacity>
+      <View style={styles.listMenu}>
+        <MenuItem
+          onPress={() => appNavigateToDiscover()}
+          name="Discover"
+          icon={Images.discoverIcon}
+          active={routeName === ROUTES.DiscoverScreen}
+        />
+        <MenuItem
+          /*onPress={() => appNavigateToDiscover()}*/
+          name="Movies"
+          icon={Images.moviesIcon}
+          active={false}
+        />
+        <MenuItem
+          /*onPress={() => appNavigateToDiscover()}*/
+          name="Tv Shown"
+          icon={Images.tvIcon}
+          active={false}
+        />
+        <MenuItem
+          /*onPress={() => appNavigateToDiscover()}*/
+          name="People"
+          icon={Images.peopleIcon}
+          active={false}
+        />
       </View>
     </View>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  navigateToMoviesScreen: () => dispatch(NavigationActionCreators.navigateToMoviesScreen())
+Menu.propTypes = {
+  appNavigateToDiscover: PropTypes.func,
+  navigation: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+  navigation: state[NAVIGATION_KEY].navigation,
 });
 
-export default connect(undefined, mapDispatchToProps)(Menu);
+const mapDispatchToProps = (dispatch) => ({
+  appNavigateToDiscover: () => dispatch(NavigationActionCreators.appNavigateToDiscover())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -5,7 +5,7 @@ const { screenWidth, screenHeight, basePadding } = Metrics;
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'white',
     paddingTop: basePadding,
     paddingBottom: basePadding,
     width: screenWidth,

@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List/List';
 
 class TopRevenueScreen extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Top Revenue'
+    tabBarLabel: 'Top Revenue',
+    tabBarIcon: ({ tintColor, focused }) => (
+      <View>
+        <MaterialCommunityIcons name="trending-up" size={24} color={tintColor} />
+      </View>
+    ),
   }
 
   componentDidMount() {

@@ -21,6 +21,7 @@ class MovieDetailScreen extends Component {
     }
     return {
       headerTitle: movie.title,
+      headerBackTitle: 'Back'
     };
   };
 

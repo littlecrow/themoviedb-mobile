@@ -2,20 +2,22 @@ import React from 'react';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { AppNavigator } from '../Redux/Navigation/Reducer';
 import { NAVIGATION_KEY } from '../Redux/Navigation';
+import { AppDrawerNavigator } from '../Redux/Navigation/Reducer';
 
-const AppNavigation = ({dispatch, nav}) => (
-  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: nav }) }/>
+const DrawerNavigation = ({dispatch, nav}) => (
+  <AppDrawerNavigator
+    navigation={ addNavigationHelpers({ dispatch, state: nav }) }
+  />
 );
 
-AppNavigation.propTypes = {
+DrawerNavigation.propTypes = {
   dispatch: PropTypes.func.isRequired,
   nav: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  nav: state[NAVIGATION_KEY].navigation,
+  nav: state[NAVIGATION_KEY].drawer,
 });
 
-export default connect(mapStateToProps)(AppNavigation);
+export default connect(mapStateToProps)(DrawerNavigation);

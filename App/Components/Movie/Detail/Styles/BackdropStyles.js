@@ -15,8 +15,10 @@ const MovieDetailScreenStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: metrics.screenWidth,
-    height: metrics.screenHeight,
-    marginTop: isAndroid ? Constants.statusBarHeight : 0
+    height: metrics.screenHeight + ( isAndroid ? Constants.statusBarHeight : 0),
+    // Config statusbar color
+    borderTopWidth: isAndroid ? Constants.statusBarHeight : 0,
+    borderTopColor: 'rgba(0,0,0,0.6)', // StatusBar color
   },
   line: {
     borderBottomColor: colors.cloudes,
