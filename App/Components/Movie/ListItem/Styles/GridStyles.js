@@ -22,7 +22,7 @@ export default StyleSheet.create({
     width: itemWidth,
     marginTop: smallMargin,
     marginBottom: smallMargin,
-    backgroundColor: 'rgba(0,0,0,0.75)'
+    backgroundColor: 'rgba(0,0,0,0.9)'
   },
   image: {
     width: imageWidth,
