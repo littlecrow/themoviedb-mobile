@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class TestScreen extends Component {
   render() {
     return (
-      <View style={{flex: 1, alignContent: 'center', justifyContent: 'center'}}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text>
           Test Screen
         </Text>
