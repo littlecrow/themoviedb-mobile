@@ -6,7 +6,7 @@ import { AppNavigator } from '../Redux/Navigation/Reducer';
 import { NAVIGATION_KEY } from '../Redux/Navigation';
 
 const AppNavigation = ({dispatch, nav}) => (
-  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: nav }) } />
+  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: nav }) }/>
 );
 
 AppNavigation.propTypes = {

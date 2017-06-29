@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List/List';
 
-class PopularScreen extends Component {
+class TopRevenueScreen extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Popular',
+    tabBarLabel: 'Top Revenue',
     tabBarIcon: ({ tintColor, focused }) => (
       <View>
-        <Ionicons name="md-globe" size={24} color={tintColor} />
+        <MaterialIcons name="attach-money" size={24} color={tintColor} />
       </View>
     ),
   }
 
   componentDidMount() {
-    const { fetchPopularMovies } = this.props;
+    const { fetchTopRevenueMovies } = this.props;
 
-    fetchPopularMovies();
+    fetchTopRevenueMovies();
   }
 
   render() {
@@ -27,18 +27,18 @@ class PopularScreen extends Component {
 
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.POPULARITY_DESC}/>
+        <MovieList movies={movies} filterName={MoviesConstant.REVENUE_DESC}/>
       </View>
     );
   }
 }
 
-PopularScreen.propTypes = {
-  fetchPopularMovies: PropTypes.func
+TopRevenueScreen.propTypes = {
+  fetchTopRevenueMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-  const moviesState = state.movies.filter.popular;
+  const moviesState = state.movies.filter.topRevenue;
 
   return  {
     movies: moviesState.result
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies())
+  fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopularScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(TopRevenueScreen);

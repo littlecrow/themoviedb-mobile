@@ -2,12 +2,12 @@ import styles from './Styles/NavigationStyles';
 import { Metrics } from '../Themes';
 import Menu from '../Components/Drawer/Menu';
 
-export const AppNavigationOptions = {
+export const DrawerNavigationOptions = {
   contentComponent: Menu,
   drawerWidth: Metrics.screenWidth * 0.75
 };
 
-export const DiscoverNavigationOptions = {
+export const AppNavigationOptions = {
   // Default config for all screens
   // initialRouteName: 'DiscoverScreen',
   navigationOptions: {

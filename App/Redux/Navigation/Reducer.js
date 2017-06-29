@@ -1,15 +1,15 @@
 import { NavigationActions, StackNavigator, DrawerNavigator } from 'react-navigation';
 import ActionTypes from './ActionTypes';
-import { AppNavigationOptions, DiscoverNavigationOptions} from '../../Navigation/NavigationOptions';
-import { ROUTES, DiscoverNavigation, AppNavigation } from '../../Navigation/NavigationRoutes';
+import { AppNavigationOptions, DrawerNavigationOptions } from '../../Navigation/NavigationOptions';
+import { ROUTES, DrawerNavigation, AppNavigation } from '../../Navigation/NavigationRoutes';
 
 export const KEY = 'nav';
 
 // App navigator
-export const AppNavigator = DrawerNavigator(AppNavigation, AppNavigationOptions);
+export const AppNavigator = StackNavigator(AppNavigation, AppNavigationOptions);
 
-// Discover navigator
-export const DiscoverNavigator = StackNavigator(DiscoverNavigation, DiscoverNavigationOptions);
+// Drawer Navigator: will handle it later
+export const AppDrawerNavigator = DrawerNavigator(DrawerNavigation, DrawerNavigationOptions);
 
 // And so on,...
 //
@@ -17,70 +17,76 @@ export const DiscoverNavigator = StackNavigator(DiscoverNavigation, DiscoverNavi
 
 const INITIAL_STATE = {
   navigation: null,
-  discover: null
+  drawer: null
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case ActionTypes.APP_NAVIGATION_OPEN_DRAWER:
+  case ActionTypes.NAVIGATE_TO_DRAWER_SCREEN:
     return {
       ...state,
       navigation: AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({
-          routeName: 'DrawerOpen'
-        }),
-        state.navigation
-      )
-    };
-  case ActionTypes.APP_NAVIGATION_CLOSE_DRAWER:
-    return {
-      ...state,
-      navigation: AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({
-          routeName: 'DrawerClose'
-        }),
-        state.navigation
-      )
-    };
-  case ActionTypes.DISCOVER_NAVIGATE_TO_MOVIES_SCREEN:
-    return {
-      ...state,
-      discover: DiscoverNavigator.router.getStateForAction(
         NavigationActions.navigate({
           routeName: ROUTES.DiscoverScreen
         }),
-        state.discover
+        state.navigation
       )
     };
-  case ActionTypes.DISCOVER_NAVIGATE_TO_DETAIL_SCREEN:
+  case ActionTypes.NAVIGATE_TO_DETAIL_SCREEN:
     return {
       ...state,
-      discover: DiscoverNavigator.router.getStateForAction(
+      navigation: AppNavigator.router.getStateForAction(
         NavigationActions.navigate({
           routeName: ROUTES.MovieDetailScreen,
           params: {
             movie: action.payload
           }
         }),
-        state.discover
-      ),
-      drawer: {
-        ...state.drawer,
-        disableGestures: true
-      }
-    };
-  case ActionTypes.DISCOVER_NAVIGATE_BACK:
-    return {
-      ...state,
-      discover: DiscoverNavigator.router.getStateForAction(
-        NavigationActions.back(),
-        state.discover
+        state.navigation
       )
     };
+  case ActionTypes.NAVIGATE_BACK:
+    return {
+      ...state,
+      navigation: AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
+        state.navigation
+      )
+    };NavigationHelp
+  case ActionTypes.TOGGLE_DRAWER: {
+    const { index, routes } = state.drawer;
+    let routeName = '';
+    if(routes[index].routeName === 'DrawerOpen') {
+      routeName = 'DrawerClose';
+    }
+    else {
+      routeName = 'DrawerOpen';
+    }
+    return {
+      ...state,
+      drawer: AppDrawerNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: routeName
+        }),
+        state.drawer
+      )
+    };
+  }
+  case ActionTypes.NAVIGATE_IN_DRAWER: {
+    return {
+      ...state,
+      drawer: AppDrawerNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: action.payload
+        }),
+        state.drawer
+      )
+    };
+  }
   }
   return {
     ...state,
     navigation: AppNavigator.router.getStateForAction(action, state.navigation),
-    discover: DiscoverNavigator.router.getStateForAction(action, state.discover)
+    drawer: AppDrawerNavigator.router.getStateForAction(action, state.drawer)
   };
 };

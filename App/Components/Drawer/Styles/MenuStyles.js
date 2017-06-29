@@ -1,24 +1,16 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Colors, Metrics } from '../../../Themes';
-import { Constants } from 'expo';
-
-const isAndroid = (Platform.OS === 'android');
 
 const styles = StyleSheet.create({
-  headerPadding: {
-  },
   sideMenuHeader: {
     backgroundColor: Colors.primary,
     height: 190,
     flexDirection: 'column',
     paddingTop: 40,
     paddingLeft: 16,
-    // Config statusbar color
-    borderTopWidth: Constants.statusBarHeight,
-    borderTopColor: isAndroid ? Colors.primaryDark : Colors.secondary, // StatusBar color
   },
   sideMenuHeaderInfoUser: {
-    marginTop: 20
+    marginTop: Metrics.doubleBaseMargin
   },
   roundAvatar: {
     // marginTop: 40,

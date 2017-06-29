@@ -1,8 +1,9 @@
 import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
+import TestScreen from '../Containers/TestScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
-import DiscoverScreen from '../Containers/DiscoverScreen';
-import DrawerButton from '../Components/Drawer/Button';
+import DrawerScreen from '../Containers/DrawerScreen';
+import DrawerToggleButton from '../Components/Drawer/Button';
 
 <<<<<<< HEAD
 import HomeScreen from '../Containers/HomeScreen';
@@ -10,33 +11,42 @@ import HomeScreen from '../Containers/HomeScreen';
 export const NavigationRoutes = {
 =======
 export const ROUTES = {
-  DiscoverScreen: 'DiscoverScreen',
+  DrawerScreen: 'DrawerScreen',
   MoviesScreen: 'MoviesScreen',
   MovieDetailScreen: 'MovieDetailScreen',
+  TestScreen: 'TestScreen'
 };
 
-const optionWithDrawer = {
-  headerBackTitle: null,
-  headerLeft: <DrawerButton/>
-};
-
-export const AppNavigation = {
-  [ROUTES.DiscoverScreen]: {
-    screen: DiscoverScreen,
-    path: '/'
+export const DrawerNavigation = {
+  [ROUTES.MoviesScreen]: {
+    screen: MoviesScreen,
+    path: '/',
+    navigationOptions: {
+      drawerLabel: 'Notifications',
+    },
+  },
+  [ROUTES.TestScreen]: {
+    screen: TestScreen,
+    path: '/test',
   }
 };
 
+<<<<<<< HEAD
 export const DiscoverNavigation = {
 >>>>>>> origin
   MoviesScreen: {
     screen: MoviesScreen,
+=======
+export const AppNavigation = {
+  [ROUTES.DrawerScreen]: {
+    screen: DrawerScreen,
+>>>>>>> origin
     navigationOptions: {
       title: 'Discover',
-      ...optionWithDrawer
+      headerLeft: <DrawerToggleButton/>
     }
   },
-  MovieDetailScreen: {
+  [ROUTES.MovieDetailScreen]: {
     screen: MovieDetailScreen,
     navigationOptions: {
       title: 'Detail',

@@ -6,13 +6,16 @@ const { statusBarHeight } = Constants;
 
 // Used via Metrics.baseMargin
 const metrics = {
+  itemInRow: 2,
   marginHorizontal: 10,
   marginVertical: 10,
   section: 25,
   baseMargin: 10,
   basePadding: 10,
+  doubleBasePadding: 20,
   doubleBaseMargin: 20,
   smallMargin: 5,
+  smallPadding: 5,
   doubleSection: 50,
   horizontalLineHeight: 1,
   searchBarHeight: 30,

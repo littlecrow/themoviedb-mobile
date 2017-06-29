@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles, { buttonColor } from './Styles/ButtonStyles';
 import { NavigationActionCreators } from '../../Redux/Navigation';
 
-const DrawerButton = ({ appOpenDrawer }) => {
+const DrawerButton = ({ toggleDrawer }) => {
   return (
-    <TouchableOpacity onPress={appOpenDrawer}>
+    <TouchableOpacity onPress={toggleDrawer}>
       <View style={styles.container}>
         <FontAwesome size={24} name="bars" color={buttonColor}/>
       </View>
@@ -17,12 +17,11 @@ const DrawerButton = ({ appOpenDrawer }) => {
 };
 
 DrawerButton.propTypes = {
-  appOpenDrawer: PropTypes.func,
+  toggleDrawer: PropTypes.func,
   closeDrawer: PropTypes.func
 };
 
 const mapDispatchToProps = dispatch => ({
-  appOpenDrawer: () => dispatch(NavigationActionCreators.appOpenDrawer()),
-  // closeDrawer: () => dispatch(NavigationActionCreators.closeDrawer())
+  toggleDrawer: () => dispatch(NavigationActionCreators.toggleDrawer()),
 });
 export default connect(null, mapDispatchToProps)(DrawerButton);
