@@ -45,6 +45,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+TopVotedScreen.propTypes = {
+  movies: PropTypes.array
+};
+
 const mapDispatchToProps = (dispatch) => ({
   fetchTopVotedMovies: () => dispatch(MoviesActions.fetchTopVotedMovies())
 });
