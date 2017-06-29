@@ -1,8 +1,13 @@
 import React from 'react';
-import { View, TouchableNativeFeedback, Image, Text } from 'react-native';
+import { View, TouchableNativeFeedback, TouchableOpacity, Image, Text } from 'react-native';
 import styles from './Styles/MenuStyles';
 import PropTypes from 'prop-types';
 import colors from '../../Themes/Colors';
+import { Platform } from 'react-native';
+
+const isAndroid = Platform.OS === 'android';
+
+const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
 
 const MenuItem = ({name, icon, active, onPress}) => {
   if (active) {
@@ -14,16 +19,17 @@ const MenuItem = ({name, icon, active, onPress}) => {
       </View>
     );
   }
+  const background = isAndroid ? TouchableNativeFeedback.Ripple(colors.primary, true) : null;
   return (
-    <TouchableNativeFeedback
+    <TouchableWrapper
       onPress={onPress}
       useForeground={true}
-      background={TouchableNativeFeedback.Ripple(colors.primary, true)}>
+      background={background}>
       <View style={[styles.item]}>
         <Image style={styles.icon} source={ icon } />
         <Text>{name}</Text>
       </View>
-    </TouchableNativeFeedback>
+    </TouchableWrapper>
   );
 };
 
