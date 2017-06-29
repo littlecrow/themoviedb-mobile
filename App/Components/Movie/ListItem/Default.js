@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import styles from './Styles/ListItemStyles';
-import { NavigationActionCreators } from '../../Redux/Navigation';
+import styles from './Styles/DefaultStyles';
+import { NavigationActionCreators } from '../../../Redux/Navigation';
 
 const MovieItem = ({ movie, navigateToDetail }) => {
   return (

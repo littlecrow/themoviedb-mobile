@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Metrics, Colors } from '../../../Themes';
+import { Metrics, Colors } from '../../../../Themes';
 
 const { itemInRow, screenWidth, smallMargin, smallPadding } = Metrics;
 /*

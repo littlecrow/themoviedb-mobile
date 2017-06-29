@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Metrics from '../../../Themes/Metrics';
+import { Metrics } from '../../../../Themes';
 
 const { screenWidth, screenHeight, basePadding } = Metrics;
 

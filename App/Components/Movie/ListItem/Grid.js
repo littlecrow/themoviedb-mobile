@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import { NavigationActionCreators } from '../../Redux/Navigation';
-import styles from './Styles/ListItemByGridStyles';
-import { Images } from '../../Themes';
+import { NavigationActionCreators } from '../../../Redux/Navigation';
+import styles from './Styles/GridStyles';
+import { Images } from '../../../Themes';
 
-class ListItemByGrid extends Component {
+class GridItems extends Component {
   _renderImage(image) {
     if (image !== null) {
       return (
@@ -60,11 +60,11 @@ class ListItemByGrid extends Component {
   }
 }
 
-ListItemByGrid.propTypes = {
+GridItems.propTypes = {
 
 };
 
-ListItemByGrid.propTypes = {
+GridItems.propTypes = {
   movie: PropTypes.object,
   navigateToDetail: PropTypes.func
 };
@@ -73,4 +73,4 @@ const mapDispatchToProps = (dispatch) => ({
   navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
 });
 
-export default connect(undefined, mapDispatchToProps)(ListItemByGrid);
+export default connect(undefined, mapDispatchToProps)(GridItems);

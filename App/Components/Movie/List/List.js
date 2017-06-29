@@ -4,48 +4,33 @@ import { connect } from 'react-redux';
 import {
   FlatList,
   View,
-  Image,
-  Text
+  Image
 } from 'react-native';
-import { Images, Metrics } from '../../Themes';
+import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/ListStyles';
+import { handleList } from '../../../Transforms/ListConverter';
 import {
   MoviesActions,
   MoviesConstant
-} from '../../Redux/Movies';
-import MovieItem from './ListItem';
-import ListItemByGrid from './ListItemByGrid';
+} from '../../../Redux/Movies';
+// import DefaultItems from '../ListItem/Default';
+import GridItems from '../ListItem/Grid';
 
 const { itemInRow } = Metrics;
 
 class MovieList extends Component {
-  _renderLoadingView = () => (
-    <View style={styles.loadingArea}>
-      <Image
-        source={Images.loadingIcon}
-        style={styles.loadingIcon}
-      />
-    </View>
-  )
-
-  _handleList = (list) => {
-    let array = [];
-    let object = {
-      data: []
-    };
-    list.map((item) => {
-      object.data.push(item);
-      if(object.data.length === itemInRow) {
-        array.push(object);
-        object = {
-          data: []
-        };
-      }
-    });
-    return array;
+  _renderLoadingView() {
+    return (
+      <View style={styles.loadingArea}>
+        <Image
+          source={Images.loadingIcon}
+          style={styles.loadingIcon}
+        />
+      </View>
+    );
   }
 
-  _fetchMoreItems = () => {
+  _fetchMoreItems() {
     const { filterName, fetchPopularMovies, fetchTopVotedMovies, fetchTopRevenueMovies } = this.props;
 
     switch (filterName) {
@@ -63,13 +48,13 @@ class MovieList extends Component {
     }
   }
 
-  _renderItem = ({item}) => <ListItemByGrid movie={item}/>
+  _renderItem = ({item}) => <GridItems movie={item}/>
 
-  _renderListItem = () => {
+  _renderListItem() {
     const { movies } = this.props;
     return (
       <FlatList
-        data={this._handleList(movies)}
+        data={handleList(movies, itemInRow)}
         renderItem={this._renderItem}
         keyExtractor={(item, index) => index}
         onEndReachedThreshold={0.5}
