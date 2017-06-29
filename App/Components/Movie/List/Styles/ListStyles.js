@@ -9,7 +9,7 @@ export default StyleSheet.create({
     paddingTop: basePadding,
     paddingBottom: basePadding,
     width: screenWidth,
-    height: screenHeight - 106
+    height: screenHeight - 100
   },
   bgImage: {
     width: screenWidth,
