@@ -7,6 +7,7 @@ import styles from './Styles/HeaderStyles';
 import DrawerButton from './Button';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
+import ListType from '../ListType/Menu';
 
 const HEADER_TITLE_LENGTH = 30;
 
@@ -18,7 +19,7 @@ const renderLeftButton = (element = null) => (
 
 const renderRightButton = (element = null) => (
   <View style={styles.componentContainer}>
-    {element}
+    {element ? element : <ListType/>}
   </View>
 );
 
