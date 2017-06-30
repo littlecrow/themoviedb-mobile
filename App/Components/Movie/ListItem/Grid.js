@@ -34,23 +34,16 @@ class GridItems extends Component {
   }
 
   _renderImage(image) {
-    const itemStyles = this._calculateMetrics();
-    const style = StyleSheet.create({
-      image: {
-        width: itemStyles.imageWidth,
-        height: itemStyles.imageHeight
-      }
-    });
     if (image !== null) {
       return (
         <FitImage
           source={{uri: THEMOVIEDB_IMAGE_SRC + image}}
           resizeMode='cover'
-          style={style.image}
+          style={styles.image}
         />
       );
     }
-    return <Image source={Images.emptyImage} style={style.image}/>;
+    return <Image source={Images.emptyImage} style={styles.image}/>;
   }
 
   _renderInfo(item) {

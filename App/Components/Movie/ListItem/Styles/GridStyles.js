@@ -13,6 +13,10 @@ export default StyleSheet.create({
     marginVertical: smallMargin,
     backgroundColor: 'rgba(0,0,0,0.9)'
   },
+  image: {
+    width: '100%',
+    height: '100%'
+  },
   info: {
     padding: smallPadding
   },
