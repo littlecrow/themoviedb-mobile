@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, View, ActivityIndicator, ScrollView } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView, Image } from 'react-native';
 import Rating from 'react-native-star-rating';
-import FitImage from 'react-native-fit-image';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -37,11 +36,11 @@ const BackdropDetail = props => {
   return (
     <View style={styles.container}>
       <View style={styles.backdropImageWrapper}>
-        <FitImage source={{uri: THEMOVIEDB_IMAGE_SRC + detail.backdrop_path}} style={styles.backdropImage}/>
+        <Image source={{uri: THEMOVIEDB_IMAGE_SRC + detail.backdrop_path}} style={styles.backdropImage}/>
       </View>
       <ScrollView style={styles.blurWrapper}>
         <View style={styles.previewWrapper}>
-          <FitImage resizeMode="contain" source={{uri: THEMOVIEDB_IMAGE_SRC + detail.poster_path}} style={styles.posterImage}/>
+          <Image resizeMode="contain" source={{uri: THEMOVIEDB_IMAGE_SRC + detail.poster_path}} style={styles.posterImage}/>
           <View style={styles.actionWrapper}>
             <View style={styles.actionButton}>
               <RoundedButton
