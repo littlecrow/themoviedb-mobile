@@ -7,7 +7,6 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
-import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
@@ -16,14 +15,13 @@ import { NavigationActionCreators } from '../../../Redux/Navigation';
 const _renderImage = (image) => {
   if (image !== null) {
     return (
-      <FitImage
+      <Image
         source={{uri: THEMOVIEDB_IMAGE_SRC + image}}
-        resizeMode='contain'
-        style={styles.img}
+        style={styles.image}
       />
     );
   }
-  return <Image source={Images.emptyImage}/>;
+  return <Image source={Images.defaultBackground} style={styles.image}/>;
 };
 
 const _renderInfo = (item) => {
@@ -40,7 +38,7 @@ const MovieItem = ({ movie, navigateToDetail }) => {
   return (
     <TouchableHighlight onPress={() => navigateToDetail(movie)}>
       <View style={styles.itemContainer}>
-        <View style={styles.imgArea}>
+        <View style={styles.imageArea}>
           {_renderImage(movie.poster_path)}
         </View>
         {_renderInfo(movie)}

@@ -10,14 +10,16 @@ export default StyleSheet.create({
     marginVertical: smallMargin,
     marginHorizontal: baseMargin,
   },
-  imgArea: {
+  imageArea: {
     marginRight: baseMargin,
     width: 68,
-    height: 100
+    height: 100,
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
-  img: {
+  image: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    resizeMode: 'cover'
   },
   infoArea: {
     backgroundColor: 'rgba(0,0,0,0.75)',

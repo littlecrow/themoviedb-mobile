@@ -8,7 +8,6 @@ import {
   Image,
   StyleSheet
 } from 'react-native';
-import FitImage from 'react-native-fit-image';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
@@ -36,9 +35,8 @@ class GridItems extends Component {
   _renderImage(image) {
     if (image !== null) {
       return (
-        <FitImage
+        <Image
           source={{uri: THEMOVIEDB_IMAGE_SRC + image}}
-          resizeMode='cover'
           style={styles.image}
         />
       );

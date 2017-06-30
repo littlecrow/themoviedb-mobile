@@ -15,7 +15,8 @@ export default StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    resizeMode: 'cover'
   },
   info: {
     padding: smallPadding
@@ -24,7 +25,7 @@ export default StyleSheet.create({
     color: 'white'
   },
   loadingImage: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   firstItem: {
     marginLeft: smallMargin
