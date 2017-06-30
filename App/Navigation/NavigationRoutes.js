@@ -1,20 +1,28 @@
 import React from 'react';
 import MoviesScreen from '../Containers/MoviesScreen';
+import TestScreen from '../Containers/TestScreen';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import DrawerScreen from '../Containers/DrawerScreen';
-import DrawerToggleButton from '../Components/Drawer/Button';
-import ListType from '../Components/ListType/Menu';
+import DrawerHeader from '../Components/Drawer/Header';
 
 export const ROUTES = {
   DrawerScreen: 'DrawerScreen',
   MoviesScreen: 'MoviesScreen',
   MovieDetailScreen: 'MovieDetailScreen',
+  TestScreen: 'TestScreen'
 };
 
 export const DrawerNavigation = {
   [ROUTES.MoviesScreen]: {
     screen: MoviesScreen,
-    path: '/'
+    path: '/',
+    navigationOptions: {
+      drawerLabel: 'Notifications',
+    },
+  },
+  [ROUTES.TestScreen]: {
+    screen: TestScreen,
+    path: '/test',
   }
 };
 
@@ -23,8 +31,7 @@ export const AppNavigation = {
     screen: DrawerScreen,
     navigationOptions: {
       title: 'Discover',
-      headerLeft: <DrawerToggleButton/>,
-      headerRight: <ListType/>
+      header: <DrawerHeader/>
     }
   },
   [ROUTES.MovieDetailScreen]: {

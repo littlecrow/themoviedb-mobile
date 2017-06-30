@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
-import FitImage from 'react-native-fit-image';
+import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import Images from '../../Themes/Images';
@@ -19,7 +18,7 @@ class CastersList extends Component {
     return (
       <View style={styles.itemContainer}>
         <View style={null}>
-          <FitImage
+          <Image
             source={source}
             style={styles.itemImage}
           />

@@ -72,6 +72,17 @@ export default (state = INITIAL_STATE, action) => {
       )
     };
   }
+  case ActionTypes.NAVIGATE_IN_DRAWER: {
+    return {
+      ...state,
+      drawer: AppDrawerNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: action.payload
+        }),
+        state.drawer
+      )
+    };
+  }
   }
   return {
     ...state,

@@ -7,14 +7,25 @@ import styles from './Styles/MenuStyles';
 import { Images } from '../../Themes';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
 import MenuItem from './MenuItem';
-import { ROUTES } from '../../Navigation/NavigationRoutes';
 
-const Menu = ({appNavigateToDiscover, navigation}) => {
-  // const { routes, index } = navigation.routes[0];
-  // const { routeName } = routes[index];
-  const routeName = "Hello";
+const renderMenuList = (list, navigate, currentRouteName) => (
+  list.map(({ routeName }, index) => (
+    <MenuItem
+      onPress={() => navigate(routeName)}
+      key={index}
+      name={routeName}
+      icon={Images.discoverIcon}
+      active={routeName === currentRouteName}
+    />
+  ))
+);
+
+const Menu = ({ drawer, navigate }) => {
+  const drawerRoutes = drawer.routes[0].routes;
+  const { routes, index } = drawer.routes[0];
+  const currentRouteName = routes[index].routeName;
   return (
-    <View style={styles.headerPadding}>
+    <View>
       <View style={styles.sideMenuHeader}>
         <Image
           source={Images.avatarDefault}
@@ -26,46 +37,23 @@ const Menu = ({appNavigateToDiscover, navigation}) => {
         </View>
       </View>
       <View style={styles.listMenu}>
-        <MenuItem
-          onPress={() => appNavigateToDiscover()}
-          name="Discover"
-          icon={Images.discoverIcon}
-          active={routeName === ROUTES.DiscoverScreen}
-        />
-        <MenuItem
-          /*onPress={() => appNavigateToDiscover()}*/
-          name="Movies"
-          icon={Images.moviesIcon}
-          active={false}
-        />
-        <MenuItem
-          /*onPress={() => appNavigateToDiscover()}*/
-          name="Tv Shown"
-          icon={Images.tvIcon}
-          active={false}
-        />
-        <MenuItem
-          /*onPress={() => appNavigateToDiscover()}*/
-          name="People"
-          icon={Images.peopleIcon}
-          active={false}
-        />
+        {renderMenuList(drawerRoutes, navigate, currentRouteName)}
       </View>
     </View>
   );
 };
 
 Menu.propTypes = {
-  appNavigateToDiscover: PropTypes.func,
-  navigation: PropTypes.object
+  drawer: PropTypes.object,
+  navigate: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-  navigation: state[NAVIGATION_KEY].navigation,
+  drawer: state[NAVIGATION_KEY].drawer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  appNavigateToDiscover: () => dispatch(NavigationActionCreators.appNavigateToDiscover())
+  navigate: (routeName) => dispatch(NavigationActionCreators.navigateInDrawer(routeName))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);

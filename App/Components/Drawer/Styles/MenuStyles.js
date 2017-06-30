@@ -2,14 +2,14 @@ import { StyleSheet } from 'react-native';
 import { Colors, Metrics } from '../../../Themes';
 
 const styles = StyleSheet.create({
-  headerPadding: {
-  },
   sideMenuHeader: {
     backgroundColor: Colors.primary,
     height: 190,
     flexDirection: 'column',
     paddingTop: 40,
     paddingLeft: 16,
+    borderTopWidth: 2,
+    borderTopColor: Colors.primaryDark, // StatusBar color
   },
   sideMenuHeaderInfoUser: {
     marginTop: Metrics.doubleBaseMargin
