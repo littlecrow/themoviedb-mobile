@@ -4,21 +4,21 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Navbar from 'react-native-navbar';
 import styles from './Styles/HeaderStyles';
-import DrawerButton from './Button';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
 import ListType from '../ListType/Menu';
+import DrawerButton from './Button';
 
 const HEADER_TITLE_LENGTH = 30;
 
 const renderLeftButton = (element = null) => (
-  <View style={styles.componentContainer}>
+  <View style={[styles.componentContainer, styles.headerLeft]}>
     {element ? element : <DrawerButton/>}
   </View>
 );
 
 const renderRightButton = (element = null) => (
-  <View style={styles.componentContainer}>
+  <View style={[styles.componentContainer, styles.headerRight]}>
     {element ? element : <ListType/>}
   </View>
 );

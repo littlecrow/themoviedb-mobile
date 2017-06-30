@@ -7,7 +7,6 @@ export const buttonColor = isAndroid ? Colors.secondary : Colors.inverse;
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: Metrics.doubleBaseMargin
   }
 });
 

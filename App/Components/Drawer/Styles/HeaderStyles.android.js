@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../../Themes';
+import { Colors, Metrics } from '../../../Themes';
 import { Constants } from 'expo';
 
 export default StyleSheet.create({
@@ -16,10 +16,16 @@ export default StyleSheet.create({
   header: {
     backgroundColor: Colors.primary,
   },
+  headerLeft: {
+    paddingLeft: Metrics.doubleBasePadding
+  },
+  headerRight: {
+    //paddingRight: Metrics.basePadding
+  },
   title: {
     color: Colors.secondary,
     marginRight: 'auto',
-    marginLeft: 60
+    marginLeft: Metrics.headerTitleMargin
   },
   back: {
     color: Colors.secondary,
