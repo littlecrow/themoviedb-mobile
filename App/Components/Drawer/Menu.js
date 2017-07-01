@@ -21,9 +21,9 @@ const renderMenuList = (list, navigate, currentRouteName) => (
 );
 
 const Menu = ({ drawer, navigate }) => {
-  const drawerRoutes = drawer.routes[0].routes;
-  const { routes, index } = drawer.routes[0];
-  const currentRouteName = routes[index].routeName;
+  // const drawerRoutes = drawer.routes[0].routes;
+  // const { routes, index } = drawer.routes[0];
+  // const currentRouteName = routes[index].routeName;
   return (
     <View>
       <View style={styles.sideMenuHeader}>
@@ -37,7 +37,7 @@ const Menu = ({ drawer, navigate }) => {
         </View>
       </View>
       <View style={styles.listMenu}>
-        {renderMenuList(drawerRoutes, navigate, currentRouteName)}
+        {/*renderMenuList(drawerRoutes, navigate, currentRouteName)*/}
       </View>
     </View>
   );
@@ -49,7 +49,7 @@ Menu.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  drawer: state[NAVIGATION_KEY].drawer,
+  // drawer: state[NAVIGATION_KEY].drawer,
 });
 
 const mapDispatchToProps = (dispatch) => ({

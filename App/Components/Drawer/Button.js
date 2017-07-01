@@ -8,7 +8,7 @@ import { NavigationActionCreators } from '../../Redux/Navigation';
 
 const DrawerButton = ({ toggleDrawer }) => {
   return (
-    <TouchableOpacity onPress={toggleDrawer}>
+    <TouchableOpacity onPress={() => toggleDrawer()}>
       <View style={styles.container}>
         <FontAwesome size={24} name="bars" color={buttonColor}/>
       </View>
@@ -24,4 +24,4 @@ DrawerButton.propTypes = {
 const mapDispatchToProps = dispatch => ({
   toggleDrawer: () => dispatch(NavigationActionCreators.toggleDrawer()),
 });
-export default connect(null, mapDispatchToProps)(DrawerButton);
+export default connect(undefined, mapDispatchToProps)(DrawerButton);

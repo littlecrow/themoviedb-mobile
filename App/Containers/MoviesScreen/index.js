@@ -5,6 +5,7 @@ import PopularScreen from './PopularScreen';
 import TopVotedScreen from './TopVotedScreen';
 import TopRevenueScreen from './TopRevenueScreen';
 import styles from './Styles/MoviesScreenStyles';
+import DrawerHeader from '../../Components/Drawer/Header';
 
 const TabView = TabNavigator({
   PopularScreen: {
@@ -26,6 +27,7 @@ const TabView = TabNavigator({
 const MoviesScreen = () => {
   return (
     <View style={styles.container}>
+      <DrawerHeader/>
       <TabView/>
     </View>
   );
