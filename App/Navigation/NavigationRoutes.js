@@ -1,43 +1,44 @@
-import React from 'react';
+
+import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import TestScreen from '../Containers/TestScreen';
-import MovieDetailScreen from '../Containers/MovieDetailScreen';
-import DrawerScreen from '../Containers/DrawerScreen';
-import DrawerHeader from '../Components/Drawer/Header';
 
-export const ROUTES = {
-  DrawerScreen: 'DrawerScreen',
-  MoviesScreen: 'MoviesScreen',
-  MovieDetailScreen: 'MovieDetailScreen',
-  TestScreen: 'TestScreen'
-};
-
-export const DrawerNavigation = {
-  [ROUTES.MoviesScreen]: {
-    screen: MoviesScreen,
+export const AppRoutes = [
+  {
+    name: 'Discover',
     path: '/',
-    navigationOptions: {
-      drawerLabel: 'Notifications',
-    },
+    component: MoviesScreen,
+    exact: true
   },
-  [ROUTES.TestScreen]: {
-    screen: TestScreen,
+  {
+    name: 'Movie Detail',
+    path: '/movies/detail/:id',
+    component: MovieDetailScreen,
+    exact: true
+  },
+  {
+    name: 'Test',
     path: '/test',
+    component: TestScreen,
+    exact: true
   }
-};
+];
 
-export const AppNavigation = {
-  [ROUTES.DrawerScreen]: {
-    screen: DrawerScreen,
-    navigationOptions: {
-      title: 'Discover',
-      header: <DrawerHeader/>
+
+export const DrawerRoutes = [
+  {
+    name: 'Discover',
+    to: '/',
+    icon: {
+      name: 'rowing'
     }
   },
-  [ROUTES.MovieDetailScreen]: {
-    screen: MovieDetailScreen,
-    navigationOptions: {
-      title: 'Detail',
+  {
+    name: 'Test',
+    to: '/test',
+    icon: {
+      name:'ios-american-football',
+      type:'ionicon'
     }
   }
-};
+];

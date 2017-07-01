@@ -1,11 +1,11 @@
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
-import { View } from 'react-native';
 import PopularScreen from './PopularScreen';
 import TopVotedScreen from './TopVotedScreen';
 import TopRevenueScreen from './TopRevenueScreen';
 import styles from './Styles/MoviesScreenStyles';
 import DrawerHeader from '../../Components/Drawer/Header';
+import DrawerWrapper from '../../Components/Drawer/Wrapper';
 
 const TabView = TabNavigator({
   PopularScreen: {
@@ -26,10 +26,10 @@ const TabView = TabNavigator({
 
 const MoviesScreen = () => {
   return (
-    <View style={styles.container}>
+    <DrawerWrapper>
       <DrawerHeader/>
       <TabView/>
-    </View>
+    </DrawerWrapper>
   );
 };
 

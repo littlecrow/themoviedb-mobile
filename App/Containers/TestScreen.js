@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
 import DrawerHeader from '../Components/Drawer/Header';
+import DrawerWrapper from '../Components/Drawer/Wrapper';
 
-class TestScreen extends Component {
-  render() {
-    return (
-      <View flex={1}>
-        <DrawerHeader/>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>
-            Test Screen
-          </Text>
-        </View>
-      </View>
-    );
-  }
-}
-
-TestScreen.propTypes = {
-
-};
+const TestScreen = () => (
+  <DrawerWrapper>
+    <DrawerHeader/>
+    <View style={{flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
+      <Text>
+        Test Screen
+      </Text>
+    </View>
+  </DrawerWrapper>
+);
 
 export default TestScreen;
