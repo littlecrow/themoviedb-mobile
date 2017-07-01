@@ -10,7 +10,8 @@ import {
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
-import { NavigationActionCreators } from '../../../Redux/Navigation';
+// import { NavigationActionCreators } from '../../../Redux/Navigation';
+import { Link } from 'react-router-native';
 
 const _renderImage = (image) => {
   if (image !== null) {
@@ -36,14 +37,14 @@ const _renderInfo = (item) => {
 
 const MovieItem = ({ movie, navigateToDetail }) => {
   return (
-    <TouchableHighlight onPress={() => navigateToDetail(movie)}>
+    <Link to={'/movies/detail/' + movie.id}>
       <View style={styles.itemContainer}>
         <View style={styles.imageArea}>
           {_renderImage(movie.poster_path)}
         </View>
         {_renderInfo(movie)}
       </View>
-    </TouchableHighlight>
+    </Link>
   );
 };
 
@@ -52,8 +53,12 @@ MovieItem.propTypes = {
   navigateToDetail: PropTypes.func
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
+// });
+// before
+// export default connect(mapStateToProps)(Something)
 
-export default connect(undefined, mapDispatchToProps)(MovieItem);
+// after
+export default MovieItem;
+// export default connect(undefined, mapDispatchToProps)(MovieItem);

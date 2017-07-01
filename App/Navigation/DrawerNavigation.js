@@ -1,23 +1,15 @@
 import React from 'react';
-import { addNavigationHelpers } from 'react-navigation';
-import { connect } from 'react-redux';
+import { View } from 'react-native';
+import { Route} from 'react-router-native';
 import PropTypes from 'prop-types';
-import { NAVIGATION_KEY } from '../Redux/Navigation';
-import { AppDrawerNavigator } from '../Redux/Navigation/Reducer';
+import MoviesScreen from '../Containers/MoviesScreen';
+import TestScreen from '../Containers/TestScreen';
 
-const DrawerNavigation = ({dispatch, nav}) => (
-  <AppDrawerNavigator
-    navigation={ addNavigationHelpers({ dispatch, state: nav }) }
-  />
+const DrawerNavigation = () => (
+  <View style={{height: '100%'}}>
+    <Route exact path="/" component={MoviesScreen}/>
+    <Route exact path="/test" component={TestScreen}/>
+  </View>
 );
 
-DrawerNavigation.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  nav: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = state => ({
-  nav: state[NAVIGATION_KEY].drawer,
-});
-
-export default connect(mapStateToProps)(DrawerNavigation);
+export default DrawerNavigation;

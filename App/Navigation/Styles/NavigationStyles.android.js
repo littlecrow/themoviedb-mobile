@@ -10,11 +10,17 @@ export default StyleSheet.create({
     borderTopWidth: Constants.statusBarHeight,
     borderTopColor: Colors.primaryDark, // StatusBar color
   },
-  title: {
-    color: Colors.secondary
-  },
-  back: {
-    color: Colors.secondary,
-    backgroundColor: Colors.secondary
+  container: {
+    flex: 1
   }
+  // title: {
+  //   color: Colors.secondary
+  // },
+  // back: {
+  //   color: Colors.secondary,
+  //   backgroundColor: Colors.secondary
+  // },
+  // nav: {
+  //   marginTop: Constants.statusBarHeight,
+  // }
 });

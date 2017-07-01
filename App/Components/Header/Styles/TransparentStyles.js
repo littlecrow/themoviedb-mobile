@@ -4,19 +4,20 @@ import { Metrics, Colors, Fonts } from '../../../Themes';
 
 const TransparentHeaderStyles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: Constants.statusBarHeight,
-    left: 0, right: 0,
+    marginTop: Constants.statusBarHeight,
+    // left: 0, right: 0
   },
   headerContainer: {
-    backgroundColor: 'rgba(0,0,0,0.45)'
+    backgroundColor: Colors.primary
   },
   componentContainer: {
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   back: {
+    // paddingTop: Metrics.doubleBasePadding,
+    // paddingBottom: Metrics.doubleBasePadding,
     paddingLeft: Metrics.doubleBasePadding,
     paddingRight: Metrics.doubleBasePadding
   },
