@@ -1,15 +1,18 @@
 import { StyleSheet } from 'react-native';
 import { Colors, Metrics } from '../../../Themes';
+import { Constants } from 'expo';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
+  container: {
+    borderTopWidth: Constants.statusBarHeight,
+    borderTopColor: Colors.primaryDark, // StatusBar color
+  },
   sideMenuHeader: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.peterRiver,
     height: 190,
     flexDirection: 'column',
     paddingTop: 40,
     paddingLeft: 16,
-    borderTopWidth: 2,
-    borderTopColor: Colors.primaryDark, // StatusBar color
   },
   sideMenuHeaderInfoUser: {
     marginTop: Metrics.doubleBaseMargin
@@ -44,5 +47,3 @@ const styles = StyleSheet.create({
     marginRight: 16
   }
 });
-
-export default styles;

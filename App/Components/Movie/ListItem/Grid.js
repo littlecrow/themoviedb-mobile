@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  TouchableHighlight,
   Image,
   StyleSheet
 } from 'react-native';
@@ -12,6 +11,7 @@ import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
 import { NavigationActionCreators } from '../../../Redux/Navigation';
+import { Link } from 'react-router-native';
 
 const { screenWidth, smallMargin } = Metrics;
 /*
@@ -70,8 +70,8 @@ class GridItems extends Component {
     });
     const { movie, navigateToDetail } = this.props;
     return movie.data.map((item, index) => (
-      <TouchableHighlight
-        onPress={() => navigateToDetail(item)}
+      <Link
+        to={'/movies/detail/' + item.id}
         key={index}
         style={[
           styles.itemContainer,
@@ -80,7 +80,7 @@ class GridItems extends Component {
           index === movie.data.length - 1 ? styles.lastItem : null
         ]}>
         {this._renderInfo(item)}
-      </TouchableHighlight>
+      </Link>
     ));
   }
 

@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  Image,
-  TouchableHighlight
+  Image
 } from 'react-native';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
-// import { NavigationActionCreators } from '../../../Redux/Navigation';
 import { Link } from 'react-router-native';
 
 const _renderImage = (image) => {
@@ -35,7 +33,7 @@ const _renderInfo = (item) => {
   );
 };
 
-const MovieItem = ({ movie, navigateToDetail }) => {
+const MovieItem = ({ movie }) => {
   return (
     <Link to={'/movies/detail/' + movie.id}>
       <View style={styles.itemContainer}>
@@ -53,12 +51,4 @@ MovieItem.propTypes = {
   navigateToDetail: PropTypes.func
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
-// });
-// before
-// export default connect(mapStateToProps)(Something)
-
-// after
 export default MovieItem;
-// export default connect(undefined, mapDispatchToProps)(MovieItem);

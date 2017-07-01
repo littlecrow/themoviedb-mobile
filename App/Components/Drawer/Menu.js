@@ -25,7 +25,7 @@ const Menu = ({ drawer, navigate }) => {
   // const { routes, index } = drawer.routes[0];
   // const currentRouteName = routes[index].routeName;
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.sideMenuHeader}>
         <Image
           source={Images.avatarDefault}
