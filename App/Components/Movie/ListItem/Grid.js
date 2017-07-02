@@ -76,15 +76,16 @@ class GridItems extends Component {
       history.push('/movies/detail/' + item.id);
     };
     return movie.data.map((item, index) => (
-      <TouchableHighlight onPress={() => handleItemPress(item)}
-        key={index}
-        style={[
-          styles.itemContainer,
-          style.itemContainer,
-          index === 0 ? styles.firstItem : null,
-          index === movie.data.length - 1 ? styles.lastItem : null
-        ]}>{this._renderInfo(item)}
-      </TouchableHighlight>
+      <AnimatableView animation="fadeIn" duration={300} key={index}>
+        <TouchableHighlight onPress={() => handleItemPress(item)}
+          style={[
+            styles.itemContainer,
+            style.itemContainer,
+            index === 0 ? styles.firstItem : null,
+            index === movie.data.length - 1 ? styles.lastItem : null
+          ]}>{this._renderInfo(item)}
+        </TouchableHighlight>
+      </AnimatableView>
     ));
   }
 
