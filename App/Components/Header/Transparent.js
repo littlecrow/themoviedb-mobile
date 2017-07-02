@@ -28,13 +28,18 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const TransparentHeader = ({title, history}) => {
+const TransparentHeader = ({title, history, onBackPress}) => {
+  const handleBackPress = () => {
+    onBackPress();
+    history.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <Navbar
         containerStyle={styles.headerContainer}
         style={styles.header}
-        leftButton={renderHeaderLeft(() => history.goBack())}
+        leftButton={renderHeaderLeft(handleBackPress)}
         title={renderTitle(title)}
       />
     </View>
@@ -43,7 +48,8 @@ const TransparentHeader = ({title, history}) => {
 
 TransparentHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  history: PropTypes.shape({goBack: PropTypes.func.isRequired}).isRequired
+  history: PropTypes.shape({goBack: PropTypes.func.isRequired}).isRequired,
+  onBackPress: PropTypes.func
 };
 
 export default withRouter(TransparentHeader);

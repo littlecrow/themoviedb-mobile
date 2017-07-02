@@ -7,7 +7,7 @@ import DrawerWrapper from '../Components/Drawer/Wrapper';
 const TestScreen = () => (
   <DrawerWrapper>
     <DrawerHeader/>
-    <View animation="fadeIn" style={{flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center'}}>
+    <View animation="fadeIn" duration={300} style={{flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center'}}>
       <Text>
         Test Screen
       </Text>

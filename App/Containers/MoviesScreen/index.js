@@ -29,7 +29,7 @@ const MoviesScreen = () => {
   return (
     <DrawerWrapper>
       <DrawerHeader/>
-      <View animation="fadeIn" style={styles.container}>
+      <View animation="fadeIn" duration={300} style={styles.container}>
         <TabView/>
       </View>
     </DrawerWrapper>

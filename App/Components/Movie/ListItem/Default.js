@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
 import { View as AnimatableView } from 'react-native-animatable';
+import { withRouter } from 'react-router-dom';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
-import { Link } from 'react-router-native';
+import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
 
 const _renderImage = (image) => {
   if (image !== null) {
@@ -34,24 +36,33 @@ const _renderInfo = (item) => {
   );
 };
 
-const MovieItem = ({ movie }) => {
+const MovieItem = ({ history, movie, setMovieDetail }) => {
+  const handleOnPress = () => {
+    setMovieDetail(movie);
+    history.push('/movies/detail/' + movie.id);
+  };
   return (
-    <AnimatableView animation="fadeIn">
-      <Link to={'/movies/detail/' + movie.id}>
+    <AnimatableView animation="fadeIn" duration={300}>
+      <TouchableHighlight onPress={handleOnPress}>
         <View style={styles.itemContainer}>
           <View style={styles.imageArea}>
             {_renderImage(movie.poster_path)}
           </View>
           {_renderInfo(movie)}
         </View>
-      </Link>
+      </TouchableHighlight>
     </AnimatableView>
   );
 };
 
 MovieItem.propTypes = {
   movie: PropTypes.object,
-  navigateToDetail: PropTypes.func
+  setMovieDetail: PropTypes.func,
+  history: PropTypes.shape({push: PropTypes.func.isRequired}).isRequired
 };
 
-export default MovieItem;
+const mapDispatchToProps = (dispatch) => ({
+  setMovieDetail: (movie) => dispatch(setMovieDetail(movie))
+});
+
+export default withRouter(connect(undefined, mapDispatchToProps)(MovieItem));
