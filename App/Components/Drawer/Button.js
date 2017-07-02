@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { TouchableNativeFeedback } from 'react-native';
+import { TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import { Platform } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View } from 'react-native-animatable';
 import styles, { buttonColor } from './Styles/ButtonStyles';
 import { NavigationActionCreators } from '../../Redux/Navigation';
-
+const isAndroid = Platform.OS === 'android';
+const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
+const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(buttonColor, true) : null;
 class DrawerButton extends Component {
 
   constructor(props) {
@@ -22,12 +25,11 @@ class DrawerButton extends Component {
 
   render () {
     return (
-      <TouchableNativeFeedback onPress={this._toggleDrawerFallback}
-        background={TouchableNativeFeedback.Ripple(buttonColor, true)}>
+      <TouchableWrapper onPress={this._toggleDrawerFallback} background={TouchableBackGround}>
         <View ref={(v) => this.view = v} style={styles.container}>
           <FontAwesome size={24} name="bars" color={buttonColor}/>
         </View>
-      </TouchableNativeFeedback>
+      </TouchableWrapper>
     );
   }
 }

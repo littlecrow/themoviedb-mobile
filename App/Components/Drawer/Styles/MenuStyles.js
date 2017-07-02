@@ -1,11 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Colors, Metrics } from '../../../Themes';
 import { Constants } from 'expo';
+
+const isAndroid = Platform.OS === 'android';
 
 export default StyleSheet.create({
   container: {
     borderTopWidth: Constants.statusBarHeight,
-    borderTopColor: Colors.primaryDark, // StatusBar color
+    borderTopColor: isAndroid ? Colors.primaryDark : 'transparent', // StatusBar color
   },
   sideMenuHeader: {
     backgroundColor: Colors.peterRiver,
