@@ -4,11 +4,11 @@ import { Metrics, Colors, Fonts } from '../../../Themes';
 
 const TransparentHeaderStyles = StyleSheet.create({
   container: {
-    marginTop: Constants.statusBarHeight,
-    // left: 0, right: 0
+    borderTopWidth: Constants.statusBarHeight,
+    borderTopColor: Colors.inverse, // StatusBar color
   },
   headerContainer: {
-    backgroundColor: Colors.primary
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   componentContainer: {
     height: '100%',

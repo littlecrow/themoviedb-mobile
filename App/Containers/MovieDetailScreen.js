@@ -8,6 +8,7 @@ import TransparentHeader from '../Components/Header/Transparent';
 import DefaultMovieDetail from '../Components/Movie/Detail/Default';
 import BackdropMovieDetail from '../Components/Movie/Detail/Backdrop';
 import { MovieActions, MovieActionCreators, MOVIE_KEY } from '../Redux/Movie';
+import styles from './Styles/MovieDetailScreenStyles';
 
 // const isAndroid = Platform.OS === 'android';
 
@@ -22,13 +23,14 @@ class MovieDetailScreen extends Component {
 
   render () {
     const { detail } = this.props;
-
     return (
-      <AnimatableView animation="slideInUp" duration={300}>
-        <TransparentHeader title={detail.title} onBackPress={() => this.props.emptyCurrentMovie()}/>
-        <ScrollView>
+      <AnimatableView animation="slideInUp" duration={300} style={styles.container}>
+        <ScrollView style={styles.content}>
           {detail.backdrop_path ? <BackdropMovieDetail detail={detail} /> : <DefaultMovieDetail detail={detail} />}
         </ScrollView>
+        <View style={styles.header}>
+          <TransparentHeader title={detail.title} onBackPress={() => this.props.emptyCurrentMovie()}/>
+        </View>
       </AnimatableView>
     );
   }

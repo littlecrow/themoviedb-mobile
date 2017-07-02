@@ -41,7 +41,8 @@ const MovieDetailScreenStyles = StyleSheet.create({
   previewWrapper: {
     flexDirection: 'row',
     margin: metrics.baseMargin,
-    height: 200
+    height: 200,
+    marginTop: 50
   },
   horizontalWrapper: {
     flexDirection: 'row',

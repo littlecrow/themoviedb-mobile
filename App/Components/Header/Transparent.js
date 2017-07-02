@@ -28,14 +28,14 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const TransparentHeader = ({title, history, onBackPress}) => {
+const TransparentHeader = ({style, title, history, onBackPress}) => {
   const handleBackPress = () => {
     onBackPress();
     history.goBack();
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[style, styles.container]}>
       <Navbar
         containerStyle={styles.headerContainer}
         style={styles.header}
