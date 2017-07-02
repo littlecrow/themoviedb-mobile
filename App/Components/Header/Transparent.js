@@ -1,7 +1,9 @@
 import React from 'react';
 import {
   View,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import Navbar from 'react-native-navbar';
 import PropTypes from 'prop-types';
@@ -13,19 +15,27 @@ import { reduceByCharacters } from '../../Transforms/TextConverter';
 
 const MAX_TITLE_LENGTH = 40;
 
+const isAndroid = Platform.OS === 'android';
+const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
+const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(colors.secondary, true) : null;
+
 const renderHeaderLeft = (onPress) => (
-  <TouchableNativeFeedback
+  <TouchableWrapper
     onPress={onPress}
-    background={TouchableNativeFeedback.Ripple(colors.secondary, true)}>
+    background={TouchableBackGround}>
     <View style={[styles.componentContainer, styles.back]}>
       <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
     </View>
-  </TouchableNativeFeedback>
+  </TouchableWrapper>
 );
 
 const renderTitle = (title) => ({
   title: reduceByCharacters(title, MAX_TITLE_LENGTH),
   style: styles.title,
+});
+
+const renderStatusBar = () => ({
+  hidden: !isAndroid
 });
 
 const TransparentHeader = ({style, title, history, onBackPress}) => {
@@ -37,6 +47,7 @@ const TransparentHeader = ({style, title, history, onBackPress}) => {
   return (
     <View style={[style, styles.container]}>
       <Navbar
+        statusBar={renderStatusBar()}
         containerStyle={styles.headerContainer}
         style={styles.header}
         leftButton={renderHeaderLeft(handleBackPress)}
@@ -49,7 +60,8 @@ const TransparentHeader = ({style, title, history, onBackPress}) => {
 TransparentHeader.propTypes = {
   title: PropTypes.string.isRequired,
   history: PropTypes.shape({goBack: PropTypes.func.isRequired}).isRequired,
-  onBackPress: PropTypes.func
+  onBackPress: PropTypes.func,
+  style: PropTypes.object
 };
 
 export default withRouter(TransparentHeader);

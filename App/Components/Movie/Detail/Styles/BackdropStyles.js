@@ -1,10 +1,7 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import metrics  from '../../../../Themes/Metrics';
 import colors  from '../../../../Themes/Colors';
 import fonts  from '../../../../Themes/Fonts';
-import { Constants } from 'expo';
-
-const isAndroid = (Platform.OS === 'android');
 
 const textColors = {
   color: colors.secondary,
@@ -31,12 +28,10 @@ const MovieDetailScreenStyles = StyleSheet.create({
     width: metrics.screenWidth,
     height: metrics.screenHeight,
     backgroundColor: 'rgba(0,0,0,0.7)',
-    top: 0
   },
   backdropImageWrapper: {
     position: 'absolute',
-    top: 0,
-    left: 0, bottom: 0, right: 0,
+    top: 0, left: 0, bottom: 0, right: 0,
   },
   previewWrapper: {
     flexDirection: 'row',

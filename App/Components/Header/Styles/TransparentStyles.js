@@ -1,11 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Constants } from 'expo';
 import { Metrics, Colors, Fonts } from '../../../Themes';
 
+const isAndroid = Platform.OS === 'android';
+
 const TransparentHeaderStyles = StyleSheet.create({
   container: {
-    borderTopWidth: Constants.statusBarHeight,
-    borderTopColor: Colors.inverse, // StatusBar color
+    borderTopWidth: isAndroid ? Constants.statusBarHeight : 0,
+    borderTopColor: isAndroid ? Colors.inverse : null, // StatusBar color
   },
   headerContainer: {
     backgroundColor: 'rgba(0,0,0,0.5)'
