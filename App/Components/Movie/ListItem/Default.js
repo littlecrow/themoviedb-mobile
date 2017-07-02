@@ -6,6 +6,7 @@ import {
   Text,
   Image
 } from 'react-native';
+import { View as AnimatableView } from 'react-native-animatable';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
@@ -35,14 +36,16 @@ const _renderInfo = (item) => {
 
 const MovieItem = ({ movie }) => {
   return (
-    <Link to={'/movies/detail/' + movie.id}>
-      <View style={styles.itemContainer}>
-        <View style={styles.imageArea}>
-          {_renderImage(movie.poster_path)}
+    <AnimatableView animation="fadeIn">
+      <Link to={'/movies/detail/' + movie.id}>
+        <View style={styles.itemContainer}>
+          <View style={styles.imageArea}>
+            {_renderImage(movie.poster_path)}
+          </View>
+          {_renderInfo(movie)}
         </View>
-        {_renderInfo(movie)}
-      </View>
-    </Link>
+      </Link>
+    </AnimatableView>
   );
 };
 

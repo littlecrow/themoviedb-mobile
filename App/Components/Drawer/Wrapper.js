@@ -15,7 +15,9 @@ const Wrapper = ({ children, isOpen, setDrawerState }) => {
       onChange={(isOpen) => !isOpen ? setDrawerState(isOpen) : null}
       menu={<Menu/>}
       openMenuOffset={Metrics.screenWidth * 0.75}>
-      {children}
+      <View flex={1} backgroundColor={'white'}>
+        {children}
+      </View>
     </SideMenu>
   );
 };

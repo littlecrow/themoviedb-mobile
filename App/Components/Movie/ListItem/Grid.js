@@ -78,8 +78,7 @@ class GridItems extends Component {
           style.itemContainer,
           index === 0 ? styles.firstItem : null,
           index === movie.data.length - 1 ? styles.lastItem : null
-        ]}>
-        {this._renderInfo(item)}
+        ]}>{this._renderInfo(item)}
       </Link>
     ));
   }
