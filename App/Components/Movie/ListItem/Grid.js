@@ -5,13 +5,15 @@ import {
   View,
   Text,
   Image,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
+import { View as AnimatableView } from 'react-native-animatable';
+import { withRouter } from 'react-router-dom';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
-import { NavigationActionCreators } from '../../../Redux/Navigation';
-import { Link } from 'react-router-native';
+import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
 
 const { screenWidth, smallMargin } = Metrics;
 /*
@@ -68,10 +70,13 @@ class GridItems extends Component {
         width: this._calculateMetrics().itemWidth
       }
     });
-    const { movie, navigateToDetail } = this.props;
+    const { movie, history, setMovieDetail } = this.props;
+    const handleItemPress = (item) => {
+      setMovieDetail(item);
+      history.push('/movies/detail/' + item.id);
+    };
     return movie.data.map((item, index) => (
-      <Link
-        to={'/movies/detail/' + item.id}
+      <TouchableHighlight onPress={() => handleItemPress(item)}
         key={index}
         style={[
           styles.itemContainer,
@@ -79,7 +84,7 @@ class GridItems extends Component {
           index === 0 ? styles.firstItem : null,
           index === movie.data.length - 1 ? styles.lastItem : null
         ]}>{this._renderInfo(item)}
-      </Link>
+      </TouchableHighlight>
     ));
   }
 
@@ -95,7 +100,8 @@ class GridItems extends Component {
 GridItems.propTypes = {
   movie: PropTypes.object,
   itemsPerRow: PropTypes.number,
-  navigateToDetail: PropTypes.func
+  setMovieDetail: PropTypes.func,
+  history: PropTypes.shape({push: PropTypes.func.isRequired}).isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -103,7 +109,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
+  setMovieDetail: (movie) => dispatch(setMovieDetail(movie))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GridItems);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GridItems));
