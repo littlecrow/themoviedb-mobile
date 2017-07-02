@@ -17,7 +17,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.primary,
   },
   headerLeft: {
-    paddingLeft: Metrics.doubleBasePadding
+    paddingLeft: Metrics.basePadding
   },
   headerRight: {
     //paddingRight: Metrics.basePadding

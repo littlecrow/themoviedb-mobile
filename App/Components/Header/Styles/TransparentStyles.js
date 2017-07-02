@@ -1,22 +1,25 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Constants } from 'expo';
 import { Metrics, Colors, Fonts } from '../../../Themes';
 
+const isAndroid = Platform.OS === 'android';
+
 const TransparentHeaderStyles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: Constants.statusBarHeight,
-    left: 0, right: 0,
+    borderTopWidth: isAndroid ? Constants.statusBarHeight : 0,
+    borderTopColor: isAndroid ? Colors.inverse : null, // StatusBar color
   },
   headerContainer: {
-    backgroundColor: 'rgba(0,0,0,0.45)'
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   componentContainer: {
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   back: {
+    // paddingTop: Metrics.doubleBasePadding,
+    // paddingBottom: Metrics.doubleBasePadding,
     paddingLeft: Metrics.doubleBasePadding,
     paddingRight: Metrics.doubleBasePadding
   },

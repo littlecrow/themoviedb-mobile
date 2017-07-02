@@ -1,10 +1,13 @@
 import React from 'react';
 import {
   View,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import Navbar from 'react-native-navbar';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import styles, { backIconSize } from './Styles/TransparentStyles';
 import { Ionicons } from '@expo/vector-icons';
 import colors from '../../Themes/Colors';
@@ -12,17 +15,18 @@ import { reduceByCharacters } from '../../Transforms/TextConverter';
 
 const MAX_TITLE_LENGTH = 40;
 
+const isAndroid = Platform.OS === 'android';
+const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
+const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(colors.secondary, true) : null;
+
 const renderHeaderLeft = (onPress) => (
-  <View style={styles.componentContainer}>
-    <TouchableNativeFeedback
-      style={styles.componentContainer}
-      onPress={onPress}
-      background={TouchableNativeFeedback.Ripple(colors.secondary, true)}>
-      <View style={styles.back}>
-        <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
-      </View>
-    </TouchableNativeFeedback>
-  </View>
+  <TouchableWrapper
+    onPress={onPress}
+    background={TouchableBackGround}>
+    <View style={[styles.componentContainer, styles.back]}>
+      <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
+    </View>
+  </TouchableWrapper>
 );
 
 const renderTitle = (title) => ({
@@ -30,13 +34,23 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const TransparentHeader = ({title, navigation}) => {
+const renderStatusBar = () => ({
+  hidden: !isAndroid
+});
+
+const TransparentHeader = ({style, title, history, onBackPress}) => {
+  const handleBackPress = () => {
+    onBackPress();
+    history.goBack();
+  };
+
   return (
-    <View style={styles.container}>
+    <View style={[style, styles.container]}>
       <Navbar
+        statusBar={renderStatusBar()}
         containerStyle={styles.headerContainer}
         style={styles.header}
-        leftButton={renderHeaderLeft(() => navigation.goBack())}
+        leftButton={renderHeaderLeft(handleBackPress)}
         title={renderTitle(title)}
       />
     </View>
@@ -44,8 +58,10 @@ const TransparentHeader = ({title, navigation}) => {
 };
 
 TransparentHeader.propTypes = {
-  title: PropTypes.string,
-  navigation: PropTypes.object
+  title: PropTypes.string.isRequired,
+  history: PropTypes.shape({goBack: PropTypes.func.isRequired}).isRequired,
+  onBackPress: PropTypes.func,
+  style: PropTypes.object
 };
 
-export default TransparentHeader;
+export default withRouter(TransparentHeader);

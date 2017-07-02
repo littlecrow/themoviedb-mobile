@@ -1,5 +1,14 @@
 import ActionTypes from './ActionTypes';
 
+export const setMovieDetail = (movie) => ({
+  type: ActionTypes.SET_MOVIE_DETAIL,
+  payload: movie
+});
+
+export const emptyCurrentMovie = () => ({
+  type: ActionTypes.EMPTY_CURRENT_MOVIE
+});
+
 export const fetchMovieDetailRequested = () => ({
   type: ActionTypes.FETCH_MOVIE_DETAIL_REQUESTED
 });
@@ -48,6 +57,8 @@ export const fetchMovieReviewsRejected = (err) => ({
 
 
 export default {
+  setMovieDetail,
+  emptyCurrentMovie,
   fetchMovieDetailRequested,
   fetchMovieDetailFulfilled,
   fetchMovieDetailRejected,

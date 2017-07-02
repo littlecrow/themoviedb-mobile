@@ -7,10 +7,12 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
+import { View as AnimatableView } from 'react-native-animatable';
+import { withRouter } from 'react-router-dom';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
-import { NavigationActionCreators } from '../../../Redux/Navigation';
+import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
 
 const _renderImage = (image) => {
   if (image !== null) {
@@ -34,26 +36,33 @@ const _renderInfo = (item) => {
   );
 };
 
-const MovieItem = ({ movie, navigateToDetail }) => {
+const MovieItem = ({ history, movie, setMovieDetail }) => {
+  const handleOnPress = () => {
+    setMovieDetail(movie);
+    history.push('/movies/detail/' + movie.id);
+  };
   return (
-    <TouchableHighlight onPress={() => navigateToDetail(movie)}>
-      <View style={styles.itemContainer}>
-        <View style={styles.imageArea}>
-          {_renderImage(movie.poster_path)}
+    <AnimatableView animation="fadeIn" duration={300}>
+      <TouchableHighlight onPress={handleOnPress}>
+        <View style={styles.itemContainer}>
+          <View style={styles.imageArea}>
+            {_renderImage(movie.poster_path)}
+          </View>
+          {_renderInfo(movie)}
         </View>
-        {_renderInfo(movie)}
-      </View>
-    </TouchableHighlight>
+      </TouchableHighlight>
+    </AnimatableView>
   );
 };
 
 MovieItem.propTypes = {
   movie: PropTypes.object,
-  navigateToDetail: PropTypes.func
+  setMovieDetail: PropTypes.func,
+  history: PropTypes.shape({push: PropTypes.func.isRequired}).isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  navigateToDetail: (movie) => dispatch(NavigationActionCreators.navigateToDetailScreen(movie))
+  setMovieDetail: (movie) => dispatch(setMovieDetail(movie))
 });
 
-export default connect(undefined, mapDispatchToProps)(MovieItem);
+export default withRouter(connect(undefined, mapDispatchToProps)(MovieItem));

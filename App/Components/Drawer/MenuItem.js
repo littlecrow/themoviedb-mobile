@@ -1,43 +1,46 @@
 import React from 'react';
-import { View, TouchableNativeFeedback, TouchableOpacity, Image, Text } from 'react-native';
+import { View, TouchableNativeFeedback, TouchableOpacity, Text } from 'react-native';
+import { Link } from 'react-router-native';
 import styles from './Styles/MenuStyles';
 import PropTypes from 'prop-types';
 import colors from '../../Themes/Colors';
 import { Platform } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 const isAndroid = Platform.OS === 'android';
 
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
 
-const MenuItem = ({name, icon, active, onPress}) => {
+const MenuItem = ({name, icon, active, to}) => {
   if (active) {
     return (
       <View
         style={[styles.item, styles.activeItem]}>
-        <Image style={styles.icon} source={ icon } />
+        <Icon containerStyle={styles.icon} {...icon}/>
         <Text style={styles.activeItemLabel}>{name}</Text>
       </View>
     );
   }
-  const background = isAndroid ? TouchableNativeFeedback.Ripple(colors.primary, true) : null;
+  const background = isAndroid ? TouchableNativeFeedback.Ripple(colors.peterRiver, true) : null;
   return (
-    <TouchableWrapper
-      onPress={onPress}
+    <Link
+      to={to}
+      component={TouchableWrapper}
       useForeground={true}
       background={background}>
       <View style={[styles.item]}>
-        <Image style={styles.icon} source={ icon } />
+        <Icon containerStyle={styles.icon} {...icon}/>
         <Text>{name}</Text>
       </View>
-    </TouchableWrapper>
+    </Link>
   );
 };
 
 MenuItem.propTypes = {
   name: PropTypes.string.isRequired,
-  icon: PropTypes.any,
+  icon: PropTypes.object,
   active: PropTypes.bool,
-  onPress: PropTypes.func
+  to: PropTypes.string
 };
 
 export default MenuItem;
