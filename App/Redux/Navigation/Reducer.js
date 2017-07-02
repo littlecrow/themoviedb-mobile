@@ -5,7 +5,7 @@ export const KEY = 'nav';
 
 const INITIAL_STATE = {
   drawer: {
-    isOpen: true
+    isOpen: false
   }
 };
 
@@ -16,6 +16,13 @@ export default (state = INITIAL_STATE, action) => {
       drawer: {
         ...state.drawer,
         isOpen: !state.drawer.isOpen
+      }
+    };
+  case ActionTypes.SET_DRAWER_STATE:
+    return {
+      drawer: {
+        ...state.drawer,
+        isOpen: action.isOpen
       }
     };
   default:

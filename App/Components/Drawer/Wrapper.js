@@ -6,12 +6,13 @@ import { SideMenu } from 'react-native-elements';
 import Menu from './Menu';
 import { Metrics } from '../../Themes';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
-import { toggleDrawer } from '../../Redux/Navigation/ActionCreators';
+import { setDrawerState } from '../../Redux/Navigation/ActionCreators';
 
-const Wrapper = ({ children, isOpen }) => {
+const Wrapper = ({ children, isOpen, setDrawerState }) => {
   return (
     <SideMenu
       isOpen={isOpen}
+      onChange={(isOpen) => !isOpen ? setDrawerState(isOpen) : null}
       menu={<Menu/>}
       openMenuOffset={Metrics.screenWidth * 0.75}>
       {children}
@@ -21,6 +22,7 @@ const Wrapper = ({ children, isOpen }) => {
 
 Wrapper.propTypes = {
   isOpen: PropTypes.bool.isRequired,
+  setDrawerState: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
 };
 
@@ -32,8 +34,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleDrawer: () => {
-      dispatch(toggleDrawer());
+    setDrawerState: (isOpen) => {
+      dispatch(setDrawerState(isOpen));
     }
   };
 };
