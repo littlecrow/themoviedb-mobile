@@ -10,6 +10,10 @@ export const navigateToDetailScreen = (movie) => ({
   payload: movie
 });
 
+export const navigateToSearchScreen = () => ({
+  type: ActionTypes.NAVIGATE_TO_SEARCH_SCREEN
+});
+
 export const navigateBack = () => ({
   type: ActionTypes.NAVIGATE_BACK
 });
@@ -26,6 +30,7 @@ export const navigateInDrawer = (routeName) => ({
 export default {
   navigateToDrawerScreen,
   navigateToDetailScreen,
+  navigateToSearchScreen,
   navigateBack,
   toggleDrawer,
   navigateInDrawer

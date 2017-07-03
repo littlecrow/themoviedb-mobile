@@ -45,6 +45,16 @@ export default (state = INITIAL_STATE, action) => {
         state.navigation
       )
     };
+  case ActionTypes.NAVIGATE_TO_SEARCH_SCREEN:
+    return {
+      ...state,
+      navigation: AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: ROUTES.SearchScreen
+        }),
+        state.navigation
+      )
+    };
   case ActionTypes.NAVIGATE_BACK:
     return {
       ...state,
