@@ -4,21 +4,21 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Navbar from 'react-native-navbar';
 import styles from './Styles/HeaderStyles';
-import DrawerButton from './Button';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 import { NAVIGATION_KEY } from '../../Redux/Navigation';
 import HeaderRight from '../Drawer/HeaderRight';
+import DrawerButton from './Button';
 
 const HEADER_TITLE_LENGTH = 30;
 
 const renderLeftButton = (element = null) => (
-  <View style={styles.componentContainer}>
+  <View style={[styles.componentContainer, styles.headerLeft]}>
     {element ? element : <DrawerButton/>}
   </View>
 );
 
 const renderRightButton = (element = null) => (
-  <View style={styles.componentContainer}>
+  <View style={[styles.componentContainer, styles.headerRight]}>
     {element ? element : <HeaderRight/>}
   </View>
 );
@@ -28,23 +28,14 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const ReduxHeader = ({ drawer, disableRedux, title, headerLeft, headerRight }) => {
-
-  let _title = '';
-  if (!disableRedux) {
-    const { routes, index } = drawer.routes[0];
-    _title = routes[index].routeName;
-  }
-  else {
-    _title = title;
-  }
+const ReduxHeader = ({ headerLeft, headerRight }) => {
   return (
     <View style={styles.container}>
       <Navbar
         style={styles.header}
         leftButton={renderLeftButton(headerLeft)}
         rightButton={renderRightButton(headerRight)}
-        title={renderTitle(_title)}
+        title={renderTitle('Discover')}
       />
     </View>
   );
@@ -58,10 +49,4 @@ ReduxHeader.propTypes = {
   headerLeft: PropTypes.element,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    drawer: state[NAVIGATION_KEY].drawer
-  };
-};
-
-export default connect(mapStateToProps)(ReduxHeader);
+export default ReduxHeader;

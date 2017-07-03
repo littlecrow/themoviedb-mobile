@@ -1,29 +1,34 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Constants } from 'expo';
-import metrics  from '../../../Themes/Metrics';
-import colors  from '../../../Themes/Colors';
-import fonts  from '../../../Themes/Fonts';
+import { Metrics, Colors, Fonts } from '../../../Themes';
+
+const isAndroid = Platform.OS === 'android';
 
 const TransparentHeaderStyles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: Constants.statusBarHeight,
-    left: 0, right: 0,
-    flexDirection: 'row',
-    backgroundColor: 'rgba(0,0,0,0.35)'
+    borderTopWidth: isAndroid ? Constants.statusBarHeight : 0,
+    borderTopColor: isAndroid ? Colors.inverse : null, // StatusBar color
+  },
+  headerContainer: {
+    backgroundColor: 'rgba(0,0,0,0.5)'
+  },
+  componentContainer: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   back: {
-    ...fonts.style.h5,
-    color: colors.secondary,
-    marginRight: metrics.baseMargin,
-    marginLeft: metrics.baseMargin/2,
-    padding: metrics.baseMargin
+    // paddingTop: Metrics.doubleBasePadding,
+    // paddingBottom: Metrics.doubleBasePadding,
+    paddingLeft: Metrics.doubleBasePadding,
+    paddingRight: Metrics.doubleBasePadding
   },
   title: {
-    ...fonts.style.h5,
-    color: colors.secondary,
-    padding: metrics.baseMargin
-  }
+    color: Colors.secondary,
+    marginRight: 'auto',
+    marginLeft: Metrics.headerTitleMargin
+  },
 });
 
+export const backIconSize = Fonts.size.h4;
 export default TransparentHeaderStyles;

@@ -1,10 +1,7 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import metrics  from '../../../../Themes/Metrics';
 import colors  from '../../../../Themes/Colors';
 import fonts  from '../../../../Themes/Fonts';
-import { Constants } from 'expo';
-
-const isAndroid = (Platform.OS === 'android');
 
 const textColors = {
   color: colors.secondary,
@@ -15,10 +12,6 @@ const MovieDetailScreenStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: metrics.screenWidth,
-    height: metrics.screenHeight + ( isAndroid ? Constants.statusBarHeight : 0),
-    // Config statusbar color
-    borderTopWidth: isAndroid ? Constants.statusBarHeight : 0,
-    borderTopColor: 'rgba(0,0,0,0.6)', // StatusBar color
   },
   line: {
     borderBottomColor: colors.cloudes,
@@ -34,7 +27,7 @@ const MovieDetailScreenStyles = StyleSheet.create({
   blurWrapper: {
     width: metrics.screenWidth,
     height: metrics.screenHeight,
-    backgroundColor: 'rgba(0,0,0,0.7)'
+    backgroundColor: 'rgba(0,0,0,0.7)',
   },
   backdropImageWrapper: {
     position: 'absolute',
@@ -43,8 +36,8 @@ const MovieDetailScreenStyles = StyleSheet.create({
   previewWrapper: {
     flexDirection: 'row',
     margin: metrics.baseMargin,
-    marginTop: isAndroid ? 60 : metrics.baseMargin,
-    height: 200
+    height: 200,
+    marginTop: 50
   },
   horizontalWrapper: {
     flexDirection: 'row',
