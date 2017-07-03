@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_KEY, API_DISCOVER, LANGUAGE, API_MOVIE } from 'react-native-dotenv';
+import { API_KEY, API_DISCOVER, LANGUAGE } from 'react-native-dotenv';
 import ActionCreators from './ActionCreators';
 import Constant from './Constant';
 

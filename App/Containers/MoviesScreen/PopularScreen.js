@@ -18,7 +18,6 @@ class PopularScreen extends Component {
 
   componentDidMount() {
     const { fetchPopularMovies } = this.props;
-
     fetchPopularMovies();
   }
 
