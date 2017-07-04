@@ -7,8 +7,7 @@ import {
   Image,
   TouchableHighlight
 } from 'react-native';
-import { View as AnimatableView } from 'react-native-animatable';
-import { withRouter } from 'react-router-dom';
+import { NavigationActions } from 'react-navigation';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
@@ -36,33 +35,34 @@ const _renderInfo = (item) => {
   );
 };
 
-const MovieItem = ({ history, movie, setMovieDetail }) => {
+const MovieItem = ({ navigateToDetail, movie, setMovieDetail }) => {
   const handleOnPress = () => {
     setMovieDetail(movie);
-    history.push('/movies/detail/' + movie.id);
+    navigateToDetail();
   };
   return (
-    <AnimatableView animation="fadeIn" duration={300}>
-      <TouchableHighlight onPress={handleOnPress}>
-        <View style={styles.itemContainer}>
-          <View style={styles.imageArea}>
-            {_renderImage(movie.poster_path)}
-          </View>
-          {_renderInfo(movie)}
+    <TouchableHighlight onPress={handleOnPress}>
+      <View style={styles.itemContainer}>
+        <View style={styles.imageArea}>
+          {_renderImage(movie.poster_path)}
         </View>
-      </TouchableHighlight>
-    </AnimatableView>
+        {_renderInfo(movie)}
+      </View>
+    </TouchableHighlight>
   );
 };
 
 MovieItem.propTypes = {
   movie: PropTypes.object,
   setMovieDetail: PropTypes.func,
-  history: PropTypes.shape({push: PropTypes.func.isRequired}).isRequired
+  navigateToDetail: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setMovieDetail: (movie) => dispatch(setMovieDetail(movie))
+  setMovieDetail: (movie) => dispatch(setMovieDetail(movie)),
+  navigateToDetail: () => dispatch(NavigationActions.navigate({
+    routeName: 'Movie Detail'
+  }))
 });
 
-export default withRouter(connect(undefined, mapDispatchToProps)(MovieItem));
+export default connect(undefined, mapDispatchToProps)(MovieItem);

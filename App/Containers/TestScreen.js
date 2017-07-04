@@ -1,13 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { View } from 'react-native-animatable';
+import { Text, View } from 'react-native';
 import DrawerHeader from '../Components/Drawer/Header';
 import DrawerWrapper from '../Components/Drawer/Wrapper';
 
 const TestScreen = () => (
   <DrawerWrapper>
     <DrawerHeader/>
-    <View animation="fadeIn" duration={300} style={{flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{flex: 1, backgroundColor: 'red', alignItems: 'center', justifyContent: 'center'}}>
       <Text>
         Test Screen
       </Text>

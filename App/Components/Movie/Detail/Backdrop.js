@@ -35,9 +35,12 @@ const BackdropDetail = props => {
   const production_countries = _renderMovieInfo(detail, 'production_countries');
   return (
     <View style={styles.container}>
-      <View style={styles.backdropImageWrapper}>
-        <Image source={{uri: THEMOVIEDB_IMAGE_SRC + detail.backdrop_path}} style={styles.backdropImage}/>
-      </View>
+      {detail.backdrop_path ?
+        <View style={styles.backdropImageWrapper}>
+          <Image source={{uri: THEMOVIEDB_IMAGE_SRC + detail.backdrop_path}} style={styles.backdropImage}/>
+        </View>
+        : null
+      }
       <ScrollView style={styles.blurWrapper}>
         <View style={styles.previewWrapper}>
           <Image resizeMode="contain" source={{uri: THEMOVIEDB_IMAGE_SRC + detail.poster_path}} style={styles.posterImage}/>

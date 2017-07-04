@@ -9,8 +9,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import { View as AnimatableView } from 'react-native-animatable';
-import { withRouter } from 'react-router-dom';
+import { NavigationActions } from 'react-navigation';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
@@ -70,22 +69,20 @@ class GridItems extends Component {
         width: this._calculateMetrics().itemWidth
       }
     });
-    const { movie, history, setMovieDetail } = this.props;
+    const { movie, navigateToDetail, setMovieDetail } = this.props;
     const handleItemPress = (item) => {
       setMovieDetail(item);
-      history.push('/movies/detail/' + item.id);
+      navigateToDetail();
     };
     return movie.data.map((item, index) => (
-      <AnimatableView animation="fadeIn" duration={300} key={index}>
-        <TouchableHighlight onPress={() => handleItemPress(item)}
-          style={[
-            styles.itemContainer,
-            style.itemContainer,
-            index === 0 ? styles.firstItem : null,
-            index === movie.data.length - 1 ? styles.lastItem : null
-          ]}>{this._renderInfo(item)}
-        </TouchableHighlight>
-      </AnimatableView>
+      <TouchableHighlight onPress={() => handleItemPress(item)} key={index}
+        style={[
+          styles.itemContainer,
+          style.itemContainer,
+          index === 0 ? styles.firstItem : null,
+          index === movie.data.length - 1 ? styles.lastItem : null
+        ]}>{this._renderInfo(item)}
+      </TouchableHighlight>
     ));
   }
 
@@ -102,7 +99,7 @@ GridItems.propTypes = {
   movie: PropTypes.object,
   itemsPerRow: PropTypes.number,
   setMovieDetail: PropTypes.func,
-  history: PropTypes.shape({push: PropTypes.func.isRequired}).isRequired
+  navigateToDetail: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -110,7 +107,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setMovieDetail: (movie) => dispatch(setMovieDetail(movie))
+  setMovieDetail: (movie) => dispatch(setMovieDetail(movie)),
+  navigateToDetail: () => dispatch(NavigationActions.navigate({
+    routeName: 'Movie Detail'
+  }))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GridItems));
+export default connect(mapStateToProps, mapDispatchToProps)(GridItems);

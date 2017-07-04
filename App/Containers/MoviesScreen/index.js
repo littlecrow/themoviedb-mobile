@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import PopularScreen from './PopularScreen';
 import TopVotedScreen from './TopVotedScreen';
@@ -6,7 +7,6 @@ import TopRevenueScreen from './TopRevenueScreen';
 import styles from './Styles/MoviesScreenStyles';
 import DrawerHeader from '../../Components/Drawer/Header';
 import DrawerWrapper from '../../Components/Drawer/Wrapper';
-import { View } from 'react-native-animatable';
 
 const TabView = TabNavigator({
   PopularScreen: {
@@ -29,7 +29,7 @@ const MoviesScreen = () => {
   return (
     <DrawerWrapper>
       <DrawerHeader/>
-      <View animation="fadeIn" duration={300} style={styles.container}>
+      <View style={styles.container}>
         <TabView/>
       </View>
     </DrawerWrapper>

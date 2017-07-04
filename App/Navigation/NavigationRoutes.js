@@ -1,41 +1,32 @@
-
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import TestScreen from '../Containers/TestScreen';
 
-export const AppRoutes = [
-  {
-    name: 'Discover',
+export const AppRoutes = {
+  'Discover': {
     path: '/',
-    component: MoviesScreen,
-    exact: true
+    screen: MoviesScreen,
   },
-  {
-    name: 'Movie Detail',
+  'Movie Detail': {
     path: '/movies/detail/:id',
-    component: MovieDetailScreen,
-    exact: true
+    screen: MovieDetailScreen,
   },
-  {
-    name: 'Test',
+  'Test': {
     path: '/test',
-    component: TestScreen,
-    exact: true
+    screen: TestScreen,
   }
-];
+};
 
 
 export const DrawerRoutes = [
   {
     name: 'Discover',
-    to: '/',
     icon: {
       name: 'rowing'
     }
   },
   {
     name: 'Test',
-    to: '/test',
     icon: {
       name:'ios-american-football',
       type:'ionicon'

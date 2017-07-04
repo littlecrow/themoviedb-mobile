@@ -1,17 +1,26 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Route} from 'react-router-native';
+import { connect } from 'react-redux';
+import { View, ActivityIndicator } from 'react-native';
+import { addNavigationHelpers } from 'react-navigation';
 import styles from './Styles/NavigationStyles';
-import { AppRoutes } from './NavigationRoutes';
+import { AppNavigator, KEY } from '../Redux/Navigation/Reducer';
 
-const AppNavigation = () => (
+const AppNavigation = ({nav, dispatch}) => (
   <View style={styles.container}>
-    { AppRoutes.map(({...rest}, index) => (
-      <Route
-        {...rest}
-        key={index}/>
-    ))}
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator/>
+    </View>
+    <AppNavigator navigation={addNavigationHelpers({
+      dispatch,
+      state: nav,
+    })}/>
   </View>
 );
 
-export default AppNavigation;
+const mapStateToProps = (state) => {
+  return {
+    nav: state[KEY].navigation
+  };
+};
+
+export default connect(mapStateToProps)(AppNavigation);
