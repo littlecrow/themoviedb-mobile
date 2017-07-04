@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import colors from '../../Themes/Colors';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 
-const MAX_TITLE_LENGTH = 40;
+const MAX_TITLE_LENGTH = 35;
 
 const isAndroid = Platform.OS === 'android';
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;

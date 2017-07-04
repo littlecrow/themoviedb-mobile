@@ -12,7 +12,14 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-  case ActionTypes.SET_MOVIE_DETAIL:
+  case ActionTypes.SET_MOVIE_DETAIL: {
+    // Get saved movied when store request the same movie id
+    if (state.prev && action.payload.id === state.prev.detail.id) {
+      return {
+        ...state,
+        current: state.prev
+      };
+    }
     return {
       ...state,
       current: {
@@ -20,6 +27,7 @@ export default (state = INITIAL_STATE, action) => {
         detail: action.payload
       }
     };
+  }
   case ActionTypes.EMPTY_CURRENT_MOVIE:
     return {
       ...state,
