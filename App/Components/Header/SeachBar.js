@@ -8,11 +8,13 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
-import { FormInput } from 'react-native-elements'
+import { connect } from 'react-redux';
+import { FormInput } from 'react-native-elements';
 import { Colors } from '../../Themes';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import NavigationBar from 'react-native-navbar';
 import styles, { backIconSize } from './Styles/SearchBarStyles';
+import { SearchActionCreators } from '../../Redux/Search';
 
 const isAndroid = Platform.OS === 'android';
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
@@ -21,6 +23,12 @@ const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(Colors.se
 class SearchBar extends Component {
   _handleFocus() {
 
+  }
+
+  _handleChange(text) {
+    setTimeout(() => {
+      console.log('text: ', text);
+    }, 3000);
   }
 
   _renderHeaderLeft(onPress) {
@@ -46,7 +54,8 @@ class SearchBar extends Component {
           underlineColorAndroid={Colors.secondary}
           style={styles.searchInput}
           autoFocus={true}
-          onFocus={this._handleFocus()}
+          onFocus={this._handleFocus}
+          onChangeText={this._handleChange}
         />
       </View>
     );
@@ -70,4 +79,9 @@ SearchBar.propTypes = {
 
 };
 
-export default SearchBar;
+const mapDispatchToProps = (dispatch) => ({
+  setKeyword: (keyword) => dispatch(SearchActionCreators.setKeyword(keyword)),
+  fetchSearchResultRequested: () => dispatch(SearchActionCreators)
+});
+
+export default connect(undefined, mapDispatchToProps)(SearchBar);
