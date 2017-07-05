@@ -1,12 +1,13 @@
 
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
+import SearchScreen from '../Containers/SearchScreen';
 import TestScreen from '../Containers/TestScreen';
 
 export const AppRoutes = [
   {
     name: 'Discover',
-    path: '/',
+    path: '/discover',
     component: MoviesScreen,
     exact: true
   },
@@ -14,6 +15,12 @@ export const AppRoutes = [
     name: 'Movie Detail',
     path: '/movies/detail/:id',
     component: MovieDetailScreen,
+    exact: true
+  },
+  {
+    name: 'Search',
+    path: '/',
+    component: SearchScreen,
     exact: true
   },
   {

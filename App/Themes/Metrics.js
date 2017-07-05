@@ -16,6 +16,7 @@ const metrics = {
   doubleBaseMargin: 20,
   smallMargin: 5,
   smallPadding: 5,
+  largeMargin: 70,
   doubleSection: 50,
   horizontalLineHeight: 1,
   searchBarHeight: 30,

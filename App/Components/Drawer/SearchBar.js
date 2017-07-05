@@ -1,30 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
-import { NavigationActionCreators } from '../../Redux/Navigation';
 
-class SearchBar extends Component {
-  render() {
-    const { navigateToSearchScreen } = this.props;
-
-    return (
-      <TouchableOpacity
-        onPress={() => navigateToSearchScreen()}
-      >
-        <EvilIcons name='search' size={28} color='white'/>
-      </TouchableOpacity>
-    );
+const SearchBar = ({ history }) => {
+  const _handlePress = () => {
+    history.push('/movies/search');
   }
-}
 
-SearchBar.propTypes = {
-  navigateToSearchScreen: PropTypes.func
+  return (
+    <TouchableOpacity
+      onPress={() => _handlePress()}
+    >
+      <EvilIcons name='search' size={28} color='white'/>
+    </TouchableOpacity>
+  );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  navigateToSearchScreen: () => dispatch(NavigationActionCreators.navigateToSearchScreen())
-});
+SearchBar.propTypes = {
+  history: PropTypes.shape({push: PropTypes.func.isRequired}).isRequired
+};
 
-export default connect(undefined, mapDispatchToProps)(SearchBar);
+export default withRouter(SearchBar);
