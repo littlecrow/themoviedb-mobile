@@ -42,6 +42,13 @@ class AuthScreen extends Component {
     this.setState({visibleForm});
   }
 
+  handleLoginSubmit(username, password){
+  }
+
+  handleSignUpSubmit(username, password, confirmPassword){
+
+  }
+
   render() {
     const { visibleForm } = this.state;
 
@@ -72,6 +79,7 @@ class AuthScreen extends Component {
             <SignUpForm
               ref={(ref) => this.formRef = ref}
               onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
+              onSignupPress={this.handleSignUpSubmit}
               isEnabled={true}
               isLoading={true}
             />
@@ -81,6 +89,7 @@ class AuthScreen extends Component {
             <LoginForm
               ref={(ref) => this.formRef = ref}
               onSignUpLinkPress={() => this._setVisibleForm('SIGNUP')}
+              onLoginPress={this.handleLoginSubmit}
               isEnabled={true}
               isLoading={true}
             />

@@ -9,7 +9,7 @@ import CustomTextInput from '../../Components/CustomTextInput';
 
 class LoginForm extends Component {
   state = {
-    email: '',
+    username: '',
     password: '',
   }
 
@@ -24,9 +24,9 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
-    const { onSignUpLinkPress } = this.props;
-    const isValid = email !== '' && password !== '';
+    const { username, password } = this.state;
+    const { onSignUpLinkPress, onLoginPress } = this.props;
+    const isValid = username !== '' && password !== '';
 
     return (
       <View style={styles.container}>
@@ -34,20 +34,18 @@ class LoginForm extends Component {
           style={styles.form}
           ref={(ref) => { this.formRef = ref; }}
         >
-          {/* input email */}
           <CustomTextInput
-            ref={(ref) => this.emailInputRef = ref}
-            name={'email'}
-            placeholder={'Email'}
+            ref={(ref) => this.usernameInputRef = ref}
+            name={'username'}
+            placeholder={'Username'}
             keyboardType={'email-address'}
             returnKeyType={'next'}
             onSubmitEditing={() => this.passwordInputRef.focus()}
-            onChangeText={(value) => this.setState({ email: value })}
+            onChangeText={(value) => this.setState({ username: value })}
           />
-          {/* input email */}
           <CustomTextInput
             ref={(ref) => this.passwordInputRef = ref}
-            name={'email'}
+            name={'password'}
             placeholder={'Password'}
             secureTextEntry={true}
             returnKeyType={'done'}
@@ -67,6 +65,8 @@ class LoginForm extends Component {
               text={'LOGIN'}
               buttonStyle={styles.loginButton}
               textStyle={styles.loginButtonText}
+              isEnabled={isValid}
+              onPress={() => onLoginPress(username, password)}
             />
           </View>
           <Text
@@ -84,7 +84,8 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  onSignUpLinkPress: PropTypes.func
+  onSignUpLinkPress: PropTypes.func,
+  onLoginPress: PropTypes.func
 };
 
 export default LoginForm;

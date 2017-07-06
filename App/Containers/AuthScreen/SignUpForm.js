@@ -8,7 +8,7 @@ import CustomTextInput from '../../Components/CustomTextInput';
 
 class SignUpForm extends Component {
   state = {
-    email: '',
+    username: '',
     password: '',
     confirmPassword: ''
   }
@@ -24,9 +24,9 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { email, password, confirmPassword } = this.state;
-    const { onLoginLinkPress } = this.props;
-    const isValid = email !== '' && password !== '' && confirmPassword !== '';
+    const { username, password, confirmPassword } = this.state;
+    const { onLoginLinkPress, onSignupPress } = this.props;
+    const isValid = username !== '' && password !== '' && confirmPassword !== '';
 
     return (
       <View style={styles.container}>
@@ -34,17 +34,17 @@ class SignUpForm extends Component {
           style={styles.form}
           ref={(ref) => { this.formRef = ref; }}
         >
-          {/* input email */}
+          {/* input username */}
           <CustomTextInput
-            ref={(ref) => this.emailInputRef = ref}
-            name={'email'}
-            placeholder={'Email'}
+            ref={(ref) => this.usernameInputRef = ref}
+            name={'username'}
+            placeholder={'Username'}
             keyboardType={'email-address'}
             returnKeyType={'next'}
             onSubmitEditing={() => this.passwordInputRef.focus()}
-            onChangeText={(value) => this.setState({ email: value })}
+            onChangeText={(value) => this.setState({ username: value })}
           />
-          {/* input email */}
+          {/* input username */}
           <CustomTextInput
             ref={(ref) => this.passwordInputRef = ref}
             name={'password'}
@@ -75,6 +75,8 @@ class SignUpForm extends Component {
               text={'SIGN UP'}
               buttonStyle={styles.signUpButton}
               textStyle={styles.signUpButtonText}
+              isEnabled={isValid}
+              onPress={() => onSignupPress(username, password)}
             />
           </View>
           <Text
@@ -92,7 +94,8 @@ class SignUpForm extends Component {
 }
 
 SignUpForm.propTypes = {
-  onLoginLinkPress: PropTypes.func
+  onLoginLinkPress: PropTypes.func,
+  onSignupPress: PropTypes.func
 };
 
 export default SignUpForm;
