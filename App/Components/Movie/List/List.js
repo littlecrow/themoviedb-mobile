@@ -7,22 +7,19 @@ import {
   Image,
   ActivityIndicator
 } from 'react-native';
-import { Images, Metrics } from '../../../Themes';
+import { Images } from '../../../Themes';
 import styles from './Styles/ListStyles';
 import { handleList } from '../../../Transforms/ListConverter';
 import {
   MoviesActions,
   MoviesConstant
 } from '../../../Redux/Movies';
-// import DefaultItems from '../ListItem/Default';
+import DefaultItems from '../ListItem/Default';
 import GridItems from '../ListItem/Grid';
-
-const { itemInRow } = Metrics;
 
 class MovieList extends Component {
   _fetchMoreItems() {
     const { filterName, fetchPopularMovies, fetchTopVotedMovies, fetchTopRevenueMovies } = this.props;
-
     switch (filterName) {
     case MoviesConstant.POPULARITY_DESC:
       fetchPopularMovies();
@@ -46,13 +43,19 @@ class MovieList extends Component {
     );
   }
 
-  _renderItem = ({item}) => <GridItems movie={item}/>
+  _renderItem = ({item}) => {
+    const { itemsPerRow } = this.props;
+    if(itemsPerRow === 1) {
+      return <DefaultItems movie={item}/>;
+    }
+    return <GridItems movie={item}/>;
+  }
 
   _renderListItem() {
-    const { movies } = this.props;
+    const { movies, itemsPerRow } = this.props;
     return (
       <FlatList
-        data={handleList(movies, itemInRow)}
+        data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
         renderItem={this._renderItem}
         keyExtractor={(item, index) => index}
         ListFooterComponent={this._renderFooter}
@@ -61,8 +64,6 @@ class MovieList extends Component {
       />
     );
   }
-
-  // uri: 'https://s-media-cache-ak0.pinimg.com/736x/ad/e4/d6/ade4d6641da6f986b28958bee2daef6c.jpg'
 
   _showData() {
     return (
@@ -89,10 +90,15 @@ class MovieList extends Component {
 MovieList.propTypes = {
   filterName: PropTypes.string,
   movies: PropTypes.array,
+  itemsPerRow: PropTypes.number,
   fetchPopularMovies: PropTypes.func,
   fetchTopVotedMovies: PropTypes.func,
   fetchTopRevenueMovies: PropTypes.func
 };
+
+const mapStateToProps = (state) => ({
+  itemsPerRow: state.list.quantity
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies()),
@@ -100,4 +106,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
 });
 
-export default connect(undefined, mapDispatchToProps)(MovieList);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);

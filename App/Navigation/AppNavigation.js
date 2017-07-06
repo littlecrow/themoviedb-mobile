@@ -1,21 +1,32 @@
 import React from 'react';
-import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { AppNavigator } from '../Redux/Navigation/Reducer';
-import { NAVIGATION_KEY } from '../Redux/Navigation';
+import { View, ActivityIndicator } from 'react-native';
+import { addNavigationHelpers } from 'react-navigation';
+import styles from './Styles/NavigationStyles';
+import { AppNavigator, KEY } from '../Redux/Navigation/Reducer';
 
-const AppNavigation = ({dispatch, nav}) => (
-  <AppNavigator navigation={ addNavigationHelpers({ dispatch, state: nav }) }/>
+const AppNavigation = ({nav, dispatch}) => (
+  <View style={styles.container}>
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator/>
+    </View>
+    <AppNavigator navigation={addNavigationHelpers({
+      dispatch,
+      state: nav,
+    })}/>
+  </View>
 );
 
 AppNavigation.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  nav: PropTypes.object.isRequired,
+  nav: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
-const mapStateToProps = state => ({
-  nav: state[NAVIGATION_KEY].navigation,
-});
+const mapStateToProps = (state) => {
+  return {
+    nav: state[KEY].navigation
+  };
+};
 
 export default connect(mapStateToProps)(AppNavigation);

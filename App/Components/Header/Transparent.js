@@ -1,60 +1,74 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  Text,
   View,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  Platform
 } from 'react-native';
+import Navbar from 'react-native-navbar';
 import PropTypes from 'prop-types';
-import styles from './Styles/TransparentStyles';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+import styles, { backIconSize } from './Styles/TransparentStyles';
 import { Ionicons } from '@expo/vector-icons';
-import fonts from '../../Themes/Fonts';
 import colors from '../../Themes/Colors';
+import { reduceByCharacters } from '../../Transforms/TextConverter';
 
-const MAX_TITLE_LENGTH = 30;
+const MAX_TITLE_LENGTH = 35;
 
-class TransparentHeader extends Component {
+const isAndroid = Platform.OS === 'android';
+const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
+const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(colors.secondary, true) : null;
 
-  constructor(props) {
-    super(props);
+const renderHeaderLeft = (onPress) => (
+  <TouchableWrapper
+    onPress={onPress}
+    background={TouchableBackGround}>
+    <View style={[styles.componentContainer, styles.back]}>
+      <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
+    </View>
+  </TouchableWrapper>
+);
 
-    this.goBack = this.goBack.bind(this);
-  }
+const renderTitle = (title) => ({
+  title: reduceByCharacters(title, MAX_TITLE_LENGTH),
+  style: styles.title,
+});
 
-  goBack() {
-    this.props.navigation.goBack();
-  }
+const renderStatusBar = () => ({
+  hidden: !isAndroid
+});
 
-  shortenTitle (title) {
-    if (title.length > MAX_TITLE_LENGTH) {
-      return title.substr(0,MAX_TITLE_LENGTH) + '...';
-    }
-    return title;
-  }
+const TransparentHeader = ({style, title, navigateBack, onBackPress}) => {
+  const handleBackPress = () => {
+    navigateBack();
+    onBackPress();
+  };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableNativeFeedback
-          onPress={this.goBack}
-          useForeground={true}
-          background={TouchableNativeFeedback.Ripple(colors.secondary, true)}>
-          <View>
-            <Text style={styles.back}>
-              <Ionicons name="md-arrow-back" size={fonts.size.h4} color="white"></Ionicons>
-            </Text>
-          </View>
-        </TouchableNativeFeedback>
-        <View>
-          <Text style={styles.title}>{this.shortenTitle(this.props.title)}</Text>
-        </View>
-      </View>
-    );
-  }
-}
-
-TransparentHeader.propTypes = {
-  title: PropTypes.string,
-  navigation: PropTypes.object
+  return (
+    <View style={[style, styles.container]}>
+      <Navbar
+        statusBar={renderStatusBar()}
+        containerStyle={styles.headerContainer}
+        style={styles.header}
+        leftButton={renderHeaderLeft(handleBackPress)}
+        title={renderTitle(title)}
+      />
+    </View>
+  );
 };
 
-export default TransparentHeader;
+TransparentHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  onBackPress: PropTypes.func,
+  navigateBack: PropTypes.func,
+  style: PropTypes.object
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigateBack: () => dispatch(NavigationActions.back())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TransparentHeader)

@@ -4,17 +4,19 @@ import { Constants } from 'expo';
 
 export default StyleSheet.create({
   header: {
-    backgroundColor: Colors.primary,
-    height: 75,
-    // Config statusbar color
     borderTopWidth: Constants.statusBarHeight,
     borderTopColor: Colors.primaryDark, // StatusBar color
   },
-  title: {
-    color: Colors.secondary
+  container: {
+    flex: 1,
+    position: 'relative'
   },
-  back: {
-    color: Colors.secondary,
-    backgroundColor: Colors.secondary
+  loadingContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

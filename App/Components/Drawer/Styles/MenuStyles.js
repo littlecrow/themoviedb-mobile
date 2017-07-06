@@ -1,9 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Colors, Metrics } from '../../../Themes';
+import { Constants } from 'expo';
 
-const styles = StyleSheet.create({
+const isAndroid = Platform.OS === 'android';
+
+export default StyleSheet.create({
+  container: {
+    borderTopWidth: Constants.statusBarHeight,
+    borderTopColor: isAndroid ? Colors.primaryDark : 'transparent', // StatusBar color
+    height: Metrics.screenHeight - Constants.statusBarHeight,
+    backgroundColor: 'white'
+  },
   sideMenuHeader: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.peterRiver,
     height: 190,
     flexDirection: 'column',
     paddingTop: 40,
@@ -13,8 +22,6 @@ const styles = StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   roundAvatar: {
-    // marginTop: 40,
-    // marginLeft: 16,
     height: 60,
     width: 60,
     borderRadius: 60
@@ -32,7 +39,7 @@ const styles = StyleSheet.create({
     paddingBottom: Metrics.baseMargin
   },
   activeItem: {
-    backgroundColor: Colors.primary
+    backgroundColor: Colors.peterRiver
   },
   activeItemLabel: {
     color: Colors.secondary
@@ -42,5 +49,3 @@ const styles = StyleSheet.create({
     marginRight: 16
   }
 });
-
-export default styles;

@@ -1,69 +1,60 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Platform } from 'react-native';
+// import { Platform } from 'react-native';
 import TransparentHeader from '../Components/Header/Transparent';
 import DefaultMovieDetail from '../Components/Movie/Detail/Default';
 import BackdropMovieDetail from '../Components/Movie/Detail/Backdrop';
-import { MovieActions, MOVIE_KEY } from '../Redux/Movie';
+import { MovieActions, MovieActionCreators, MOVIE_KEY } from '../Redux/Movie';
+import styles from './Styles/MovieDetailScreenStyles';
 
-const isAndroid = Platform.OS === 'android';
+// const isAndroid = Platform.OS === 'android';
 
 class MovieDetailScreen extends Component {
 
-  static navigationOptions = ({navigation}) => {
-    const movie = navigation.state.params.movie;
-    if (isAndroid && movie.backdrop_path) {
-      return {
-        header: <TransparentHeader title={movie.title} navigation={navigation}/>
-      };
-    }
-    return {
-      headerTitle: movie.title,
-      headerBackTitle: 'Back'
-    };
-  };
-
   componentDidMount() {
-    const movie = this.props.navigation.state.params.movie;
-    this.props.fetchDetail(movie.id);
-    this.props.fetchCredits(movie.id);
-    this.props.fetchReviews(movie.id);
+    const { id } = this.props.detail;
+    this.props.fetchDetail(id);
+    this.props.fetchCredits(id);
+    this.props.fetchReviews(id);
   }
 
-
   render () {
-    let { movie } = this.props.navigation.state.params;
-    let detail = null;
-    if (this.props.detail) {
-      detail = this.props.detail;
+    const { detail } = this.props;
+    if (detail) {
+      this.movie = detail;
     }
-
     return (
-      <ScrollView>
-        {movie.backdrop_path ? <BackdropMovieDetail movie={movie} detail={detail} /> : <DefaultMovieDetail movie={movie} />}
-      </ScrollView>
+      <View style={styles.container}>
+        <ScrollView style={styles.content}>
+          {this.movie.backdrop_path ? <BackdropMovieDetail detail={this.movie} /> : <DefaultMovieDetail detail={this.movie} />}
+        </ScrollView>
+        <View style={styles.header}>
+          <TransparentHeader title={this.movie.title} onBackPress={() => this.props.emptyCurrentMovie()}/>
+        </View>
+      </View>
     );
   }
 }
 
 MovieDetailScreen.propTypes = {
-  navigation: PropTypes.object,
   detail: PropTypes.object,
   fetchDetail: PropTypes.func,
   fetchCredits: PropTypes.func,
-  fetchReviews: PropTypes.func
+  fetchReviews: PropTypes.func,
+  emptyCurrentMovie: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
-  detail: state[MOVIE_KEY].current.detail
+  detail: state[MOVIE_KEY].current.detail || null
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchDetail: (movieId) => dispatch(MovieActions.fetchDetail(movieId)),
   fetchCredits: (movieId) => dispatch(MovieActions.fetchCredits(movieId)),
   fetchReviews: (movieId) => dispatch(MovieActions.fetchReviews(movieId)),
+  emptyCurrentMovie: () => dispatch(MovieActionCreators.emptyCurrentMovie())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailScreen);

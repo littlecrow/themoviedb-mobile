@@ -1,31 +1,19 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { NavigationActionCreators } from '../../Redux/Navigation';
 import styles from './Styles/MenuStyles';
 import { Images } from '../../Themes';
-import { NAVIGATION_KEY } from '../../Redux/Navigation';
 import MenuItem from './MenuItem';
+import { DrawerRoutes } from '../../Navigation/NavigationRoutes';
 
-const renderMenuList = (list, navigate, currentRouteName) => (
-  list.map(({ routeName }, index) => (
-    <MenuItem
-      onPress={() => navigate(routeName)}
-      key={index}
-      name={routeName}
-      icon={Images.discoverIcon}
-      active={routeName === currentRouteName}
-    />
+const renderMenuList = (list) => (
+  list.map(({ ...rest }, index) => (
+    <MenuItem key={index} {...rest}/>
   ))
 );
 
-const Menu = ({ drawer, navigate }) => {
-  const drawerRoutes = drawer.routes[0].routes;
-  const { routes, index } = drawer.routes[0];
-  const currentRouteName = routes[index].routeName;
+const Menu = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.sideMenuHeader}>
         <Image
           source={Images.avatarDefault}
@@ -37,23 +25,10 @@ const Menu = ({ drawer, navigate }) => {
         </View>
       </View>
       <View style={styles.listMenu}>
-        {renderMenuList(drawerRoutes, navigate, currentRouteName)}
+        {renderMenuList(DrawerRoutes)}
       </View>
     </View>
   );
 };
 
-Menu.propTypes = {
-  drawer: PropTypes.object,
-  navigate: PropTypes.func,
-};
-
-const mapStateToProps = state => ({
-  drawer: state[NAVIGATION_KEY].drawer,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  navigate: (routeName) => dispatch(NavigationActionCreators.navigateInDrawer(routeName))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default Menu;

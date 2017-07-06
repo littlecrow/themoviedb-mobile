@@ -1,23 +1,25 @@
 import { StyleSheet } from 'react-native';
 import { Metrics } from '../../../../Themes';
 
-const { baseMargin, doubleBaseMargin , basePadding, smallMargin } = Metrics;
+const { baseMargin, basePadding, smallMargin } = Metrics;
 
 export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
     marginVertical: smallMargin,
-    marginHorizontal: doubleBaseMargin,
+    marginHorizontal: baseMargin,
   },
-  imgArea: {
+  imageArea: {
     marginRight: baseMargin,
     width: 68,
-    height: 100
+    height: 100,
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
-  img: {
+  image: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    resizeMode: 'cover'
   },
   infoArea: {
     backgroundColor: 'rgba(0,0,0,0.75)',

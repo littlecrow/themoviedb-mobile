@@ -5,15 +5,13 @@ import AppNavigation from '../Navigation/AppNavigation';
 // Styles
 import styles from './Styles/RootContainerStyles';
 
-class RootContainer extends Component {
-
-  render () {
-    return (
-      <View style={styles.applicationView}>
-        <AppNavigation />
-      </View>
-    );
-  }
-}
+const RootContainer = () => (
+  <View style={styles.applicationView}>
+    <StatusBar
+      backgroundColor="transparent"
+      translucent/>
+    <AppNavigation/>
+  </View>
+);
 
 export default RootContainer;

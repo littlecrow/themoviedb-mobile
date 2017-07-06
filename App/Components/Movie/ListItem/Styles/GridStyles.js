@@ -1,16 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { Metrics, Colors } from '../../../../Themes';
+import { Metrics } from '../../../../Themes';
 
-const { itemInRow, screenWidth, smallMargin, smallPadding } = Metrics;
-/*
-Calculate width for each item:
-Based on: itemInRow, itemMarginLeftRight, screenWidth
-=> marginBetweenItems (left, right) = itemMarginLeftRight * 2 * itemInRow
-=> itemWidth = (screenWidth - marginBetweenItems) / itemInRow
- */
-const itemWidth = (screenWidth - (smallMargin * 2 * itemInRow)) / itemInRow;
-const imageWidth = itemWidth;
-const imageHeight = imageWidth / 1.8;
+const { smallMargin, smallPadding } = Metrics;
 
 export default StyleSheet.create({
   itemContainerLayout: {
@@ -19,18 +10,13 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
   itemContainer: {
-    width: itemWidth,
     marginVertical: smallMargin,
     backgroundColor: 'rgba(0,0,0,0.9)'
   },
   image: {
-    width: imageWidth,
-    height: imageHeight
-  },
-  emptyImage: {
-    width: imageWidth,
-    height: imageHeight,
-    backgroundColor: Colors.carrot
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover'
   },
   info: {
     padding: smallPadding
@@ -39,8 +25,7 @@ export default StyleSheet.create({
     color: 'white'
   },
   loadingImage: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    height: imageHeight
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   firstItem: {
     marginLeft: smallMargin

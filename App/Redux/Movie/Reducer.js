@@ -1,5 +1,4 @@
 import ActionTypes from './ActionTypes';
-import { NavigationActionTypes } from '../Navigation';
 export const KEY = 'movie';
 
 export const INITIAL_STATE = {
@@ -13,6 +12,28 @@ export const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
+  case ActionTypes.SET_MOVIE_DETAIL: {
+    // Get saved movied when store request the same movie id
+    if (state.prev && action.payload.id === state.prev.detail.id) {
+      return {
+        ...state,
+        current: state.prev
+      };
+    }
+    return {
+      ...state,
+      current: {
+        ...state.current,
+        detail: action.payload
+      }
+    };
+  }
+  case ActionTypes.EMPTY_CURRENT_MOVIE:
+    return {
+      ...state,
+      prev: state.current,
+      current: INITIAL_STATE.current
+    };
   case ActionTypes.FETCH_MOVIE_DETAIL_REQUESTED:
     return {
       ...state
@@ -60,12 +81,6 @@ export default (state = INITIAL_STATE, action) => {
   case ActionTypes.FETCH_MOVIE_REVIEWS_REJECTED:
     return {
       ...state
-    };
-  case NavigationActionTypes.NAVIGATE_BACK:
-    return {
-      ...state,
-      prev: state.current,
-      current: INITIAL_STATE.current
     };
   default:
     return state;
