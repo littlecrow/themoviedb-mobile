@@ -66,7 +66,7 @@ class LoginForm extends Component {
               buttonStyle={styles.loginButton}
               textStyle={styles.loginButtonText}
               isEnabled={isValid}
-              onPress={() => onLoginPress(username, password)}
+              onPress={() => onLoginPress(this.state)}
             />
           </View>
           <Text

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   KeyboardAvoidingView, //! applying a bottom padding when a key show-up is detected
   LayoutAnimation, //! show/hide animation
   Platform,
-  UIManager
+  UIManager,
+  AsyncStorage
 } from 'react-native';
 import { Image, View } from 'react-native-animatable';
 
@@ -17,8 +19,12 @@ import SignUpForm from './SignUpForm';
 if(Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class AuthScreen extends Component {
-  state = {
-    visibleForm: null //? Can be: null | SIGNUP | LOGIN
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      visibleForm: null, //? Can be: null | SIGNUP | LOGIN
+    };
   }
 
   _hideAuthScreen = async () => {
@@ -42,11 +48,36 @@ class AuthScreen extends Component {
     this.setState({visibleForm});
   }
 
-  handleLoginSubmit(username, password){
+  async handleLoginSubmit(account){
+    let storageUsername = '', storagePassword = '';
+    try {
+      storageUsername = await AsyncStorage.getItem('username');
+      storagePassword = await AsyncStorage.getItem('password');
+    } catch (error) {
+      console.log(error);
+    }
+    if(account.username === storageUsername && account.password === storagePassword){
+      alert("it's ok");
+    }
+    else {
+      alert('This user is not available');
+      console.log(`${storageUsername} ${storagePassword}`);
+    }
   }
 
-  handleSignUpSubmit(username, password, confirmPassword){
-
+  async handleSignUpSubmit(account){
+    if(account.password !== account.confirmPassword){
+      alert('Wrong username or password');
+    }
+    else{
+      try {
+        await AsyncStorage.setItem('username', account.username);
+        await AsyncStorage.setItem('password', account.password);
+        alert('Sign up successful!');
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   render() {
@@ -99,5 +130,10 @@ class AuthScreen extends Component {
     );
   }
 }
+
+AuthScreen.propTypes = {
+  login: PropTypes.func
+};
+
 
 export default AuthScreen;

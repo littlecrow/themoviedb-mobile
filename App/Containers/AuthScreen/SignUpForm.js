@@ -76,7 +76,7 @@ class SignUpForm extends Component {
               buttonStyle={styles.signUpButton}
               textStyle={styles.signUpButtonText}
               isEnabled={isValid}
-              onPress={() => onSignupPress(username, password)}
+              onPress={() => onSignupPress(this.state)}
             />
           </View>
           <Text
