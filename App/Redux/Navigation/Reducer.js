@@ -1,5 +1,5 @@
 import ActionTypes from './ActionTypes';
-import { AppRoutes } from '../../Navigation/NavigationRoutes';
+import { AppRoutes, INITIAL_ROUTE_NAME } from '../../Navigation/NavigationRoutes';
 import { StackNavigator } from 'react-navigation';
 
 export const KEY = 'nav';
@@ -7,7 +7,8 @@ export const KEY = 'nav';
 export const AppNavigator = StackNavigator(AppRoutes, {
   navigationOptions: {
     header: null
-  }
+  },
+  initialRouteName: INITIAL_ROUTE_NAME
 });
 
 const INITIAL_STATE = {
