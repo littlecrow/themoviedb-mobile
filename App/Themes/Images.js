@@ -1,4 +1,5 @@
 const images = {
+  logoImg: require('../Images/login/logo-stacked-green.png'),
   avatarDefault: require('../Images/drawer/avatar-default.jpg'),
   discoverIcon: require('../Images/drawer/discover.png'),
   moviesIcon: require('../Images/drawer/movies.png'),

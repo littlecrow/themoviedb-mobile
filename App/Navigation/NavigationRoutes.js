@@ -1,10 +1,15 @@
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import TestScreen from '../Containers/TestScreen';
+import HomeScreen from '../Containers/HomeScreen';
 
 export const AppRoutes = {
-  'Discover': {
+  'Home': {
     path: '/',
+    screen: HomeScreen
+  },
+  'Discover': {
+    path: '/movies',
     screen: MoviesScreen,
   },
   'Movie Detail': {

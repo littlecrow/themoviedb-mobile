@@ -9,7 +9,8 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open"
+    "postinstall": "rndebugger-open",
+    "react-devtools": "react-devtools"
   },
   "jest": {
     "preset": "jest-expo"
@@ -28,7 +29,7 @@
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",
     "redux": "^3.7.0",
-    "redux-devtools-extension": "^2.13.2",
+    "redux-devtools-extension": "2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },
@@ -37,7 +38,7 @@
     "eslint": "^4.0.0",
     "eslint-plugin-react": "^7.1.0",
     "jest-expo": "~1.0.1",
-    "react-native-debugger-open": "^0.3.11",
+    "react-native-debugger-open": "0.3.11",
     "react-native-scripts": "0.0.31",
     "react-test-renderer": "16.0.0-alpha.6"
   }

@@ -1,6 +1,6 @@
 import ActionTypes from './ActionTypes';
 import { AppRoutes } from '../../Navigation/NavigationRoutes';
-import { StackNavigator, NavigationActions } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 export const KEY = 'nav';
 
