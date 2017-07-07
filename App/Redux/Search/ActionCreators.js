@@ -1,27 +1,32 @@
 import ActionTypes from './ActionTypes';
 
-export const setKeyword = (keyword) => ({
+export const isSearching = (bool) => ({
   type: ActionTypes.SET_KEYWORD,
-  payload: keyword
+  payload: bool
 });
 
-export const fetchSearchResultRequested = () => ({
-  type: ActionTypes.FETCH_SEARCH_RESULT_REQUESTED
+export const fetchSearchMovieRequested = () => ({
+  type: ActionTypes.FETCH_SEARCH_MOVIE_REQUESTED
 });
 
-export const fetchSearchResultFulfilled = (movies) => ({
-  type: ActionTypes.FETCH_SEARCH_RESULT_FULFILLED,
+export const fetchSearchMovieFulfilled = (movies) => ({
+  type: ActionTypes.FETCH_SEARCH_MOVIE_FULFILLED,
   payload: movies
 });
 
-export const fetchSearchResultRejected = (err) => ({
-  type: ActionTypes.FETCH_SEARCH_RESULT_REJECTED,
+export const fetchSearchMovieRejected = (err) => ({
+  type: ActionTypes.FETCH_SEARCH_MOVIE_REJECTED,
   payload: err
 });
 
+export const emptySearchMovies = () => ({
+  type: ActionTypes.EMPTY_SEARCH_MOVIES
+});
+
 export default {
-  setKeyword,
-  fetchSearchResultRequested,
-  fetchSearchResultFulfilled,
-  fetchSearchResultRejected
+  isSearching,
+  fetchSearchMovieRequested,
+  fetchSearchMovieFulfilled,
+  fetchSearchMovieRejected,
+  emptySearchMovies
 };

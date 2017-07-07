@@ -1,13 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Colors, Metrics, Fonts } from '../../../Themes';
 import { Constants } from 'expo';
 
 const { screenWidth, smallPadding, largeMargin, headerTitleMargin, doubleBasePadding, basePadding } = Metrics;
+const { size } = Fonts;
+const isAndroid = Platform.OS === 'android';
 
 export default StyleSheet.create({
   container: {
     // Config statusbar color
-    borderTopWidth: Constants.statusBarHeight,
+    marginTop: isAndroid ? 0 : Constants.statusBarHeight,
+    borderTopWidth: isAndroid ? Constants.statusBarHeight : 0,
     borderTopColor: Colors.primaryDark, // StatusBar color,
   },
   componentContainer: {
@@ -28,7 +31,7 @@ export default StyleSheet.create({
     width: '100%',
     paddingVertical: basePadding,
     paddingHorizontal: smallPadding,
-    fontSize: 18,
+    fontSize: size.input,
     color: Colors.secondary
   },
   title: {
@@ -42,4 +45,4 @@ export default StyleSheet.create({
   },
 });
 
-export const backIconSize = Fonts.size.h4;
+export const backIconSize = size.h4;

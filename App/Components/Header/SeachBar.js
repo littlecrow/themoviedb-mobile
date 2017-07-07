@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Text,
   TextInput,
   TouchableNativeFeedback,
   TouchableOpacity,
@@ -11,24 +10,34 @@ import {
 import { connect } from 'react-redux';
 import { FormInput } from 'react-native-elements';
 import { Colors } from '../../Themes';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import NavigationBar from 'react-native-navbar';
+import { Ionicons } from '@expo/vector-icons';
 import styles, { backIconSize } from './Styles/SearchBarStyles';
-import { SearchActionCreators } from '../../Redux/Search';
+import { SearchActionCreators, SearchActions } from '../../Redux/Search';
 
 const isAndroid = Platform.OS === 'android';
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
 const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(Colors.secondary, true) : null;
 
 class SearchBar extends Component {
-  _handleFocus() {
+  constructor(props) {
+    super(props);
 
+    this._handleChange = this._handleChange.bind(this);
   }
 
+  _timeoutFunc;
   _handleChange(text) {
-    setTimeout(() => {
-      console.log('text: ', text);
-    }, 3000);
+    const { fetchSearchMovie, emptySearchMovies, isSearching } = this.props;
+    isSearching(true);
+    clearTimeout(this._timeoutFunc);
+    this._timeoutFunc = setTimeout(() => {
+      let characters = text.length;
+      if(characters === 0) {
+        emptySearchMovies();
+      } else {
+        fetchSearchMovie(text);
+      }
+    }, 600);
   }
 
   _renderHeaderLeft(onPress) {
@@ -46,7 +55,7 @@ class SearchBar extends Component {
   _renderHeaderRight() {
     return (
       <View style={styles.headerRight}>
-        <FormInput
+        <TextInput
           placeholder='Search...'
           placeholderTextColor={Colors.secondary}
           autoCorrect={false}
@@ -54,7 +63,6 @@ class SearchBar extends Component {
           underlineColorAndroid={Colors.secondary}
           style={styles.searchInput}
           autoFocus={true}
-          onFocus={this._handleFocus}
           onChangeText={this._handleChange}
         />
       </View>
@@ -76,12 +84,15 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-
+  fetchSearchMovie: PropTypes.func,
+  isSearching: PropTypes.func,
+  emptySearchMovies: PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setKeyword: (keyword) => dispatch(SearchActionCreators.setKeyword(keyword)),
-  fetchSearchResultRequested: () => dispatch(SearchActionCreators)
+  isSearching: (bool) => SearchActionCreators.isSearching(bool),
+  fetchSearchMovie: (keyword) => dispatch(SearchActions.fetchSearchMovie(keyword)),
+  emptySearchMovies: () => dispatch(SearchActionCreators.emptySearchMovies())
 });
 
 export default connect(undefined, mapDispatchToProps)(SearchBar);

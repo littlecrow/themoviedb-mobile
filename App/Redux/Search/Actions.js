@@ -2,8 +2,8 @@ import axios from 'axios';
 import { API_SEARCH, API_KEY, LANGUAGE } from 'react-native-dotenv';
 import ActionCreators from './ActionCreators';
 
-const fetchSearchResult = () => async (dispatch, getState) => {
-  dispatch(ActionCreators.fetchSearchResultRequested());
+const fetchSearchMovie = (keyword) => async (dispatch) => {
+  dispatch(ActionCreators.fetchSearchMovieRequested());
   try {
     const result = await axios.get(
       API_SEARCH + 'movie',
@@ -11,18 +11,19 @@ const fetchSearchResult = () => async (dispatch, getState) => {
         params: {
           api_key: API_KEY,
           language: LANGUAGE,
-          query: getState.keyword,
+          query: keyword,
           page: 1,
           include_adult: false
         }
       }).then(response => response.data.results);
-    return dispatch(ActionCreators.fetchSearchResultFulfilled(result));
+
+    return dispatch(ActionCreators.fetchSearchMovieFulfilled(result));
   } catch (err) {
     console.log('Error: ', err);
-    dispatch(ActionCreators.fetchSearchResultRejected());
+    dispatch(ActionCreators.fetchSearchMovieRejected());
   }
 };
 
 export default {
-  fetchSearchResult
+  fetchSearchMovie
 };
