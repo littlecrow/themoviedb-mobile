@@ -8,7 +8,7 @@ import {
   Platform
 } from 'react-native';
 import { connect } from 'react-redux';
-import { FormInput } from 'react-native-elements';
+
 import { Colors } from '../../Themes';
 import { Ionicons } from '@expo/vector-icons';
 import styles, { backIconSize } from './Styles/SearchBarStyles';
@@ -22,19 +22,29 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      text: this.props.keyword
+    };
     this._handleChange = this._handleChange.bind(this);
+  }
+
+  componentDidMount() {
+
   }
 
   _timeoutFunc;
   _handleChange(text) {
-    const { fetchSearchMovie, emptySearchMovies, isSearching } = this.props;
+    this.setState({ text: text });
+    const { fetchSearchMovie, resetMovies, resetPage, isSearching, keyword } = this.props;
     isSearching(true);
     clearTimeout(this._timeoutFunc);
     this._timeoutFunc = setTimeout(() => {
-      let characters = text.length;
-      if(characters === 0) {
-        emptySearchMovies();
+      if(text.length === 0) {
+        resetMovies();
       } else {
+        if(text != keyword) {
+          resetPage();
+        }
         fetchSearchMovie(text);
       }
     }, 600);
@@ -44,7 +54,8 @@ class SearchBar extends Component {
     return (
       <TouchableWrapper
         onPress={onPress}
-        background={TouchableBackGround}>
+        background={TouchableBackGround}
+      >
         <View style={[styles.componentContainer, styles.back]}>
           <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
         </View>
@@ -64,6 +75,7 @@ class SearchBar extends Component {
           style={styles.searchInput}
           autoFocus={true}
           onChangeText={this._handleChange}
+          value={this.state.text}
         />
       </View>
     );
@@ -86,13 +98,20 @@ class SearchBar extends Component {
 SearchBar.propTypes = {
   fetchSearchMovie: PropTypes.func,
   isSearching: PropTypes.func,
-  emptySearchMovies: PropTypes.func
+  resetMovies: PropTypes.func,
+  resetPage: PropTypes.func,
+  keyword: PropTypes.string
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  isSearching: (bool) => SearchActionCreators.isSearching(bool),
-  fetchSearchMovie: (keyword) => dispatch(SearchActions.fetchSearchMovie(keyword)),
-  emptySearchMovies: () => dispatch(SearchActionCreators.emptySearchMovies())
+const mapStateToProps = (state) => ({
+  keyword: state.search.keyword
 });
 
-export default connect(undefined, mapDispatchToProps)(SearchBar);
+const mapDispatchToProps = (dispatch) => ({
+  isSearching: (bool) => SearchActionCreators.checkIsSearching(bool),
+  fetchSearchMovie: (keyword) => dispatch(SearchActions.fetchSearchMovie(keyword)),
+  resetMovies: () => dispatch(SearchActionCreators.resetMovies()),
+  resetPage: () => dispatch(SearchActionCreators.resetPage())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

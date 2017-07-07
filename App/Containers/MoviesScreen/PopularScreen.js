@@ -22,10 +22,13 @@ class PopularScreen extends Component {
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies, fetchPopularMovies } = this.props;
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.POPULARITY_DESC}/>
+        <MovieList
+          movies={movies}
+          onEndReached={fetchPopularMovies}
+        />
       </View>
     );
   }
@@ -38,7 +41,6 @@ PopularScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.popular;
-
   return  {
     movies: moviesState.result
   };

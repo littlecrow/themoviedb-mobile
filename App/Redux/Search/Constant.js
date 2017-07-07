@@ -1,5 +1,5 @@
-export const KEYWORD = 'KEYWORD';
+export const SEARCH_MOVIE_RESULT = 'SEARCH_MOVIE_RESULT';
 
 export default {
-  KEYWORD
+  SEARCH_MOVIE_RESULT
 };

@@ -5,6 +5,7 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import SearchBar from '../Components/Header/SeachBar';
 import MovieList from '../Components/Movie/List/List';
 import styles from './Styles/SearchScreenStyles';
+import { SearchActions } from '../Redux/Search';
 
 class SearchScreen extends Component {
   _renderLoading() {
@@ -16,13 +17,13 @@ class SearchScreen extends Component {
   }
 
   _renderResult() {
-    const { movies, isSearching } = this.props;
+    const { movies, isSearching, fetchSearchMovie } = this.props;
     if(isSearching) {
       return this._renderLoading();
     } else {
       return movies.length === 0
         ? <View style={styles.emptyResult}><Text>No results</Text></View>
-        : <MovieList movies={movies}/>;
+        : <MovieList movies={movies} onEndReached={fetchSearchMovie}/>;
     }
   }
 
@@ -41,7 +42,8 @@ class SearchScreen extends Component {
 SearchScreen.propTypes = {
   movies: PropTypes.array,
   loading: PropTypes.bool,
-  isSearching: PropTypes.bool
+  isSearching: PropTypes.bool,
+  fetchSearchMovie: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -50,4 +52,8 @@ const mapStateToProps = (state) => ({
   movies: state.search.list
 });
 
-export default connect(mapStateToProps, undefined)(SearchScreen);
+const mapDispatchToProps = (dispatch) => ({
+  fetchSearchMovie: () => dispatch(SearchActions.fetchSearchMovie())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);

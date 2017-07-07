@@ -1,12 +1,13 @@
 import ActionTypes from './ActionTypes';
 
-export const isSearching = (bool) => ({
-  type: ActionTypes.SET_KEYWORD,
+export const checkIsSearching = (bool) => ({
+  type: ActionTypes.CHECK_IS_SEARCHING,
   payload: bool
 });
 
-export const fetchSearchMovieRequested = () => ({
-  type: ActionTypes.FETCH_SEARCH_MOVIE_REQUESTED
+export const fetchSearchMovieRequested = (keyword) => ({
+  type: ActionTypes.FETCH_SEARCH_MOVIE_REQUESTED,
+  payload: keyword
 });
 
 export const fetchSearchMovieFulfilled = (movies) => ({
@@ -19,14 +20,19 @@ export const fetchSearchMovieRejected = (err) => ({
   payload: err
 });
 
-export const emptySearchMovies = () => ({
-  type: ActionTypes.EMPTY_SEARCH_MOVIES
+export const resetMovies = () => ({
+  type: ActionTypes.RESET_MOVIES
+});
+
+export const resetPage = () => ({
+  type: ActionTypes.RESET_PAGE
 });
 
 export default {
-  isSearching,
+  checkIsSearching,
   fetchSearchMovieRequested,
   fetchSearchMovieFulfilled,
   fetchSearchMovieRejected,
-  emptySearchMovies
+  resetMovies,
+  resetPage
 };
