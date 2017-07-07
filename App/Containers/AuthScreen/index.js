@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   KeyboardAvoidingView, //! applying a bottom padding when a key show-up is detected
   LayoutAnimation, //! show/hide animation
@@ -7,6 +8,7 @@ import {
   UIManager,
   AsyncStorage
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { Image, View } from 'react-native-animatable';
 
 import { Images } from '../../Themes/';
@@ -19,22 +21,15 @@ import SignUpForm from './SignUpForm';
 if(Platform.OS === 'android') UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class AuthScreen extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      visibleForm: null, //? Can be: null | SIGNUP | LOGIN
-    };
-  }
+  state = {
+    visibleForm: null, //? Can be: null | SIGNUP | LOGIN
+  };
 
   _hideAuthScreen = async () => {
     //! Slide out the form container
     await this._setVisibleForm(null);
-
     //! Fade out the logo
     await this.logoImgRef.fadeOut(800);
-
-    //! Tell the container that the animation has completed
   }
 
   _setVisibleForm = async (visibleForm) => {
@@ -48,40 +43,84 @@ class AuthScreen extends Component {
     this.setState({visibleForm});
   }
 
-  async handleLoginSubmit(account){
-    let storageUsername = '', storagePassword = '';
-    try {
-      storageUsername = await AsyncStorage.getItem('username');
-      storagePassword = await AsyncStorage.getItem('password');
-    } catch (error) {
-      console.log(error);
-    }
-    if(account.username === storageUsername && account.password === storagePassword){
-      alert("it's ok");
-    }
-    else {
-      alert('This user is not available');
-      console.log(`${storageUsername} ${storagePassword}`);
-    }
-  }
+  render() {
+    const { visibleForm } = this.state;
 
-  async handleSignUpSubmit(account){
-    if(account.password !== account.confirmPassword){
-      alert('Wrong username or password');
-    }
-    else{
+    const _saveStorage = async (account) => {
       try {
         await AsyncStorage.setItem('username', account.username);
         await AsyncStorage.setItem('password', account.password);
-        alert('Sign up successful!');
       } catch (error) {
         console.log(error);
       }
-    }
-  }
+    };
 
-  render() {
-    const { visibleForm } = this.state;
+    const _getStorage = async () => {
+      try {
+        let storageUsername = '', storagePassword = '';
+        storageUsername = await AsyncStorage.getItem('username');
+        storagePassword = await AsyncStorage.getItem('password');
+
+        return { storageUsername, storagePassword };
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const handleSignUpSubmit = async (account) => {
+      if(account.password !== account.confirmPassword){
+        alert('Wrong username or password');
+      }
+      else{
+        alert('Sign up successful, please login again!');
+        await _saveStorage(account);
+        this._setVisibleForm('LOGIN');
+      }
+    };
+
+    const handleLoginSubmit = async (account) => {
+      const { storageUsername, storagePassword } = await _getStorage();
+      if(account.username === storageUsername && account.password === storagePassword){
+        alert('Welcome back!');
+        this.props.navigationToDiscover();
+      }
+      else {
+        alert('This user is not available');
+      }
+    };
+
+    const _renderOpeningForm = () => {
+      return(
+        <Opening
+          onCreateAccountPress={() => this._setVisibleForm('SIGNUP')}
+          onSignInPress={() => this._setVisibleForm('LOGIN')}
+        />
+      );
+    };
+
+    const _renderSignUpForm = () => {
+      return(
+        <SignUpForm
+          ref={(ref) => this.formRef = ref}
+          onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
+          onSignupPress={handleSignUpSubmit}
+          isEnabled={true}
+          isLoading={true}
+        />
+      );
+    };
+
+    const _renderLoginForm = () => {
+      return(
+        <LoginForm
+          ref={(ref) => this.formRef = ref}
+          onSignUpLinkPress={() => this._setVisibleForm('SIGNUP')}
+          onLoginPress={handleLoginSubmit}
+          isEnabled={true}
+          isLoading={true}
+        />
+      );
+    };
 
     //! The following style is responsible of the "bounce-up from bottom" animation of the form
     const formStyle = (!visibleForm) ? { height: 0 } : { marginTop: 40 };
@@ -95,35 +134,20 @@ class AuthScreen extends Component {
           style={styles.logoImg}
           source={Images.logoImg}
         />
-        {(!visibleForm) && (
-          <Opening
-            onCreateAccountPress={() => this._setVisibleForm('SIGNUP')}
-            onSignInPress={() => this._setVisibleForm('LOGIN')}
-          />
-        )}
+        {(!visibleForm) &&
+          _renderOpeningForm()
+        }
         <KeyboardAvoidingView
           style={[formStyle, styles.bottom]}
           keyboardVerticalOffset={10}
           behavior={'padding'}
         >
           {(visibleForm === 'SIGNUP') && (
-            <SignUpForm
-              ref={(ref) => this.formRef = ref}
-              onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
-              onSignupPress={this.handleSignUpSubmit}
-              isEnabled={true}
-              isLoading={true}
-            />
+            _renderSignUpForm()
           )}
 
           {(visibleForm === 'LOGIN') && (
-            <LoginForm
-              ref={(ref) => this.formRef = ref}
-              onSignUpLinkPress={() => this._setVisibleForm('SIGNUP')}
-              onLoginPress={this.handleLoginSubmit}
-              isEnabled={true}
-              isLoading={true}
-            />
+            _renderLoginForm()
           )}
         </KeyboardAvoidingView>
       </View>
@@ -132,8 +156,18 @@ class AuthScreen extends Component {
 }
 
 AuthScreen.propTypes = {
-  login: PropTypes.func
+  login: PropTypes.func,
+  navigationBack: PropTypes.func,
+  navigationToDiscover: PropTypes.func
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigationBack: () => dispatch(NavigationActions.back()),
+    navigationToDiscover: () => dispatch(NavigationActions.navigate({
+      routeName: 'Discover'
+    }))
+  };
+};
 
-export default AuthScreen;
+export default connect(null, mapDispatchToProps)(AuthScreen);
