@@ -11,6 +11,10 @@ import { MOVIE_KEY } from '../../../Redux/Movie';
 import colors  from '../../../Themes/Colors';
 import fonts  from '../../../Themes/Fonts';
 import CastersList from '../../People/CastersList';
+import ReviewsList from '../../Reviews/List';
+import { View as AnimatableView, Text as AnimatableText } from 'react-native-animatable';
+
+const ANIMATION_DURATION = 1500;
 
 const _renderMovieInfo = (movie, renderedKey) => {
   if (movie[renderedKey]) {
@@ -45,25 +49,25 @@ const BackdropDetail = props => {
         <View style={styles.previewWrapper}>
           <Image resizeMode="contain" source={{uri: THEMOVIEDB_IMAGE_SRC + detail.poster_path}} style={styles.posterImage}/>
           <View style={styles.actionWrapper}>
-            <View style={styles.actionButton}>
+            <AnimatableView animation="bounceIn" duration={ANIMATION_DURATION} style={styles.actionButton}>
               <RoundedButton
                 onPress={() => alert('This feature is not ready yet.')}
                 icon={<MaterialIcons name="add-to-queue" size={16} color="white" /> }
                 text={'Wish list'}/>
-            </View>
-            <View style={styles.actionButton}>
+            </AnimatableView>
+            <AnimatableView animation="bounceIn" duration={ANIMATION_DURATION} style={styles.actionButton}>
               <RoundedButton
                 onPress={() => alert('This feature is not ready yet.')}
                 icon={<MaterialIcons name="shopping-cart" size={16} color="white" /> }
                 text="Buy"/>
-            </View>
-            <Text style={styles.rating}>
+            </AnimatableView>
+            <AnimatableText animation="bounceInRight" duration={ANIMATION_DURATION} style={styles.rating}>
               Rating: {detail.vote_average}/10{' '}
               <Text style={{fontSize: fonts.size.small}}>
                 ({detail.vote_count})
               </Text>
-            </Text>
-            <View>
+            </AnimatableText>
+            <AnimatableView animation="bounceInRight" duration={ANIMATION_DURATION} >
               <Rating
                 disabled={true}
                 maxStars={5}
@@ -71,7 +75,7 @@ const BackdropDetail = props => {
                 starColor={colors.sunFlower}
                 starSize={25}
               />
-            </View>
+            </AnimatableView>
           </View>
         </View>
         <View style={styles.line}/>
@@ -103,6 +107,12 @@ const BackdropDetail = props => {
           <View>
             <CastersList data={props.casters}/>
           </View>
+          <Text style={styles.subInfoTitle}>
+            Reviews
+          </Text>
+          <View>
+            <ReviewsList data={props.reviews}/>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -113,13 +123,15 @@ const BackdropDetail = props => {
 BackdropDetail.propTypes = {
   movie: PropTypes.object,
   detail: PropTypes.object,
-  casters: PropTypes.array
+  casters: PropTypes.array,
+  reviews: PropTypes.array
 };
 
 const mapStateToProps = state => {
-  const { credits } = state[MOVIE_KEY].current;
+  const { credits, reviews } = state[MOVIE_KEY].current;
   return ({
-    casters: credits ? credits.cast : []
+    casters: credits ? credits.cast : [],
+    reviews: reviews ? reviews.results : [],
   });
 };
 
