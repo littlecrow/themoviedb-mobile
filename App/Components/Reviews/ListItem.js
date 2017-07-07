@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-  View, Text, Image, Platform,
-  TouchableOpacity, TouchableNativeFeedback
+  View, Text, Image, Platform, Linking,
+  TouchableOpacity, TouchableNativeFeedback, TouchableHighlight
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-simple-markdown';
@@ -35,7 +35,7 @@ class ListItem extends Component {
   }
 
   _reduceByWords (data, wordsCount = WORDS_COUNT) {
-    return reduceByWords(data, wordsCount) + ` [See more.](#)`;
+    return reduceByWords(data, wordsCount) + ` [See more.]()`;
   }
 
   _markdownLinkRule () {
@@ -43,7 +43,10 @@ class ListItem extends Component {
       react: (node, output, state) => {
         const content = node.content[0];
         return (
-          <Text style={markdownStyles.link} key={state.key}>{content.content}</Text>
+          <Text onPress={node.target ? () => Linking.openURL(node.target) : null }
+            style={markdownStyles.link} key={state.key}>
+            {content.content}
+          </Text>
         );
       }
     };
