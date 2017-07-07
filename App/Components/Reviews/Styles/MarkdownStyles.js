@@ -1,7 +1,10 @@
-// import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 // import metrics  from '../../../Themes/Metrics';
-// import colors  from '../../../Themes/Colors';
+import colors  from '../../../Themes/Colors';
 // import fonts  from '../../../Themes/Fonts';
 
-export default {
-};
+export default StyleSheet.create({
+  link: {
+    color: colors.peterRiver
+  }
+});

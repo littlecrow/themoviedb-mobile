@@ -34,6 +34,22 @@ class ListItem extends Component {
     });
   }
 
+  _reduceByWords (data, wordsCount = WORDS_COUNT) {
+    return reduceByWords(data, wordsCount) + ` [See more.](#)`;
+  }
+
+  _markdownLinkRule () {
+    const rule = {
+      react: (node, output, state) => {
+        const content = node.content[0];
+        return (
+          <Text style={markdownStyles.link} key={state.key}>{content.content}</Text>
+        );
+      }
+    };
+    return rule;
+  }
+
   render () {
     const { data } = this.props;
     return (
@@ -44,8 +60,8 @@ class ListItem extends Component {
         </View>
         <TouchableWrapper useForeground={true} background={TouchableBackGround} activeOpacity={TouchableActiveOpacity} onPress={this._handleItemPress}>
           <View style={styles.itemLine}>
-            <Markdown style={markdownStyles}>
-              {this.state.shortenContent ? reduceByWords(data.content, WORDS_COUNT) : data.content}
+            <Markdown rules={{link: this._markdownLinkRule()}}>
+              {this.state.shortenContent ? this._reduceByWords(data.content) : data.content}
             </Markdown>
           </View>
         </TouchableWrapper>
