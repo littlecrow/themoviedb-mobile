@@ -25,6 +25,7 @@
     "react-native-elements": "^0.13.0",
     "react-native-navbar": "^1.7.1",
     "react-native-side-menu": "^0.20.1",
+    "react-native-simple-markdown": "^1.0.60-rc.3",
     "react-native-star-rating": "^1.0.7",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",
