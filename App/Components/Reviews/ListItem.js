@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-simple-markdown';
 import { reduceByWords } from '../../Transforms/TextConverter';
-import { Images, Colors } from '../../Themes';
+import { Images } from '../../Themes';
 import styles from './Styles/ListStyles';
 import markdownStyles from './Styles/MarkdownStyles';
 
