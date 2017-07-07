@@ -5,7 +5,7 @@ import { View } from 'react-native-animatable';
 
 import TouchableView from './TouchableView';
 
-const CustomButton = ({ onPress, isEnabled, isLoading, text, buttonStyle, textStyle, ...otherProps }) => {
+const LargeButton = ({ onPress, isEnabled, isLoading, text, buttonStyle, textStyle, ...otherProps }) => {
   const onButtonPress = isEnabled && !isLoading ? onPress : () => null;
 
   return (
@@ -18,7 +18,7 @@ const CustomButton = ({ onPress, isEnabled, isLoading, text, buttonStyle, textSt
   );
 };
 
-CustomButton.propTypes = {
+LargeButton.propTypes = {
   onPress: PropTypes.func,
   isEnabled: PropTypes.bool,
   isLoading: PropTypes.bool,
@@ -27,7 +27,7 @@ CustomButton.propTypes = {
   textStyle: PropTypes.any
 };
 
-CustomButton.defaultProps = {
+LargeButton.defaultProps = {
   onPress: () => null,
   isEnabled: true,
   isLoading: false
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CustomButton;
+export default LargeButton;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Platform, StyleSheet, TextInput } from 'react-native';
 import { View } from 'react-native-animatable';
 
-export default class AuthTextInput extends Component {
+export default class LargeTextInput extends Component {
   static propTypes = {
     isEnabled: PropTypes.bool
   }

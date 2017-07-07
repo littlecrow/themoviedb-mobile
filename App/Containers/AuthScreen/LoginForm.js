@@ -4,8 +4,8 @@ import { Text, View } from 'react-native-animatable';
 import styles from './Styles/LoginForm';
 
 // import styles from './Styles/Opening';
-import CustomButton from '../../Components/CustomButton';
-import CustomTextInput from '../../Components/CustomTextInput';
+import LargeButton from '../../Components/LargeButton';
+import LargeTextInput from '../../Components/LargeTextInput';
 
 class LoginForm extends Component {
   state = {
@@ -34,7 +34,7 @@ class LoginForm extends Component {
           style={styles.form}
           ref={(ref) => { this.formRef = ref; }}
         >
-          <CustomTextInput
+          <LargeTextInput
             ref={(ref) => this.usernameInputRef = ref}
             name={'username'}
             placeholder={'Username'}
@@ -43,7 +43,7 @@ class LoginForm extends Component {
             onSubmitEditing={() => this.passwordInputRef.focus()}
             onChangeText={(value) => this.setState({ username: value })}
           />
-          <CustomTextInput
+          <LargeTextInput
             ref={(ref) => this.passwordInputRef = ref}
             name={'password'}
             placeholder={'Password'}
@@ -61,7 +61,7 @@ class LoginForm extends Component {
             duration={600}
             delay={400}
           >
-            <CustomButton
+            <LargeButton
               text={'LOGIN'}
               buttonStyle={styles.loginButton}
               textStyle={styles.loginButtonText}

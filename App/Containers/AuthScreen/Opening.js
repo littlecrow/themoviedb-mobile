@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Text, View } from 'react-native-animatable';
 
 import styles from './Styles/Opening';
-import CustomButton from '../../Components/CustomButton';
+import LargeButton from '../../Components/LargeButton';
 
 class Opening extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View animation={'zoomIn'} delay={600} duration={400}>
-          <CustomButton
+          <LargeButton
             text={'Create Account'}
             onPress={this.props.onCreateAccountPress}
             buttonStyle={styles.createAccountButton}
@@ -23,7 +23,7 @@ class Opening extends Component {
           <View style={styles.separatorLine} />
         </View>
         <View animation={'zoomIn'} delay={700} duration={400}>
-          <CustomButton
+          <LargeButton
             text={'Sign In'}
             onPress={this.props.onSignInPress}
             buttonStyle={styles.signInButton}

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Text, View } from 'react-native-animatable';
 import styles from './Styles/SignUpForm';
 
-import CustomButton from '../../Components/CustomButton';
-import CustomTextInput from '../../Components/CustomTextInput';
+import LargeButton from '../../Components/LargeButton';
+import LargeTextInput from '../../Components/LargeTextInput';
 
 class SignUpForm extends Component {
   state = {
@@ -35,7 +35,7 @@ class SignUpForm extends Component {
           ref={(ref) => { this.formRef = ref; }}
         >
           {/* input username */}
-          <CustomTextInput
+          <LargeTextInput
             ref={(ref) => this.usernameInputRef = ref}
             name={'username'}
             placeholder={'Username'}
@@ -45,7 +45,7 @@ class SignUpForm extends Component {
             onChangeText={(value) => this.setState({ username: value })}
           />
           {/* input username */}
-          <CustomTextInput
+          <LargeTextInput
             ref={(ref) => this.passwordInputRef = ref}
             name={'password'}
             placeholder={'Password'}
@@ -53,7 +53,7 @@ class SignUpForm extends Component {
             returnKeyType={'done'}
             onChangeText={(value) => this.setState({ password: value })}
           />
-          <CustomTextInput
+          <LargeTextInput
             ref={(ref) => this.passwordInputRef = ref}
             name={'confirmPassword'}
             placeholder={'Confirm Password'}
@@ -71,7 +71,7 @@ class SignUpForm extends Component {
             duration={600}
             delay={400}
           >
-            <CustomButton
+            <LargeButton
               text={'SIGN UP'}
               buttonStyle={styles.signUpButton}
               textStyle={styles.signUpButtonText}
