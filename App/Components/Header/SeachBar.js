@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux';
 
 import { Colors } from '../../Themes';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 import styles, { backIconSize } from './Styles/SearchBarStyles';
 import { SearchActionCreators, SearchActions } from '../../Redux/Search';
 import { NavigationActions } from 'react-navigation';
@@ -24,14 +24,20 @@ class SearchBar extends Component {
     super(props);
 
     this.state = {
-      text: this.props.keyword
+      text: this.props.keyword,
+      isChangedText: false
     };
     this._handleChange = this._handleChange.bind(this);
+    this._removeText = this._removeText.bind(this);
   }
 
   _timeoutFunc;
   _handleChange(text) {
-    this.setState({ text: text });
+    this.setState({
+      text: text
+    }, () => {
+      this.setState({ isChangedText: text !== '' });
+    });
     const { fetchSearchMovie, resetMovies, resetPage, isSearching, keyword } = this.props;
     isSearching(true);
     clearTimeout(this._timeoutFunc);
@@ -45,6 +51,10 @@ class SearchBar extends Component {
         fetchSearchMovie(text);
       }
     }, 600);
+  }
+
+  _removeText() {
+    this.setState({ text: '' });
   }
 
   _renderHeaderLeft() {
@@ -61,6 +71,18 @@ class SearchBar extends Component {
     );
   }
 
+  _renderCrossIcon() {
+    if(this.state.isChangedText) {
+      return (
+        <TouchableOpacity style={styles.crossIcon} onPress={this._removeText}>
+          <Entypo name='cross' size={24} color={Colors.secondary}/>
+        </TouchableOpacity>
+      );
+    } else {
+      return null;
+    }
+  }
+
   _renderHeaderRight() {
     return (
       <View style={styles.headerRight}>
@@ -74,7 +96,9 @@ class SearchBar extends Component {
           autoFocus={true}
           onChangeText={this._handleChange}
           value={this.state.text}
+          container
         />
+        {this._renderCrossIcon()}
       </View>
     );
   }
