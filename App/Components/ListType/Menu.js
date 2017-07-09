@@ -15,7 +15,6 @@ class Menu extends Component {
     this.state = {
       modalVisible: false,
     };
-
     this._setModalVisible = this._setModalVisible.bind(this);
   }
 

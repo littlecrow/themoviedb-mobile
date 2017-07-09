@@ -27,37 +27,26 @@ class MovieList extends Component {
     return itemsPerRow === 1 ? <DefaultItems movie={item}/> : <GridItems movie={item}/>;
   }
 
-  _renderListItem() {
+  _renderList() {
     const { movies, itemsPerRow, onEndReached } = this.props;
     return (
-      <FlatList
-        data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
-        renderItem={this._renderItem}
-        keyExtractor={(item, index) => index}
-        ListFooterComponent={this._renderFooter}
-        onEndReachedThreshold={0.5}
-        onEndReached={onEndReached}
-      />
-    );
-  }
-
-  _showData() {
-    return (
-      <Image
-        source={Images.defaultBackground}
-        style={styles.bgImage}
-      >
-        <View style={styles.container}>
-          {this._renderListItem()}
-        </View>
-      </Image>
+      <View style={styles.list}>
+        <FlatList
+          data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
+          renderItem={this._renderItem}
+          keyExtractor={(item, index) => index}
+          ListFooterComponent={this._renderFooter}
+          onEndReachedThreshold={0.5}
+          onEndReached={onEndReached}
+        />
+      </View>
     );
   }
 
   render() {
     return (
-      <View>
-        {this._showData()}
+      <View style={styles.container}>
+        {this._renderList()}
       </View>
     );
   }

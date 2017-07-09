@@ -1,18 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Metrics } from '../../../../Themes';
 
-const { screenWidth, screenHeight, basePadding, doubleBasePadding } = Metrics;
+const { basePadding, doubleBasePadding } = Metrics;
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    paddingVertical: basePadding,
-    width: screenWidth,
-    height: screenHeight - 100
-  },
-  bgImage: {
-    width: screenWidth,
-    height: screenHeight
+    backgroundColor: 'transparent',
+    flex: 1,
+    marginVertical: basePadding
   },
   loadingIcon: {
     paddingVertical: doubleBasePadding

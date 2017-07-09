@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
+import { MoviesActions } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List/List';
+import styles from './Styles/MoviesScreenStyles';
 
 class TopVotedScreen extends Component {
   static navigationOptions = {
@@ -24,7 +25,7 @@ class TopVotedScreen extends Component {
   render() {
     const { movies, fetchTopVotedMovies } = this.props;
     return (
-      <View>
+      <View style={styles.container}>
         <MovieList
           movies={movies}
           onEndReached={fetchTopVotedMovies}
