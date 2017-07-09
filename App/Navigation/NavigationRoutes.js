@@ -32,13 +32,21 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Discover';
+export const INITIAL_ROUTE_NAME = 'Home';
 
 export const DrawerRoutes = [
   {
+    name: 'Home',
+    icon: {
+      name: 'home',
+      type: 'material-community'
+    }
+  },
+  {
     name: 'Discover',
     icon: {
-      name: 'rowing'
+      name: 'earth',
+      type: 'material-community'
     }
   },
   {

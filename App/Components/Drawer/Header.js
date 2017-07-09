@@ -26,25 +26,36 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const ReduxHeader = ({ headerLeft, headerRight }) => {
+const ReduxHeader = ({ title, disableTitle, navigation, headerLeft, headerRight }) => {
+  const { routes, index } = navigation;
+  let _title = routes[index].routeName;
+  if (disableTitle) {
+    _title = title;
+  }
   return (
     <View style={styles.container}>
       <Navbar
         style={styles.header}
         leftButton={renderLeftButton(headerLeft)}
         rightButton={renderRightButton(headerRight)}
-        title={renderTitle('Discover')}
+        title={renderTitle(_title)}
       />
     </View>
   );
 };
 
 ReduxHeader.propTypes = {
-  drawer: PropTypes.object,
-  disableRedux: PropTypes.bool,
+  navigation: PropTypes.object,
+  disableTitle: PropTypes.bool,
   title: PropTypes.string,
   headerRight: PropTypes.element,
   headerLeft: PropTypes.element,
 };
 
-export default ReduxHeader;
+const mapStateToProps = (state) => {
+  return {
+    navigation: state[NAVIGATION_KEY].navigation
+  };
+};
+
+export default connect(mapStateToProps)(ReduxHeader);
