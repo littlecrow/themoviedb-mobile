@@ -7,13 +7,14 @@ import {
 } from 'react-native';
 import Navbar from 'react-native-navbar';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import styles, { backIconSize } from './Styles/TransparentStyles';
 import { Ionicons } from '@expo/vector-icons';
 import colors from '../../Themes/Colors';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 
-const MAX_TITLE_LENGTH = 40;
+const MAX_TITLE_LENGTH = 35;
 
 const isAndroid = Platform.OS === 'android';
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
@@ -38,10 +39,10 @@ const renderStatusBar = () => ({
   hidden: !isAndroid
 });
 
-const TransparentHeader = ({style, title, history, onBackPress}) => {
+const TransparentHeader = ({style, title, navigateBack, onBackPress}) => {
   const handleBackPress = () => {
+    navigateBack();
     onBackPress();
-    history.goBack();
   };
 
   return (
@@ -59,9 +60,15 @@ const TransparentHeader = ({style, title, history, onBackPress}) => {
 
 TransparentHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  history: PropTypes.shape({goBack: PropTypes.func.isRequired}).isRequired,
   onBackPress: PropTypes.func,
+  navigateBack: PropTypes.func,
   style: PropTypes.object
 };
 
-export default withRouter(TransparentHeader);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigateBack: () => dispatch(NavigationActions.back())
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TransparentHeader);

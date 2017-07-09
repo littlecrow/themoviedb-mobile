@@ -13,6 +13,7 @@ import { Colors } from '../../Themes';
 import { Ionicons } from '@expo/vector-icons';
 import styles, { backIconSize } from './Styles/SearchBarStyles';
 import { SearchActionCreators, SearchActions } from '../../Redux/Search';
+import { NavigationActions } from 'react-navigation';
 
 const isAndroid = Platform.OS === 'android';
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
@@ -26,10 +27,6 @@ class SearchBar extends Component {
       text: this.props.keyword
     };
     this._handleChange = this._handleChange.bind(this);
-  }
-
-  componentDidMount() {
-
   }
 
   _timeoutFunc;
@@ -50,10 +47,11 @@ class SearchBar extends Component {
     }, 600);
   }
 
-  _renderHeaderLeft(onPress) {
+  _renderHeaderLeft() {
+    const { navigateBack } = this.props;
     return (
       <TouchableWrapper
-        onPress={onPress}
+        onPress={navigateBack}
         background={TouchableBackGround}
       >
         <View style={[styles.componentContainer, styles.back]}>
@@ -100,7 +98,8 @@ SearchBar.propTypes = {
   isSearching: PropTypes.func,
   resetMovies: PropTypes.func,
   resetPage: PropTypes.func,
-  keyword: PropTypes.string
+  keyword: PropTypes.string,
+  navigateBack: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -111,7 +110,8 @@ const mapDispatchToProps = (dispatch) => ({
   isSearching: (bool) => SearchActionCreators.checkIsSearching(bool),
   fetchSearchMovie: (keyword) => dispatch(SearchActions.fetchSearchMovie(keyword)),
   resetMovies: () => dispatch(SearchActionCreators.resetMovies()),
-  resetPage: () => dispatch(SearchActionCreators.resetPage())
+  resetPage: () => dispatch(SearchActionCreators.resetPage()),
+  navigateBack: () => dispatch(NavigationActions.back())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

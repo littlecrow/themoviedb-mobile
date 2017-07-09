@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native-animatable';
 import styles, { buttonColor } from './Styles/ButtonStyles';
 import { NavigationActionCreators } from '../../Redux/Navigation';
+
 const isAndroid = Platform.OS === 'android';
 const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
 const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(buttonColor, true) : null;
+
 class DrawerButton extends Component {
 
   constructor(props) {

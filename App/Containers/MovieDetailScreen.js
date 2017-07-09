@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View } from 'react-native';
-import { View as AnimatableView } from 'react-native-animatable';
 import { connect } from 'react-redux';
 // import { Platform } from 'react-native';
 import TransparentHeader from '../Components/Header/Transparent';
@@ -23,15 +22,18 @@ class MovieDetailScreen extends Component {
 
   render () {
     const { detail } = this.props;
+    if (detail) {
+      this.movie = detail;
+    }
     return (
-      <AnimatableView animation="slideInUp" duration={300} style={styles.container}>
+      <View style={styles.container}>
         <ScrollView style={styles.content}>
-          {detail.backdrop_path ? <BackdropMovieDetail detail={detail} /> : <DefaultMovieDetail detail={detail} />}
+          {this.movie.backdrop_path ? <BackdropMovieDetail detail={this.movie} /> : <DefaultMovieDetail detail={this.movie} />}
         </ScrollView>
         <View style={styles.header}>
-          <TransparentHeader title={detail.title} onBackPress={() => this.props.emptyCurrentMovie()}/>
+          <TransparentHeader title={this.movie.title} onBackPress={() => this.props.emptyCurrentMovie()}/>
         </View>
-      </AnimatableView>
+      </View>
     );
   }
 }
@@ -45,7 +47,7 @@ MovieDetailScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  detail: state[MOVIE_KEY].current.detail
+  detail: state[MOVIE_KEY].current.detail || null
 });
 
 const mapDispatchToProps = (dispatch) => ({

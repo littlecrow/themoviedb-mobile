@@ -8,6 +8,8 @@ export default StyleSheet.create({
   container: {
     borderTopWidth: Constants.statusBarHeight,
     borderTopColor: isAndroid ? Colors.primaryDark : 'transparent', // StatusBar color
+    height: Metrics.screenHeight - Constants.statusBarHeight,
+    backgroundColor: 'white'
   },
   sideMenuHeader: {
     backgroundColor: Colors.peterRiver,
@@ -20,8 +22,6 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   roundAvatar: {
-    // marginTop: 40,
-    // marginLeft: 16,
     height: 60,
     width: 60,
     borderRadius: 60
@@ -39,7 +39,7 @@ export default StyleSheet.create({
     paddingBottom: Metrics.baseMargin
   },
   activeItem: {
-    backgroundColor: Colors.primary
+    backgroundColor: Colors.peterRiver
   },
   activeItemLabel: {
     color: Colors.secondary

@@ -1,51 +1,58 @@
-
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import SearchScreen from '../Containers/SearchScreen';
 import TestScreen from '../Containers/TestScreen';
+import HomeScreen from '../Containers/HomeScreen';
+import AuthScreen from '../Containers/AuthScreen';
 
-export const AppRoutes = [
-  {
-    name: 'Discover',
-    path: '/discover',
-    component: MoviesScreen,
-    exact: true
-  },
-  {
-    name: 'Movie Detail',
-    path: '/movies/detail/:id',
-    component: MovieDetailScreen,
-    exact: true
-  },
-  {
-    name: 'Search',
+export const AppRoutes = {
+  'Home': {
     path: '/',
-    component: SearchScreen,
-    exact: true
+    screen: HomeScreen
   },
-  {
-    name: 'Test',
+  'Discover': {
+    path: '/movies',
+    screen: MoviesScreen,
+  },
+  'Movie Detail': {
+    path: '/movies/detail/:id',
+    screen: MovieDetailScreen,
+  },
+  'Search': {
+    path: '/movies/search',
+    screen: SearchScreen,
+  },
+  'Login': {
+    path: '/auth',
+    screen: AuthScreen,
+  },
+  'Test': {
     path: '/test',
-    component: TestScreen,
-    exact: true
+    screen: TestScreen,
   }
-];
+};
 
+export const INITIAL_ROUTE_NAME = 'Discover';
 
 export const DrawerRoutes = [
   {
     name: 'Discover',
-    to: '/',
     icon: {
       name: 'rowing'
     }
   },
   {
     name: 'Test',
-    to: '/test',
     icon: {
       name:'ios-american-football',
       type:'ionicon'
     }
-  }
+  },
+  {
+    name: 'Login',
+    icon: {
+      name: 'user',
+      type: 'font-awesome'
+    }
+  },
 ];

@@ -1,18 +1,39 @@
-import React from 'react';
-import { View, StatusBar } from 'react-native';
-import { NativeRouter} from 'react-router-native';
+import React, { Component } from 'react';
+import { View, StatusBar, BackHandler } from 'react-native';
 import AppNavigation from '../Navigation/AppNavigation';
+import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+// Styles
 import styles from './Styles/RootContainerStyles';
 
-const RootContainer = () => (
-  <NativeRouter>
-    <View style={styles.applicationView}>
-      <StatusBar
-        backgroundColor="transparent"
-        translucent/>
-      <AppNavigation/>
-    </View>
-  </NativeRouter>
-);
+class RootContainer extends Component {
 
-export default RootContainer;
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.props.navigateBack);
+  }
+
+  render () {
+    return (
+      <View style={styles.applicationView}>
+        <StatusBar
+          backgroundColor="transparent"
+          translucent/>
+        <AppNavigation/>
+      </View>
+    );
+  }
+}
+
+RootContainer.propTypes = {
+  navigateBack: PropTypes.func
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigateBack: () => dispatch(NavigationActions.back())
+  };
+};
+
+export default connect(undefined, mapDispatchToProps)(RootContainer);
