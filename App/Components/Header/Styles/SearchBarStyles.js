@@ -2,7 +2,7 @@ import { StyleSheet, Platform } from 'react-native';
 import { Colors, Metrics, Fonts } from '../../../Themes';
 import { Constants } from 'expo';
 
-const { screenWidth, smallPadding, largeMargin, headerTitleMargin, doubleBasePadding, basePadding } = Metrics;
+const { screenWidth, smallPadding, largeMargin, headerTitleMargin, doubleBasePadding, basePadding, baseMargin } = Metrics;
 const { size } = Fonts;
 const isAndroid = Platform.OS === 'android';
 
@@ -26,11 +26,13 @@ export default StyleSheet.create({
   },
   headerRight: {
     width: screenWidth - largeMargin,
+    position: 'relative'
   },
   searchInput: {
     width: '100%',
     paddingVertical: basePadding,
-    paddingHorizontal: smallPadding,
+    paddingLeft: smallPadding,
+    paddingRight: doubleBasePadding * 2 ,
     fontSize: size.input,
     color: Colors.secondary
   },
@@ -43,6 +45,11 @@ export default StyleSheet.create({
     paddingLeft: doubleBasePadding,
     paddingRight: doubleBasePadding
   },
+  crossIcon: {
+    position: 'absolute',
+    right: smallPadding,
+    top: baseMargin,
+  }
 });
 
 export const backIconSize = size.h4;
