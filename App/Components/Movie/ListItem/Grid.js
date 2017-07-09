@@ -12,6 +12,7 @@ import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { NavigationActions } from 'react-navigation';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
+import { reduceByCharacters } from '../../../Transforms/TextConverter';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
 
 const { screenWidth, smallMargin } = Metrics;
@@ -57,7 +58,7 @@ class GridItems extends Component {
           {this._renderImage(item.backdrop_path)}
         </View>
         <View style={styles.info}>
-          <Text style={styles.text}>{item.title}</Text>
+          <Text style={styles.text}>{reduceByCharacters(item.title)}</Text>
         </View>
       </View>
     );

@@ -18,28 +18,29 @@ class TopRevenueScreen extends Component {
 
   componentDidMount() {
     const { fetchTopRevenueMovies } = this.props;
-
     fetchTopRevenueMovies();
   }
 
   render() {
-    const { movies } = this.props;
-
+    const { movies, fetchTopRevenueMovies } = this.props;
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.REVENUE_DESC}/>
+        <MovieList
+          movies={movies}
+          onEndReached={fetchTopRevenueMovies}
+        />
       </View>
     );
   }
 }
 
 TopRevenueScreen.propTypes = {
+  movies: PropTypes.array,
   fetchTopRevenueMovies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.topRevenue;
-
   return  {
     movies: moviesState.result
   };

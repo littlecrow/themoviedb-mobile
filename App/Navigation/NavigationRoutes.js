@@ -1,5 +1,6 @@
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
+import SearchScreen from '../Containers/SearchScreen';
 import TestScreen from '../Containers/TestScreen';
 import HomeScreen from '../Containers/HomeScreen';
 import AuthScreen from '../Containers/AuthScreen';
@@ -16,6 +17,10 @@ export const AppRoutes = {
   'Movie Detail': {
     path: '/movies/detail/:id',
     screen: MovieDetailScreen,
+  },
+  'Search': {
+    path: '/movies/search',
+    screen: SearchScreen,
   },
   'Login': {
     path: '/auth',

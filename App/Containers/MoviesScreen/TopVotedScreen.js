@@ -18,16 +18,17 @@ class TopVotedScreen extends Component {
 
   componentDidMount() {
     const { fetchTopVotedMovies } = this.props;
-
     fetchTopVotedMovies();
   }
 
   render() {
-    const { movies } = this.props;
-
+    const { movies, fetchTopVotedMovies } = this.props;
     return (
       <View>
-        <MovieList movies={movies} filterName={MoviesConstant.VOTE_AVERAGE_DESC}/>
+        <MovieList
+          movies={movies}
+          onEndReached={fetchTopVotedMovies}
+        />
       </View>
     );
   }
@@ -39,7 +40,6 @@ TopVotedScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   const moviesState = state.movies.filter.topVoted;
-
   return  {
     movies: moviesState.result
   };

@@ -5,12 +5,13 @@ import {
   View,
   Text,
   Image,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
+import { reduceByCharacters } from '../../../Transforms/TextConverter';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
 
 const _renderImage = (image) => {
@@ -28,7 +29,7 @@ const _renderImage = (image) => {
 const _renderInfo = (item) => {
   return (
     <View style={styles.infoArea}>
-      <Text style={[styles.text, styles.title]}>{item.title}</Text>
+      <Text style={[styles.text, styles.title]}>{reduceByCharacters(item.title)}</Text>
       <Text style={styles.text}>{item.release_date}</Text>
       <Text style={styles.text}>Rating: {item.vote_average}/10</Text>
     </View>
@@ -41,14 +42,14 @@ const MovieItem = ({ navigateToDetail, movie, setMovieDetail }) => {
     navigateToDetail();
   };
   return (
-    <TouchableHighlight onPress={handleOnPress}>
+    <TouchableOpacity onPress={handleOnPress}>
       <View style={styles.itemContainer}>
         <View style={styles.imageArea}>
           {_renderImage(movie.poster_path)}
         </View>
         {_renderInfo(movie)}
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 

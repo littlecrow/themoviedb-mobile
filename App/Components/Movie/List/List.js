@@ -10,31 +10,10 @@ import {
 import { Images } from '../../../Themes';
 import styles from './Styles/ListStyles';
 import { handleList } from '../../../Transforms/ListConverter';
-import {
-  MoviesActions,
-  MoviesConstant
-} from '../../../Redux/Movies';
 import DefaultItems from '../ListItem/Default';
 import GridItems from '../ListItem/Grid';
 
 class MovieList extends Component {
-  _fetchMoreItems() {
-    const { filterName, fetchPopularMovies, fetchTopVotedMovies, fetchTopRevenueMovies } = this.props;
-    switch (filterName) {
-    case MoviesConstant.POPULARITY_DESC:
-      fetchPopularMovies();
-      break;
-    case MoviesConstant.VOTE_AVERAGE_DESC:
-      fetchTopVotedMovies();
-      break;
-    case MoviesConstant.REVENUE_DESC:
-      fetchTopRevenueMovies();
-      break;
-    default:
-      break;
-    }
-  }
-
   _renderFooter() {
     return (
       <View style={styles.loadingIcon}>
@@ -45,14 +24,11 @@ class MovieList extends Component {
 
   _renderItem = ({item}) => {
     const { itemsPerRow } = this.props;
-    if(itemsPerRow === 1) {
-      return <DefaultItems movie={item}/>;
-    }
-    return <GridItems movie={item}/>;
+    return itemsPerRow === 1 ? <DefaultItems movie={item}/> : <GridItems movie={item}/>;
   }
 
   _renderListItem() {
-    const { movies, itemsPerRow } = this.props;
+    const { movies, itemsPerRow, onEndReached } = this.props;
     return (
       <FlatList
         data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
@@ -60,7 +36,7 @@ class MovieList extends Component {
         keyExtractor={(item, index) => index}
         ListFooterComponent={this._renderFooter}
         onEndReachedThreshold={0.5}
-        onEndReached={() => this._fetchMoreItems()}
+        onEndReached={onEndReached}
       />
     );
   }
@@ -90,20 +66,12 @@ class MovieList extends Component {
 MovieList.propTypes = {
   filterName: PropTypes.string,
   movies: PropTypes.array,
-  itemsPerRow: PropTypes.number,
-  fetchPopularMovies: PropTypes.func,
-  fetchTopVotedMovies: PropTypes.func,
-  fetchTopRevenueMovies: PropTypes.func
+  onEndReached: PropTypes.func,
+  itemsPerRow: PropTypes.number
 };
 
 const mapStateToProps = (state) => ({
   itemsPerRow: state.list.quantity
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies()),
-  fetchTopVotedMovies: () => dispatch(MoviesActions.fetchTopVotedMovies()),
-  fetchTopRevenueMovies: () => dispatch(MoviesActions.fetchTopRevenueMovies())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(mapStateToProps, undefined)(MovieList);

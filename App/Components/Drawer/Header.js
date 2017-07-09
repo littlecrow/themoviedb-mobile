@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { connect } from 'react-redux';
 import Navbar from 'react-native-navbar';
 import styles from './Styles/HeaderStyles';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
-import { NAVIGATION_KEY } from '../../Redux/Navigation';
-import ListType from '../ListType/Menu';
+import HeaderRight from '../Drawer/HeaderRight';
 import DrawerButton from './Button';
 
 const HEADER_TITLE_LENGTH = 30;
@@ -19,7 +17,7 @@ const renderLeftButton = (element = null) => (
 
 const renderRightButton = (element = null) => (
   <View style={[styles.componentContainer, styles.headerRight]}>
-    {element ? element : <ListType/>}
+    {element ? element : <HeaderRight/>}
   </View>
 );
 
@@ -28,16 +26,7 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const ReduxHeader = ({ drawer, disableRedux, title, headerLeft, headerRight }) => {
-
-  // let _title = '';
-  // if (!disableRedux) {
-  //   const { routes, index } = drawer.routes[0];
-  //   _title = routes[index].routeName;
-  // }
-  // else {
-  //   _title = title;
-  // }
+const ReduxHeader = ({ headerLeft, headerRight }) => {
   return (
     <View style={styles.container}>
       <Navbar
@@ -57,11 +46,5 @@ ReduxHeader.propTypes = {
   headerRight: PropTypes.element,
   headerLeft: PropTypes.element,
 };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     drawer: state[NAVIGATION_KEY].drawer
-//   };
-// };
 
 export default ReduxHeader;
