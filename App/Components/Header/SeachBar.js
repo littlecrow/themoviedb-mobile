@@ -54,7 +54,10 @@ class SearchBar extends Component {
   }
 
   _removeText() {
-    this.setState({ text: '' });
+    this.setState({
+      text: '',
+      isChangedText: false
+    });
   }
 
   _renderHeaderLeft() {
