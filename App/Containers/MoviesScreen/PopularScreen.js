@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
+import { MoviesActions } from '../../Redux/Movies';
 import MovieList from '../../Components/Movie/List/List';
 
 class PopularScreen extends Component {
