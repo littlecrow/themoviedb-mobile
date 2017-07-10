@@ -1,6 +1,6 @@
 import ActionCreators from './ActionCreators';
 import Constant from './Constant';
-import Api from '../../Services/Api';
+import Api, { getLanguage } from '../../Services/Api';
 
 const API_DISCOVER_MOVIE = 'discover/movie';
 
@@ -9,8 +9,9 @@ const fetchPopularMovies = () => async (dispatch, getState) => {
   try {
     const movies = await Api.get(API_DISCOVER_MOVIE, {
       params: {
+        language: await getLanguage(),
         sort_by: Constant.POPULARITY_DESC,
-        page: getState().movies.filter.popular.page
+        page: getState().movies.filter.popular.page,
       }
     }).then(response => response.data.results);
     return dispatch(ActionCreators.fetchPopularMoviesFulfilled(movies));
@@ -24,6 +25,7 @@ const fetchTopVotedMovies = () => async (dispatch, getState) => {
   try {
     const movies = await Api.get(API_DISCOVER_MOVIE, {
       params: {
+        language: await getLanguage(),
         sort_by: Constant.VOTE_AVERAGE_DESC,
         page: getState().movies.filter.topVoted.page
       }
@@ -40,6 +42,7 @@ const fetchTopRevenueMovies = () => async (dispatch, getState) => {
   try {
     const movies = await Api.get(API_DISCOVER_MOVIE, {
       params: {
+        language: await getLanguage(),
         sort_by: Constant.REVENUE_DESC,
         page: getState().movies.filter.topRevenue.page
       }

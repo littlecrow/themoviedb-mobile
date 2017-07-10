@@ -9,7 +9,8 @@ export default StyleSheet.create({
     borderTopWidth: Constants.statusBarHeight,
     borderTopColor: isAndroid ? Colors.primaryDark : 'transparent', // StatusBar color
     height: Metrics.screenHeight - Constants.statusBarHeight,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    flex: 1
   },
   sideMenuHeader: {
     backgroundColor: Colors.peterRiver,
@@ -31,6 +32,9 @@ export default StyleSheet.create({
   },
   listMenu: {
     marginTop: Metrics.baseMargin
+  },
+  listMenuBottom: {
+    marginTop: 'auto'
   },
   item: {
     flexDirection: 'row',
