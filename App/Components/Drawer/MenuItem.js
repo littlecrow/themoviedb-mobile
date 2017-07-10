@@ -18,7 +18,7 @@ const MenuItem = ({name, icon, isActive, navigate}) => {
     return (
       <View
         style={[styles.item, styles.activeItem]}>
-        <Icon containerStyle={styles.icon} {...icon}/>
+        <Icon containerStyle={styles.icon} {...icon} color={colors.secondary}/>
         <Text style={styles.activeItemLabel}>{name}</Text>
       </View>
     );
