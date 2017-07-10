@@ -32,7 +32,7 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Setting';
+export const INITIAL_ROUTE_NAME = 'Discover';
 
 export const DrawerRoutes = [
   {
