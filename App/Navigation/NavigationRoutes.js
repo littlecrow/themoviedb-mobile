@@ -1,9 +1,9 @@
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import SearchScreen from '../Containers/SearchScreen';
-import TestScreen from '../Containers/TestScreen';
 import HomeScreen from '../Containers/HomeScreen';
 import AuthScreen from '../Containers/AuthScreen';
+import SettingScreen from '../Containers/SettingScreen';
 
 export const AppRoutes = {
   'Home': {
@@ -26,13 +26,13 @@ export const AppRoutes = {
     path: '/auth',
     screen: AuthScreen,
   },
-  'Test': {
+  'Setting': {
     path: '/test',
-    screen: TestScreen,
+    screen: SettingScreen,
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Home';
+export const INITIAL_ROUTE_NAME = 'Setting';
 
 export const DrawerRoutes = [
   {
@@ -47,13 +47,6 @@ export const DrawerRoutes = [
     icon: {
       name: 'earth',
       type: 'material-community'
-    }
-  },
-  {
-    name: 'Test',
-    icon: {
-      name:'ios-american-football',
-      type:'ionicon'
     }
   },
   {

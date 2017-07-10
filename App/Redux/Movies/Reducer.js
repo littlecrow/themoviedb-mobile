@@ -89,6 +89,8 @@ export default (state = INITIAL_STATE, action) => {
     return {
       ...state
     };
+  case ActionTypes.EMPTY_MOVIES:
+    return INITIAL_STATE;
   default:
     return state;
   }
