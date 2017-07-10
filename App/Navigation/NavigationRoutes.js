@@ -63,4 +63,12 @@ export const DrawerRoutes = [
       type: 'font-awesome'
     }
   },
+  {
+    name: 'Setting',
+    bottom: true,
+    icon: {
+      name: 'gear',
+      type: 'font-awesome'
+    }
+  },
 ];

@@ -6,9 +6,15 @@ import MenuItem from './MenuItem';
 import { DrawerRoutes } from '../../Navigation/NavigationRoutes';
 
 const renderMenuList = (list) => (
-  list.map(({ ...rest }, index) => (
+  list.map(({ ...rest, bottom }, index) => bottom ? null : (
     <MenuItem key={index} {...rest}/>
   ))
+);
+
+const renderMenuListBottom = (list) => (
+  list.map(({ ...rest, bottom }, index) => bottom ? (
+    <MenuItem key={index} {...rest}/>
+  ) : null)
 );
 
 const Menu = () => {
@@ -26,6 +32,9 @@ const Menu = () => {
       </View>
       <View style={styles.listMenu}>
         {renderMenuList(DrawerRoutes)}
+      </View>
+      <View style={styles.listMenuBottom}>
+        {renderMenuListBottom(DrawerRoutes)}
       </View>
     </View>
   );
