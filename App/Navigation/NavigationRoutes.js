@@ -23,7 +23,7 @@ export const AppRoutes = {
     path: '/movies/search',
     screen: SearchScreen,
   },
-  'TV Show': {
+  'TV Shows': {
     path: '/tv-shows',
     screen: TVShowScreen
   },
@@ -37,7 +37,7 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Movies';
+export const INITIAL_ROUTE_NAME = 'TV Shows';
 
 export const DrawerRoutes = [
   {
@@ -49,6 +49,13 @@ export const DrawerRoutes = [
   },
   {
     name: 'Movies',
+    icon: {
+      name: 'earth',
+      type: 'material-community'
+    }
+  },
+  {
+    name: 'TV Shows',
     icon: {
       name: 'earth',
       type: 'material-community'

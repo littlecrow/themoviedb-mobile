@@ -22,15 +22,15 @@ class MovieList extends Component {
 
   _renderItem = ({item}) => {
     const { itemsPerRow } = this.props;
-    return itemsPerRow === 1 ? <DefaultItems movie={item}/> : <GridItems movie={item}/>;
+    return itemsPerRow === 1 ? <DefaultItems tvShow={item}/> : <GridItems tvShow={item}/>;
   }
 
   _renderList() {
-    const { movies, itemsPerRow, onEndReached } = this.props;
+    const { data, itemsPerRow, onEndReached } = this.props;
     return (
       <View style={styles.list}>
         <FlatList
-          data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
+          data={itemsPerRow === 1 ? data : handleList(data, itemsPerRow)}
           renderItem={this._renderItem}
           keyExtractor={(item, index) => index}
           ListFooterComponent={this._renderFooter}
@@ -51,8 +51,7 @@ class MovieList extends Component {
 }
 
 MovieList.propTypes = {
-  filterName: PropTypes.string,
-  movies: PropTypes.array,
+  data: PropTypes.array,
   onEndReached: PropTypes.func,
   itemsPerRow: PropTypes.number
 };
