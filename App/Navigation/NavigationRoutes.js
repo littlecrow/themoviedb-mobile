@@ -4,13 +4,14 @@ import SearchScreen from '../Containers/SearchScreen';
 import TestScreen from '../Containers/TestScreen';
 import HomeScreen from '../Containers/HomeScreen';
 import AuthScreen from '../Containers/AuthScreen';
+import TVShowScreen from '../Containers/TVShowScreen';
 
 export const AppRoutes = {
   'Home': {
     path: '/',
     screen: HomeScreen
   },
-  'Discover': {
+  'Movies': {
     path: '/movies',
     screen: MoviesScreen,
   },
@@ -22,6 +23,10 @@ export const AppRoutes = {
     path: '/movies/search',
     screen: SearchScreen,
   },
+  'TV Show': {
+    path: '/tv-shows',
+    screen: TVShowScreen
+  },
   'Login': {
     path: '/auth',
     screen: AuthScreen,
@@ -32,7 +37,7 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Home';
+export const INITIAL_ROUTE_NAME = 'Movies';
 
 export const DrawerRoutes = [
   {
@@ -43,7 +48,7 @@ export const DrawerRoutes = [
     }
   },
   {
-    name: 'Discover',
+    name: 'Movies',
     icon: {
       name: 'earth',
       type: 'material-community'

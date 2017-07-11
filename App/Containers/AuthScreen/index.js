@@ -82,7 +82,7 @@ class AuthScreen extends Component {
       const { storageUsername, storagePassword } = await _getStorage();
       if(account.username === storageUsername && account.password === storagePassword){
         alert('Welcome back!');
-        this.props.navigationToDiscover();
+        this.props.navigationToMovies();
       }
       else {
         alert('This user is not available');
@@ -158,14 +158,14 @@ class AuthScreen extends Component {
 AuthScreen.propTypes = {
   login: PropTypes.func,
   navigationBack: PropTypes.func,
-  navigationToDiscover: PropTypes.func
+  navigationToMovies: PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     navigationBack: () => dispatch(NavigationActions.back()),
-    navigationToDiscover: () => dispatch(NavigationActions.navigate({
-      routeName: 'Discover'
+    navigationToMovies: () => dispatch(NavigationActions.navigate({
+      routeName: 'Movies'
     }))
   };
 };
