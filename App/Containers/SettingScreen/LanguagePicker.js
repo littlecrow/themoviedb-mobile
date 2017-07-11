@@ -7,6 +7,7 @@ import { Colors } from '../../Themes';
 import { LANGUAGE } from 'react-native-dotenv';
 import { connect } from 'react-redux';
 import { MoviesActionCreators } from '../../Redux/Movies';
+import styles from './Styles/SettingScreenStyles';
 
 let lang = languages[0];
 
@@ -86,10 +87,12 @@ class LanguagePicker extends Component {
         visible={this.state.modalVisible}
         transparent={false}
         onRequestClose={() => this._setModalVisible(false)}>
-        <FlatList
-          data={languages}
-          renderItem={this._renderLanguageItem}
-          keyExtractor={(item, index) => index}/>
+        <View style={styles.modal}>
+          <FlatList
+            data={languages}
+            renderItem={this._renderLanguageItem}
+            keyExtractor={(item, index) => index}/>
+        </View>
       </Modal>
     );
   }

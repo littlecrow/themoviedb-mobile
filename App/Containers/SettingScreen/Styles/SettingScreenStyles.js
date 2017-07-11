@@ -9,7 +9,8 @@ const MovieDetailScreenStyles = StyleSheet.create({
   },
   item: {
   },
-  picker: {
+  modal: {
+    marginTop: Constants.statusBarHeight
   }
 });
 

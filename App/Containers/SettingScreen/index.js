@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Wrapper from '../../Components/Drawer/Wrapper';
 import Header from '../../Components/Drawer/Header';
 import LanguagePicker from './LanguagePicker';
-import styles from '../Styles/SettingScreenStyles';
+import styles from './Styles/SettingScreenStyles';
 
 const SettingScreen = () => (
   <Wrapper>
