@@ -1,5 +1,6 @@
 import React from 'react';
 import App from './App';
+import FullButtonTest from './Tests/Components/FullButtonTest';
 
 import renderer from 'react-test-renderer';
 

@@ -45,6 +45,10 @@ export const fetchTopRevenueMoviesRejected = (err) => ({
   error: true
 });
 
+export const emptyMovies = () => ({
+  type: ActionTypes.EMPTY_MOVIES
+});
+
 export default {
   fetchPopularMoviesRequested,
   fetchPopularMoviesFulfilled,
@@ -56,5 +60,7 @@ export default {
 
   fetchTopRevenueMoviesRequested,
   fetchTopRevenueMoviesFulfilled,
-  fetchTopRevenueMoviesRejected
+  fetchTopRevenueMoviesRejected,
+
+  emptyMovies
 };
