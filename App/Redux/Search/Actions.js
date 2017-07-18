@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { API_SEARCH, API_KEY, LANGUAGE } from 'react-native-dotenv';
+import { THEMOVIEDB_API, API_KEY, LANGUAGE } from 'react-native-dotenv';
 import ActionCreators from './ActionCreators';
 
 const fetchSearchMovie = (keyword) => async (dispatch, getState) => {
   dispatch(ActionCreators.fetchSearchMovieRequested(keyword));
   try {
     const result = await axios.get(
-      API_SEARCH + 'movie',
+      THEMOVIEDB_API + 'search/company',
       {
         params: {
           api_key: API_KEY,
