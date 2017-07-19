@@ -37,7 +37,7 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Movies';
+export const INITIAL_ROUTE_NAME = 'TV Shows';
 
 export const DrawerRoutes = [
   {

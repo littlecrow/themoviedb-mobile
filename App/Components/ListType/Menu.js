@@ -6,7 +6,7 @@ import styles from './Styles/MenuStyles';
 import { connect } from 'react-redux';
 import { ListActionCreators } from '../../Redux/List';
 
-const nums = [1, 2, 3, 4];
+const nums = [1, 2, 3];
 
 class Menu extends Component {
   constructor(props) {

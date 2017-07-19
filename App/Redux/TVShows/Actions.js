@@ -13,7 +13,6 @@ const fetchPopularTVShows = () => async (dispatch, getState) => {
         page: getState().tvshows.filter.popular.page
       }
     }).then(response => response.data.results);
-    console.log('data: ', data);
     return dispatch(ActionCreators.fetchPopularTVShowsFulfilled(data));
   } catch (err) {
     console.log('Error: ', err);
@@ -43,8 +42,8 @@ const fetchLatestTVShows = () => async (dispatch, getState) => {
   try {
     const data = await Api.get(API_DISCOVER_TVSHOW, {
       params: {
-        sort_by: Constant.REVENUE_DESC,
-        page: getState().tvshows.filter.topRevenue.page
+        sort_by: Constant.FIRST_AIR_DATE_DESC,
+        page: getState().tvshows.filter.latest.page
       }
     }).then(response => response.data.results);
 

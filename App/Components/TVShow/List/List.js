@@ -11,7 +11,7 @@ import { handleList } from '../../../Transforms/ListConverter';
 import DefaultItems from '../ListItem/Default';
 import GridItems from '../ListItem/Grid';
 
-class MovieList extends Component {
+class TVShowList extends Component {
   _renderFooter() {
     return (
       <View style={styles.loadingIcon}>
@@ -50,7 +50,7 @@ class MovieList extends Component {
   }
 }
 
-MovieList.propTypes = {
+TVShowList.propTypes = {
   data: PropTypes.array,
   onEndReached: PropTypes.func,
   itemsPerRow: PropTypes.number
@@ -60,4 +60,4 @@ const mapStateToProps = (state) => ({
   itemsPerRow: state.list.quantity
 });
 
-export default connect(mapStateToProps, undefined)(MovieList);
+export default connect(mapStateToProps, undefined)(TVShowList);

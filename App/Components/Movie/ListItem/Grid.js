@@ -46,19 +46,31 @@ class GridItems extends Component {
     return <Image source={Images.emptyImage} style={styles.image}/>;
   }
 
+  _reduceTitle(itemsPerRow, title) {
+    switch (itemsPerRow) {
+    case 3:
+      return reduceByCharacters(title, 15);
+    case 4:
+      return reduceByCharacters(title, 10);
+    default:
+      return reduceByCharacters(title);
+    }
+  }
+
   _renderInfo(item) {
     const style = StyleSheet.create({
       loadingImage: {
         height: this._calculateMetrics().imageHeight
       }
     });
+    const { itemsPerRow } = this.props;
     return (
       <View>
         <View style={[styles.loadingImage, style.loadingImage]}>
           {this._renderImage(item.backdrop_path)}
         </View>
         <View style={styles.info}>
-          <Text style={styles.text}>{reduceByCharacters(item.title)}</Text>
+          <Text style={styles.text}>{this._reduceTitle(itemsPerRow, item.title)}</Text>
         </View>
       </View>
     );

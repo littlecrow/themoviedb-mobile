@@ -17,13 +17,13 @@ class SearchScreen extends Component {
   }
 
   _renderResult() {
-    const { movies, isSearching, fetchSearchMovie } = this.props;
+    const { result, isSearching, fetchSearching } = this.props;
     if(isSearching) {
       return this._renderLoading();
     } else {
-      return movies.length === 0
+      return result.length === 0
         ? <View style={styles.emptyResult}><Text>No results</Text></View>
-        : <MovieList movies={movies} onEndReached={fetchSearchMovie}/>;
+        : <MovieList movies={result} onEndReached={fetchSearching}/>;
     }
   }
 
@@ -40,20 +40,20 @@ class SearchScreen extends Component {
 }
 
 SearchScreen.propTypes = {
-  movies: PropTypes.array,
+  result: PropTypes.array,
   loading: PropTypes.bool,
   isSearching: PropTypes.bool,
-  fetchSearchMovie: PropTypes.func
+  fetchSearching: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
   isSearching: state.search.isSearching,
   loading: state.search.loading,
-  movies: state.search.list
+  result: state.search.list
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSearchMovie: () => dispatch(SearchActions.fetchSearchMovie())
+  fetchSearching: () => dispatch(SearchActions.fetchSearching())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);

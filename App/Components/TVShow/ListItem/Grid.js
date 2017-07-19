@@ -46,19 +46,31 @@ class GridItems extends Component {
     return <Image source={Images.emptyImage} style={styles.image}/>;
   }
 
+  _reduceTitle(itemsPerRow, title) {
+    switch (itemsPerRow) {
+    case 3:
+      return reduceByCharacters(title, 15);
+    case 4:
+      return reduceByCharacters(title, 7);
+    default:
+      return reduceByCharacters(title);
+    }
+  }
+
   _renderInfo(item) {
     const style = StyleSheet.create({
       loadingImage: {
         height: this._calculateMetrics().imageHeight
       }
     });
+    const { itemsPerRow } = this.props;
     return (
       <View>
         <View style={[styles.loadingImage, style.loadingImage]}>
           {this._renderImage(item.backdrop_path)}
         </View>
         <View style={styles.info}>
-          <Text style={styles.text}>{reduceByCharacters(item.title)}</Text>
+          <Text style={styles.text}>{this._reduceTitle(itemsPerRow, item.name)}</Text>
         </View>
       </View>
     );
@@ -70,18 +82,18 @@ class GridItems extends Component {
         width: this._calculateMetrics().itemWidth
       }
     });
-    const { movie, navigateToDetail, setMovieDetail } = this.props;
+    const { tvShow, navigateToDetail, setMovieDetail } = this.props;
     const handleItemPress = (item) => {
       setMovieDetail(item);
       navigateToDetail();
     };
-    return movie.data.map((item, index) => (
+    return tvShow.data.map((item, index) => (
       <TouchableHighlight onPress={() => handleItemPress(item)} key={index}
         style={[
           styles.itemContainer,
           style.itemContainer,
           index === 0 ? styles.firstItem : null,
-          index === movie.data.length - 1 ? styles.lastItem : null
+          index === tvShow.data.length - 1 ? styles.lastItem : null
         ]}>{this._renderInfo(item)}
       </TouchableHighlight>
     ));
@@ -97,7 +109,7 @@ class GridItems extends Component {
 }
 
 GridItems.propTypes = {
-  movie: PropTypes.object,
+  tvShow: PropTypes.object,
   itemsPerRow: PropTypes.number,
   setMovieDetail: PropTypes.func,
   navigateToDetail: PropTypes.func,
