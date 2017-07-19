@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
   Image,
   TouchableOpacity
 } from 'react-native';
-// import { NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
 import styles from './Styles/DefaultStyles';
 import { reduceByCharacters } from '../../../Transforms/TextConverter';
-// import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
+import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
 
 const _renderImage = (image) => {
   if (image !== null) {
@@ -29,40 +29,41 @@ const _renderImage = (image) => {
 const _renderInfo = (item) => {
   return (
     <View style={styles.infoArea}>
-      <Text style={[styles.text, styles.title]}>{reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}</Text>
+      <Text style={[styles.text, styles.title]}>{reduceByCharacters(item.title)}</Text>
+      <Text style={styles.text}>{item.release_date}</Text>
       <Text style={styles.text}>Rating: {item.vote_average}/10</Text>
     </View>
   );
 };
 
-const TVShowItem = ({ navigateToDetail, tvShow, setMovieDetail }) => {
+const MovieItem = ({ navigateToDetail, movie, setMovieDetail }) => {
   const handleOnPress = () => {
-    // setMovieDetail(tvShow);
-    // navigateToDetail();
+    setMovieDetail(movie);
+    navigateToDetail();
   };
   return (
     <TouchableOpacity onPress={handleOnPress}>
       <View style={styles.itemContainer}>
         <View style={styles.imageArea}>
-          {_renderImage(tvShow.poster_path)}
+          {_renderImage(movie.poster_path)}
         </View>
-        {_renderInfo(tvShow)}
+        {_renderInfo(movie)}
       </View>
     </TouchableOpacity>
   );
 };
 
-TVShowItem.propTypes = {
-  tvShow: PropTypes.object,
-  // setMovieDetail: PropTypes.func,
-  // navigateToDetail: PropTypes.func,
+MovieItem.propTypes = {
+  movie: PropTypes.object,
+  setMovieDetail: PropTypes.func,
+  navigateToDetail: PropTypes.func,
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setMovieDetail: (tvShow) => dispatch(setMovieDetail(tvShow)),
-//   navigateToDetail: () => dispatch(NavigationActions.navigate({
-//     routeName: 'Movie Detail'
-//   }))
-// });
+const mapDispatchToProps = (dispatch) => ({
+  setMovieDetail: (movie) => dispatch(setMovieDetail(movie)),
+  navigateToDetail: () => dispatch(NavigationActions.navigate({
+    routeName: 'Movie Detail'
+  }))
+});
 
-export default TVShowItem;
+export default connect(undefined, mapDispatchToProps)(MovieItem);

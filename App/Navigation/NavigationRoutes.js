@@ -20,7 +20,7 @@ export const AppRoutes = {
     screen: MovieDetailScreen,
   },
   'Search': {
-    path: '/movies/search',
+    path: '/search',
     screen: SearchScreen,
   },
   'TV Shows': {

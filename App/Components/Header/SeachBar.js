@@ -75,7 +75,7 @@ class SearchBar extends Component {
   }
 
   _renderCrossIcon() {
-    if(this.state.isChangedText) {
+    if(this.state.isChangedText || this.state.text !== '') {
       return (
         <TouchableOpacity style={styles.crossIcon} onPress={this._removeText}>
           <Entypo name='cross' size={24} color={Colors.secondary}/>

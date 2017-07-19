@@ -27,6 +27,9 @@ class MovieList extends Component {
 
   _renderList() {
     const { movies, itemsPerRow, onEndReached } = this.props;
+    movies.forEach((el) => {
+      console.log('element: ', el);
+    });
     return (
       <View style={styles.list}>
         <FlatList

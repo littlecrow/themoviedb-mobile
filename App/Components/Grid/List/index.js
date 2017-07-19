@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 import styles from './Styles/ListStyles';
 import { handleList } from '../../../Transforms/ListConverter';
-import DefaultItems from '../ListItem/Default';
-import GridItems from '../ListItem/Grid';
+import DefaultItems from './Default';
+import GridItems from './Grid';
 
-class TVShowList extends Component {
+class MovieList extends Component {
   _renderFooter() {
     return (
       <View style={styles.loadingIcon}>
@@ -22,16 +22,18 @@ class TVShowList extends Component {
 
   _renderItem = ({item}) => {
     const { itemsPerRow } = this.props;
-    return itemsPerRow === 1 ? <DefaultItems tvShow={item}/> : <GridItems tvShow={item}/>;
+    return itemsPerRow === 1 ? <DefaultItems movie={item}/> : <GridItems movie={item}/>;
   }
 
   _renderList() {
-    const { data, itemsPerRow, onEndReached } = this.props;
-    console.log('data: ', data.length);
+    const { movies, itemsPerRow, onEndReached } = this.props;
+    movies.forEach((el) => {
+      console.log('element: ', el);
+    });
     return (
       <View style={styles.list}>
         <FlatList
-          data={itemsPerRow === 1 ? data : handleList(data, itemsPerRow)}
+          data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
           renderItem={this._renderItem}
           keyExtractor={(item, index) => index}
           ListFooterComponent={this._renderFooter}
@@ -51,8 +53,9 @@ class TVShowList extends Component {
   }
 }
 
-TVShowList.propTypes = {
-  data: PropTypes.array,
+MovieList.propTypes = {
+  filterName: PropTypes.string,
+  movies: PropTypes.array,
   onEndReached: PropTypes.func,
   itemsPerRow: PropTypes.number
 };
@@ -61,4 +64,4 @@ const mapStateToProps = (state) => ({
   itemsPerRow: state.list.quantity
 });
 
-export default connect(mapStateToProps, undefined)(TVShowList);
+export default connect(mapStateToProps, undefined)(MovieList);

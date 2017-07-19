@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { View, Text, ActivityIndicator } from 'react-native';
 import SearchBar from '../Components/Header/SeachBar';
 import MovieList from '../Components/Movie/List/List';
+import List from '../Components/TVShow/List/List';
 import styles from './Styles/SearchScreenStyles';
 import { SearchActions } from '../Redux/Search';
 
@@ -23,7 +24,7 @@ class SearchScreen extends Component {
     } else {
       return result.length === 0
         ? <View style={styles.emptyResult}><Text>No results</Text></View>
-        : <MovieList movies={result} onEndReached={fetchSearching}/>;
+        : <List data={result} onEndReached={fetchSearching}/>;
     }
   }
 
