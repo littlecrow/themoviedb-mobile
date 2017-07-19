@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MoviesActions } from '../../Redux/Movies';
-import MovieList from '../../Components/Movie/List/List';
+import List from '../../Components/Grid/List/index';
 import styles from './Styles/MoviesScreenStyles';
 
 class TopVotedScreen extends Component {
@@ -26,8 +26,8 @@ class TopVotedScreen extends Component {
     const { movies, fetchTopVotedMovies } = this.props;
     return (
       <View style={styles.container}>
-        <MovieList
-          movies={movies}
+        <List
+          data={movies}
           onEndReached={fetchTopVotedMovies}
         />
       </View>

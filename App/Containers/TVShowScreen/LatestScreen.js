@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TVShowsActions } from '../../Redux/TVShows';
-import TVShowList from '../../Components/TVShow/List/List';
+import List from '../../Components/Grid/List/index';
 import styles from './Styles/TVShowsScreenStyles';
 
 class LatestScreen extends Component {
@@ -26,7 +26,7 @@ class LatestScreen extends Component {
     const { tvShows, fetchLatestTVShows } = this.props;
     return (
       <View style={styles.container}>
-        <TVShowList
+        <List
           data={tvShows}
           onEndReached={fetchLatestTVShows}
         />

@@ -84,18 +84,18 @@ class GridItems extends Component {
         width: this._calculateMetrics().itemWidth
       }
     });
-    const { movie, navigateToDetail, setMovieDetail } = this.props;
+    const { data, navigateToDetail, setMovieDetail } = this.props;
     const handleItemPress = (item) => {
       setMovieDetail(item);
       navigateToDetail();
     };
-    return movie.data.map((item, index) => (
+    return data.data.map((item, index) => (
       <TouchableHighlight onPress={() => handleItemPress(item)} key={index}
         style={[
           styles.itemContainer,
           style.itemContainer,
           index === 0 ? styles.firstItem : null,
-          index === movie.data.length - 1 ? styles.lastItem : null
+          index === data.data.length - 1 ? styles.lastItem : null
         ]}>{this._renderInfo(item)}
       </TouchableHighlight>
     ));
@@ -111,7 +111,7 @@ class GridItems extends Component {
 }
 
 GridItems.propTypes = {
-  movie: PropTypes.object,
+  data: PropTypes.object,
   itemsPerRow: PropTypes.number,
   setMovieDetail: PropTypes.func,
   navigateToDetail: PropTypes.func,

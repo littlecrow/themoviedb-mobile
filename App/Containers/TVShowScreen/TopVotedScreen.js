@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TVShowsActions } from '../../Redux/TVShows';
-import TVShowList from '../../Components/TVShow/List/List';
+import List from '../../Components/Grid/List/index';
 import styles from './Styles/TVShowsScreenStyles';
 
 class TopVotedScreen extends Component {
@@ -26,7 +26,7 @@ class TopVotedScreen extends Component {
     const { tvShows, fetchTopVotedTVShows } = this.props;
     return (
       <View style={styles.container}>
-        <TVShowList
+        <List
           data={tvShows}
           onEndReached={fetchTopVotedTVShows}
         />
