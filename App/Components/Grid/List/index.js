@@ -11,7 +11,7 @@ import { handleList } from '../../../Transforms/ListConverter';
 import DefaultItems from './Default';
 import GridItems from './Grid';
 
-class MovieList extends Component {
+class List extends Component {
   _renderFooter() {
     return (
       <View style={styles.loadingIcon}>
@@ -22,18 +22,18 @@ class MovieList extends Component {
 
   _renderItem = ({item}) => {
     const { itemsPerRow } = this.props;
-    return itemsPerRow === 1 ? <DefaultItems movie={item}/> : <GridItems movie={item}/>;
+    return itemsPerRow === 1 ? <DefaultItems data={item}/> : <GridItems data={item}/>;
   }
 
   _renderList() {
-    const { movies, itemsPerRow, onEndReached } = this.props;
-    movies.forEach((el) => {
+    const { data, itemsPerRow, onEndReached } = this.props;
+    data.forEach((el) => {
       console.log('element: ', el);
     });
     return (
       <View style={styles.list}>
         <FlatList
-          data={itemsPerRow === 1 ? movies : handleList(movies, itemsPerRow)}
+          data={itemsPerRow === 1 ? data : handleList(data, itemsPerRow)}
           renderItem={this._renderItem}
           keyExtractor={(item, index) => index}
           ListFooterComponent={this._renderFooter}
@@ -53,9 +53,9 @@ class MovieList extends Component {
   }
 }
 
-MovieList.propTypes = {
+List.propTypes = {
   filterName: PropTypes.string,
-  movies: PropTypes.array,
+  data: PropTypes.array,
   onEndReached: PropTypes.func,
   itemsPerRow: PropTypes.number
 };
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => ({
   itemsPerRow: state.list.quantity
 });
 
-export default connect(mapStateToProps, undefined)(MovieList);
+export default connect(mapStateToProps, undefined)(List);

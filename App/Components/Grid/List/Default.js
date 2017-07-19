@@ -29,32 +29,34 @@ const _renderImage = (image) => {
 const _renderInfo = (item) => {
   return (
     <View style={styles.infoArea}>
-      <Text style={[styles.text, styles.title]}>{reduceByCharacters(item.title)}</Text>
+      <Text style={[styles.text, styles.title]}>
+        {reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
+      </Text>
       <Text style={styles.text}>{item.release_date}</Text>
       <Text style={styles.text}>Rating: {item.vote_average}/10</Text>
     </View>
   );
 };
 
-const MovieItem = ({ navigateToDetail, movie, setMovieDetail }) => {
+const MovieItem = ({ navigateToDetail, data, setMovieDetail }) => {
   const handleOnPress = () => {
-    setMovieDetail(movie);
+    setMovieDetail(data);
     navigateToDetail();
   };
   return (
     <TouchableOpacity onPress={handleOnPress}>
       <View style={styles.itemContainer}>
         <View style={styles.imageArea}>
-          {_renderImage(movie.poster_path)}
+          {_renderImage(data.poster_path)}
         </View>
-        {_renderInfo(movie)}
+        {_renderInfo(data)}
       </View>
     </TouchableOpacity>
   );
 };
 
 MovieItem.propTypes = {
-  movie: PropTypes.object,
+  data: PropTypes.object,
   setMovieDetail: PropTypes.func,
   navigateToDetail: PropTypes.func,
 };

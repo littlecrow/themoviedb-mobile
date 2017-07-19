@@ -29,7 +29,9 @@ const _renderImage = (image) => {
 const _renderInfo = (item) => {
   return (
     <View style={styles.infoArea}>
-      <Text style={[styles.text, styles.title]}>{reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}</Text>
+      <Text style={[styles.text, styles.title]}>
+        {reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
+      </Text>
       <Text style={styles.text}>Rating: {item.vote_average}/10</Text>
     </View>
   );

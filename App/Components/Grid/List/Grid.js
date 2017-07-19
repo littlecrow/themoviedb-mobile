@@ -70,7 +70,9 @@ class GridItems extends Component {
           {this._renderImage(item.backdrop_path)}
         </View>
         <View style={styles.info}>
-          <Text style={styles.text}>{this._reduceTitle(itemsPerRow, item.title)}</Text>
+          <Text style={styles.text}>
+            {this._reduceTitle(itemsPerRow, (item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
+          </Text>
         </View>
       </View>
     );
