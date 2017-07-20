@@ -45,7 +45,7 @@ class CastersList extends Component {
           horizontal={true}
           data={data}
           renderItem={this._renderItem}
-          keyExtractor={item => item.cast_id}
+          keyExtractor={(item, index) => index}
         />
       </View>
     );

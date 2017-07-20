@@ -1,4 +1,5 @@
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
+import TVShowDetailScreen from '../Containers/TVShowDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
 import SearchScreen from '../Containers/SearchScreen';
 import HomeScreen from '../Containers/HomeScreen';
@@ -26,6 +27,10 @@ export const AppRoutes = {
   'TV Shows': {
     path: '/tv-shows',
     screen: TVShowScreen
+  },
+  'TV Show Detail': {
+    path: '/tvshows/detail/:id',
+    screen: TVShowDetailScreen
   },
   'Login': {
     path: '/auth',

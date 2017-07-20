@@ -21,15 +21,12 @@ class List extends Component {
   }
 
   _renderItem = ({item}) => {
-    const { itemsPerRow } = this.props;
-    return itemsPerRow === 1 ? <DefaultItems data={item}/> : <GridItems data={item}/>;
+    const { itemsPerRow, type } = this.props;
+    return itemsPerRow === 1 ? <DefaultItems type={type} data={item}/> : <GridItems type={type} data={item}/>;
   }
 
   _renderList() {
     const { data, itemsPerRow, onEndReached } = this.props;
-    data.forEach((el) => {
-      console.log('element: ', el);
-    });
     return (
       <View style={styles.list}>
         <FlatList
@@ -56,6 +53,7 @@ class List extends Component {
 List.propTypes = {
   filterName: PropTypes.string,
   data: PropTypes.array,
+  type: PropTypes.string,
   onEndReached: PropTypes.func,
   itemsPerRow: PropTypes.number
 };

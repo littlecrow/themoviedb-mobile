@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableHighlight
-} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { NavigationActions } from 'react-navigation';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
 import { reduceByCharacters } from '../../../Transforms/TextConverter';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
+import { setTVShowDetail } from '../../../Redux/TVShow/ActionCreators';
+import { ListConstant } from '../../../Redux/List';
 
 const { screenWidth, smallMargin } = Metrics;
 /*
@@ -84,10 +80,20 @@ class GridItems extends Component {
         width: this._calculateMetrics().itemWidth
       }
     });
-    const { data, navigateToDetail, setMovieDetail } = this.props;
+    const { type, data, navigateToMovieDetail, navigateToTVShowDetail, setMovieDetail, setTVShowDetail } = this.props;
     const handleItemPress = (item) => {
-      setMovieDetail(item);
-      navigateToDetail();
+      switch (type) {
+      case ListConstant.MOVIES:
+        setMovieDetail(item);
+        navigateToMovieDetail();
+        break;
+      case ListConstant.TV_SHOWS:
+        setTVShowDetail(item);
+        navigateToTVShowDetail();
+        break;
+      default:
+        break;
+      }
     };
     return data.data.map((item, index) => (
       <TouchableHighlight onPress={() => handleItemPress(item)} key={index}
@@ -111,10 +117,13 @@ class GridItems extends Component {
 }
 
 GridItems.propTypes = {
+  type: PropTypes.string,
   data: PropTypes.object,
   itemsPerRow: PropTypes.number,
   setMovieDetail: PropTypes.func,
-  navigateToDetail: PropTypes.func,
+  setTVShowDetail: PropTypes.func,
+  navigateToMovieDetail: PropTypes.func,
+  navigateToTVShowDetail: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -123,8 +132,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setMovieDetail: (movie) => dispatch(setMovieDetail(movie)),
-  navigateToDetail: () => dispatch(NavigationActions.navigate({
+  setTVShowDetail: (tvshow) => dispatch(setTVShowDetail(tvshow)),
+  navigateToMovieDetail: () => dispatch(NavigationActions.navigate({
     routeName: 'Movie Detail'
+  })),
+  navigateToTVShowDetail: () => dispatch(NavigationActions.navigate({
+    routeName: 'TV Show Detail'
   }))
 });
 
