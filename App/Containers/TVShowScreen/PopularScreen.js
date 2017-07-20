@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { MoviesActions } from '../../Redux/Movies';
+import { TVShowsActions } from '../../Redux/TVShows';
 import { ListConstant } from '../../Redux/List';
 import List from '../../Components/Grid/List/index';
-import styles from './Styles/MoviesScreenStyles';
+import styles from './Styles/TVShowsScreenStyles';
 
 class PopularScreen extends Component {
   static navigationOptions = {
@@ -19,18 +19,18 @@ class PopularScreen extends Component {
   }
 
   componentDidMount() {
-    const { fetchPopularMovies } = this.props;
-    fetchPopularMovies();
+    const { fetchPopularTVShows } = this.props;
+    fetchPopularTVShows();
   }
 
   render() {
-    const { movies, fetchPopularMovies } = this.props;
+    const { tvShows, fetchPopularTVShows } = this.props;
     return (
       <View style={styles.container}>
         <List
-          type={ListConstant.MOVIES}
-          data={movies}
-          onEndReached={fetchPopularMovies}
+          type={ListConstant.TV_SHOWS}
+          data={tvShows}
+          onEndReached={fetchPopularTVShows}
         />
       </View>
     );
@@ -38,19 +38,19 @@ class PopularScreen extends Component {
 }
 
 PopularScreen.propTypes = {
-  movies: PropTypes.array,
-  fetchPopularMovies: PropTypes.func
+  tvShows: PropTypes.array,
+  fetchPopularTVShows: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-  const moviesState = state.movies.filter.popular;
+  const tvShowsState = state.tvshows.filter.popular;
   return  {
-    movies: moviesState.result
+    tvShows: tvShowsState.result
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPopularMovies: () => dispatch(MoviesActions.fetchPopularMovies())
+  fetchPopularTVShows: () => dispatch(TVShowsActions.fetchPopularTVShows())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopularScreen);

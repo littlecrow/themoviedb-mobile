@@ -38,17 +38,17 @@ class SearchBar extends Component {
     }, () => {
       this.setState({ isChangedText: text !== '' });
     });
-    const { fetchSearchMovie, resetMovies, resetPage, isSearching, keyword } = this.props;
+    const { fetchSearching, resetSearching, resetPage, isSearching, keyword } = this.props;
     isSearching(true);
     clearTimeout(this._timeoutFunc);
     this._timeoutFunc = setTimeout(() => {
       if(text.length === 0) {
-        resetMovies();
+        resetSearching();
       } else {
         if(text != keyword) {
           resetPage();
         }
-        fetchSearchMovie(text);
+        fetchSearching(text);
       }
     }, 600);
   }
@@ -75,7 +75,7 @@ class SearchBar extends Component {
   }
 
   _renderCrossIcon() {
-    if(this.state.isChangedText) {
+    if(this.state.isChangedText || this.state.text !== '') {
       return (
         <TouchableOpacity style={styles.crossIcon} onPress={this._removeText}>
           <Entypo name='cross' size={24} color={Colors.secondary}/>
@@ -121,9 +121,9 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  fetchSearchMovie: PropTypes.func,
+  fetchSearching: PropTypes.func,
   isSearching: PropTypes.func,
-  resetMovies: PropTypes.func,
+  resetSearching: PropTypes.func,
   resetPage: PropTypes.func,
   keyword: PropTypes.string,
   navigateBack: PropTypes.func
@@ -135,8 +135,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   isSearching: (bool) => SearchActionCreators.checkIsSearching(bool),
-  fetchSearchMovie: (keyword) => dispatch(SearchActions.fetchSearchMovie(keyword)),
-  resetMovies: () => dispatch(SearchActionCreators.resetMovies()),
+  fetchSearching: (keyword) => dispatch(SearchActions.fetchSearching(keyword)),
+  resetSearching: () => dispatch(SearchActionCreators.resetSearching()),
   resetPage: () => dispatch(SearchActionCreators.resetPage()),
   navigateBack: () => dispatch(NavigationActions.back())
 });

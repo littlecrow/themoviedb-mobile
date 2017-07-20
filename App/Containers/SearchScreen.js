@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Text, ActivityIndicator } from 'react-native';
 import SearchBar from '../Components/Header/SeachBar';
-import MovieList from '../Components/Movie/List/List';
+import List from '../Components/Grid/List/index';
 import styles from './Styles/SearchScreenStyles';
 import { SearchActions } from '../Redux/Search';
 
@@ -17,13 +17,13 @@ class SearchScreen extends Component {
   }
 
   _renderResult() {
-    const { movies, isSearching, fetchSearchMovie } = this.props;
+    const { result, isSearching, fetchSearching } = this.props;
     if(isSearching) {
       return this._renderLoading();
     } else {
-      return movies.length === 0
+      return result.length === 0
         ? <View style={styles.emptyResult}><Text>No results</Text></View>
-        : <MovieList movies={movies} onEndReached={fetchSearchMovie}/>;
+        : <List data={result} onEndReached={fetchSearching}/>;
     }
   }
 
@@ -40,20 +40,20 @@ class SearchScreen extends Component {
 }
 
 SearchScreen.propTypes = {
-  movies: PropTypes.array,
+  result: PropTypes.array,
   loading: PropTypes.bool,
   isSearching: PropTypes.bool,
-  fetchSearchMovie: PropTypes.func
+  fetchSearching: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
   isSearching: state.search.isSearching,
   loading: state.search.loading,
-  movies: state.search.list
+  result: state.search.list
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchSearchMovie: () => dispatch(SearchActions.fetchSearchMovie())
+  fetchSearching: () => dispatch(SearchActions.fetchSearching())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchScreen);

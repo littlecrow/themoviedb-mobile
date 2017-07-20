@@ -5,23 +5,23 @@ export const checkIsSearching = (bool) => ({
   payload: bool
 });
 
-export const fetchSearchMovieRequested = (keyword) => ({
-  type: ActionTypes.FETCH_SEARCH_MOVIE_REQUESTED,
+export const fetchSearchingRequested = (keyword) => ({
+  type: ActionTypes.FETCH_SEARCHING_REQUESTED,
   payload: keyword
 });
 
-export const fetchSearchMovieFulfilled = (movies) => ({
-  type: ActionTypes.FETCH_SEARCH_MOVIE_FULFILLED,
-  payload: movies
+export const fetchSearchingFulfilled = (data) => ({
+  type: ActionTypes.FETCH_SEARCHING_FULFILLED,
+  payload: data
 });
 
-export const fetchSearchMovieRejected = (err) => ({
-  type: ActionTypes.FETCH_SEARCH_MOVIE_REJECTED,
+export const fetchSearchingRejected = (err) => ({
+  type: ActionTypes.FETCH_SEARCHING_REJECTED,
   payload: err
 });
 
-export const resetMovies = () => ({
-  type: ActionTypes.RESET_MOVIES
+export const resetSearching = () => ({
+  type: ActionTypes.RESET_SEARCHING
 });
 
 export const resetPage = () => ({
@@ -30,9 +30,9 @@ export const resetPage = () => ({
 
 export default {
   checkIsSearching,
-  fetchSearchMovieRequested,
-  fetchSearchMovieFulfilled,
-  fetchSearchMovieRejected,
-  resetMovies,
+  fetchSearchingRequested,
+  fetchSearchingFulfilled,
+  fetchSearchingRejected,
+  resetSearching,
   resetPage
 };

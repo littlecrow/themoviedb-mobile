@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableHighlight
-} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { NavigationActions } from 'react-navigation';
 import { Images, Metrics } from '../../../Themes';
 import styles from './Styles/GridStyles';
 import { reduceByCharacters } from '../../../Transforms/TextConverter';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
+import { setTVShowDetail } from '../../../Redux/TVShow/ActionCreators';
+import { ListConstant } from '../../../Redux/List';
 
 const { screenWidth, smallMargin } = Metrics;
 /*
@@ -46,19 +42,33 @@ class GridItems extends Component {
     return <Image source={Images.emptyImage} style={styles.image}/>;
   }
 
+  _reduceTitle(itemsPerRow, title) {
+    switch (itemsPerRow) {
+    case 3:
+      return reduceByCharacters(title, 15);
+    case 4:
+      return reduceByCharacters(title, 10);
+    default:
+      return reduceByCharacters(title);
+    }
+  }
+
   _renderInfo(item) {
     const style = StyleSheet.create({
       loadingImage: {
         height: this._calculateMetrics().imageHeight
       }
     });
+    const { itemsPerRow } = this.props;
     return (
       <View>
         <View style={[styles.loadingImage, style.loadingImage]}>
           {this._renderImage(item.backdrop_path)}
         </View>
         <View style={styles.info}>
-          <Text style={styles.text}>{reduceByCharacters(item.title)}</Text>
+          <Text style={styles.text}>
+            {this._reduceTitle(itemsPerRow, (item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
+          </Text>
         </View>
       </View>
     );
@@ -70,18 +80,28 @@ class GridItems extends Component {
         width: this._calculateMetrics().itemWidth
       }
     });
-    const { movie, navigateToDetail, setMovieDetail } = this.props;
+    const { type, data, navigateToMovieDetail, navigateToTVShowDetail, setMovieDetail, setTVShowDetail } = this.props;
     const handleItemPress = (item) => {
-      setMovieDetail(item);
-      navigateToDetail();
+      switch (type) {
+      case ListConstant.MOVIES:
+        setMovieDetail(item);
+        navigateToMovieDetail();
+        break;
+      case ListConstant.TV_SHOWS:
+        setTVShowDetail(item);
+        navigateToTVShowDetail();
+        break;
+      default:
+        break;
+      }
     };
-    return movie.data.map((item, index) => (
+    return data.data.map((item, index) => (
       <TouchableHighlight onPress={() => handleItemPress(item)} key={index}
         style={[
           styles.itemContainer,
           style.itemContainer,
           index === 0 ? styles.firstItem : null,
-          index === movie.data.length - 1 ? styles.lastItem : null
+          index === data.data.length - 1 ? styles.lastItem : null
         ]}>{this._renderInfo(item)}
       </TouchableHighlight>
     ));
@@ -97,10 +117,13 @@ class GridItems extends Component {
 }
 
 GridItems.propTypes = {
-  movie: PropTypes.object,
+  type: PropTypes.string,
+  data: PropTypes.object,
   itemsPerRow: PropTypes.number,
   setMovieDetail: PropTypes.func,
-  navigateToDetail: PropTypes.func,
+  setTVShowDetail: PropTypes.func,
+  navigateToMovieDetail: PropTypes.func,
+  navigateToTVShowDetail: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -109,8 +132,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setMovieDetail: (movie) => dispatch(setMovieDetail(movie)),
-  navigateToDetail: () => dispatch(NavigationActions.navigate({
+  setTVShowDetail: (tvshow) => dispatch(setTVShowDetail(tvshow)),
+  navigateToMovieDetail: () => dispatch(NavigationActions.navigate({
     routeName: 'Movie Detail'
+  })),
+  navigateToTVShowDetail: () => dispatch(NavigationActions.navigate({
+    routeName: 'TV Show Detail'
   }))
 });
 

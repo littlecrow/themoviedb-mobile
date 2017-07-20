@@ -21,13 +21,13 @@ export default (state = INITIAL_STATE, action) => {
       ...state,
       keyword: action.payload
     };
-  case ActionTypes.FETCH_SEARCH_MOVIE_REQUESTED:
+  case ActionTypes.FETCH_SEARCHING_REQUESTED:
     return {
       ...state,
       keyword: action.payload || state.keyword, // for NULL or UNDEFINED
       loading: state.page === 1 ? true : false
     };
-  case ActionTypes.FETCH_SEARCH_MOVIE_FULFILLED:
+  case ActionTypes.FETCH_SEARCHING_FULFILLED:
     return {
       ...state,
       page: state.page + 1,
@@ -38,12 +38,12 @@ export default (state = INITIAL_STATE, action) => {
       loading: false,
       isSearching: false
     };
-  case ActionTypes.FETCH_SEARCH_MOVIE_REJECTED:
+  case ActionTypes.FETCH_SEARCHING_REJECTED:
     return {
       ...state,
       loading: true
     };
-  case ActionTypes.RESET_MOVIES:
+  case ActionTypes.RESET_SEARCHING:
     return {
       ...state,
       list: INITIAL_STATE.list

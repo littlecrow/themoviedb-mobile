@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { MoviesActions, MoviesConstant } from '../../Redux/Movies';
-import MovieList from '../../Components/Movie/List/List';
+import { MoviesActions } from '../../Redux/Movies';
+import List from '../../Components/Grid/List/index';
+import styles from './Styles/MoviesScreenStyles';
 
 class TopRevenueScreen extends Component {
   static navigationOptions = {
@@ -24,9 +25,9 @@ class TopRevenueScreen extends Component {
   render() {
     const { movies, fetchTopRevenueMovies } = this.props;
     return (
-      <View>
-        <MovieList
-          movies={movies}
+      <View style={styles.container}>
+        <List
+          data={movies}
           onEndReached={fetchTopRevenueMovies}
         />
       </View>

@@ -15,4 +15,4 @@ export const handleList = (list, itemInRow) => {
   });
 
   return array;
-}
+};
