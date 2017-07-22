@@ -5,6 +5,7 @@ import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native'
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { NavigationActions } from 'react-navigation';
 import { Images, Metrics } from '../../../Themes';
+import { MaterialIcons } from '@expo/vector-icons';
 import styles from './Styles/GridStyles';
 import { reduceByCharacters } from '../../../Transforms/TextConverter';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
@@ -26,7 +27,7 @@ class GridItems extends Component {
     return {
       itemWidth: itemWidth,
       imageWidth: itemWidth,
-      imageHeight: itemWidth / 1.8
+      imageHeight: itemWidth / 1.5
     };
   }
 
@@ -42,24 +43,12 @@ class GridItems extends Component {
     return <Image source={Images.emptyImage} style={styles.image}/>;
   }
 
-  _reduceTitle(itemsPerRow, title) {
-    switch (itemsPerRow) {
-    case 3:
-      return reduceByCharacters(title, 15);
-    case 4:
-      return reduceByCharacters(title, 10);
-    default:
-      return reduceByCharacters(title);
-    }
-  }
-
   _renderInfo(item) {
     const style = StyleSheet.create({
       loadingImage: {
         height: this._calculateMetrics().imageHeight
       }
     });
-    const { itemsPerRow } = this.props;
     return (
       <View>
         <View style={[styles.loadingImage, style.loadingImage]}>
@@ -67,8 +56,9 @@ class GridItems extends Component {
         </View>
         <View style={styles.info}>
           <Text style={styles.text}>
-            {this._reduceTitle(itemsPerRow, (item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
+            {item.hasOwnProperty('title') && item['title'] ? reduceByCharacters(item.title, 20) : reduceByCharacters(item.name, 20)}
           </Text>
+          <MaterialIcons name='navigate-next' size={22} color='white'/>
         </View>
       </View>
     );

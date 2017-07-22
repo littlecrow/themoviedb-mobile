@@ -6,7 +6,7 @@ import styles from './Styles/ListTypeStyles';
 import { connect } from 'react-redux';
 import { ListActionCreators } from '../../Redux/List';
 
-const nums = [1, 2, 3, 4];
+const nums = [1, 2];
 
 class ListType extends Component {
   constructor(props) {
