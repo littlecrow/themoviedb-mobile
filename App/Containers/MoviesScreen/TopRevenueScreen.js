@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MoviesActions } from '../../Redux/Movies';
+import { ListConstant } from '../../Redux/List';
 import List from '../../Components/Grid/List/index';
 import styles from './Styles/MoviesScreenStyles';
 
@@ -28,6 +29,7 @@ class TopRevenueScreen extends Component {
       <View style={styles.container}>
         <List
           data={movies}
+          type={ListConstant.MOVIES}
           onEndReached={fetchTopRevenueMovies}
         />
       </View>
