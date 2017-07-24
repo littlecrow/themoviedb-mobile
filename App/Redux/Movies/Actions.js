@@ -7,13 +7,23 @@ const API_DISCOVER_MOVIE = 'discover/movie';
 const fetchPopularMovies = () => async (dispatch, getState) => {
   dispatch(ActionCreators.fetchPopularMoviesRequested());
   try {
-    const movies = await Api.get(API_DISCOVER_MOVIE, {
+    let movies = [];
+    let backdrops = [];
+    await Api.get(API_DISCOVER_MOVIE, {
       params: {
         language: await getLanguage(),
         sort_by: Constant.POPULARITY_DESC,
         page: getState().movies.filter.popular.page,
       }
-    }).then(response => response.data.results);
+    }).then(response => {
+      movies = response.data.results;
+      if(getState().movies.filter.popular.page === 1) {
+        movies.forEach(movie => {
+          backdrops.push(movie.backdrop_path);
+        });
+        dispatch(ActionCreators.getPopularMovieBackdrops(backdrops));
+      }
+    });
     return dispatch(ActionCreators.fetchPopularMoviesFulfilled(movies));
   } catch (err) {
     dispatch(ActionCreators.fetchPopularMoviesRejected(err));

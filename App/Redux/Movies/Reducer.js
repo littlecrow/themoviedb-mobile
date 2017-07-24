@@ -16,11 +16,17 @@ export const INITIAL_STATE = {
       page: 1,
       result: []
     }
-  }
+  },
+  backdrops: []
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
+  case ActionTypes.GET_POPULAR_MOVIE_BACKDROPS:
+    return {
+      ...state,
+      backdrops: action.payload
+    };
   case ActionTypes.FETCH_POPULAR_MOVIES_REQUESTED:
     return {
       ...state
@@ -90,7 +96,10 @@ export default (state = INITIAL_STATE, action) => {
       ...state
     };
   case ActionTypes.EMPTY_MOVIES:
-    return INITIAL_STATE;
+    return {
+      ...state,
+      filter: INITIAL_STATE.filter
+    };
   default:
     return state;
   }

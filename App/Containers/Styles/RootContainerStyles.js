@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../Themes/';
 
 export default StyleSheet.create({
   applicationView: {
@@ -9,8 +8,15 @@ export default StyleSheet.create({
     flex: 1
   },
   backgroundImage: {
-    width: Metrics.screenWidth,
-    height: '100%'
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover'
+  },
+  overlayView: {
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    flex: 1,
+    justifyContent:'center',
+    alignItems: 'center'
   },
   text: {
     color: 'white',

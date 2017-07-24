@@ -1,5 +1,10 @@
 import ActionTypes from './ActionTypes';
 
+export const getPopularTVShowBackdrops = (backdrops) => ({
+  type: ActionTypes.GET_POPULAR_TVSHOW_BACKDROPS,
+  payload: backdrops
+});
+
 export const fetchPopularTVShowsRequested = () => ({
   type: ActionTypes.FETCH_POPULAR_TVSHOWS_REQUESTED
 });
@@ -46,6 +51,8 @@ export const fetchLatestTVShowsRejected = (err) => ({
 });
 
 export default {
+  getPopularTVShowBackdrops,
+
   fetchPopularTVShowsRequested,
   fetchPopularTVShowsFulfilled,
   fetchPopularTVShowsRejected,
