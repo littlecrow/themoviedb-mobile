@@ -29,7 +29,6 @@ class SearchScreen extends Component {
 
   render() {
     const { loading } = this.props;
-
     return (
       <View style={styles.container}>
         <SearchBar />

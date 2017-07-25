@@ -17,9 +17,9 @@ const renderLeftButton = (element = null) => (
   </View>
 );
 
-const renderRightButton = (element = null) => (
+const renderRightButton = (element = null, disableListTypes) => (
   <View style={[styles.componentContainer, styles.headerRight]}>
-    {element ? element : <HeaderRight/>}
+    {element ? element : <HeaderRight disableListTypes={disableListTypes}/>}
   </View>
 );
 
@@ -28,7 +28,7 @@ const renderTitle = (title) => ({
   style: styles.title,
 });
 
-const ReduxHeader = ({ title, disableTitle, navigation, headerLeft, headerRight }) => {
+const ReduxHeader = ({ title, disableTitle, navigation, headerLeft, headerRight, disableListTypes }) => {
   const { routes, index } = navigation;
   let _title = routes[index].routeName;
   if (disableTitle) {
@@ -39,7 +39,7 @@ const ReduxHeader = ({ title, disableTitle, navigation, headerLeft, headerRight 
       <Navbar
         style={styles.header}
         leftButton={renderLeftButton(headerLeft)}
-        rightButton={renderRightButton(headerRight)}
+        rightButton={renderRightButton(headerRight, disableListTypes)}
         title={renderTitle(_title)}
       />
     </View>
@@ -49,6 +49,7 @@ const ReduxHeader = ({ title, disableTitle, navigation, headerLeft, headerRight 
 ReduxHeader.propTypes = {
   navigation: PropTypes.object,
   disableTitle: PropTypes.bool,
+  disableListTypes: PropTypes.bool,
   title: PropTypes.string,
   headerRight: PropTypes.element,
   headerLeft: PropTypes.element,

@@ -27,9 +27,11 @@ const _renderImage = (image) => {
 const _renderInfo = (item) => {
   return (
     <View style={styles.infoArea}>
-      <Text style={[styles.text, styles.title]}>
-        {reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
-      </Text>
+      <View justifyContent="center">
+        <Text style={[styles.text, styles.title]}>
+          {reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
+        </Text>
+      </View>
       <MaterialIcons name='navigate-next' size={28} color='white'/>
     </View>
   );

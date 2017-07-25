@@ -29,7 +29,7 @@ const initial_types = (movie_backdrop, tvshow_backdrop, person_backdrop) => ({
     },
     {
       name: 'People',
-      route: 'Login',
+      route: 'People',
       backdrop_uri: THEMOVIEDB_IMAGE_SRC + person_backdrop,
       color: Colors.alizarin
     }
