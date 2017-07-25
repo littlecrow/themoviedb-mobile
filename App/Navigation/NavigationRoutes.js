@@ -42,7 +42,7 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'TV Shows';
+export const INITIAL_ROUTE_NAME = 'Home';
 
 export const DrawerRoutes = [
   {

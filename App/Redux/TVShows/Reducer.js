@@ -16,11 +16,17 @@ export const INITIAL_STATE = {
       page: 1,
       result: []
     }
-  }
+  },
+  backdrops: []
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
+  case ActionTypes.GET_POPULAR_TVSHOW_BACKDROPS:
+    return {
+      ...state,
+      backdrops: action.payload
+    };
   case ActionTypes.FETCH_POPULAR_TVSHOWS_REQUESTED:
     return {
       ...state

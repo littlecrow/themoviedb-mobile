@@ -8,7 +8,8 @@ const images = {
   default_profile: require('../Images/default_profile.png'),
   loadingIcon: require('../Images/movie/ring.gif'),
   defaultBackground: require('../Images/movie/movie_background.jpg'),
-  emptyImage: require('../Images/movie/empty_movie_image.jpg')
+  emptyImage: require('../Images/movie/empty_movie_image.jpg'),
+  actorBackdrop: require('../Images/people/John-Abraham-Indian-Actor.jpg'),
 };
 
 export default images;

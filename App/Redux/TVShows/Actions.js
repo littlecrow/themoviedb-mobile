@@ -7,12 +7,22 @@ const API_DISCOVER_TVSHOW = 'discover/tv';
 const fetchPopularTVShows = () => async (dispatch, getState) => {
   dispatch(ActionCreators.fetchPopularTVShowsRequested());
   try {
-    const data = await Api.get(API_DISCOVER_TVSHOW, {
+    let data = [];
+    let backdrops = [];
+    await Api.get(API_DISCOVER_TVSHOW, {
       params: {
         sort_by: Constant.POPULARITY_DESC,
         page: getState().tvshows.filter.popular.page
       }
-    }).then(response => response.data.results);
+    }).then(response => {
+      data = response.data.results;
+      if(getState().tvshows.filter.popular.page === 1) {
+        data.forEach(tvshow => {
+          backdrops.push(tvshow.backdrop_path);
+        });
+        dispatch(ActionCreators.getPopularTVShowBackdrops(backdrops));
+      }
+    });
     return dispatch(ActionCreators.fetchPopularTVShowsFulfilled(data));
   } catch (err) {
     console.log('Error: ', err);

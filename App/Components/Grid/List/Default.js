@@ -5,6 +5,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { Images } from '../../../Themes';
+import { MaterialIcons } from '@expo/vector-icons';
 import styles from './Styles/DefaultStyles';
 import { reduceByCharacters } from '../../../Transforms/TextConverter';
 import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
@@ -29,8 +30,7 @@ const _renderInfo = (item) => {
       <Text style={[styles.text, styles.title]}>
         {reduceByCharacters((item.hasOwnProperty('title') && item['title']) ? item.title : item.name)}
       </Text>
-      <Text style={styles.text}>{item.release_date}</Text>
-      <Text style={styles.text}>Rating: {item.vote_average}/10</Text>
+      <MaterialIcons name='navigate-next' size={28} color='white'/>
     </View>
   );
 };
@@ -54,7 +54,7 @@ const MovieItem = ({ navigateToMovieDetail, navigateToTVShowDetail, type, data, 
     <TouchableOpacity onPress={handleOnPress}>
       <View style={styles.itemContainer}>
         <View style={styles.imageArea}>
-          {_renderImage(data.poster_path)}
+          {_renderImage(data.backdrop_path)}
         </View>
         {_renderInfo(data)}
       </View>

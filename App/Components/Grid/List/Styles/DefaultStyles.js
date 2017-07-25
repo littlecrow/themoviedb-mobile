@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Metrics } from '../../../../Themes';
 
-const { baseMargin, basePadding, smallMargin } = Metrics;
+const { baseMargin, basePadding, smallMargin, screenWidth } = Metrics;
 
 export default StyleSheet.create({
   itemContainer: {
@@ -12,28 +12,30 @@ export default StyleSheet.create({
   },
   imageArea: {
     marginRight: baseMargin,
-    width: 68,
-    height: 100,
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    width: '100%',
+    height: (screenWidth - baseMargin * 2) / 2,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    position: 'relative'
   },
   image: {
-    width: '100%',
     height: '100%',
     resizeMode: 'cover'
   },
   infoArea: {
-    backgroundColor: 'rgba(0,0,0,0.75)',
+    backgroundColor: 'rgba(0,0,0,0.65)',
     padding: basePadding,
-    height: 100,
+    width: '100%',
     flex: 1,
-    justifyContent: 'space-around'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'absolute',
+    bottom: 0
   },
   text: {
     color: 'white',
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold'
   },
   lastItem: {
     marginBottom: baseMargin

@@ -1,5 +1,10 @@
 import ActionTypes from './ActionTypes';
 
+export const getPopularMovieBackdrops = (backdrops) => ({
+  type: ActionTypes.GET_POPULAR_MOVIE_BACKDROPS,
+  payload: backdrops
+});
+
 export const fetchPopularMoviesRequested = () => ({
   type: ActionTypes.FETCH_POPULAR_MOVIES_REQUESTED
 });
@@ -50,6 +55,8 @@ export const emptyMovies = () => ({
 });
 
 export default {
+  getPopularMovieBackdrops,
+
   fetchPopularMoviesRequested,
   fetchPopularMoviesFulfilled,
   fetchPopularMoviesRejected,

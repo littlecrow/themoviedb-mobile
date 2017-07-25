@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TVShowsActions } from '../../Redux/TVShows';
+import { ListConstant } from '../../Redux/List';
 import List from '../../Components/Grid/List/index';
 import styles from './Styles/TVShowsScreenStyles';
 
@@ -28,6 +29,7 @@ class TopVotedScreen extends Component {
       <View style={styles.container}>
         <List
           data={tvShows}
+          type={ListConstant.TV_SHOWS}
           onEndReached={fetchTopVotedTVShows}
         />
       </View>
