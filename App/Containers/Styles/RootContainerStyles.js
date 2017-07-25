@@ -13,13 +13,14 @@ export default StyleSheet.create({
     resizeMode: 'cover'
   },
   overlayView: {
-    backgroundColor: 'rgba(0,0,0,0.35)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     flex: 1,
     justifyContent:'center',
     alignItems: 'center'
   },
   text: {
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 24
   }
 });
