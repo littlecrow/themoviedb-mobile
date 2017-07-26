@@ -20,22 +20,25 @@ class List extends Component {
 
   _renderItem = ({item, index}) => {
     const { itemsPerRow, type } = this.props;
-    if(itemsPerRow === 1) {
-      if(type === ListConstant.PEOPLE)
-        return <PeopleView data={item} index={index}/>;
-      else
-        return <BackdropView type={type} data={item} index={index}/>;
-    } else {
-      return <MultipleBackdropView type={type} data={item} index={index}/>;
-    }
+    if(type === ListConstant.PEOPLE)
+      return <PeopleView data={item} index={index}/>;
+    else
+      return itemsPerRow === 1 ? <BackdropView type={type} data={item} index={index}/> : <MultipleBackdropView type={type} data={item} index={index}/>;
+  }
+
+  _passData(type, data, itemsPerRow) {
+    if(type === ListConstant.PEOPLE)
+      return data;
+    else
+      return itemsPerRow === 1 ? data : handleList(data, itemsPerRow);
   }
 
   _renderList() {
-    const { data, itemsPerRow, onEndReached } = this.props;
+    const { data, type, itemsPerRow, onEndReached } = this.props;
     return (
       <View>
         <FlatList
-          data={itemsPerRow === 1 ? data : handleList(data, itemsPerRow)}
+          data={this._passData(type, data, itemsPerRow)}
           renderItem={this._renderItem}
           keyExtractor={(item, index) => index}
           ListFooterComponent={this._renderFooter}
