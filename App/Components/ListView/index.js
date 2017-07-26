@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  FlatList,
-  View,
-  ActivityIndicator
-} from 'react-native';
-import styles from './Styles/ListStyles';
-import { handleList } from '../../../Transforms/ListConverter';
-import DefaultItems from './Default';
-import GridItems from './Grid';
+import { FlatList, View, ActivityIndicator } from 'react-native';
+import styles from './Styles/ListViewStyles';
+import { handleList } from '../../Transforms/ListConverter';
+import BackdropView from './BackdropView';
+import MultipleBackdropView from './MultipleBackdropView';
+import PeopleView from './PeopleView';
+import { ListConstant } from '../../Redux/List';
 
 class List extends Component {
   _renderFooter() {
@@ -20,15 +18,22 @@ class List extends Component {
     );
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({item, index}) => {
     const { itemsPerRow, type } = this.props;
-    return itemsPerRow === 1 ? <DefaultItems type={type} data={item}/> : <GridItems type={type} data={item}/>;
+    if(itemsPerRow === 1) {
+      if(type === ListConstant.PEOPLE)
+        return <PeopleView data={item} index={index}/>;
+      else
+        return <BackdropView type={type} data={item} index={index}/>;
+    } else {
+      return <MultipleBackdropView type={type} data={item} index={index}/>;
+    }
   }
 
   _renderList() {
     const { data, itemsPerRow, onEndReached } = this.props;
     return (
-      <View style={styles.list}>
+      <View>
         <FlatList
           data={itemsPerRow === 1 ? data : handleList(data, itemsPerRow)}
           renderItem={this._renderItem}

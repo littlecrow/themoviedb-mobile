@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Text, ActivityIndicator } from 'react-native';
 import SearchBar from '../Components/Header/SeachBar';
-import List from '../Components/Grid/List/index';
+import List from '../Components/ListView';
 import styles from './Styles/SearchScreenStyles';
 import { SearchActions } from '../Redux/Search';
 

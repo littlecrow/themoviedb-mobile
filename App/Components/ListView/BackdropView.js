@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
-import { Images } from '../../../Themes';
+import { Images } from '../../Themes';
 import { MaterialIcons } from '@expo/vector-icons';
-import styles from './Styles/DefaultStyles';
-import { reduceByCharacters } from '../../../Transforms/TextConverter';
-import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
-import { setTVShowDetail } from '../../../Redux/TVShow/ActionCreators';
-import { ListConstant } from '../../../Redux/List';
+import styles from './Styles/BackdropViewStyles';
+import { reduceByCharacters } from '../../Transforms/TextConverter';
+import { setMovieDetail } from '../../Redux/Movie/ActionCreators';
+import { setTVShowDetail } from '../../Redux/TVShow/ActionCreators';
+import { ListConstant } from '../../Redux/List';
 
 const _renderImage = (image) => {
   if (image !== null) {
@@ -37,7 +37,7 @@ const _renderInfo = (item) => {
   );
 };
 
-const MovieItem = ({ navigateToMovieDetail, navigateToTVShowDetail, type, data, setMovieDetail, setTVShowDetail }) => {
+const MovieItem = ({ navigateToMovieDetail, navigateToTVShowDetail, type, data, index, setMovieDetail, setTVShowDetail }) => {
   const handleOnPress = () => {
     switch (type) {
     case ListConstant.MOVIES:
@@ -55,7 +55,7 @@ const MovieItem = ({ navigateToMovieDetail, navigateToTVShowDetail, type, data, 
   return (
     <TouchableOpacity onPress={handleOnPress}>
       <View style={styles.itemContainer}>
-        <View style={styles.imageArea}>
+        <View style={[styles.imageArea, index === 0 ? styles.firstItem : null]}>
           {_renderImage(data.backdrop_path)}
         </View>
         {_renderInfo(data)}
@@ -67,6 +67,7 @@ const MovieItem = ({ navigateToMovieDetail, navigateToTVShowDetail, type, data, 
 MovieItem.propTypes = {
   data: PropTypes.object,
   type: PropTypes.string,
+  index: PropTypes.number,
   setMovieDetail: PropTypes.func,
   setTVShowDetail: PropTypes.func,
   navigateToMovieDetail: PropTypes.func,

@@ -12,6 +12,7 @@ import styles from './Styles/RootContainerStyles';
 import { MoviesActions } from '../Redux/Movies';
 import { TVShowsActions } from '../Redux/TVShows';
 import { PeopleActions } from '../Redux/People';
+import { randomItem } from '../Transforms/RandomItem';
 
 const initial_types = (movie_backdrop, tvshow_backdrop, person_backdrop) => ({
   types: [
@@ -52,10 +53,6 @@ class HomeScreen extends Component {
     this.props.getPopularPersonBackdrops();
   }
 
-  _randomItem(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
   _renderItem(item, index) {
     return (
       <AnimatableView animation={index%2 === 0 ? 'fadeInRight' : 'fadeInLeft'} key={index} style={{flex: 1}}>
@@ -75,12 +72,12 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { movie_backdrops, tvshow_backdrops, person_backdrops } = this.props;
+    const { movie_backdrops, tvshow_backdrops, person_profiles } = this.props;
     return (
       <Wrapper>
         <Header headerRight={<View/>}/>
         <View style={styles.container}>
-          {initial_types(this._randomItem(movie_backdrops), this._randomItem(tvshow_backdrops), this._randomItem(person_backdrops)).types.map(this._renderItem)}
+          {initial_types(randomItem(movie_backdrops), randomItem(tvshow_backdrops), randomItem(person_profiles)).types.map(this._renderItem)}
         </View>
       </Wrapper>
     );
@@ -93,13 +90,13 @@ HomeScreen.propTypes = {
   getPopularPersonBackdrops: PropTypes.func,
   movie_backdrops: PropTypes.array,
   tvshow_backdrops: PropTypes.array,
-  person_backdrops: PropTypes.array,
+  person_profiles: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
   movie_backdrops: state.movies.backdrops,
   tvshow_backdrops: state.tvshows.backdrops,
-  person_backdrops: state.people.backdrops
+  person_profiles: state.people.profiles
 });
 
 const mapDispatchToProps = (dispatch) => ({

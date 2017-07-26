@@ -9,15 +9,15 @@ export const INITIAL_STATE = {
       result: []
     }
   },
-  backdrops: []
+  profiles: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type) {
-  case ActionTypes.GET_POPULAR_PERSON_BACKDROPS:
+  case ActionTypes.GET_POPULAR_PERSON_PROFILES:
     return {
       ...state,
-      backdrops: action.payload
+      profiles: action.payload
     };
   case ActionTypes.FETCH_POPULAR_PEOPLE_REQUESTED:
     return {

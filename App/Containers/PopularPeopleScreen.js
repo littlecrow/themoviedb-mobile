@@ -8,7 +8,7 @@ import DrawerWrapper from '../Components/Drawer/Wrapper';
 import styles from './Styles/PopularPeopleScreenStyles';
 import { ListConstant } from '../Redux/List';
 import { PeopleActions } from '../Redux/People';
-import List from '../Components/Grid/List';
+import List from '../Components/ListView';
 
 class PopularPeopleScreen extends Component {
   render() {
