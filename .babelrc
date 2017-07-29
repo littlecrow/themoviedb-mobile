@@ -1,7 +1,8 @@
 {
   "presets": [
     "babel-preset-expo",
-    "react-native-dotenv"
+    "react-native-dotenv",
+    "react-native"
   ],
   "env": {
     "development": {
