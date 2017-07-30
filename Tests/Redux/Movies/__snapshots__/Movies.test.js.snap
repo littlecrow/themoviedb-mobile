@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>> Testcase Reducer returns the same state on an unhandled action 1`] = `
+Object {
+  "backdrops": Array [],
+  "filter": Object {
+    "popular": Object {
+      "page": 1,
+      "result": Array [],
+    },
+    "topRevenue": Object {
+      "page": 1,
+      "result": Array [],
+    },
+    "topVoted": Object {
+      "page": 1,
+      "result": Array [],
+    },
+  },
+}
+`;
