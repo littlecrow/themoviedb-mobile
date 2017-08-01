@@ -13,7 +13,8 @@
     "react-devtools": "react-devtools"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "verbose": true
   },
   "dependencies": {
     "axios": "^0.16.2",

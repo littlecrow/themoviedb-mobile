@@ -35,6 +35,7 @@ describe('>> Testcase ActionCreators', () => {
         payload: backdrops
       }
     );
+    expect(MoviesActionCreators.getPopularMovieBackdrops(backdrops)).toMatchSnapshot();
   });
   test('creates a fetchPopularMoviesRequested', () => {
     expect(MoviesActionCreators.fetchPopularMoviesRequested()).toEqual(
@@ -42,6 +43,7 @@ describe('>> Testcase ActionCreators', () => {
         type: 'FETCH_POPULAR_MOVIES_REQUESTED'
       }
     );
+    expect(MoviesActionCreators.fetchPopularMoviesRequested()).toMatchSnapshot();
   });
   test('creates a fetchPopularMoviesFulfilled', () => {
     let movies = mockData.results;
@@ -52,6 +54,7 @@ describe('>> Testcase ActionCreators', () => {
         payload: movies
       }
     );
+    expect(MoviesActionCreators.fetchPopularMoviesFulfilled(movies)).toMatchSnapshot();
   });
   test('creates a fetchPopularMoviesRejected', () => {
     expect(MoviesActionCreators.fetchPopularMoviesRejected('404')).toEqual(
@@ -61,6 +64,7 @@ describe('>> Testcase ActionCreators', () => {
         error: true
       }
     );
+    expect(MoviesActionCreators.fetchPopularMoviesRejected('404')).toMatchSnapshot();
   });
   test('creates a fetchTopVotedMoviesRequested', () => {
     expect(MoviesActionCreators.fetchTopVotedMoviesRequested()).toEqual(
@@ -68,6 +72,7 @@ describe('>> Testcase ActionCreators', () => {
         type: 'FETCH_TOP_VOTED_MOVIES_REQUESTED'
       }
     );
+    expect(MoviesActionCreators.fetchTopVotedMoviesRequested()).toMatchSnapshot();
   });
   test('creates a fetchTopVotedMoviesFulfilled', () => {
     let movies = mockData.results;
@@ -77,6 +82,7 @@ describe('>> Testcase ActionCreators', () => {
         payload: movies
       }
     );
+    expect(MoviesActionCreators.fetchTopVotedMoviesFulfilled(movies)).toMatchSnapshot();
   });
   test('creates a fetchTopVotedMoviesRejected', () => {
     expect(MoviesActionCreators.fetchTopVotedMoviesRejected('404')).toEqual(
@@ -86,6 +92,7 @@ describe('>> Testcase ActionCreators', () => {
         error: true
       }
     );
+    expect(MoviesActionCreators.fetchTopVotedMoviesRejected('404')).toMatchSnapshot();
   });
 });
 
@@ -106,5 +113,6 @@ describe('>> Testcase ActionTypes', () => {
 
   test('return the correct types', () => {
     expect(MoviesActionTypes).toEqual(types);
+    expect(MoviesActionTypes).toMatchSnapshot();
   });
 });
