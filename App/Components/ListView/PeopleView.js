@@ -22,11 +22,20 @@ class PeopleView extends Component {
     return backdrops;
   }
 
+  _randomBackdrop(data) {
+    return randomItem(this._getMovieBackdrops(data));
+  }
+
+  componentDidMount() {
+    this.backdrop = this._randomBackdrop(this.props.data);
+  }
+  
+
   render() {
     const { data, index } = this.props;
     return (
       <View style={styles.container}>
-        <Image source={{uri: THEMOVIEDB_IMAGE_SRC + randomItem(this._getMovieBackdrops(data))}} style={[flexibleStyles.backdrop, index === 0 ? styles.firstItem : null]}>
+        <Image source={{uri: THEMOVIEDB_IMAGE_SRC + this.backdrop}} style={[flexibleStyles.backdrop, index === 0 ? styles.firstItem : null]}>
           <View style={styles.info}>
             <Image source={{uri: THEMOVIEDB_IMAGE_SRC + data.profile_path}} style={flexibleStyles.profileImage}/>
             <View style={styles.basicInfo}>

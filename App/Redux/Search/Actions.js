@@ -6,7 +6,7 @@ const fetchSearching = (keyword) => async (dispatch, getState) => {
   dispatch(ActionCreators.fetchSearchingRequested(keyword));
   try {
     const result = await axios.get(
-      THEMOVIEDB_API + 'search/multi',
+      THEMOVIEDB_API + 'search/movie',
       {
         params: {
           api_key: API_KEY,

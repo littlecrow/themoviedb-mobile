@@ -11,6 +11,12 @@ import { PeopleActions } from '../Redux/People';
 import List from '../Components/ListView';
 
 class PopularPeopleScreen extends Component {
+  componentDidMount() {
+    const { fetchPopularPeople } = this.props;
+    fetchPopularPeople();
+  }
+  
+
   render() {
     const { people, fetchPopularPeople } = this.props;
     return (

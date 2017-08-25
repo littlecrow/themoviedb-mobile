@@ -6,6 +6,7 @@ import SearchBar from '../Components/Header/SeachBar';
 import List from '../Components/ListView';
 import styles from './Styles/SearchScreenStyles';
 import { SearchActions } from '../Redux/Search';
+import { ListConstant } from '../Redux/List';
 
 class SearchScreen extends Component {
   _renderLoading() {
@@ -23,7 +24,7 @@ class SearchScreen extends Component {
     } else {
       return result.length === 0
         ? <View style={styles.emptyResult}><Text>No results</Text></View>
-        : <List data={result} onEndReached={fetchSearching}/>;
+        : <List type={ListConstant.MOVIES} data={result} onEndReached={fetchSearching}/>;
     }
   }
 
