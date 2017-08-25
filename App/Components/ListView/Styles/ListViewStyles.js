@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../../../Themes';
+import { Metrics } from '../../../Themes';
 
 const { basePadding, doubleBasePadding } = Metrics;
 

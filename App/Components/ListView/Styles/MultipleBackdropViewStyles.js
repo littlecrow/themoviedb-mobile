@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../../../Themes';
+import { Metrics } from '../../../Themes';
 
 const { smallMargin, smallPadding } = Metrics;
 
@@ -39,5 +39,8 @@ export default StyleSheet.create({
   },
   lastItem: {
     marginRight: smallMargin
+  },
+  firstRow: {
+    marginTop: 0
   }
 });

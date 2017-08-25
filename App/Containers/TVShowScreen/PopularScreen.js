@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TVShowsActions } from '../../Redux/TVShows';
 import { ListConstant } from '../../Redux/List';
-import List from '../../Components/Grid/List/index';
+import List from '../../Components/ListView';
 import styles from './Styles/TVShowsScreenStyles';
 
 class PopularScreen extends Component {
@@ -17,6 +17,12 @@ class PopularScreen extends Component {
       </View>
     ),
   }
+
+  componentDidMount() {
+    const { fetchPopularTVShows } = this.props;
+    fetchPopularTVShows();
+  }
+  
 
   render() {
     const { tvShows, fetchPopularTVShows } = this.props;

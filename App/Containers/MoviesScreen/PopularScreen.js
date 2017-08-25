@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MoviesActions } from '../../Redux/Movies';
 import { ListConstant } from '../../Redux/List';
-import List from '../../Components/Grid/List/index';
+import List from '../../Components/ListView';
 import styles from './Styles/MoviesScreenStyles';
 
 class PopularScreen extends Component {
@@ -16,6 +16,11 @@ class PopularScreen extends Component {
         <Ionicons name="md-globe" size={24} color={tintColor} />
       </View>
     ),
+  }
+
+  componentDidMount() {
+    const { fetchPopularMovies } = this.props;
+    fetchPopularMovies();
   }
 
   render() {

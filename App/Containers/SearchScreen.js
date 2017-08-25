@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Text, ActivityIndicator } from 'react-native';
 import SearchBar from '../Components/Header/SeachBar';
-import List from '../Components/Grid/List/index';
+import List from '../Components/ListView';
 import styles from './Styles/SearchScreenStyles';
 import { SearchActions } from '../Redux/Search';
+import { ListConstant } from '../Redux/List';
 
 class SearchScreen extends Component {
   _renderLoading() {
@@ -23,13 +24,12 @@ class SearchScreen extends Component {
     } else {
       return result.length === 0
         ? <View style={styles.emptyResult}><Text>No results</Text></View>
-        : <List data={result} onEndReached={fetchSearching}/>;
+        : <List type={ListConstant.MOVIES} data={result} onEndReached={fetchSearching}/>;
     }
   }
 
   render() {
     const { loading } = this.props;
-
     return (
       <View style={styles.container}>
         <SearchBar />

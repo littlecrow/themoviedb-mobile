@@ -4,11 +4,11 @@ import styles from './Styles/HeaderRightStyles';
 import ListType from './ListType';
 import SearchIcon from './SearchIcon';
 
-const HeaderRight = () => {
+const HeaderRight = ({ disableListTypes }) => {
   return (
     <View style={styles.container}>
       <SearchIcon/>
-      <ListType/>
+      { disableListTypes ? null : <ListType/>}
     </View>
   );
 };

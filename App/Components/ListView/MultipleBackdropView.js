@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
 import { NavigationActions } from 'react-navigation';
-import { Images, Metrics } from '../../../Themes';
+import { Images, Metrics } from '../../Themes';
 import { MaterialIcons } from '@expo/vector-icons';
-import styles from './Styles/GridStyles';
-import { reduceByCharacters } from '../../../Transforms/TextConverter';
-import { setMovieDetail } from '../../../Redux/Movie/ActionCreators';
-import { setTVShowDetail } from '../../../Redux/TVShow/ActionCreators';
-import { ListConstant } from '../../../Redux/List';
+import styles from './Styles/MultipleBackdropViewStyles';
+import { reduceByCharacters } from '../../Transforms/TextConverter';
+import { setMovieDetail } from '../../Redux/Movie/ActionCreators';
+import { setTVShowDetail } from '../../Redux/TVShow/ActionCreators';
+import { ListConstant } from '../../Redux/List';
 
 const { screenWidth, smallMargin } = Metrics;
 /*
@@ -91,7 +91,8 @@ class GridItems extends Component {
           styles.itemContainer,
           style.itemContainer,
           index === 0 ? styles.firstItem : null,
-          index === data.data.length - 1 ? styles.lastItem : null
+          index === data.data.length - 1 ? styles.lastItem : null,
+          index <= 1 ? styles.firstRow : null
         ]}>{this._renderInfo(item)}
       </TouchableHighlight>
     ));
