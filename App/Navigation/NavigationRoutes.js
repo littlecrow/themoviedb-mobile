@@ -5,6 +5,7 @@ import SearchScreen from '../Containers/SearchScreen';
 import HomeScreen from '../Containers/HomeScreen';
 import AuthScreen from '../Containers/AuthScreen';
 import TVShowScreen from '../Containers/TVShowScreen';
+import PopularPeopleScreen from '../Containers/PopularPeopleScreen';
 import SettingScreen from '../Containers/SettingScreen';
 
 export const AppRoutes = {
@@ -31,6 +32,10 @@ export const AppRoutes = {
   'TV Show Detail': {
     path: '/tvshows/detail/:id',
     screen: TVShowDetailScreen
+  },
+  'People': {
+    path: '/people',
+    screen: PopularPeopleScreen
   },
   'Login': {
     path: '/auth',
@@ -61,6 +66,13 @@ export const DrawerRoutes = [
   },
   {
     name: 'TV Shows',
+    icon: {
+      name: 'earth',
+      type: 'material-community'
+    }
+  },
+  {
+    name: 'People',
     icon: {
       name: 'earth',
       type: 'material-community'

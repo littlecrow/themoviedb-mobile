@@ -11,7 +11,6 @@ export default StyleSheet.create({
     fontSize: 20
   },
   menuIcon: {
-    paddingHorizontal: basePadding
   },
   modalContainer: {
     backgroundColor: 'rgba(0,0,0,0.7)',

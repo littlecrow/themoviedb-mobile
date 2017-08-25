@@ -90,7 +90,7 @@ class SearchBar extends Component {
     return (
       <View style={styles.headerRight}>
         <TextInput
-          placeholder='Search...'
+          placeholder='Search movies...'
           placeholderTextColor={Colors.secondary}
           autoCorrect={false}
           selectionColor={Colors.secondary}

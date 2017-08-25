@@ -4,11 +4,12 @@ import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { TouchableOpacity } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
+import { Metrics } from '../../Themes';
 
 const SearchIcon = ({ navigateToSearching }) => {
   return (
     <TouchableOpacity onPress={navigateToSearching}>
-      <EvilIcons name='search' size={28} color='white'/>
+      <EvilIcons name='search' size={28} color='white' style={{marginRight: Metrics.baseMargin}}/>
     </TouchableOpacity>
   );
 };

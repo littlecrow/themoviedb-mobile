@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
-// import { Platform } from 'react-native';
 import TransparentHeader from '../Components/Header/Transparent';
 import DefaultMovieDetail from '../Components/Movie/Detail/Default';
 import BackdropMovieDetail from '../Components/Movie/Detail/Backdrop';
 import { MovieActions, MovieActionCreators, MOVIE_KEY } from '../Redux/Movie';
 import styles from './Styles/MovieDetailScreenStyles';
-
-// const isAndroid = Platform.OS === 'android';
 
 class MovieDetailScreen extends Component {
 

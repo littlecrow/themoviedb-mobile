@@ -1,17 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { Metrics } from '../../../../Themes';
+import { Metrics } from '../../../Themes';
 
-const { baseMargin, basePadding, smallMargin, screenWidth } = Metrics;
+const { baseMargin, basePadding, screenWidth } = Metrics;
 
 export default StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginVertical: smallMargin,
     marginHorizontal: baseMargin,
   },
   imageArea: {
-    marginRight: baseMargin,
+    marginTop: baseMargin,
     width: '100%',
     height: (screenWidth - baseMargin * 2) / 2,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -37,7 +36,7 @@ export default StyleSheet.create({
   title: {
     fontSize: 16,
   },
-  lastItem: {
-    marginBottom: baseMargin
+  firstItem: {
+    marginTop: 0
   }
 });

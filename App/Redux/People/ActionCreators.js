@@ -1,7 +1,12 @@
 import ActionTypes from './ActionTypes';
 
-export const getPopularPersonBackdrops = (backdrops) => ({
-  type: ActionTypes.GET_POPULAR_PERSON_BACKDROPS,
+export const getPopularPersonProfiles = (profiles) => ({
+  type: ActionTypes.GET_POPULAR_PERSON_PROFILES,
+  payload: profiles
+});
+
+export const getMovieBackdropsOfPerson = (backdrops) => ({
+  type: ActionTypes.GET_MOVIE_BACKDROPS_OF_PERSON,
   payload: backdrops
 });
 
@@ -21,7 +26,8 @@ export const fetchPopularPeopleRejected = (err) => ({
 });
 
 export default {
-  getPopularPersonBackdrops,
+  getPopularPersonProfiles,
+  getMovieBackdropsOfPerson,
 
   fetchPopularPeopleRequested,
   fetchPopularPeopleFulfilled,

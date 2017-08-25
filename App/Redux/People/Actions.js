@@ -6,8 +6,8 @@ const API_POPULAR_PEOPLE = 'person/popular';
 const fetchPopularPeople = () => async (dispatch, getState) => {
   dispatch(ActionCreators.fetchPopularPeopleRequested());
   try {
-    let people = [];
-    let backdrops = [];
+    let people = [],
+      profiles = [];
     await Api.get(API_POPULAR_PEOPLE, {
       params: {
         page: getState().people.filter.popular.page,
@@ -16,9 +16,9 @@ const fetchPopularPeople = () => async (dispatch, getState) => {
       people = response.data.results;
       if(getState().people.filter.popular.page === 1) {
         people.forEach(person => {
-          backdrops.push(person.profile_path);
+          profiles.push(person.profile_path);
         });
-        dispatch(ActionCreators.getPopularPersonBackdrops(backdrops));
+        dispatch(ActionCreators.getPopularPersonProfiles(profiles));
       }
     });
     return dispatch(ActionCreators.fetchPopularPeopleFulfilled(people));

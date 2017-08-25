@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TVShowsActions } from '../../Redux/TVShows';
 import { ListConstant } from '../../Redux/List';
-import List from '../../Components/Grid/List/index';
+import List from '../../Components/ListView';
 import styles from './Styles/TVShowsScreenStyles';
 
 class TopVotedScreen extends Component {
