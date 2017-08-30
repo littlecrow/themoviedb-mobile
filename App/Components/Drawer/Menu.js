@@ -26,8 +26,8 @@ const Menu = () => {
           style={styles.roundAvatar}
         />
         <View style={styles.sideMenuHeaderInfoUser}>
-          <Text style={styles.textHeaderInfoUser}>Mar J</Text>
-          <Text style={styles.textHeaderInfoUser}>baokhanh7m@gmail.com</Text>
+          <Text style={styles.textHeaderInfoUser}>John Cena</Text>
+          <Text style={styles.textHeaderInfoUser}>ucantseeme@gmail.com</Text>
         </View>
       </View>
       <View style={styles.listMenu}>
