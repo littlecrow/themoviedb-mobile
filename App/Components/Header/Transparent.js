@@ -1,33 +1,26 @@
 import React from 'react';
 import {
-  View,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  Platform
+  View, Platform
 } from 'react-native';
+import TouchableView from '../TouchableView';
 import Navbar from 'react-native-navbar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import styles, { backIconSize } from './Styles/TransparentStyles';
 import { Ionicons } from '@expo/vector-icons';
-import colors from '../../Themes/Colors';
 import { reduceByCharacters } from '../../Transforms/TextConverter';
 
 const MAX_TITLE_LENGTH = 35;
-
 const isAndroid = Platform.OS === 'android';
-const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
-const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(colors.secondary, true) : null;
 
 const renderHeaderLeft = (onPress) => (
-  <TouchableWrapper
-    onPress={onPress}
-    background={TouchableBackGround}>
+  <TouchableView
+    onPress={onPress}>
     <View style={[styles.componentContainer, styles.back]}>
       <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
     </View>
-  </TouchableWrapper>
+  </TouchableView>
 );
 
 const renderTitle = (title) => ({

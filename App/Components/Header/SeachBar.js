@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import {
   View,
   TextInput,
-  TouchableNativeFeedback,
   TouchableOpacity,
-  Platform
 } from 'react-native';
+import TouchableView from '../TouchableView';
 import { connect } from 'react-redux';
 
 import { Colors } from '../../Themes';
@@ -14,10 +13,6 @@ import { Ionicons, Entypo } from '@expo/vector-icons';
 import styles, { backIconSize } from './Styles/SearchBarStyles';
 import { SearchActionCreators, SearchActions } from '../../Redux/Search';
 import { NavigationActions } from 'react-navigation';
-
-const isAndroid = Platform.OS === 'android';
-const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
-const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple(Colors.secondary, true) : null;
 
 class SearchBar extends Component {
   constructor(props) {
@@ -63,14 +58,14 @@ class SearchBar extends Component {
   _renderHeaderLeft() {
     const { navigateBack } = this.props;
     return (
-      <TouchableWrapper
+      <TouchableView
         onPress={navigateBack}
-        background={TouchableBackGround}
+        rippleColor={Colors.secondary}
       >
         <View style={[styles.componentContainer, styles.back]}>
           <Ionicons name="md-arrow-back" size={backIconSize} color="white"/>
         </View>
-      </TouchableWrapper>
+      </TouchableView>
     );
   }
 

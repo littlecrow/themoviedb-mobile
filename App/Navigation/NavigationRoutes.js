@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import MovieDetailScreen from '../Containers/MovieDetailScreen';
 import TVShowDetailScreen from '../Containers/TVShowDetailScreen';
 import MoviesScreen from '../Containers/MoviesScreen';
@@ -47,16 +48,9 @@ export const AppRoutes = {
   }
 };
 
-export const INITIAL_ROUTE_NAME = 'Home';
+export const INITIAL_ROUTE_NAME = Platform.OS === 'android' ? 'Home' : 'Movies';
 
-export const DrawerRoutes = [
-  {
-    name: 'Home',
-    icon: {
-      name: 'home',
-      type: 'material-community'
-    }
-  },
+let DefaultDrawerRoutes = [
   {
     name: 'Movies',
     icon: {
@@ -94,3 +88,18 @@ export const DrawerRoutes = [
     }
   },
 ];
+
+if (Platform.OS === 'android') {
+  DefaultDrawerRoutes = [
+    {
+      name: 'Home',
+      icon: {
+        name: 'home',
+        type: 'material-community'
+      }
+    },
+    ...DefaultDrawerRoutes
+  ];
+}
+
+export const DrawerRoutes = DefaultDrawerRoutes;

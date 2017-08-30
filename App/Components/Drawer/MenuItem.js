@@ -1,17 +1,13 @@
 import React from 'react';
-import { View, TouchableNativeFeedback, TouchableOpacity, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import TouchableView from '../TouchableView';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { NAVIGATION_KEY } from '../../Redux/Navigation';
-import styles from './Styles/MenuStyles';
 import PropTypes from 'prop-types';
-import colors from '../../Themes/Colors';
-import { Platform } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-
-const isAndroid = Platform.OS === 'android';
-
-const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
+import styles from './Styles/MenuStyles';
+import { NAVIGATION_KEY } from '../../Redux/Navigation';
+import colors from '../../Themes/Colors';
 
 const MenuItem = ({name, icon, isActive, navigate}) => {
   if (isActive) {
@@ -23,17 +19,16 @@ const MenuItem = ({name, icon, isActive, navigate}) => {
       </View>
     );
   }
-  const background = isAndroid ? TouchableNativeFeedback.Ripple(colors.peterRiver, true) : null;
   return (
-    <TouchableWrapper
+    <TouchableView
       onPress={() => navigate(name)}
       useForeground={true}
-      background={background}>
+      rippleColor={colors.peterRiver}>
       <View style={[styles.item]}>
         <Icon containerStyle={styles.icon} {...icon}/>
         <Text>{name}</Text>
       </View>
-    </TouchableWrapper>
+    </TouchableView>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View, Text, Image, Platform, Linking,
-  TouchableOpacity, TouchableNativeFeedback, TouchableHighlight
+  View, Text, Image, Linking,
 } from 'react-native';
+import TouchableView from '../TouchableView';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-simple-markdown';
 import { reduceByWords } from '../../Transforms/TextConverter';
@@ -10,9 +10,6 @@ import { Images } from '../../Themes';
 import styles from './Styles/ListStyles';
 import markdownStyles from './Styles/MarkdownStyles';
 
-const isAndroid = Platform.OS === 'android';
-const TouchableWrapper = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
-const TouchableBackGround = isAndroid ? TouchableNativeFeedback.Ripple('rgba(0,0,0,0.8)', true) : null;
 const TouchableActiveOpacity = .5;
 
 const WORDS_COUNT = 35;
@@ -61,13 +58,13 @@ class ListItem extends Component {
           <Image source={Images.default_profile} style={styles.itemImage}/>
           <Text style={[styles.whiteText, styles.itemAuthorText]}>{data.author}</Text>
         </View>
-        <TouchableWrapper useForeground={true} background={TouchableBackGround} activeOpacity={TouchableActiveOpacity} onPress={this._handleItemPress}>
+        <TouchableView useForeground={true} rippleColor={'rgba(0,0,0,0.8)'} activeOpacity={TouchableActiveOpacity} onPress={this._handleItemPress}>
           <View style={styles.itemLine}>
             <Markdown rules={{link: this._markdownLinkRule()}}>
               {this.state.shortenContent ? this._reduceByWords(data.content) : data.content}
             </Markdown>
           </View>
-        </TouchableWrapper>
+        </TouchableView>
       </View>
     );
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableNativeFeedback } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { View as AnimatableView } from 'react-native-animatable';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { THEMOVIEDB_IMAGE_SRC } from 'react-native-dotenv';
+import TouchableView from '../Components/TouchableView';
 import Header from '../Components/Drawer/Header';
 import Wrapper from '../Components/Drawer/Wrapper';
 import { Colors } from '../Themes';
@@ -56,9 +57,8 @@ class HomeScreen extends Component {
   _renderItem(item, index) {
     return (
       <AnimatableView animation={index%2 === 0 ? 'fadeInRight' : 'fadeInLeft'} key={index} style={{flex: 1}}>
-        <TouchableNativeFeedback
-          onPress={() => this.props.navigateTo(item.route)}
-          background={TouchableNativeFeedback.Ripple(Colors.secondary, true)}>
+        <TouchableView
+          onPress={() => this.props.navigateTo(item.route)} style={{flex: 1}}>
           <View style={{ backgroundColor: item.color, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={{uri: item.backdrop_uri}} style={styles.backgroundImage}>
               <View style={styles.overlayView}>
@@ -66,7 +66,7 @@ class HomeScreen extends Component {
               </View>
             </Image>
           </View>
-        </TouchableNativeFeedback>
+        </TouchableView>
       </AnimatableView>
     );
   }
